@@ -1,0 +1,261 @@
+{
+  "MOMENT": {
+    "MOMENT": {
+      "cka": 1.0,
+      "ci_low": 1.0,
+      "ci_high": 1.0
+    },
+    "Chronos": {
+      "cka": 0.3519,
+      "ci_low": 0.3272,
+      "ci_high": 0.3835
+    },
+    "PatchTST": {
+      "cka": 0.4021,
+      "ci_low": 0.3685,
+      "ci_high": 0.4521
+    },
+    "GPT4TS": {
+      "cka": 0.1358,
+      "ci_low": 0.1163,
+      "ci_high": 0.1547
+    },
+    "Timer": {
+      "cka": 0.0238,
+      "ci_low": 0.0194,
+      "ci_high": 0.0303
+    },
+    "TimesFM": {
+      "cka": 0.0146,
+      "ci_low": 0.0121,
+      "ci_high": 0.0176
+    },
+    "Moirai": {
+      "cka": 0.04,
+      "ci_low": 0.035,
+      "ci_high": 0.0453
+    }
+  },
+  "Chronos": {
+    "MOMENT": {
+      "cka": 0.352,
+      "ci_low": 0.3274,
+      "ci_high": 0.3837
+    },
+    "Chronos": {
+      "cka": 1.0,
+      "ci_low": 1.0,
+      "ci_high": 1.0
+    },
+    "PatchTST": {
+      "cka": 0.1725,
+      "ci_low": 0.1522,
+      "ci_high": 0.1977
+    },
+    "GPT4TS": {
+      "cka": 0.8033,
+      "ci_low": 0.7848,
+      "ci_high": 0.8211
+    },
+    "Timer": {
+      "cka": 0.0901,
+      "ci_low": 0.0653,
+      "ci_high": 0.1113
+    },
+    "TimesFM": {
+      "cka": 0.012,
+      "ci_low": 0.0099,
+      "ci_high": 0.0196
+    },
+    "Moirai": {
+      "cka": 0.2138,
+      "ci_low": 0.1903,
+      "ci_high": 0.2418
+    }
+  },
+  "PatchTST": {
+    "MOMENT": {
+      "cka": 0.4022,
+      "ci_low": 0.3685,
+      "ci_high": 0.4521
+    },
+    "Chronos": {
+      "cka": 0.1723,
+      "ci_low": 0.152,
+      "ci_high": 0.1976
+    },
+    "PatchTST": {
+      "cka": 1.0,
+      "ci_low": 1.0,
+      "ci_high": 1.0
+    },
+    "GPT4TS": {
+      "cka": 0.0331,
+      "ci_low": 0.0244,
+      "ci_high": 0.0476
+    },
+    "Timer": {
+      "cka": 0.0094,
+      "ci_low": 0.0071,
+      "ci_high": 0.0134
+    },
+    "TimesFM": {
+      "cka": 0.0089,
+      "ci_low": 0.0067,
+      "ci_high": 0.0121
+    },
+    "Moirai": {
+      "cka": 0.0142,
+      "ci_low": 0.0115,
+      "ci_high": 0.0186
+    }
+  },
+  "GPT4TS": {
+    "MOMENT": {
+      "cka": 0.1358,
+      "ci_low": 0.1163,
+      "ci_high": 0.1547
+    },
+    "Chronos": {
+      "cka": 0.8032,
+      "ci_low": 0.7847,
+      "ci_high": 0.821
+    },
+    "PatchTST": {
+      "cka": 0.0331,
+      "ci_low": 0.0244,
+      "ci_high": 0.0476
+    },
+    "GPT4TS": {
+      "cka": 1.0,
+      "ci_low": 1.0,
+      "ci_high": 1.0
+    },
+    "Timer": {
+      "cka": 0.0758,
+      "ci_low": 0.047,
+      "ci_high": 0.1004
+    },
+    "TimesFM": {
+      "cka": 0.0068,
+      "ci_low": 0.0054,
+      "ci_high": 0.0139
+    },
+    "Moirai": {
+      "cka": 0.2924,
+      "ci_low": 0.2508,
+      "ci_high": 0.3341
+    }
+  },
+  "Timer": {
+    "MOMENT": {
+      "cka": 0.0238,
+      "ci_low": 0.0194,
+      "ci_high": 0.0303
+    },
+    "Chronos": {
+      "cka": 0.0901,
+      "ci_low": 0.0652,
+      "ci_high": 0.1112
+    },
+    "PatchTST": {
+      "cka": 0.0094,
+      "ci_low": 0.0071,
+      "ci_high": 0.0134
+    },
+    "GPT4TS": {
+      "cka": 0.0758,
+      "ci_low": 0.047,
+      "ci_high": 0.1004
+    },
+    "Timer": {
+      "cka": 1.0,
+      "ci_low": 1.0,
+      "ci_high": 1.0
+    },
+    "TimesFM": {
+      "cka": 0.256,
+      "ci_low": 0.234,
+      "ci_high": 0.2769
+    },
+    "Moirai": {
+      "cka": 0.8055,
+      "ci_low": 0.7867,
+      "ci_high": 0.8273
+    }
+  },
+  "TimesFM": {
+    "MOMENT": {
+      "cka": 0.0146,
+      "ci_low": 0.0121,
+      "ci_high": 0.0176
+    },
+    "Chronos": {
+      "cka": 0.012,
+      "ci_low": 0.0099,
+      "ci_high": 0.0196
+    },
+    "PatchTST": {
+      "cka": 0.0089,
+      "ci_low": 0.0067,
+      "ci_high": 0.0121
+    },
+    "GPT4TS": {
+      "cka": 0.0068,
+      "ci_low": 0.0054,
+      "ci_high": 0.0139
+    },
+    "Timer": {
+      "cka": 0.256,
+      "ci_low": 0.234,
+      "ci_high": 0.2769
+    },
+    "TimesFM": {
+      "cka": 1.0,
+      "ci_low": 1.0,
+      "ci_high": 1.0
+    },
+    "Moirai": {
+      "cka": 0.3688,
+      "ci_low": 0.3535,
+      "ci_high": 0.3852
+    }
+  },
+  "Moirai": {
+    "MOMENT": {
+      "cka": 0.04,
+      "ci_low": 0.035,
+      "ci_high": 0.0453
+    },
+    "Chronos": {
+      "cka": 0.2138,
+      "ci_low": 0.1903,
+      "ci_high": 0.2418
+    },
+    "PatchTST": {
+      "cka": 0.0142,
+      "ci_low": 0.0115,
+      "ci_high": 0.0186
+    },
+    "GPT4TS": {
+      "cka": 0.2924,
+      "ci_low": 0.2508,
+      "ci_high": 0.3341
+    },
+    "Timer": {
+      "cka": 0.8055,
+      "ci_low": 0.7867,
+      "ci_high": 0.8273
+    },
+    "TimesFM": {
+      "cka": 0.3688,
+      "ci_low": 0.3535,
+      "ci_high": 0.3852
+    },
+    "Moirai": {
+      "cka": 1.0,
+      "ci_low": 1.0,
+      "ci_high": 1.0
+    }
+  }
+}

@@ -1,0 +1,100 @@
+[
+  {
+    "dataset": "anomaly",
+    "n_kernels": 1024,
+    "test_mean": 0.813,
+    "test_ci95_low": 0.792,
+    "test_ci95_high": 0.833,
+    "per_seed_test": [
+      0.83,
+      0.79,
+      0.84,
+      0.78,
+      0.825
+    ]
+  },
+  {
+    "dataset": "anomaly_hard",
+    "n_kernels": 1024,
+    "test_mean": 0.96,
+    "test_ci95_low": 0.952,
+    "test_ci95_high": 0.968,
+    "per_seed_test": [
+      0.97,
+      0.96,
+      0.97,
+      0.945,
+      0.955
+    ]
+  },
+  {
+    "dataset": "frequency",
+    "n_kernels": 1024,
+    "test_mean": 1.0,
+    "test_ci95_low": 1.0,
+    "test_ci95_high": 1.0,
+    "per_seed_test": [
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0
+    ]
+  },
+  {
+    "dataset": "frequency_hard",
+    "n_kernels": 1024,
+    "test_mean": 0.992,
+    "test_ci95_low": 0.988,
+    "test_ci95_high": 0.995,
+    "per_seed_test": [
+      0.99,
+      0.985,
+      0.995,
+      0.995,
+      0.995
+    ]
+  },
+  {
+    "dataset": "trend_hard",
+    "n_kernels": 1024,
+    "test_mean": 0.948,
+    "test_ci95_low": 0.929,
+    "test_ci95_high": 0.962,
+    "per_seed_test": [
+      0.965,
+      0.95,
+      0.965,
+      0.91,
+      0.95
+    ]
+  },
+  {
+    "dataset": "change_point_hard",
+    "n_kernels": 1024,
+    "test_mean": 0.965,
+    "test_ci95_low": 0.962,
+    "test_ci95_high": 0.968,
+    "per_seed_test": [
+      0.96,
+      0.965,
+      0.965,
+      0.97,
+      0.965
+    ]
+  },
+  {
+    "dataset": "stationarity_hard",
+    "n_kernels": 1024,
+    "test_mean": 0.997,
+    "test_ci95_low": 0.995,
+    "test_ci95_high": 0.999,
+    "per_seed_test": [
+      0.995,
+      0.995,
+      1.0,
+      1.0,
+      0.995
+    ]
+  }
+]

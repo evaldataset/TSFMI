@@ -1,0 +1,50 @@
+[
+  {
+    "property": "anomaly",
+    "baseline": "hand_crafted",
+    "task_type": "classification",
+    "test_mean": 0.858,
+    "test_ci95_low": 0.837,
+    "test_ci95_high": 0.8821,
+    "per_seed_test": [
+      0.875,
+      0.845,
+      0.835,
+      0.9,
+      0.835
+    ],
+    "protocol": "60/20/20 train/val/test, 5 seeds, matched estimator"
+  },
+  {
+    "property": "anomaly",
+    "baseline": "raw_signal",
+    "task_type": "classification",
+    "test_mean": 0.485,
+    "test_ci95_low": 0.459,
+    "test_ci95_high": 0.516,
+    "per_seed_test": [
+      0.535,
+      0.505,
+      0.44,
+      0.475,
+      0.47
+    ],
+    "protocol": "60/20/20 train/val/test, 5 seeds, matched estimator"
+  },
+  {
+    "property": "anomaly",
+    "baseline": "random_projection",
+    "task_type": "classification",
+    "test_mean": 0.513,
+    "test_ci95_low": 0.478,
+    "test_ci95_high": 0.535,
+    "per_seed_test": [
+      0.525,
+      0.52,
+      0.535,
+      0.445,
+      0.54
+    ],
+    "protocol": "60/20/20 train/val/test, 5 seeds, matched estimator"
+  }
+]

@@ -1,0 +1,296 @@
+[
+  {
+    "subset": "only_slope",
+    "n_features": 1,
+    "test_mean": 0.476,
+    "test_ci95_low": 0.452,
+    "test_ci95_high": 0.503,
+    "per_seed_test": [
+      0.485,
+      0.44,
+      0.525,
+      0.475,
+      0.455
+    ]
+  },
+  {
+    "subset": "only_residual_std",
+    "n_features": 1,
+    "test_mean": 0.626,
+    "test_ci95_low": 0.603,
+    "test_ci95_high": 0.652,
+    "per_seed_test": [
+      0.605,
+      0.655,
+      0.61,
+      0.665,
+      0.595
+    ]
+  },
+  {
+    "subset": "only_mean",
+    "n_features": 1,
+    "test_mean": 0.477,
+    "test_ci95_low": 0.449,
+    "test_ci95_high": 0.5,
+    "per_seed_test": [
+      0.485,
+      0.43,
+      0.47,
+      0.485,
+      0.515
+    ]
+  },
+  {
+    "subset": "only_std",
+    "n_features": 1,
+    "test_mean": 0.626,
+    "test_ci95_low": 0.604,
+    "test_ci95_high": 0.651,
+    "per_seed_test": [
+      0.61,
+      0.65,
+      0.61,
+      0.665,
+      0.595
+    ]
+  },
+  {
+    "subset": "only_kurtosis",
+    "n_features": 1,
+    "test_mean": 0.859,
+    "test_ci95_low": 0.844,
+    "test_ci95_high": 0.88,
+    "per_seed_test": [
+      0.865,
+      0.84,
+      0.845,
+      0.895,
+      0.85
+    ]
+  },
+  {
+    "subset": "only_argmax_fft",
+    "n_features": 1,
+    "test_mean": 0.462,
+    "test_ci95_low": 0.447,
+    "test_ci95_high": 0.48,
+    "per_seed_test": [
+      0.47,
+      0.44,
+      0.445,
+      0.49,
+      0.465
+    ]
+  },
+  {
+    "subset": "only_spectral_entropy",
+    "n_features": 1,
+    "test_mean": 0.501,
+    "test_ci95_low": 0.46,
+    "test_ci95_high": 0.542,
+    "per_seed_test": [
+      0.495,
+      0.44,
+      0.54,
+      0.46,
+      0.57
+    ]
+  },
+  {
+    "subset": "only_diff_std",
+    "n_features": 1,
+    "test_mean": 0.61,
+    "test_ci95_low": 0.594,
+    "test_ci95_high": 0.625,
+    "per_seed_test": [
+      0.625,
+      0.58,
+      0.63,
+      0.6,
+      0.615
+    ]
+  },
+  {
+    "subset": "max_abs_only",
+    "n_features": 1,
+    "test_mean": 0.907,
+    "test_ci95_low": 0.899,
+    "test_ci95_high": 0.916,
+    "per_seed_test": [
+      0.915,
+      0.9,
+      0.895,
+      0.92,
+      0.905
+    ]
+  },
+  {
+    "subset": "drop_slope",
+    "n_features": 7,
+    "test_mean": 0.86,
+    "test_ci95_low": 0.841,
+    "test_ci95_high": 0.8831,
+    "per_seed_test": [
+      0.875,
+      0.85,
+      0.835,
+      0.9,
+      0.84
+    ]
+  },
+  {
+    "subset": "drop_residual_std",
+    "n_features": 7,
+    "test_mean": 0.86,
+    "test_ci95_low": 0.843,
+    "test_ci95_high": 0.883,
+    "per_seed_test": [
+      0.87,
+      0.845,
+      0.84,
+      0.9,
+      0.845
+    ]
+  },
+  {
+    "subset": "drop_mean",
+    "n_features": 7,
+    "test_mean": 0.864,
+    "test_ci95_low": 0.847,
+    "test_ci95_high": 0.885,
+    "per_seed_test": [
+      0.875,
+      0.84,
+      0.855,
+      0.9,
+      0.85
+    ]
+  },
+  {
+    "subset": "drop_std",
+    "n_features": 7,
+    "test_mean": 0.857,
+    "test_ci95_low": 0.837,
+    "test_ci95_high": 0.879,
+    "per_seed_test": [
+      0.875,
+      0.845,
+      0.835,
+      0.895,
+      0.835
+    ]
+  },
+  {
+    "subset": "drop_kurtosis",
+    "n_features": 7,
+    "test_mean": 0.626,
+    "test_ci95_low": 0.592,
+    "test_ci95_high": 0.662,
+    "per_seed_test": [
+      0.59,
+      0.69,
+      0.62,
+      0.65,
+      0.58
+    ]
+  },
+  {
+    "subset": "drop_argmax_fft",
+    "n_features": 7,
+    "test_mean": 0.858,
+    "test_ci95_low": 0.839,
+    "test_ci95_high": 0.88,
+    "per_seed_test": [
+      0.875,
+      0.845,
+      0.84,
+      0.895,
+      0.835
+    ]
+  },
+  {
+    "subset": "drop_spectral_entropy",
+    "n_features": 7,
+    "test_mean": 0.862,
+    "test_ci95_low": 0.842,
+    "test_ci95_high": 0.886,
+    "per_seed_test": [
+      0.875,
+      0.855,
+      0.835,
+      0.905,
+      0.84
+    ]
+  },
+  {
+    "subset": "drop_diff_std",
+    "n_features": 7,
+    "test_mean": 0.858,
+    "test_ci95_low": 0.84,
+    "test_ci95_high": 0.88,
+    "per_seed_test": [
+      0.875,
+      0.84,
+      0.84,
+      0.895,
+      0.84
+    ]
+  },
+  {
+    "subset": "kurtosis+diff_std",
+    "n_features": 2,
+    "test_mean": 0.86,
+    "test_ci95_low": 0.843,
+    "test_ci95_high": 0.882,
+    "per_seed_test": [
+      0.865,
+      0.845,
+      0.835,
+      0.895,
+      0.86
+    ]
+  },
+  {
+    "subset": "std+kurtosis",
+    "n_features": 2,
+    "test_mean": 0.864,
+    "test_ci95_low": 0.848,
+    "test_ci95_high": 0.885,
+    "per_seed_test": [
+      0.875,
+      0.845,
+      0.85,
+      0.9,
+      0.85
+    ]
+  },
+  {
+    "subset": "full_8D",
+    "n_features": 8,
+    "test_mean": 0.858,
+    "test_ci95_low": 0.837,
+    "test_ci95_high": 0.8821,
+    "per_seed_test": [
+      0.875,
+      0.845,
+      0.835,
+      0.9,
+      0.835
+    ]
+  },
+  {
+    "subset": "drop_kurtosis_and_std",
+    "n_features": 6,
+    "test_mean": 0.626,
+    "test_ci95_low": 0.594,
+    "test_ci95_high": 0.66,
+    "per_seed_test": [
+      0.595,
+      0.685,
+      0.62,
+      0.65,
+      0.58
+    ]
+  }
+]

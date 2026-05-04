@@ -1,0 +1,9 @@
+{
+  "before_accuracy": 1.0,
+  "after_accuracy": 0.6399999856948853,
+  "drop": 0.36000001430511475,
+  "erase_property": "change_point",
+  "eval_property": "trend",
+  "model": "moment_pca512",
+  "layer": "encoder_block_23"
+}

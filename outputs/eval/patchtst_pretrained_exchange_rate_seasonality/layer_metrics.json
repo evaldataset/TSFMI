@@ -1,0 +1,23 @@
+[
+  {
+    "layer": "model_encoder_layers_0",
+    "val_r2": -7.774466514587402,
+    "val_mae": 157.16934204101562,
+    "val_mse": 27833.369140625,
+    "train_loss": 30506.458984375
+  },
+  {
+    "layer": "model_encoder_layers_1",
+    "val_r2": -7.449774742126465,
+    "val_mae": 153.34603881835938,
+    "val_mse": 26803.41796875,
+    "train_loss": 28327.64453125
+  },
+  {
+    "layer": "model_encoder_layers_2",
+    "val_r2": -4.795697212219238,
+    "val_mae": 127.29761505126953,
+    "val_mse": 18384.453125,
+    "train_loss": 17654.810546875
+  }
+]

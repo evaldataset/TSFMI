@@ -1,0 +1,50 @@
+[
+  {
+    "property": "seasonality",
+    "baseline": "hand_crafted",
+    "task_type": "regression",
+    "test_mean": 0.9589,
+    "test_ci95_low": 0.9563,
+    "test_ci95_high": 0.9623,
+    "per_seed_test": [
+      0.9557,
+      0.9595,
+      0.9555,
+      0.9594,
+      0.9643
+    ],
+    "protocol": "60/20/20 train/val/test, 5 seeds, matched estimator"
+  },
+  {
+    "property": "seasonality",
+    "baseline": "raw_signal",
+    "task_type": "regression",
+    "test_mean": 0.789,
+    "test_ci95_low": 0.7792,
+    "test_ci95_high": 0.8027,
+    "per_seed_test": [
+      0.7921,
+      0.7754,
+      0.8135,
+      0.7828,
+      0.7811
+    ],
+    "protocol": "60/20/20 train/val/test, 5 seeds, matched estimator"
+  },
+  {
+    "property": "seasonality",
+    "baseline": "random_projection",
+    "task_type": "regression",
+    "test_mean": 0.8564,
+    "test_ci95_low": 0.8456,
+    "test_ci95_high": 0.8672,
+    "per_seed_test": [
+      0.8401,
+      0.8643,
+      0.875,
+      0.8453,
+      0.8575
+    ],
+    "protocol": "60/20/20 train/val/test, 5 seeds, matched estimator"
+  }
+]

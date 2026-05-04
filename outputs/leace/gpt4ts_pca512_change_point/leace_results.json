@@ -1,0 +1,110 @@
+{
+  "transformer_h_0": {
+    "before": {
+      "accuracy": 0.996999979019165
+    },
+    "after": {
+      "accuracy": 0.4869999885559082
+    },
+    "drop": 0.5099999904632568
+  },
+  "transformer_h_1": {
+    "before": {
+      "accuracy": 0.9990000128746033
+    },
+    "after": {
+      "accuracy": 0.4959999918937683
+    },
+    "drop": 0.503000020980835
+  },
+  "transformer_h_10": {
+    "before": {
+      "accuracy": 0.9990000128746033
+    },
+    "after": {
+      "accuracy": 0.5109999775886536
+    },
+    "drop": 0.4880000352859497
+  },
+  "transformer_h_11": {
+    "before": {
+      "accuracy": 0.9990000128746033
+    },
+    "after": {
+      "accuracy": 0.49900001287460327
+    },
+    "drop": 0.5
+  },
+  "transformer_h_2": {
+    "before": {
+      "accuracy": 1.0
+    },
+    "after": {
+      "accuracy": 0.4950000047683716
+    },
+    "drop": 0.5049999952316284
+  },
+  "transformer_h_3": {
+    "before": {
+      "accuracy": 1.0
+    },
+    "after": {
+      "accuracy": 0.4749999940395355
+    },
+    "drop": 0.5250000059604645
+  },
+  "transformer_h_4": {
+    "before": {
+      "accuracy": 0.996999979019165
+    },
+    "after": {
+      "accuracy": 0.4959999918937683
+    },
+    "drop": 0.5009999871253967
+  },
+  "transformer_h_5": {
+    "before": {
+      "accuracy": 0.9980000257492065
+    },
+    "after": {
+      "accuracy": 0.5059999823570251
+    },
+    "drop": 0.4920000433921814
+  },
+  "transformer_h_6": {
+    "before": {
+      "accuracy": 1.0
+    },
+    "after": {
+      "accuracy": 0.4860000014305115
+    },
+    "drop": 0.5139999985694885
+  },
+  "transformer_h_7": {
+    "before": {
+      "accuracy": 1.0
+    },
+    "after": {
+      "accuracy": 0.49399998784065247
+    },
+    "drop": 0.5060000121593475
+  },
+  "transformer_h_8": {
+    "before": {
+      "accuracy": 0.9990000128746033
+    },
+    "after": {
+      "accuracy": 0.5180000066757202
+    },
+    "drop": 0.48100000619888306
+  },
+  "transformer_h_9": {
+    "before": {
+      "accuracy": 0.9990000128746033
+    },
+    "after": {
+      "accuracy": 0.5120000243186951
+    },
+    "drop": 0.4869999885559082
+  }
+}

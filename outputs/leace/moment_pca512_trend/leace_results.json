@@ -1,0 +1,218 @@
+{
+  "encoder_block_0": {
+    "before": {
+      "accuracy": 0.9900000095367432
+    },
+    "after": {
+      "accuracy": 0.777999997138977
+    },
+    "drop": 0.2120000123977661
+  },
+  "encoder_block_1": {
+    "before": {
+      "accuracy": 0.996999979019165
+    },
+    "after": {
+      "accuracy": 0.5149999856948853
+    },
+    "drop": 0.4819999933242798
+  },
+  "encoder_block_10": {
+    "before": {
+      "accuracy": 1.0
+    },
+    "after": {
+      "accuracy": 0.5630000233650208
+    },
+    "drop": 0.43699997663497925
+  },
+  "encoder_block_11": {
+    "before": {
+      "accuracy": 0.9950000047683716
+    },
+    "after": {
+      "accuracy": 0.503000020980835
+    },
+    "drop": 0.4919999837875366
+  },
+  "encoder_block_12": {
+    "before": {
+      "accuracy": 0.9890000224113464
+    },
+    "after": {
+      "accuracy": 0.4830000102519989
+    },
+    "drop": 0.5060000121593475
+  },
+  "encoder_block_13": {
+    "before": {
+      "accuracy": 0.9879999756813049
+    },
+    "after": {
+      "accuracy": 0.503000020980835
+    },
+    "drop": 0.48499995470046997
+  },
+  "encoder_block_14": {
+    "before": {
+      "accuracy": 0.9829999804496765
+    },
+    "after": {
+      "accuracy": 0.4970000088214874
+    },
+    "drop": 0.4859999716281891
+  },
+  "encoder_block_15": {
+    "before": {
+      "accuracy": 0.9869999885559082
+    },
+    "after": {
+      "accuracy": 0.5049999952316284
+    },
+    "drop": 0.4819999933242798
+  },
+  "encoder_block_16": {
+    "before": {
+      "accuracy": 0.9909999966621399
+    },
+    "after": {
+      "accuracy": 0.5490000247955322
+    },
+    "drop": 0.44199997186660767
+  },
+  "encoder_block_17": {
+    "before": {
+      "accuracy": 1.0
+    },
+    "after": {
+      "accuracy": 0.6179999709129333
+    },
+    "drop": 0.38200002908706665
+  },
+  "encoder_block_18": {
+    "before": {
+      "accuracy": 0.996999979019165
+    },
+    "after": {
+      "accuracy": 0.5450000166893005
+    },
+    "drop": 0.4519999623298645
+  },
+  "encoder_block_19": {
+    "before": {
+      "accuracy": 1.0
+    },
+    "after": {
+      "accuracy": 0.7400000095367432
+    },
+    "drop": 0.25999999046325684
+  },
+  "encoder_block_2": {
+    "before": {
+      "accuracy": 0.9940000176429749
+    },
+    "after": {
+      "accuracy": 0.8009999990463257
+    },
+    "drop": 0.19300001859664917
+  },
+  "encoder_block_20": {
+    "before": {
+      "accuracy": 0.9980000257492065
+    },
+    "after": {
+      "accuracy": 0.5189999938011169
+    },
+    "drop": 0.4790000319480896
+  },
+  "encoder_block_21": {
+    "before": {
+      "accuracy": 0.9990000128746033
+    },
+    "after": {
+      "accuracy": 0.5569999814033508
+    },
+    "drop": 0.44200003147125244
+  },
+  "encoder_block_22": {
+    "before": {
+      "accuracy": 0.9990000128746033
+    },
+    "after": {
+      "accuracy": 0.5460000038146973
+    },
+    "drop": 0.453000009059906
+  },
+  "encoder_block_23": {
+    "before": {
+      "accuracy": 1.0
+    },
+    "after": {
+      "accuracy": 0.6140000224113464
+    },
+    "drop": 0.38599997758865356
+  },
+  "encoder_block_3": {
+    "before": {
+      "accuracy": 1.0
+    },
+    "after": {
+      "accuracy": 0.5419999957084656
+    },
+    "drop": 0.4580000042915344
+  },
+  "encoder_block_4": {
+    "before": {
+      "accuracy": 0.9990000128746033
+    },
+    "after": {
+      "accuracy": 0.5270000100135803
+    },
+    "drop": 0.47200000286102295
+  },
+  "encoder_block_5": {
+    "before": {
+      "accuracy": 0.996999979019165
+    },
+    "after": {
+      "accuracy": 0.5070000290870667
+    },
+    "drop": 0.4899999499320984
+  },
+  "encoder_block_6": {
+    "before": {
+      "accuracy": 0.9940000176429749
+    },
+    "after": {
+      "accuracy": 0.515999972820282
+    },
+    "drop": 0.47800004482269287
+  },
+  "encoder_block_7": {
+    "before": {
+      "accuracy": 0.9959999918937683
+    },
+    "after": {
+      "accuracy": 0.7789999842643738
+    },
+    "drop": 0.21700000762939453
+  },
+  "encoder_block_8": {
+    "before": {
+      "accuracy": 0.9850000143051147
+    },
+    "after": {
+      "accuracy": 0.5170000195503235
+    },
+    "drop": 0.46799999475479126
+  },
+  "encoder_block_9": {
+    "before": {
+      "accuracy": 0.9919999837875366
+    },
+    "after": {
+      "accuracy": 0.5450000166893005
+    },
+    "drop": 0.4469999670982361
+  }
+}

@@ -1,0 +1,86 @@
+[
+  {
+    "layer": "transformer_h_0",
+    "val_accuracy": 0.4230769230769231,
+    "val_f1_macro": 0.4222222222222222,
+    "val_f1_weighted": 0.4170940170940171,
+    "train_loss": 0.0019124395912513137
+  },
+  {
+    "layer": "transformer_h_1",
+    "val_accuracy": 0.6153846153846154,
+    "val_f1_macro": 0.6130952380952381,
+    "val_f1_weighted": 0.61996336996337,
+    "train_loss": 0.002208696911111474
+  },
+  {
+    "layer": "transformer_h_10",
+    "val_accuracy": 0.5769230769230769,
+    "val_f1_macro": 0.5762962962962963,
+    "val_f1_weighted": 0.5725356125356126,
+    "train_loss": 0.002240970963612199
+  },
+  {
+    "layer": "transformer_h_11",
+    "val_accuracy": 0.5,
+    "val_f1_macro": 0.4932533733133433,
+    "val_f1_weighted": 0.5067466266866567,
+    "train_loss": 0.010076653212308884
+  },
+  {
+    "layer": "transformer_h_2",
+    "val_accuracy": 0.38461538461538464,
+    "val_f1_macro": 0.38095238095238093,
+    "val_f1_weighted": 0.3699633699633699,
+    "train_loss": 0.0015121048782020807
+  },
+  {
+    "layer": "transformer_h_3",
+    "val_accuracy": 0.4230769230769231,
+    "val_f1_macro": 0.4009216589861751,
+    "val_f1_weighted": 0.3743353420772776,
+    "train_loss": 0.0015779478708282113
+  },
+  {
+    "layer": "transformer_h_4",
+    "val_accuracy": 0.4230769230769231,
+    "val_f1_macro": 0.4222222222222222,
+    "val_f1_weighted": 0.42735042735042733,
+    "train_loss": 0.005967166740447283
+  },
+  {
+    "layer": "transformer_h_5",
+    "val_accuracy": 0.5384615384615384,
+    "val_f1_macro": 0.5272727272727272,
+    "val_f1_weighted": 0.5104895104895105,
+    "train_loss": 0.0017091523623093963
+  },
+  {
+    "layer": "transformer_h_6",
+    "val_accuracy": 0.4230769230769231,
+    "val_f1_macro": 0.4222222222222222,
+    "val_f1_weighted": 0.4170940170940171,
+    "train_loss": 0.0019482296193018556
+  },
+  {
+    "layer": "transformer_h_7",
+    "val_accuracy": 0.46153846153846156,
+    "val_f1_macro": 0.45833333333333337,
+    "val_f1_weighted": 0.467948717948718,
+    "train_loss": 0.0023926233407109976
+  },
+  {
+    "layer": "transformer_h_8",
+    "val_accuracy": 0.4230769230769231,
+    "val_f1_macro": 0.4222222222222222,
+    "val_f1_weighted": 0.4170940170940171,
+    "train_loss": 0.0013733990490436554
+  },
+  {
+    "layer": "transformer_h_9",
+    "val_accuracy": 0.5,
+    "val_f1_macro": 0.49925925925925924,
+    "val_f1_weighted": 0.4948148148148148,
+    "train_loss": 0.0030136348214000463
+  }
+]

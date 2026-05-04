@@ -1,0 +1,43 @@
+{
+  "representations_dir": "outputs/representations/chronos/synthetic_anomaly",
+  "property": "anomaly",
+  "task_type": "classification",
+  "seeds": [
+    0,
+    1,
+    2,
+    3,
+    4
+  ],
+  "val_score_per_seed": [
+    0.768,
+    0.751,
+    0.732,
+    0.747,
+    0.776
+  ],
+  "test_score_per_seed": [
+    0.73,
+    0.726,
+    0.742,
+    0.719,
+    0.718
+  ],
+  "best_layer_per_seed": [
+    "encoder_block_3",
+    "encoder_block_5",
+    "encoder_block_5",
+    "encoder_block_3",
+    "encoder_block_3"
+  ],
+  "test_mean": 0.727,
+  "test_ci95_low": 0.72,
+  "test_ci95_high": 0.735,
+  "protocol": {
+    "split": "60/20/20 train/val/test",
+    "selection": "best layer chosen on val only",
+    "reporting": "test score only",
+    "estimator": "sklearn LogisticRegression",
+    "n_bootstrap": 1000
+  }
+}

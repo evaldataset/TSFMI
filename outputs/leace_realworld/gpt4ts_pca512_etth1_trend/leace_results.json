@@ -1,0 +1,110 @@
+{
+  "transformer_h_0": {
+    "before": {
+      "accuracy": 0.9622641801834106
+    },
+    "after": {
+      "accuracy": 0.8301886916160583
+    },
+    "drop": 0.1320754885673523
+  },
+  "transformer_h_1": {
+    "before": {
+      "accuracy": 0.9622641801834106
+    },
+    "after": {
+      "accuracy": 0.8679245114326477
+    },
+    "drop": 0.09433966875076294
+  },
+  "transformer_h_10": {
+    "before": {
+      "accuracy": 0.9433962106704712
+    },
+    "after": {
+      "accuracy": 0.698113203048706
+    },
+    "drop": 0.24528300762176514
+  },
+  "transformer_h_11": {
+    "before": {
+      "accuracy": 0.9811320900917053
+    },
+    "after": {
+      "accuracy": 0.8301886916160583
+    },
+    "drop": 0.15094339847564697
+  },
+  "transformer_h_2": {
+    "before": {
+      "accuracy": 0.9622641801834106
+    },
+    "after": {
+      "accuracy": 0.6603773832321167
+    },
+    "drop": 0.30188679695129395
+  },
+  "transformer_h_3": {
+    "before": {
+      "accuracy": 0.9433962106704712
+    },
+    "after": {
+      "accuracy": 0.6603773832321167
+    },
+    "drop": 0.2830188274383545
+  },
+  "transformer_h_4": {
+    "before": {
+      "accuracy": 0.9811320900917053
+    },
+    "after": {
+      "accuracy": 0.7547169923782349
+    },
+    "drop": 0.22641509771347046
+  },
+  "transformer_h_5": {
+    "before": {
+      "accuracy": 0.9433962106704712
+    },
+    "after": {
+      "accuracy": 0.6603773832321167
+    },
+    "drop": 0.2830188274383545
+  },
+  "transformer_h_6": {
+    "before": {
+      "accuracy": 0.9622641801834106
+    },
+    "after": {
+      "accuracy": 0.6415094137191772
+    },
+    "drop": 0.3207547664642334
+  },
+  "transformer_h_7": {
+    "before": {
+      "accuracy": 0.9433962106704712
+    },
+    "after": {
+      "accuracy": 0.698113203048706
+    },
+    "drop": 0.24528300762176514
+  },
+  "transformer_h_8": {
+    "before": {
+      "accuracy": 0.9245283007621765
+    },
+    "after": {
+      "accuracy": 0.7735849022865295
+    },
+    "drop": 0.15094339847564697
+  },
+  "transformer_h_9": {
+    "before": {
+      "accuracy": 0.9811320900917053
+    },
+    "after": {
+      "accuracy": 0.7358490824699402
+    },
+    "drop": 0.24528300762176514
+  }
+}

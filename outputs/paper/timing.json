@@ -1,0 +1,38 @@
+{
+  "platform": "Linux-6.8.0-100-generic-x86_64-with-glibc2.39",
+  "python": "3.12.3",
+  "stages": [
+    {
+      "label": "canonical_baselines",
+      "cmd": [
+        ".venv/bin/python",
+        "scripts/run_canonical_baselines.py"
+      ],
+      "wall_seconds": 5.0,
+      "wall_human": "0.1 min",
+      "returncode": 0
+    },
+    {
+      "label": "per_feature_anomaly",
+      "cmd": [
+        ".venv/bin/python",
+        "scripts/run_per_feature_anomaly.py"
+      ],
+      "wall_seconds": 3.84,
+      "wall_human": "0.1 min",
+      "returncode": 0
+    },
+    {
+      "label": "manifest",
+      "cmd": [
+        ".venv/bin/python",
+        "scripts/count_experiments.py"
+      ],
+      "wall_seconds": 0.19,
+      "wall_human": "0.0 min",
+      "returncode": 0
+    }
+  ],
+  "total_wall_seconds": 9.03,
+  "note": "These stages are CPU-only and bound by sklearn fit time, not GPU. Frozen-representation extraction (the dominant ~40 GPU-hour stage) is timed separately by the extraction script's own logger."
+}

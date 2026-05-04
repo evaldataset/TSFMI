@@ -1,0 +1,13 @@
+layer,val_accuracy,val_f1_macro,val_f1_weighted,train_loss
+transformer_h_0,1.0,1.0,1.0,3.6125401817959587e-07
+transformer_h_1,1.0,1.0,1.0,9.747395984681539e-07
+transformer_h_10,1.0,1.0,1.0,6.424753264708569e-07
+transformer_h_11,1.0,1.0,1.0,1.1445989853451108e-07
+transformer_h_2,1.0,1.0,1.0,1.4745890434634628e-09
+transformer_h_3,1.0,1.0,1.0,1.6370707208199527e-07
+transformer_h_4,1.0,1.0,1.0,9.276650203560166e-08
+transformer_h_5,1.0,1.0,1.0,8.298163353496572e-07
+transformer_h_6,1.0,1.0,1.0,0.0
+transformer_h_7,1.0,1.0,1.0,0.0
+transformer_h_8,1.0,1.0,1.0,0.0
+transformer_h_9,1.0,1.0,1.0,0.0

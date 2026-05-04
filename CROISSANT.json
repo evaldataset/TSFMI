@@ -1,0 +1,155 @@
+{
+  "@context": {
+    "@language": "en",
+    "@vocab": "https://schema.org/",
+    "citeAs": "cr:citeAs",
+    "column": "cr:column",
+    "conformsTo": "dct:conformsTo",
+    "cr": "http://mlcommons.org/croissant/",
+    "rai": "http://mlcommons.org/croissant/RAI/",
+    "data": {"@id": "cr:data", "@type": "@json"},
+    "dataType": {"@id": "cr:dataType", "@type": "@vocab"},
+    "dct": "http://purl.org/dc/terms/",
+    "examples": {"@id": "cr:examples", "@type": "@json"},
+    "extract": "cr:extract",
+    "field": "cr:field",
+    "fileProperty": "cr:fileProperty",
+    "fileObject": "cr:fileObject",
+    "fileSet": "cr:fileSet",
+    "format": "cr:format",
+    "includes": "cr:includes",
+    "isLiveDataset": "cr:isLiveDataset",
+    "jsonPath": "cr:jsonPath",
+    "key": "cr:key",
+    "md5": "cr:md5",
+    "parentField": "cr:parentField",
+    "path": "cr:path",
+    "recordSet": "cr:recordSet",
+    "references": "cr:references",
+    "regex": "cr:regex",
+    "repeated": "cr:repeated",
+    "replace": "cr:replace",
+    "sc": "https://schema.org/",
+    "separator": "cr:separator",
+    "source": "cr:source",
+    "subField": "cr:subField",
+    "transform": "cr:transform"
+  },
+  "@type": "Dataset",
+  "name": "TSFMI-Synthetic",
+  "description": "Synthetic time-series datasets with mathematically exact ground-truth labels for the TSFMI baseline-controlled evaluation protocol. Six standard properties (trend, seasonality, frequency, stationarity, anomaly, change point) plus five hard variants. Each dataset is generated on-demand by deterministic seeded generators in src/datasets/synthetic.py; this manifest documents the canonical seed=42 instantiation used for all confirmatory results in the paper. The TSFMI paper itself is the protocol/benchmark contribution; the datasets here exist only to instantiate the protocol and have no claim of independent novelty.",
+  "conformsTo": "http://mlcommons.org/croissant/1.0",
+  "license": "https://opensource.org/licenses/MIT",
+  "url": "https://anonymous.4open.science/r/tsfmi (anonymized for review)",
+  "version": "1.0.0",
+  "datePublished": "2026-05-06",
+  "isLiveDataset": false,
+  "citeAs": "TSFMI: A Baseline-Controlled Evaluation Protocol for Time-Series Foundation Model Representations. Anonymous submission to NeurIPS 2026 Evaluations & Datasets Track.",
+  "creator": {
+    "@type": "Organization",
+    "name": "Anonymous (NeurIPS 2026 ED Track double-blind submission)"
+  },
+
+  "rai:dataCollection": "Synthetic generation via deterministic Python procedures with NumPy random number generators. No human subjects, no scraping, no third-party data ingestion.",
+  "rai:dataCollectionType": "Synthetic / procedural",
+  "rai:dataPreprocessingProtocol": "None. Generators emit final tensors (N x seq_len) with labels directly.",
+  "rai:dataAnnotationProtocol": "Labels are derived analytically from generation parameters (slope sign for trend, period for seasonality, frequency bin for frequency, presence-of-cumsum for stationarity, presence-of-spike for anomaly, presence-of-shift for change-point). No human annotation.",
+  "rai:dataLimitations": "Each generator instantiates ONE family of synthetic constructions (e.g., the canonical anomaly task is a single 5-sigma spike on N(0,1) noise) and is therefore a statistically simple test bed. The kurtosis sufficiency of the canonical anomaly task is documented in the paper (sec:anomaly_mechanism); a 'realistic_anomaly' variant with mixed anomaly types is included to bound this limitation. Synthetic-to-real transfer is weak (paper sec 4.2).",
+  "rai:dataBiases": "By construction the synthetic data has no human / demographic content and therefore no demographic bias. The 'bias' that does exist is statistical: the canonical generators are deliberately simple, which is why baseline-controlled probing is the recommended interpretation lens.",
+  "rai:personalSensitiveInformation": "None. Datasets contain no personal, demographic, medical, or otherwise sensitive information.",
+  "rai:dataUseCases": "Probing internal representations of pre-trained time-series foundation models; calibrating new probing protocols against simple non-model baselines; comparing intervention diagnostics (LEACE, LDA steering, CKA) under matched controls.",
+  "rai:dataMisuseCases": "Not intended for deployment-time decision making, anomaly detection in production, or as a substitute for any real-world benchmark. Specifically, the canonical anomaly task should not be used to claim a model 'detects anomalies' in any operational sense; see paper sec 6 (Misuse Risks).",
+  "rai:dataSocialImpact": "The protocol is intended to raise the rigor bar on TSFM representation claims. Direct social impact is low (synthetic data, no human subjects); indirect impact is methodological -- discouraging over-claiming in time-series probing literature.",
+  "rai:syntheticDataIndicator": "All TSFMI-Synthetic data is fully synthetic; no real-world or human-derived signals.",
+
+  "distribution": [
+    {
+      "@type": "cr:FileObject",
+      "@id": "synthetic-generator-script",
+      "name": "synthetic.py",
+      "description": "Deterministic generator implementing all six standard and five hard-variant temporal-property datasets. All canonical paper artifacts use the seed=42 instantiation.",
+      "contentUrl": "src/datasets/synthetic.py",
+      "encodingFormat": "text/x-python",
+      "sha256": "computed-by-prepare_anonymous_release.sh"
+    },
+    {
+      "@type": "cr:FileObject",
+      "@id": "real-world-loader",
+      "name": "real_world.py",
+      "description": "Loaders for ETTh1, Weather (Jena Climate), Electricity, Traffic, Exchange-Rate. The TSFMI repository does NOT redistribute these datasets; loaders read user-supplied files from data/ under the original public licenses.",
+      "contentUrl": "src/datasets/real_world.py",
+      "encodingFormat": "text/x-python"
+    },
+    {
+      "@type": "cr:FileObject",
+      "@id": "manifest-json",
+      "name": "experiment_manifest.json",
+      "description": "Machine-countable provenance of every artifact on disk (canonical 60/20/20 cells, baseline cells, LEACE erasures, CKA matrices, intervention runs, hard-variant comparisons, layer probe runs). Auto-generated by scripts/count_experiments.py.",
+      "contentUrl": "outputs/paper/experiment_manifest.json",
+      "encodingFormat": "application/json"
+    }
+  ],
+
+  "recordSet": [
+    {
+      "@type": "cr:RecordSet",
+      "@id": "synthetic-trend",
+      "name": "synthetic_trend",
+      "description": "1000 sequences of length 512, three-class (up / down / flat). Labels are the slope-direction class, exact by construction.",
+      "field": [
+        {"@type": "cr:Field", "name": "sequence", "dataType": "sc:Float", "repeated": true},
+        {"@type": "cr:Field", "name": "label", "dataType": "sc:Integer", "description": "0=up, 1=down, 2=flat"}
+      ]
+    },
+    {
+      "@type": "cr:RecordSet",
+      "@id": "synthetic-seasonality",
+      "name": "synthetic_seasonality",
+      "description": "1000 sequences of length 512, regression target = period in {8,16,32,64}. Sinusoid + amplitude noise.",
+      "field": [
+        {"@type": "cr:Field", "name": "sequence", "dataType": "sc:Float", "repeated": true},
+        {"@type": "cr:Field", "name": "label", "dataType": "sc:Float", "description": "Period length (regression target)"}
+      ]
+    },
+    {
+      "@type": "cr:RecordSet",
+      "@id": "synthetic-frequency",
+      "name": "synthetic_frequency",
+      "description": "1000 sequences of length 512, eight-class frequency-band classification. f_k = (k+1)/seq_len.",
+      "field": [
+        {"@type": "cr:Field", "name": "sequence", "dataType": "sc:Float", "repeated": true},
+        {"@type": "cr:Field", "name": "label", "dataType": "sc:Integer", "description": "Frequency bin index 0..7"}
+      ]
+    },
+    {
+      "@type": "cr:RecordSet",
+      "@id": "synthetic-stationarity",
+      "name": "synthetic_stationarity",
+      "description": "1000 sequences of length 512, binary (stationary noise vs non-stationary random walk).",
+      "field": [
+        {"@type": "cr:Field", "name": "sequence", "dataType": "sc:Float", "repeated": true},
+        {"@type": "cr:Field", "name": "label", "dataType": "sc:Integer", "description": "0=stationary, 1=non-stationary"}
+      ]
+    },
+    {
+      "@type": "cr:RecordSet",
+      "@id": "synthetic-anomaly",
+      "name": "synthetic_anomaly",
+      "description": "1000 sequences of length 512, binary (normal vs +/- 5-sigma point spike). Single sufficient statistic = kurtosis (paper sec_anomaly_mechanism).",
+      "field": [
+        {"@type": "cr:Field", "name": "sequence", "dataType": "sc:Float", "repeated": true},
+        {"@type": "cr:Field", "name": "label", "dataType": "sc:Integer", "description": "0=normal, 1=anomaly"}
+      ]
+    },
+    {
+      "@type": "cr:RecordSet",
+      "@id": "synthetic-change-point",
+      "name": "synthetic_change_point",
+      "description": "1000 sequences of length 512, binary (no change-point vs mean+variance shift at midpoint).",
+      "field": [
+        {"@type": "cr:Field", "name": "sequence", "dataType": "sc:Float", "repeated": true},
+        {"@type": "cr:Field", "name": "label", "dataType": "sc:Integer", "description": "0=no_cp, 1=has_cp"}
+      ]
+    }
+  ]
+}

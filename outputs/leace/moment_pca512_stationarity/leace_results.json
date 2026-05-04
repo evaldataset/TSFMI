@@ -1,0 +1,218 @@
+{
+  "encoder_block_0": {
+    "before": {
+      "accuracy": 1.0
+    },
+    "after": {
+      "accuracy": 0.4650000035762787
+    },
+    "drop": 0.5349999964237213
+  },
+  "encoder_block_1": {
+    "before": {
+      "accuracy": 1.0
+    },
+    "after": {
+      "accuracy": 0.4560000002384186
+    },
+    "drop": 0.5439999997615814
+  },
+  "encoder_block_10": {
+    "before": {
+      "accuracy": 1.0
+    },
+    "after": {
+      "accuracy": 0.45500001311302185
+    },
+    "drop": 0.5449999868869781
+  },
+  "encoder_block_11": {
+    "before": {
+      "accuracy": 1.0
+    },
+    "after": {
+      "accuracy": 0.4659999907016754
+    },
+    "drop": 0.5340000092983246
+  },
+  "encoder_block_12": {
+    "before": {
+      "accuracy": 1.0
+    },
+    "after": {
+      "accuracy": 0.4959999918937683
+    },
+    "drop": 0.5040000081062317
+  },
+  "encoder_block_13": {
+    "before": {
+      "accuracy": 1.0
+    },
+    "after": {
+      "accuracy": 0.45500001311302185
+    },
+    "drop": 0.5449999868869781
+  },
+  "encoder_block_14": {
+    "before": {
+      "accuracy": 1.0
+    },
+    "after": {
+      "accuracy": 0.492000013589859
+    },
+    "drop": 0.507999986410141
+  },
+  "encoder_block_15": {
+    "before": {
+      "accuracy": 1.0
+    },
+    "after": {
+      "accuracy": 0.4699999988079071
+    },
+    "drop": 0.5300000011920929
+  },
+  "encoder_block_16": {
+    "before": {
+      "accuracy": 1.0
+    },
+    "after": {
+      "accuracy": 0.4569999873638153
+    },
+    "drop": 0.5430000126361847
+  },
+  "encoder_block_17": {
+    "before": {
+      "accuracy": 1.0
+    },
+    "after": {
+      "accuracy": 0.4699999988079071
+    },
+    "drop": 0.5300000011920929
+  },
+  "encoder_block_18": {
+    "before": {
+      "accuracy": 1.0
+    },
+    "after": {
+      "accuracy": 0.47600001096725464
+    },
+    "drop": 0.5239999890327454
+  },
+  "encoder_block_19": {
+    "before": {
+      "accuracy": 1.0
+    },
+    "after": {
+      "accuracy": 0.47999998927116394
+    },
+    "drop": 0.5200000107288361
+  },
+  "encoder_block_2": {
+    "before": {
+      "accuracy": 1.0
+    },
+    "after": {
+      "accuracy": 0.4480000138282776
+    },
+    "drop": 0.5519999861717224
+  },
+  "encoder_block_20": {
+    "before": {
+      "accuracy": 1.0
+    },
+    "after": {
+      "accuracy": 0.4560000002384186
+    },
+    "drop": 0.5439999997615814
+  },
+  "encoder_block_21": {
+    "before": {
+      "accuracy": 1.0
+    },
+    "after": {
+      "accuracy": 0.46000000834465027
+    },
+    "drop": 0.5399999916553497
+  },
+  "encoder_block_22": {
+    "before": {
+      "accuracy": 0.9980000257492065
+    },
+    "after": {
+      "accuracy": 0.46399998664855957
+    },
+    "drop": 0.534000039100647
+  },
+  "encoder_block_23": {
+    "before": {
+      "accuracy": 1.0
+    },
+    "after": {
+      "accuracy": 0.4830000102519989
+    },
+    "drop": 0.5169999897480011
+  },
+  "encoder_block_3": {
+    "before": {
+      "accuracy": 1.0
+    },
+    "after": {
+      "accuracy": 0.44600000977516174
+    },
+    "drop": 0.5539999902248383
+  },
+  "encoder_block_4": {
+    "before": {
+      "accuracy": 1.0
+    },
+    "after": {
+      "accuracy": 0.4480000138282776
+    },
+    "drop": 0.5519999861717224
+  },
+  "encoder_block_5": {
+    "before": {
+      "accuracy": 1.0
+    },
+    "after": {
+      "accuracy": 0.4560000002384186
+    },
+    "drop": 0.5439999997615814
+  },
+  "encoder_block_6": {
+    "before": {
+      "accuracy": 1.0
+    },
+    "after": {
+      "accuracy": 0.48100000619888306
+    },
+    "drop": 0.5189999938011169
+  },
+  "encoder_block_7": {
+    "before": {
+      "accuracy": 1.0
+    },
+    "after": {
+      "accuracy": 0.45899999141693115
+    },
+    "drop": 0.5410000085830688
+  },
+  "encoder_block_8": {
+    "before": {
+      "accuracy": 1.0
+    },
+    "after": {
+      "accuracy": 0.4650000035762787
+    },
+    "drop": 0.5349999964237213
+  },
+  "encoder_block_9": {
+    "before": {
+      "accuracy": 1.0
+    },
+    "after": {
+      "accuracy": 0.4729999899864197
+    },
+    "drop": 0.5270000100135803
+  }
+}

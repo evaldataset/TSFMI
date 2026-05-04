@@ -1,0 +1,41 @@
+# PatchTST — Probing Configuration
+# Reference: Nie et al., ICLR 2023.
+
+model:
+  name: patchtst
+  checkpoint: namctin/patchtst_etth1_forecast
+  freeze: true
+  wrapper_class: src.models.patchtst_wrapper.PatchTSTWrapper
+
+probe:
+  type: linear
+  learning_rate: 0.001
+  epochs: 100
+  batch_size: 256
+  val_split: 0.1
+
+target_properties:
+  - trend
+  - seasonality
+  - frequency
+  - stationarity
+  - anomaly
+  - change_point
+
+layers: all
+
+data:
+  synthetic:
+    num_samples: 10000
+    seq_len: 512
+    seed: 42
+  real:
+    datasets:
+      - ETTh1
+      - Weather
+    data_root: data/
+
+output:
+  representations_dir: outputs/representations/patchtst/
+  probes_dir: outputs/probes/patchtst/
+  eval_dir: outputs/eval/patchtst/

@@ -1,0 +1,13 @@
+layer,val_accuracy,val_f1_macro,val_f1_weighted,train_loss
+transformer_h_0,1.0,1.0,1.0,0.0
+transformer_h_1,1.0,1.0,1.0,0.0
+transformer_h_10,1.0,1.0,1.0,0.0
+transformer_h_11,1.0,1.0,1.0,0.0
+transformer_h_2,1.0,1.0,1.0,0.0
+transformer_h_3,1.0,1.0,1.0,0.0
+transformer_h_4,1.0,1.0,1.0,0.0
+transformer_h_5,1.0,1.0,1.0,0.0
+transformer_h_6,1.0,1.0,1.0,0.0
+transformer_h_7,1.0,1.0,1.0,0.0
+transformer_h_8,1.0,1.0,1.0,0.0
+transformer_h_9,1.0,1.0,1.0,0.0

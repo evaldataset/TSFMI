@@ -1,0 +1,74 @@
+{
+  "model_layers_0": {
+    "before": {
+      "accuracy": 0.6399999856948853
+    },
+    "after": {
+      "accuracy": 0.6449999809265137
+    },
+    "drop": -0.004999995231628418
+  },
+  "model_layers_1": {
+    "before": {
+      "accuracy": 0.6850000023841858
+    },
+    "after": {
+      "accuracy": 0.7200000286102295
+    },
+    "drop": -0.0350000262260437
+  },
+  "model_layers_2": {
+    "before": {
+      "accuracy": 0.6850000023841858
+    },
+    "after": {
+      "accuracy": 0.6549999713897705
+    },
+    "drop": 0.030000030994415283
+  },
+  "model_layers_3": {
+    "before": {
+      "accuracy": 0.6800000071525574
+    },
+    "after": {
+      "accuracy": 0.6399999856948853
+    },
+    "drop": 0.04000002145767212
+  },
+  "model_layers_4": {
+    "before": {
+      "accuracy": 0.6800000071525574
+    },
+    "after": {
+      "accuracy": 0.6800000071525574
+    },
+    "drop": 0.0
+  },
+  "model_layers_5": {
+    "before": {
+      "accuracy": 0.6899999976158142
+    },
+    "after": {
+      "accuracy": 0.6850000023841858
+    },
+    "drop": 0.004999995231628418
+  },
+  "model_layers_6": {
+    "before": {
+      "accuracy": 0.6650000214576721
+    },
+    "after": {
+      "accuracy": 0.6449999809265137
+    },
+    "drop": 0.020000040531158447
+  },
+  "model_layers_7": {
+    "before": {
+      "accuracy": 0.5550000071525574
+    },
+    "after": {
+      "accuracy": 0.5299999713897705
+    },
+    "drop": 0.025000035762786865
+  }
+}

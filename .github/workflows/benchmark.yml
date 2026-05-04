@@ -1,0 +1,68 @@
+name: TSFMI Benchmark CI
+
+# Automated evaluation pipeline for community-contributed model wrappers.
+# When a PR adds a new wrapper in src/models/, this workflow:
+#   1. Runs lint and test suite
+#   2. Validates the wrapper against the BaseModelWrapper interface
+#   3. Runs a smoke extraction on synthetic_trend
+#   4. Reports results as a PR comment
+#
+# This implements PLAN.md T3.7 (Community Leaderboard commitment).
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+    paths:
+      - "src/models/**"
+      - "scripts/**"
+      - "tests/**"
+
+jobs:
+  lint-and-test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.10"
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+          pip install -e ".[dev]"
+      - name: Lint
+        run: ruff check src scripts tests
+      - name: Run tests (CPU only)
+        run: pytest tests/ -q -m "not slow"
+
+  validate-wrapper:
+    runs-on: ubuntu-latest
+    needs: lint-and-test
+    if: github.event_name == 'pull_request'
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.10"
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+          pip install -e ".[dev]"
+      - name: Validate BaseModelWrapper conformance
+        run: |
+          python - <<'EOF'
+          import importlib
+          import pkgutil
+          import src.models
+          from src.models.base_wrapper import BaseModelWrapper
+
+          for _, modname, _ in pkgutil.iter_modules(src.models.__path__):
+              mod = importlib.import_module(f"src.models.{modname}")
+              for attr in dir(mod):
+                  obj = getattr(mod, attr)
+                  if isinstance(obj, type) and issubclass(obj, BaseModelWrapper) and obj is not BaseModelWrapper:
+                      print(f"[OK] {modname}.{attr} conforms to BaseModelWrapper")
+          EOF

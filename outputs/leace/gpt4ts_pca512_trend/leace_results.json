@@ -1,0 +1,110 @@
+{
+  "transformer_h_0": {
+    "before": {
+      "accuracy": 1.0
+    },
+    "after": {
+      "accuracy": 0.7400000095367432
+    },
+    "drop": 0.25999999046325684
+  },
+  "transformer_h_1": {
+    "before": {
+      "accuracy": 1.0
+    },
+    "after": {
+      "accuracy": 0.6629999876022339
+    },
+    "drop": 0.3370000123977661
+  },
+  "transformer_h_10": {
+    "before": {
+      "accuracy": 1.0
+    },
+    "after": {
+      "accuracy": 0.6660000085830688
+    },
+    "drop": 0.33399999141693115
+  },
+  "transformer_h_11": {
+    "before": {
+      "accuracy": 1.0
+    },
+    "after": {
+      "accuracy": 0.6380000114440918
+    },
+    "drop": 0.3619999885559082
+  },
+  "transformer_h_2": {
+    "before": {
+      "accuracy": 1.0
+    },
+    "after": {
+      "accuracy": 0.7289999723434448
+    },
+    "drop": 0.2710000276565552
+  },
+  "transformer_h_3": {
+    "before": {
+      "accuracy": 1.0
+    },
+    "after": {
+      "accuracy": 0.6729999780654907
+    },
+    "drop": 0.3270000219345093
+  },
+  "transformer_h_4": {
+    "before": {
+      "accuracy": 1.0
+    },
+    "after": {
+      "accuracy": 0.6660000085830688
+    },
+    "drop": 0.33399999141693115
+  },
+  "transformer_h_5": {
+    "before": {
+      "accuracy": 1.0
+    },
+    "after": {
+      "accuracy": 0.6660000085830688
+    },
+    "drop": 0.33399999141693115
+  },
+  "transformer_h_6": {
+    "before": {
+      "accuracy": 1.0
+    },
+    "after": {
+      "accuracy": 0.6660000085830688
+    },
+    "drop": 0.33399999141693115
+  },
+  "transformer_h_7": {
+    "before": {
+      "accuracy": 1.0
+    },
+    "after": {
+      "accuracy": 0.7260000109672546
+    },
+    "drop": 0.27399998903274536
+  },
+  "transformer_h_8": {
+    "before": {
+      "accuracy": 1.0
+    },
+    "after": {
+      "accuracy": 0.6660000085830688
+    },
+    "drop": 0.33399999141693115
+  },
+  "transformer_h_9": {
+    "before": {
+      "accuracy": 1.0
+    },
+    "after": {
+      "accuracy": 0.578000009059906
+    },
+    "drop": 0.421999990940094
+  }
+}

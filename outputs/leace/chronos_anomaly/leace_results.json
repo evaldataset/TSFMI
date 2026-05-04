@@ -1,0 +1,56 @@
+{
+  "encoder_block_0": {
+    "before": {
+      "accuracy": 0.7720000147819519
+    },
+    "after": {
+      "accuracy": 0.7549999952316284
+    },
+    "drop": 0.017000019550323486
+  },
+  "encoder_block_1": {
+    "before": {
+      "accuracy": 0.8270000219345093
+    },
+    "after": {
+      "accuracy": 0.7860000133514404
+    },
+    "drop": 0.04100000858306885
+  },
+  "encoder_block_2": {
+    "before": {
+      "accuracy": 0.8220000267028809
+    },
+    "after": {
+      "accuracy": 0.777999997138977
+    },
+    "drop": 0.04400002956390381
+  },
+  "encoder_block_3": {
+    "before": {
+      "accuracy": 0.828000009059906
+    },
+    "after": {
+      "accuracy": 0.7580000162124634
+    },
+    "drop": 0.06999999284744263
+  },
+  "encoder_block_4": {
+    "before": {
+      "accuracy": 0.8550000190734863
+    },
+    "after": {
+      "accuracy": 0.7799999713897705
+    },
+    "drop": 0.07500004768371582
+  },
+  "encoder_block_5": {
+    "before": {
+      "accuracy": 0.8709999918937683
+    },
+    "after": {
+      "accuracy": 0.7689999938011169
+    },
+    "drop": 0.10199999809265137
+  }
+}

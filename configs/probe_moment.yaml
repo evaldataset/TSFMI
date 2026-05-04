@@ -1,0 +1,41 @@
+# MOMENT Foundation Model — Probing Configuration
+# Reference: Goswami et al., ICML 2024. arXiv:2402.03885
+
+model:
+  name: moment-large
+  checkpoint: AutonLab/MOMENT-1-large
+  freeze: true
+  wrapper_class: src.models.moment_wrapper.MOMENTWrapper
+
+probe:
+  type: linear            # "linear" | "mlp_control"
+  learning_rate: 0.001
+  epochs: 100
+  batch_size: 256
+  val_split: 0.1
+
+target_properties:
+  - trend
+  - seasonality
+  - frequency
+  - stationarity
+  - anomaly
+  - change_point
+
+layers: all               # "all" | list of layer indices, e.g. [0, 6, 12, 18, 23]
+
+data:
+  synthetic:
+    num_samples: 10000
+    seq_len: 512
+    seed: 42
+  real:
+    datasets:
+      - ETTh1
+      - Weather
+    data_root: data/
+
+output:
+  representations_dir: outputs/representations/moment/
+  probes_dir: outputs/probes/moment/
+  eval_dir: outputs/eval/moment/

@@ -1,0 +1,110 @@
+{
+  "transformer_h_0": {
+    "before": {
+      "accuracy": 1.0
+    },
+    "after": {
+      "accuracy": 0.8930000066757202
+    },
+    "drop": 0.10699999332427979
+  },
+  "transformer_h_1": {
+    "before": {
+      "accuracy": 1.0
+    },
+    "after": {
+      "accuracy": 0.9950000047683716
+    },
+    "drop": 0.004999995231628418
+  },
+  "transformer_h_10": {
+    "before": {
+      "accuracy": 1.0
+    },
+    "after": {
+      "accuracy": 0.8199999928474426
+    },
+    "drop": 0.18000000715255737
+  },
+  "transformer_h_11": {
+    "before": {
+      "accuracy": 1.0
+    },
+    "after": {
+      "accuracy": 0.7979999780654907
+    },
+    "drop": 0.20200002193450928
+  },
+  "transformer_h_2": {
+    "before": {
+      "accuracy": 1.0
+    },
+    "after": {
+      "accuracy": 0.7200000286102295
+    },
+    "drop": 0.2799999713897705
+  },
+  "transformer_h_3": {
+    "before": {
+      "accuracy": 1.0
+    },
+    "after": {
+      "accuracy": 0.9110000133514404
+    },
+    "drop": 0.08899998664855957
+  },
+  "transformer_h_4": {
+    "before": {
+      "accuracy": 1.0
+    },
+    "after": {
+      "accuracy": 0.9950000047683716
+    },
+    "drop": 0.004999995231628418
+  },
+  "transformer_h_5": {
+    "before": {
+      "accuracy": 1.0
+    },
+    "after": {
+      "accuracy": 0.8949999809265137
+    },
+    "drop": 0.10500001907348633
+  },
+  "transformer_h_6": {
+    "before": {
+      "accuracy": 1.0
+    },
+    "after": {
+      "accuracy": 0.8640000224113464
+    },
+    "drop": 0.13599997758865356
+  },
+  "transformer_h_7": {
+    "before": {
+      "accuracy": 1.0
+    },
+    "after": {
+      "accuracy": 0.8709999918937683
+    },
+    "drop": 0.1290000081062317
+  },
+  "transformer_h_8": {
+    "before": {
+      "accuracy": 1.0
+    },
+    "after": {
+      "accuracy": 0.8159999847412109
+    },
+    "drop": 0.18400001525878906
+  },
+  "transformer_h_9": {
+    "before": {
+      "accuracy": 1.0
+    },
+    "after": {
+      "accuracy": 0.8460000157356262
+    },
+    "drop": 0.15399998426437378
+  }
+}

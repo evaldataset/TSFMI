@@ -1,0 +1,4 @@
+layer,val_accuracy,val_f1_macro,val_f1_weighted,train_loss
+model_encoder_layers_0,1.0,1.0,1.0,0.021457519382238388
+model_encoder_layers_1,1.0,1.0,1.0,0.007433396764099598
+model_encoder_layers_2,1.0,1.0,1.0,0.003642857074737549

@@ -1,0 +1,110 @@
+[
+  {
+    "property": "trend",
+    "baseline": "tsfresh_minimal",
+    "task_type": "classification",
+    "feature_dim": 10,
+    "test_mean": 0.664,
+    "test_ci95_low": 0.639,
+    "test_ci95_high": 0.689
+  },
+  {
+    "property": "trend",
+    "baseline": "tsfresh_efficient",
+    "task_type": "classification",
+    "feature_dim": 777,
+    "test_mean": 1.0,
+    "test_ci95_low": 1.0,
+    "test_ci95_high": 1.0
+  },
+  {
+    "property": "seasonality",
+    "baseline": "tsfresh_minimal",
+    "task_type": "regression",
+    "feature_dim": 10,
+    "test_mean": 0.0557,
+    "test_ci95_low": 0.0452,
+    "test_ci95_high": 0.0649
+  },
+  {
+    "property": "seasonality",
+    "baseline": "tsfresh_efficient",
+    "task_type": "regression",
+    "feature_dim": 777,
+    "test_mean": 0.9975,
+    "test_ci95_low": 0.9956,
+    "test_ci95_high": 0.9987
+  },
+  {
+    "property": "frequency",
+    "baseline": "tsfresh_minimal",
+    "task_type": "classification",
+    "feature_dim": 10,
+    "test_mean": 0.106,
+    "test_ci95_low": 0.077,
+    "test_ci95_high": 0.128
+  },
+  {
+    "property": "frequency",
+    "baseline": "tsfresh_efficient",
+    "task_type": "classification",
+    "feature_dim": 777,
+    "test_mean": 0.999,
+    "test_ci95_low": 0.997,
+    "test_ci95_high": 1.0
+  },
+  {
+    "property": "stationarity",
+    "baseline": "tsfresh_minimal",
+    "task_type": "classification",
+    "feature_dim": 10,
+    "test_mean": 1.0,
+    "test_ci95_low": 1.0,
+    "test_ci95_high": 1.0
+  },
+  {
+    "property": "stationarity",
+    "baseline": "tsfresh_efficient",
+    "task_type": "classification",
+    "feature_dim": 777,
+    "test_mean": 1.0,
+    "test_ci95_low": 1.0,
+    "test_ci95_high": 1.0
+  },
+  {
+    "property": "anomaly",
+    "baseline": "tsfresh_minimal",
+    "task_type": "classification",
+    "feature_dim": 10,
+    "test_mean": 0.899,
+    "test_ci95_low": 0.89,
+    "test_ci95_high": 0.909
+  },
+  {
+    "property": "anomaly",
+    "baseline": "tsfresh_efficient",
+    "task_type": "classification",
+    "feature_dim": 777,
+    "test_mean": 0.813,
+    "test_ci95_low": 0.798,
+    "test_ci95_high": 0.829
+  },
+  {
+    "property": "change_point",
+    "baseline": "tsfresh_minimal",
+    "task_type": "classification",
+    "feature_dim": 10,
+    "test_mean": 1.0,
+    "test_ci95_low": 1.0,
+    "test_ci95_high": 1.0
+  },
+  {
+    "property": "change_point",
+    "baseline": "tsfresh_efficient",
+    "task_type": "classification",
+    "feature_dim": 777,
+    "test_mean": 1.0,
+    "test_ci95_low": 1.0,
+    "test_ci95_high": 1.0
+  }
+]

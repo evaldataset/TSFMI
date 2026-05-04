@@ -1,0 +1,43 @@
+{
+  "representations_dir": "outputs/representations/gpt4ts_pca512/synthetic_anomaly",
+  "property": "anomaly",
+  "task_type": "classification",
+  "seeds": [
+    0,
+    1,
+    2,
+    3,
+    4
+  ],
+  "val_score_per_seed": [
+    0.542,
+    0.554,
+    0.523,
+    0.544,
+    0.559
+  ],
+  "test_score_per_seed": [
+    0.546,
+    0.493,
+    0.527,
+    0.533,
+    0.535
+  ],
+  "best_layer_per_seed": [
+    "transformer_h_10",
+    "transformer_h_10",
+    "transformer_h_3",
+    "transformer_h_0",
+    "transformer_h_1"
+  ],
+  "test_mean": 0.5268,
+  "test_ci95_low": 0.5082,
+  "test_ci95_high": 0.5396,
+  "protocol": {
+    "split": "60/20/20 train/val/test",
+    "selection": "best layer chosen on val only",
+    "reporting": "test score only",
+    "estimator": "sklearn LogisticRegression",
+    "n_bootstrap": 1000
+  }
+}

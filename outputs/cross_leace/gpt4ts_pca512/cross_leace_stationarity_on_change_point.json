@@ -1,0 +1,9 @@
+{
+  "before_accuracy": 1.0,
+  "after_accuracy": 0.5230000019073486,
+  "drop": 0.47699999809265137,
+  "erase_property": "stationarity",
+  "eval_property": "change_point",
+  "model": "gpt4ts_pca512",
+  "layer": "transformer_h_3"
+}

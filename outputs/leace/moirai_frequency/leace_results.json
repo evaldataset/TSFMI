@@ -1,0 +1,56 @@
+{
+  "encoder_layers_0": {
+    "before": {
+      "accuracy": 0.9649999737739563
+    },
+    "after": {
+      "accuracy": 0.5049999952316284
+    },
+    "drop": 0.4599999785423279
+  },
+  "encoder_layers_1": {
+    "before": {
+      "accuracy": 1.0
+    },
+    "after": {
+      "accuracy": 0.824999988079071
+    },
+    "drop": 0.17500001192092896
+  },
+  "encoder_layers_2": {
+    "before": {
+      "accuracy": 1.0
+    },
+    "after": {
+      "accuracy": 0.9649999737739563
+    },
+    "drop": 0.0350000262260437
+  },
+  "encoder_layers_3": {
+    "before": {
+      "accuracy": 1.0
+    },
+    "after": {
+      "accuracy": 0.9750000238418579
+    },
+    "drop": 0.02499997615814209
+  },
+  "encoder_layers_4": {
+    "before": {
+      "accuracy": 1.0
+    },
+    "after": {
+      "accuracy": 0.7900000214576721
+    },
+    "drop": 0.20999997854232788
+  },
+  "encoder_layers_5": {
+    "before": {
+      "accuracy": 1.0
+    },
+    "after": {
+      "accuracy": 0.824999988079071
+    },
+    "drop": 0.17500001192092896
+  }
+}

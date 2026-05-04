@@ -1,0 +1,49 @@
+# iTransformer — Probing Configuration
+# Reference: Liu et al., ICLR 2024. arXiv:2310.06625
+# Note: Uses randomly initialized weights (no official pretrained checkpoint).
+
+model:
+  name: itransformer
+  checkpoint: null          # null = random init (no pretrained weights available)
+  freeze: true
+  wrapper_class: src.models.itransformer_wrapper.iTransformerWrapper
+  architecture:
+    num_variates: 7
+    seq_len: 96
+    d_model: 512
+    n_heads: 8
+    n_layers: 6
+    dropout: 0.1
+
+probe:
+  type: linear
+  learning_rate: 0.001
+  epochs: 100
+  batch_size: 256
+  val_split: 0.1
+
+target_properties:
+  - trend
+  - seasonality
+  - frequency
+  - stationarity
+  - anomaly
+  - change_point
+
+layers: all
+
+data:
+  synthetic:
+    num_samples: 10000
+    seq_len: 96             # Must match architecture.seq_len for iTransformer
+    seed: 42
+  real:
+    datasets:
+      - ETTh1
+      - Weather
+    data_root: data/
+
+output:
+  representations_dir: outputs/representations/itransformer/
+  probes_dir: outputs/probes/itransformer/
+  eval_dir: outputs/eval/itransformer/

@@ -1,0 +1,56 @@
+{
+  "encoder_block_0": {
+    "before": {
+      "accuracy": 1.0
+    },
+    "after": {
+      "accuracy": 1.0
+    },
+    "drop": 0.0
+  },
+  "encoder_block_1": {
+    "before": {
+      "accuracy": 1.0
+    },
+    "after": {
+      "accuracy": 1.0
+    },
+    "drop": 0.0
+  },
+  "encoder_block_2": {
+    "before": {
+      "accuracy": 1.0
+    },
+    "after": {
+      "accuracy": 1.0
+    },
+    "drop": 0.0
+  },
+  "encoder_block_3": {
+    "before": {
+      "accuracy": 1.0
+    },
+    "after": {
+      "accuracy": 1.0
+    },
+    "drop": 0.0
+  },
+  "encoder_block_4": {
+    "before": {
+      "accuracy": 1.0
+    },
+    "after": {
+      "accuracy": 1.0
+    },
+    "drop": 0.0
+  },
+  "encoder_block_5": {
+    "before": {
+      "accuracy": 1.0
+    },
+    "after": {
+      "accuracy": 1.0
+    },
+    "drop": 0.0
+  }
+}

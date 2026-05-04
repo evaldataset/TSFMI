@@ -1,0 +1,222 @@
+{
+  "per_feature_anomaly_acc": [
+    {
+      "feature_idx": 0,
+      "feature_name": "slope",
+      "anomaly_acc_mean": 0.476,
+      "anomaly_acc_std": 0.0291
+    },
+    {
+      "feature_idx": 1,
+      "feature_name": "residual_std",
+      "anomaly_acc_mean": 0.626,
+      "anomaly_acc_std": 0.0284
+    },
+    {
+      "feature_idx": 2,
+      "feature_name": "mean",
+      "anomaly_acc_mean": 0.477,
+      "anomaly_acc_std": 0.0277
+    },
+    {
+      "feature_idx": 3,
+      "feature_name": "std",
+      "anomaly_acc_mean": 0.626,
+      "anomaly_acc_std": 0.0267
+    },
+    {
+      "feature_idx": 4,
+      "feature_name": "kurtosis",
+      "anomaly_acc_mean": 0.859,
+      "anomaly_acc_std": 0.0198
+    },
+    {
+      "feature_idx": 5,
+      "feature_name": "argmax_fft",
+      "anomaly_acc_mean": 0.462,
+      "anomaly_acc_std": 0.0181
+    },
+    {
+      "feature_idx": 6,
+      "feature_name": "spectral_entropy",
+      "anomaly_acc_mean": 0.501,
+      "anomaly_acc_std": 0.0484
+    },
+    {
+      "feature_idx": 7,
+      "feature_name": "diff_std",
+      "anomaly_acc_mean": 0.61,
+      "anomaly_acc_std": 0.0182
+    }
+  ],
+  "tsfm_to_hc_regression": [
+    {
+      "model": "MOMENT",
+      "target_feature": "kurtosis",
+      "feature_idx": 4,
+      "regression_r2_mean": -0.0462,
+      "regression_r2_std": 0.0407,
+      "anomaly_classification_acc": 0.859
+    },
+    {
+      "model": "MOMENT",
+      "target_feature": "residual_std",
+      "feature_idx": 1,
+      "regression_r2_mean": -0.1701,
+      "regression_r2_std": 0.0158,
+      "anomaly_classification_acc": 0.626
+    },
+    {
+      "model": "MOMENT",
+      "target_feature": "std",
+      "feature_idx": 3,
+      "regression_r2_mean": -0.171,
+      "regression_r2_std": 0.0161,
+      "anomaly_classification_acc": 0.626
+    },
+    {
+      "model": "Chronos",
+      "target_feature": "kurtosis",
+      "feature_idx": 4,
+      "regression_r2_mean": 0.2153,
+      "regression_r2_std": 0.0136,
+      "anomaly_classification_acc": 0.859
+    },
+    {
+      "model": "Chronos",
+      "target_feature": "residual_std",
+      "feature_idx": 1,
+      "regression_r2_mean": -1.2575,
+      "regression_r2_std": 0.1371,
+      "anomaly_classification_acc": 0.626
+    },
+    {
+      "model": "Chronos",
+      "target_feature": "std",
+      "feature_idx": 3,
+      "regression_r2_mean": -1.2524,
+      "regression_r2_std": 0.1375,
+      "anomaly_classification_acc": 0.626
+    },
+    {
+      "model": "PatchTST",
+      "target_feature": "kurtosis",
+      "feature_idx": 4,
+      "regression_r2_mean": -1.8155,
+      "regression_r2_std": 0.1546,
+      "anomaly_classification_acc": 0.859
+    },
+    {
+      "model": "PatchTST",
+      "target_feature": "residual_std",
+      "feature_idx": 1,
+      "regression_r2_mean": -1.8727,
+      "regression_r2_std": 0.1012,
+      "anomaly_classification_acc": 0.626
+    },
+    {
+      "model": "PatchTST",
+      "target_feature": "std",
+      "feature_idx": 3,
+      "regression_r2_mean": -1.8765,
+      "regression_r2_std": 0.1058,
+      "anomaly_classification_acc": 0.626
+    },
+    {
+      "model": "GPT4TS",
+      "target_feature": "kurtosis",
+      "feature_idx": 4,
+      "regression_r2_mean": -0.1871,
+      "regression_r2_std": 0.0511,
+      "anomaly_classification_acc": 0.859
+    },
+    {
+      "model": "GPT4TS",
+      "target_feature": "residual_std",
+      "feature_idx": 1,
+      "regression_r2_mean": 0.5821,
+      "regression_r2_std": 0.0272,
+      "anomaly_classification_acc": 0.626
+    },
+    {
+      "model": "GPT4TS",
+      "target_feature": "std",
+      "feature_idx": 3,
+      "regression_r2_mean": 0.5817,
+      "regression_r2_std": 0.0266,
+      "anomaly_classification_acc": 0.626
+    },
+    {
+      "model": "Timer",
+      "target_feature": "kurtosis",
+      "feature_idx": 4,
+      "regression_r2_mean": -1.3569,
+      "regression_r2_std": 0.4741,
+      "anomaly_classification_acc": 0.859
+    },
+    {
+      "model": "Timer",
+      "target_feature": "residual_std",
+      "feature_idx": 1,
+      "regression_r2_mean": -0.8727,
+      "regression_r2_std": 0.1865,
+      "anomaly_classification_acc": 0.626
+    },
+    {
+      "model": "Timer",
+      "target_feature": "std",
+      "feature_idx": 3,
+      "regression_r2_mean": -0.8563,
+      "regression_r2_std": 0.1874,
+      "anomaly_classification_acc": 0.626
+    },
+    {
+      "model": "TimesFM",
+      "target_feature": "kurtosis",
+      "feature_idx": 4,
+      "regression_r2_mean": 0.5779,
+      "regression_r2_std": 0.0604,
+      "anomaly_classification_acc": 0.859
+    },
+    {
+      "model": "TimesFM",
+      "target_feature": "residual_std",
+      "feature_idx": 1,
+      "regression_r2_mean": -1.6479,
+      "regression_r2_std": 0.3746,
+      "anomaly_classification_acc": 0.626
+    },
+    {
+      "model": "TimesFM",
+      "target_feature": "std",
+      "feature_idx": 3,
+      "regression_r2_mean": -1.6424,
+      "regression_r2_std": 0.3632,
+      "anomaly_classification_acc": 0.626
+    },
+    {
+      "model": "Moirai",
+      "target_feature": "kurtosis",
+      "feature_idx": 4,
+      "regression_r2_mean": 0.179,
+      "regression_r2_std": 0.1271,
+      "anomaly_classification_acc": 0.859
+    },
+    {
+      "model": "Moirai",
+      "target_feature": "residual_std",
+      "feature_idx": 1,
+      "regression_r2_mean": 0.9425,
+      "regression_r2_std": 0.0072,
+      "anomaly_classification_acc": 0.626
+    },
+    {
+      "model": "Moirai",
+      "target_feature": "std",
+      "feature_idx": 3,
+      "regression_r2_mean": 0.9429,
+      "regression_r2_std": 0.0047,
+      "anomaly_classification_acc": 0.626
+    }
+  ]
+}

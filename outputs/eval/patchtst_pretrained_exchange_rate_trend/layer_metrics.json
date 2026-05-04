@@ -1,0 +1,23 @@
+[
+  {
+    "layer": "model_encoder_layers_0",
+    "val_accuracy": 0.9545454545454546,
+    "val_f1_macro": 0.6190476190476191,
+    "val_f1_weighted": 0.9350649350649349,
+    "train_loss": 0.04049212858080864
+  },
+  {
+    "layer": "model_encoder_layers_1",
+    "val_accuracy": 0.9545454545454546,
+    "val_f1_macro": 0.6190476190476191,
+    "val_f1_weighted": 0.9350649350649349,
+    "train_loss": 0.015811167657375336
+  },
+  {
+    "layer": "model_encoder_layers_2",
+    "val_accuracy": 0.9545454545454546,
+    "val_f1_macro": 0.6576576576576577,
+    "val_f1_weighted": 0.9324324324324326,
+    "train_loss": 0.006396572571247816
+  }
+]

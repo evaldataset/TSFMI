@@ -1,0 +1,43 @@
+{
+  "representations_dir": "outputs/representations/timesfm_meanpool/synthetic_frequency",
+  "property": "frequency",
+  "task_type": "classification",
+  "seeds": [
+    0,
+    1,
+    2,
+    3,
+    4
+  ],
+  "val_score_per_seed": [
+    1.0,
+    1.0,
+    1.0,
+    1.0,
+    1.0
+  ],
+  "test_score_per_seed": [
+    1.0,
+    1.0,
+    0.995,
+    1.0,
+    1.0
+  ],
+  "best_layer_per_seed": [
+    "layers_1",
+    "layers_0",
+    "layers_0",
+    "layers_10",
+    "layers_0"
+  ],
+  "test_mean": 0.999,
+  "test_ci95_low": 0.997,
+  "test_ci95_high": 1.0,
+  "protocol": {
+    "split": "60/20/20 train/val/test",
+    "selection": "best layer chosen on val only",
+    "reporting": "test score only",
+    "estimator": "sklearn LogisticRegression",
+    "n_bootstrap": 1000
+  }
+}

@@ -1,0 +1,9 @@
+{
+  "before_accuracy": 1.0,
+  "after_accuracy": 0.9810000061988831,
+  "drop": 0.018999993801116943,
+  "erase_property": "frequency",
+  "eval_property": "trend",
+  "model": "gpt4ts_pca512",
+  "layer": "transformer_h_0"
+}

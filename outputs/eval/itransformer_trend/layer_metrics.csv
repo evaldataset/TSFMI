@@ -1,0 +1,7 @@
+layer,val_accuracy,val_f1_macro,val_f1_weighted,train_loss,selectivity,cka_vs_encoder_layers_0,cka_vs_encoder_layers_1,cka_vs_encoder_layers_2,cka_vs_encoder_layers_3,cka_vs_encoder_layers_4
+encoder_layers_0,1.0,1.0,1.0,0.0002190544441368224,0.0,,,,,
+encoder_layers_1,1.0,1.0,1.0,0.00012598881342758736,0.0,0.9910811185836792,,,,
+encoder_layers_2,1.0,1.0,1.0,7.5726849697983e-05,0.0,,0.9960556626319885,,,
+encoder_layers_3,1.0,1.0,1.0,8.328908875733355e-05,0.0,,,0.9984354972839355,,
+encoder_layers_4,1.0,1.0,1.0,3.686399830055759e-05,0.0,,,,0.9992737770080566,
+encoder_layers_5,1.0,1.0,1.0,2.5843216765982408e-05,0.0,,,,,0.9996045231819153

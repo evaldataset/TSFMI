@@ -1,0 +1,290 @@
+[
+  {
+    "property": "trend",
+    "baseline": "hand_crafted",
+    "task_type": "classification",
+    "test_mean": 1.0,
+    "test_ci95_low": 1.0,
+    "test_ci95_high": 1.0,
+    "per_seed_test": [
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0
+    ],
+    "protocol": "60/20/20 train/val/test, 5 seeds, matched estimator"
+  },
+  {
+    "property": "trend",
+    "baseline": "raw_signal",
+    "task_type": "classification",
+    "test_mean": 1.0,
+    "test_ci95_low": 1.0,
+    "test_ci95_high": 1.0,
+    "per_seed_test": [
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0
+    ],
+    "protocol": "60/20/20 train/val/test, 5 seeds, matched estimator"
+  },
+  {
+    "property": "trend",
+    "baseline": "random_projection",
+    "task_type": "classification",
+    "test_mean": 1.0,
+    "test_ci95_low": 1.0,
+    "test_ci95_high": 1.0,
+    "per_seed_test": [
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0
+    ],
+    "protocol": "60/20/20 train/val/test, 5 seeds, matched estimator"
+  },
+  {
+    "property": "seasonality",
+    "baseline": "hand_crafted",
+    "task_type": "regression",
+    "test_mean": 0.9589,
+    "test_ci95_low": 0.9563,
+    "test_ci95_high": 0.9623,
+    "per_seed_test": [
+      0.9557,
+      0.9595,
+      0.9555,
+      0.9594,
+      0.9643
+    ],
+    "protocol": "60/20/20 train/val/test, 5 seeds, matched estimator"
+  },
+  {
+    "property": "seasonality",
+    "baseline": "raw_signal",
+    "task_type": "regression",
+    "test_mean": 0.789,
+    "test_ci95_low": 0.7792,
+    "test_ci95_high": 0.8027,
+    "per_seed_test": [
+      0.7921,
+      0.7754,
+      0.8135,
+      0.7828,
+      0.7811
+    ],
+    "protocol": "60/20/20 train/val/test, 5 seeds, matched estimator"
+  },
+  {
+    "property": "seasonality",
+    "baseline": "random_projection",
+    "task_type": "regression",
+    "test_mean": 0.8564,
+    "test_ci95_low": 0.8456,
+    "test_ci95_high": 0.8672,
+    "per_seed_test": [
+      0.8401,
+      0.8643,
+      0.875,
+      0.8453,
+      0.8575
+    ],
+    "protocol": "60/20/20 train/val/test, 5 seeds, matched estimator"
+  },
+  {
+    "property": "frequency",
+    "baseline": "hand_crafted",
+    "task_type": "classification",
+    "test_mean": 0.944,
+    "test_ci95_low": 0.912,
+    "test_ci95_high": 0.974,
+    "per_seed_test": [
+      0.96,
+      0.89,
+      0.945,
+      0.93,
+      0.995
+    ],
+    "protocol": "60/20/20 train/val/test, 5 seeds, matched estimator"
+  },
+  {
+    "property": "frequency",
+    "baseline": "raw_signal",
+    "task_type": "classification",
+    "test_mean": 1.0,
+    "test_ci95_low": 1.0,
+    "test_ci95_high": 1.0,
+    "per_seed_test": [
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0
+    ],
+    "protocol": "60/20/20 train/val/test, 5 seeds, matched estimator"
+  },
+  {
+    "property": "frequency",
+    "baseline": "random_projection",
+    "task_type": "classification",
+    "test_mean": 1.0,
+    "test_ci95_low": 1.0,
+    "test_ci95_high": 1.0,
+    "per_seed_test": [
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0
+    ],
+    "protocol": "60/20/20 train/val/test, 5 seeds, matched estimator"
+  },
+  {
+    "property": "stationarity",
+    "baseline": "hand_crafted",
+    "task_type": "classification",
+    "test_mean": 1.0,
+    "test_ci95_low": 1.0,
+    "test_ci95_high": 1.0,
+    "per_seed_test": [
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0
+    ],
+    "protocol": "60/20/20 train/val/test, 5 seeds, matched estimator"
+  },
+  {
+    "property": "stationarity",
+    "baseline": "raw_signal",
+    "task_type": "classification",
+    "test_mean": 0.496,
+    "test_ci95_low": 0.476,
+    "test_ci95_high": 0.523,
+    "per_seed_test": [
+      0.47,
+      0.505,
+      0.545,
+      0.475,
+      0.485
+    ],
+    "protocol": "60/20/20 train/val/test, 5 seeds, matched estimator"
+  },
+  {
+    "property": "stationarity",
+    "baseline": "random_projection",
+    "task_type": "classification",
+    "test_mean": 0.55,
+    "test_ci95_low": 0.5289,
+    "test_ci95_high": 0.568,
+    "per_seed_test": [
+      0.545,
+      0.55,
+      0.57,
+      0.575,
+      0.51
+    ],
+    "protocol": "60/20/20 train/val/test, 5 seeds, matched estimator"
+  },
+  {
+    "property": "anomaly",
+    "baseline": "hand_crafted",
+    "task_type": "classification",
+    "test_mean": 0.858,
+    "test_ci95_low": 0.837,
+    "test_ci95_high": 0.8821,
+    "per_seed_test": [
+      0.875,
+      0.845,
+      0.835,
+      0.9,
+      0.835
+    ],
+    "protocol": "60/20/20 train/val/test, 5 seeds, matched estimator"
+  },
+  {
+    "property": "anomaly",
+    "baseline": "raw_signal",
+    "task_type": "classification",
+    "test_mean": 0.485,
+    "test_ci95_low": 0.459,
+    "test_ci95_high": 0.516,
+    "per_seed_test": [
+      0.535,
+      0.505,
+      0.44,
+      0.475,
+      0.47
+    ],
+    "protocol": "60/20/20 train/val/test, 5 seeds, matched estimator"
+  },
+  {
+    "property": "anomaly",
+    "baseline": "random_projection",
+    "task_type": "classification",
+    "test_mean": 0.513,
+    "test_ci95_low": 0.478,
+    "test_ci95_high": 0.535,
+    "per_seed_test": [
+      0.525,
+      0.52,
+      0.535,
+      0.445,
+      0.54
+    ],
+    "protocol": "60/20/20 train/val/test, 5 seeds, matched estimator"
+  },
+  {
+    "property": "change_point",
+    "baseline": "hand_crafted",
+    "task_type": "classification",
+    "test_mean": 1.0,
+    "test_ci95_low": 1.0,
+    "test_ci95_high": 1.0,
+    "per_seed_test": [
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0
+    ],
+    "protocol": "60/20/20 train/val/test, 5 seeds, matched estimator"
+  },
+  {
+    "property": "change_point",
+    "baseline": "raw_signal",
+    "task_type": "classification",
+    "test_mean": 1.0,
+    "test_ci95_low": 1.0,
+    "test_ci95_high": 1.0,
+    "per_seed_test": [
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0
+    ],
+    "protocol": "60/20/20 train/val/test, 5 seeds, matched estimator"
+  },
+  {
+    "property": "change_point",
+    "baseline": "random_projection",
+    "task_type": "classification",
+    "test_mean": 0.999,
+    "test_ci95_low": 0.997,
+    "test_ci95_high": 1.0,
+    "per_seed_test": [
+      1.0,
+      0.995,
+      1.0,
+      1.0,
+      1.0
+    ],
+    "protocol": "60/20/20 train/val/test, 5 seeds, matched estimator"
+  }
+]

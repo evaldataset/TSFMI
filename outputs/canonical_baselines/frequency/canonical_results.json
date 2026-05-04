@@ -1,0 +1,50 @@
+[
+  {
+    "property": "frequency",
+    "baseline": "hand_crafted",
+    "task_type": "classification",
+    "test_mean": 0.944,
+    "test_ci95_low": 0.912,
+    "test_ci95_high": 0.974,
+    "per_seed_test": [
+      0.96,
+      0.89,
+      0.945,
+      0.93,
+      0.995
+    ],
+    "protocol": "60/20/20 train/val/test, 5 seeds, matched estimator"
+  },
+  {
+    "property": "frequency",
+    "baseline": "raw_signal",
+    "task_type": "classification",
+    "test_mean": 1.0,
+    "test_ci95_low": 1.0,
+    "test_ci95_high": 1.0,
+    "per_seed_test": [
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0
+    ],
+    "protocol": "60/20/20 train/val/test, 5 seeds, matched estimator"
+  },
+  {
+    "property": "frequency",
+    "baseline": "random_projection",
+    "task_type": "classification",
+    "test_mean": 1.0,
+    "test_ci95_low": 1.0,
+    "test_ci95_high": 1.0,
+    "per_seed_test": [
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0
+    ],
+    "protocol": "60/20/20 train/val/test, 5 seeds, matched estimator"
+  }
+]

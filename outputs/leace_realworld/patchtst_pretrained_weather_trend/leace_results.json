@@ -1,0 +1,29 @@
+{
+  "model_encoder_layers_0": {
+    "before": {
+      "accuracy": 0.9900000095367432
+    },
+    "after": {
+      "accuracy": 0.6150000095367432
+    },
+    "drop": 0.375
+  },
+  "model_encoder_layers_1": {
+    "before": {
+      "accuracy": 0.9950000047683716
+    },
+    "after": {
+      "accuracy": 0.6449999809265137
+    },
+    "drop": 0.3500000238418579
+  },
+  "model_encoder_layers_2": {
+    "before": {
+      "accuracy": 1.0
+    },
+    "after": {
+      "accuracy": 0.5950000286102295
+    },
+    "drop": 0.4049999713897705
+  }
+}

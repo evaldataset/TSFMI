@@ -1,0 +1,43 @@
+{
+  "representations_dir": "outputs/representations/timer_meanpool/synthetic_seasonality",
+  "property": "seasonality",
+  "task_type": "regression",
+  "seeds": [
+    0,
+    1,
+    2,
+    3,
+    4
+  ],
+  "val_score_per_seed": [
+    0.9999,
+    0.9999,
+    0.9999,
+    0.9999,
+    0.9999
+  ],
+  "test_score_per_seed": [
+    0.9999,
+    0.9999,
+    0.9999,
+    0.9999,
+    0.9998
+  ],
+  "best_layer_per_seed": [
+    "model_layers_2",
+    "model_layers_2",
+    "model_layers_2",
+    "model_layers_4",
+    "model_layers_5"
+  ],
+  "test_mean": 0.9999,
+  "test_ci95_low": 0.9998,
+  "test_ci95_high": 0.9999,
+  "protocol": {
+    "split": "60/20/20 train/val/test",
+    "selection": "best layer chosen on val only",
+    "reporting": "test score only",
+    "estimator": "sklearn Ridge",
+    "n_bootstrap": 1000
+  }
+}

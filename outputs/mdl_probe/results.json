@@ -1,0 +1,278 @@
+[
+  {
+    "model": "MOMENT",
+    "property": "anomaly",
+    "layer": "encoder_block_11",
+    "n_classes": 2,
+    "uniform_codelength_bits": 3000.0,
+    "online_mdl_bits_per_seed": [
+      7733.04,
+      7952.33,
+      7685.93,
+      7987.88,
+      8192.93
+    ],
+    "online_mdl_bits_mean": 7910.42,
+    "test_acc_per_seed": [
+      0.545,
+      0.535,
+      0.55,
+      0.571,
+      0.553
+    ],
+    "test_acc_mean": 0.5508
+  },
+  {
+    "model": "Chronos",
+    "property": "anomaly",
+    "layer": "encoder_block_5",
+    "n_classes": 2,
+    "uniform_codelength_bits": 3000.0,
+    "online_mdl_bits_per_seed": [
+      9881.23,
+      9745.33,
+      9500.32,
+      9552.67,
+      9668.31
+    ],
+    "online_mdl_bits_mean": 9669.57,
+    "test_acc_per_seed": [
+      0.617,
+      0.646,
+      0.668,
+      0.641,
+      0.651
+    ],
+    "test_acc_mean": 0.6446
+  },
+  {
+    "model": "PatchTST",
+    "property": "anomaly",
+    "layer": "model_encoder_layers_1",
+    "n_classes": 2,
+    "uniform_codelength_bits": 3000.0,
+    "online_mdl_bits_per_seed": [
+      12131.24,
+      12548.79,
+      12619.95,
+      12452.32,
+      11995.59
+    ],
+    "online_mdl_bits_mean": 12349.58,
+    "test_acc_per_seed": [
+      0.498,
+      0.463,
+      0.513,
+      0.533,
+      0.491
+    ],
+    "test_acc_mean": 0.4996
+  },
+  {
+    "model": "GPT4TS",
+    "property": "anomaly",
+    "layer": "transformer_h_10",
+    "n_classes": 2,
+    "uniform_codelength_bits": 3000.0,
+    "online_mdl_bits_per_seed": [
+      8039.97,
+      7945.21,
+      8315.89,
+      8297.49,
+      Infinity
+    ],
+    "online_mdl_bits_mean": Infinity,
+    "test_acc_per_seed": [
+      0.546,
+      0.493,
+      0.528,
+      0.554,
+      0.529
+    ],
+    "test_acc_mean": 0.53
+  },
+  {
+    "model": "MOMENT",
+    "property": "change_point",
+    "layer": "encoder_block_0",
+    "n_classes": 2,
+    "uniform_codelength_bits": 3000.0,
+    "online_mdl_bits_per_seed": [
+      498.33,
+      532.28,
+      526.02,
+      533.38,
+      523.69
+    ],
+    "online_mdl_bits_mean": 522.74,
+    "test_acc_per_seed": [
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0
+    ],
+    "test_acc_mean": 1.0
+  },
+  {
+    "model": "Chronos",
+    "property": "change_point",
+    "layer": "encoder_block_0",
+    "n_classes": 2,
+    "uniform_codelength_bits": 3000.0,
+    "online_mdl_bits_per_seed": [
+      150.0,
+      150.0,
+      150.0,
+      150.0,
+      150.0
+    ],
+    "online_mdl_bits_mean": 150.0,
+    "test_acc_per_seed": [
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0
+    ],
+    "test_acc_mean": 1.0
+  },
+  {
+    "model": "PatchTST",
+    "property": "change_point",
+    "layer": "model_encoder_layers_0",
+    "n_classes": 2,
+    "uniform_codelength_bits": 3000.0,
+    "online_mdl_bits_per_seed": [
+      150.7,
+      159.13,
+      154.78,
+      154.95,
+      156.98
+    ],
+    "online_mdl_bits_mean": 155.31,
+    "test_acc_per_seed": [
+      0.997,
+      1.0,
+      0.999,
+      1.0,
+      0.999
+    ],
+    "test_acc_mean": 0.999
+  },
+  {
+    "model": "GPT4TS",
+    "property": "change_point",
+    "layer": "transformer_h_0",
+    "n_classes": 2,
+    "uniform_codelength_bits": 3000.0,
+    "online_mdl_bits_per_seed": [
+      539.57,
+      580.81,
+      543.91,
+      546.1,
+      610.09
+    ],
+    "online_mdl_bits_mean": 564.09,
+    "test_acc_per_seed": [
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0
+    ],
+    "test_acc_mean": 1.0
+  },
+  {
+    "model": "MOMENT",
+    "property": "frequency",
+    "layer": "encoder_block_0",
+    "n_classes": 8,
+    "uniform_codelength_bits": 9000.0,
+    "online_mdl_bits_per_seed": [
+      1094.36,
+      1110.44,
+      1168.72,
+      1076.8,
+      1081.49
+    ],
+    "online_mdl_bits_mean": 1106.36,
+    "test_acc_per_seed": [
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0
+    ],
+    "test_acc_mean": 1.0
+  },
+  {
+    "model": "Chronos",
+    "property": "frequency",
+    "layer": "encoder_block_0",
+    "n_classes": 8,
+    "uniform_codelength_bits": 9000.0,
+    "online_mdl_bits_per_seed": [
+      450.0,
+      450.0,
+      450.0,
+      450.0,
+      450.0
+    ],
+    "online_mdl_bits_mean": 450.0,
+    "test_acc_per_seed": [
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0
+    ],
+    "test_acc_mean": 1.0
+  },
+  {
+    "model": "PatchTST",
+    "property": "frequency",
+    "layer": "model_encoder_layers_0",
+    "n_classes": 8,
+    "uniform_codelength_bits": 9000.0,
+    "online_mdl_bits_per_seed": [
+      450.0,
+      450.0,
+      450.0,
+      450.0,
+      450.0
+    ],
+    "online_mdl_bits_mean": 450.0,
+    "test_acc_per_seed": [
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0
+    ],
+    "test_acc_mean": 1.0
+  },
+  {
+    "model": "GPT4TS",
+    "property": "frequency",
+    "layer": "transformer_h_0",
+    "n_classes": 8,
+    "uniform_codelength_bits": 9000.0,
+    "online_mdl_bits_per_seed": [
+      1297.51,
+      1171.99,
+      1273.01,
+      1177.57,
+      1245.79
+    ],
+    "online_mdl_bits_mean": 1233.17,
+    "test_acc_per_seed": [
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0
+    ],
+    "test_acc_mean": 1.0
+  }
+]

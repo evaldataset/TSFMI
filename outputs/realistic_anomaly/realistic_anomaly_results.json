@@ -1,0 +1,48 @@
+{
+  "task": "realistic_anomaly",
+  "design": "Mixed-type anomaly (point, level-shift, variance, contextual) on structured background (seasonality + AR(1) + noise); subtle magnitudes (1.5--3 sigma).",
+  "n_samples": 1000,
+  "seq_len": 512,
+  "rows": [
+    {
+      "baseline": "hand_crafted",
+      "test_mean": 0.701,
+      "test_ci95_low": 0.687,
+      "test_ci95_high": 0.714,
+      "per_seed_test": [
+        0.705,
+        0.69,
+        0.705,
+        0.725,
+        0.68
+      ]
+    },
+    {
+      "baseline": "raw_signal",
+      "test_mean": 0.513,
+      "test_ci95_low": 0.486,
+      "test_ci95_high": 0.54,
+      "per_seed_test": [
+        0.475,
+        0.48,
+        0.54,
+        0.55,
+        0.52
+      ]
+    },
+    {
+      "baseline": "random_projection",
+      "test_mean": 0.52,
+      "test_ci95_low": 0.492,
+      "test_ci95_high": 0.554,
+      "per_seed_test": [
+        0.5,
+        0.47,
+        0.52,
+        0.58,
+        0.53
+      ]
+    }
+  ],
+  "note": "TSFM probes are not re-run here; the corresponding canonical anomaly TSFM scores are read from outputs/canonical/summary.json. If HC accuracy on this realistic task drops below the canonical TSFM ceiling (0.753), the inversion narrows; if HC still beats TSFM, the inversion holds under the harder construction."
+}

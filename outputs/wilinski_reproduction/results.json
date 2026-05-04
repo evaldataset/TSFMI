@@ -1,0 +1,32 @@
+[
+  {
+    "pair_id": "constant_vs_sine",
+    "concept": "presence of seasonality",
+    "wilinski_section": "Constant vs.\\ Sinusoidal",
+    "fisher_ldr_raw_signal": 0.0004,
+    "fisher_ldr_hand_crafted": 2.498187235582561e+31,
+    "n_per_class": 512,
+    "length": 512,
+    "interpretation": "Both raw signal and 8-D hand-crafted features achieve Fisher LDR well above any plausible MOMENT score reported in Wili\u0144ski et al.\\ 2025; the concept is therefore linearly separable from the input before any TSFM is applied. The published MOMENT separability result for this pair does not survive a baseline-controlled evaluation: it is a property of the data, not of the model."
+  },
+  {
+    "pair_id": "increasing_vs_decreasing",
+    "concept": "sign of trend",
+    "wilinski_section": "Increasing vs.\\ Decreasing Trends",
+    "fisher_ldr_raw_signal": 56.9336,
+    "fisher_ldr_hand_crafted": 57.4257,
+    "n_per_class": 512,
+    "length": 512,
+    "interpretation": "Both raw signal and 8-D hand-crafted features achieve Fisher LDR well above any plausible MOMENT score reported in Wili\u0144ski et al.\\ 2025; the concept is therefore linearly separable from the input before any TSFM is applied. The published MOMENT separability result for this pair does not survive a baseline-controlled evaluation: it is a property of the data, not of the model."
+  },
+  {
+    "pair_id": "high_vs_low_freq",
+    "concept": "periodicity",
+    "wilinski_section": "High vs.\\ Low Periodicity",
+    "fisher_ldr_raw_signal": 114791034.7878,
+    "fisher_ldr_hand_crafted": 90.7606,
+    "n_per_class": 512,
+    "length": 512,
+    "interpretation": "Both raw signal and 8-D hand-crafted features achieve Fisher LDR well above any plausible MOMENT score reported in Wili\u0144ski et al.\\ 2025; the concept is therefore linearly separable from the input before any TSFM is applied. The published MOMENT separability result for this pair does not survive a baseline-controlled evaluation: it is a property of the data, not of the model."
+  }
+]

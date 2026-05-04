@@ -1,0 +1,471 @@
+{
+  "MOMENT": {
+    "trend": {
+      "easy": {
+        "accuracy": 1.0,
+        "f1": 1.0,
+        "best_layer": "encoder_block_0"
+      },
+      "hard": {
+        "accuracy": 0.961,
+        "f1": 0.9612387860359481,
+        "best_layer": "encoder_block_13"
+      },
+      "drop": 0.039000000000000035
+    },
+    "frequency": {
+      "easy": {
+        "accuracy": 1.0,
+        "f1": 1.0,
+        "best_layer": "encoder_block_0"
+      },
+      "hard": {
+        "accuracy": 0.884,
+        "f1": 0.8836093356399994,
+        "best_layer": "encoder_block_17"
+      },
+      "drop": 0.11599999999999999
+    },
+    "stationarity": {
+      "easy": {
+        "accuracy": 1.0,
+        "f1": 1.0,
+        "best_layer": "encoder_block_0"
+      },
+      "hard": {
+        "accuracy": 0.985,
+        "f1": 0.9849966242404541,
+        "best_layer": "encoder_block_16"
+      },
+      "drop": 0.015000000000000013
+    },
+    "anomaly": {
+      "easy": {
+        "accuracy": 0.59,
+        "f1": 0.59,
+        "best_layer": "encoder_block_18"
+      },
+      "hard": {
+        "accuracy": 0.828,
+        "f1": 0.8260454466384295,
+        "best_layer": "encoder_block_18"
+      },
+      "drop": -0.238
+    },
+    "change_point": {
+      "easy": {
+        "accuracy": 1.0,
+        "f1": 1.0,
+        "best_layer": "encoder_block_0"
+      },
+      "hard": {
+        "accuracy": 0.968,
+        "f1": 0.9679845045001781,
+        "best_layer": "encoder_block_14"
+      },
+      "drop": 0.03200000000000003
+    }
+  },
+  "Chronos": {
+    "trend": {
+      "easy": {
+        "accuracy": 1.0,
+        "f1": 1.0,
+        "best_layer": "encoder_block_0"
+      },
+      "hard": {
+        "accuracy": 0.963,
+        "f1": 0.9632090829562642,
+        "best_layer": "encoder_block_5"
+      },
+      "drop": 0.03700000000000003
+    },
+    "frequency": {
+      "easy": {
+        "accuracy": 1.0,
+        "f1": 1.0,
+        "best_layer": "encoder_block_0"
+      },
+      "hard": {
+        "accuracy": 1.0,
+        "f1": 1.0,
+        "best_layer": "encoder_block_3"
+      },
+      "drop": 0.0
+    },
+    "stationarity": {
+      "easy": {
+        "accuracy": 1.0,
+        "f1": 1.0,
+        "best_layer": "encoder_block_0"
+      },
+      "hard": {
+        "accuracy": 0.999,
+        "f1": 0.998999998999999,
+        "best_layer": "encoder_block_4"
+      },
+      "drop": 0.0010000000000000009
+    },
+    "anomaly": {
+      "easy": {
+        "accuracy": 0.642,
+        "f1": 0.6414262820512819,
+        "best_layer": "encoder_block_4"
+      },
+      "hard": {
+        "accuracy": 0.807,
+        "f1": 0.8064966979112672,
+        "best_layer": "encoder_block_4"
+      },
+      "drop": -0.16500000000000004
+    },
+    "change_point": {
+      "easy": {
+        "accuracy": 1.0,
+        "f1": 1.0,
+        "best_layer": "encoder_block_0"
+      },
+      "hard": {
+        "accuracy": 0.968,
+        "f1": 0.9679896286396793,
+        "best_layer": "encoder_block_5"
+      },
+      "drop": 0.03200000000000003
+    }
+  },
+  "PatchTST": {
+    "trend": {
+      "easy": {
+        "accuracy": 1.0,
+        "f1": 1.0,
+        "best_layer": "model_encoder_layers_0"
+      },
+      "hard": {
+        "accuracy": 0.932,
+        "f1": 0.9329014016066951,
+        "best_layer": "model_encoder_layers_2"
+      },
+      "drop": 0.06799999999999995
+    },
+    "frequency": {
+      "easy": {
+        "accuracy": 1.0,
+        "f1": 1.0,
+        "best_layer": "model_encoder_layers_0"
+      },
+      "hard": {
+        "accuracy": 1.0,
+        "f1": 1.0,
+        "best_layer": "model_encoder_layers_2"
+      },
+      "drop": 0.0
+    },
+    "stationarity": {
+      "easy": {
+        "accuracy": 1.0,
+        "f1": 1.0,
+        "best_layer": "model_encoder_layers_0"
+      },
+      "hard": {
+        "accuracy": 0.99,
+        "f1": 0.98999899989999,
+        "best_layer": "model_encoder_layers_2"
+      },
+      "drop": 0.010000000000000009
+    },
+    "anomaly": {
+      "easy": {
+        "accuracy": 0.518,
+        "f1": 0.5177222079918034,
+        "best_layer": "model_encoder_layers_1"
+      },
+      "hard": {
+        "accuracy": 0.68,
+        "f1": 0.6751651582148702,
+        "best_layer": "model_encoder_layers_1"
+      },
+      "drop": -0.16200000000000003
+    },
+    "change_point": {
+      "easy": {
+        "accuracy": 1.0,
+        "f1": 1.0,
+        "best_layer": "model_encoder_layers_0"
+      },
+      "hard": {
+        "accuracy": 0.952,
+        "f1": 0.9519377112738108,
+        "best_layer": "model_encoder_layers_0"
+      },
+      "drop": 0.04800000000000004
+    }
+  },
+  "GPT4TS": {
+    "trend": {
+      "easy": {
+        "accuracy": 1.0,
+        "f1": 1.0,
+        "best_layer": "transformer_h_0"
+      },
+      "hard": {
+        "accuracy": 0.901,
+        "f1": 0.902998782287442,
+        "best_layer": "transformer_h_11"
+      },
+      "drop": 0.09899999999999998
+    },
+    "frequency": {
+      "easy": {
+        "accuracy": 1.0,
+        "f1": 1.0,
+        "best_layer": "transformer_h_0"
+      },
+      "hard": {
+        "accuracy": 0.423,
+        "f1": 0.41465358396099045,
+        "best_layer": "transformer_h_1"
+      },
+      "drop": 0.577
+    },
+    "stationarity": {
+      "easy": {
+        "accuracy": 1.0,
+        "f1": 1.0,
+        "best_layer": "transformer_h_0"
+      },
+      "hard": {
+        "accuracy": 0.995,
+        "f1": 0.9949998749968749,
+        "best_layer": "transformer_h_4"
+      },
+      "drop": 0.0050000000000000044
+    },
+    "anomaly": {
+      "easy": {
+        "accuracy": 0.54,
+        "f1": 0.5399705581157194,
+        "best_layer": "transformer_h_2"
+      },
+      "hard": {
+        "accuracy": 0.702,
+        "f1": 0.6953264301254682,
+        "best_layer": "transformer_h_11"
+      },
+      "drop": -0.16199999999999992
+    },
+    "change_point": {
+      "easy": {
+        "accuracy": 1.0,
+        "f1": 1.0,
+        "best_layer": "transformer_h_0"
+      },
+      "hard": {
+        "accuracy": 0.968,
+        "f1": 0.9679711740566511,
+        "best_layer": "transformer_h_3"
+      },
+      "drop": 0.03200000000000003
+    }
+  },
+  "Timer": {
+    "trend": {
+      "easy": {
+        "accuracy": 1.0,
+        "f1": 1.0,
+        "best_layer": "model_layers_0"
+      },
+      "hard": {
+        "accuracy": 0.955,
+        "f1": 0.9552761731151613,
+        "best_layer": "model_layers_5"
+      },
+      "drop": 0.04500000000000004
+    },
+    "frequency": {
+      "easy": {
+        "accuracy": 1.0,
+        "f1": 1.0,
+        "best_layer": "model_layers_0"
+      },
+      "hard": {
+        "accuracy": 1.0,
+        "f1": 1.0,
+        "best_layer": "model_layers_3"
+      },
+      "drop": 0.0
+    },
+    "stationarity": {
+      "easy": {
+        "accuracy": 1.0,
+        "f1": 1.0,
+        "best_layer": "model_layers_0"
+      },
+      "hard": {
+        "accuracy": 1.0,
+        "f1": 1.0,
+        "best_layer": "model_layers_2"
+      },
+      "drop": 0.0
+    },
+    "anomaly": {
+      "easy": {
+        "accuracy": 0.645,
+        "f1": 0.6444206773618538,
+        "best_layer": "model_layers_0"
+      },
+      "hard": {
+        "accuracy": 0.9,
+        "f1": 0.8999499949995,
+        "best_layer": "model_layers_4"
+      },
+      "drop": -0.255
+    },
+    "change_point": {
+      "easy": {
+        "accuracy": 1.0,
+        "f1": 1.0,
+        "best_layer": "model_layers_0"
+      },
+      "hard": {
+        "accuracy": 0.95,
+        "f1": 0.9500150015001501,
+        "best_layer": "model_layers_4"
+      },
+      "drop": 0.050000000000000044
+    }
+  },
+  "TimesFM": {
+    "trend": {
+      "easy": {
+        "accuracy": 1.0,
+        "f1": 1.0,
+        "best_layer": "layers_0"
+      },
+      "hard": {
+        "accuracy": 0.97,
+        "f1": 0.9702528764891559,
+        "best_layer": "layers_44"
+      },
+      "drop": 0.030000000000000027
+    },
+    "frequency": {
+      "easy": {
+        "accuracy": 1.0,
+        "f1": 1.0,
+        "best_layer": "layers_3"
+      },
+      "hard": {
+        "accuracy": 1.0,
+        "f1": 1.0,
+        "best_layer": "layers_21"
+      },
+      "drop": 0.0
+    },
+    "stationarity": {
+      "easy": {
+        "accuracy": 1.0,
+        "f1": 1.0,
+        "best_layer": "layers_0"
+      },
+      "hard": {
+        "accuracy": 1.0,
+        "f1": 1.0,
+        "best_layer": "layers_26"
+      },
+      "drop": 0.0
+    },
+    "anomaly": {
+      "easy": {
+        "accuracy": 0.825,
+        "f1": 0.8243292667651994,
+        "best_layer": "layers_21"
+      },
+      "hard": {
+        "accuracy": 0.95,
+        "f1": 0.9499749974997499,
+        "best_layer": "layers_36"
+      },
+      "drop": -0.125
+    },
+    "change_point": {
+      "easy": {
+        "accuracy": 1.0,
+        "f1": 1.0,
+        "best_layer": "layers_0"
+      },
+      "hard": {
+        "accuracy": 0.975,
+        "f1": 0.9750093771098497,
+        "best_layer": "layers_18"
+      },
+      "drop": 0.025000000000000022
+    }
+  },
+  "Moirai": {
+    "trend": {
+      "easy": {
+        "accuracy": 1.0,
+        "f1": 1.0,
+        "best_layer": "encoder_layers_0"
+      },
+      "hard": {
+        "accuracy": 0.94,
+        "f1": 0.9407499999999999,
+        "best_layer": "encoder_layers_5"
+      },
+      "drop": 0.06000000000000005
+    },
+    "frequency": {
+      "easy": {
+        "accuracy": 1.0,
+        "f1": 1.0,
+        "best_layer": "encoder_layers_1"
+      },
+      "hard": {
+        "accuracy": 1.0,
+        "f1": 1.0,
+        "best_layer": "encoder_layers_2"
+      },
+      "drop": 0.0
+    },
+    "stationarity": {
+      "easy": {
+        "accuracy": 1.0,
+        "f1": 1.0,
+        "best_layer": "encoder_layers_0"
+      },
+      "hard": {
+        "accuracy": 1.0,
+        "f1": 1.0,
+        "best_layer": "encoder_layers_1"
+      },
+      "drop": 0.0
+    },
+    "anomaly": {
+      "easy": {
+        "accuracy": 0.715,
+        "f1": 0.7135063567291056,
+        "best_layer": "encoder_layers_1"
+      },
+      "hard": {
+        "accuracy": 0.85,
+        "f1": 0.8493233082706766,
+        "best_layer": "encoder_layers_1"
+      },
+      "drop": -0.135
+    },
+    "change_point": {
+      "easy": {
+        "accuracy": 1.0,
+        "f1": 1.0,
+        "best_layer": "encoder_layers_0"
+      },
+      "hard": {
+        "accuracy": 0.99,
+        "f1": 0.9900030027024322,
+        "best_layer": "encoder_layers_2"
+      },
+      "drop": 0.010000000000000009
+    }
+  }
+}

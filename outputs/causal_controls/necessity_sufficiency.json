@@ -1,0 +1,352 @@
+{
+  "MOMENT": {
+    "trend": {
+      "original_acc": 1.0,
+      "leace_erased_acc": 0.67,
+      "subspace_only_acc": 1.0,
+      "random_erased_acc_mean": 1.0,
+      "random_erased_acc_std": 0.0,
+      "n_concept_directions": 2,
+      "necessity_drop": 0.32999999999999996,
+      "sufficiency_preserved": 1.0,
+      "random_drop": 0.0,
+      "specificity": 0.32999999999999996
+    },
+    "stationarity": {
+      "original_acc": 1.0,
+      "leace_erased_acc": 0.644,
+      "subspace_only_acc": 1.0,
+      "random_erased_acc_mean": 1.0,
+      "random_erased_acc_std": 0.0,
+      "n_concept_directions": 1,
+      "necessity_drop": 0.356,
+      "sufficiency_preserved": 1.0,
+      "random_drop": 0.0,
+      "specificity": 0.356
+    },
+    "frequency": {
+      "original_acc": 1.0,
+      "leace_erased_acc": 1.0,
+      "subspace_only_acc": 1.0,
+      "random_erased_acc_mean": 1.0,
+      "random_erased_acc_std": 0.0,
+      "n_concept_directions": 7,
+      "necessity_drop": 0.0,
+      "sufficiency_preserved": 1.0,
+      "random_drop": 0.0,
+      "specificity": 0.0
+    },
+    "change_point": {
+      "original_acc": 1.0,
+      "leace_erased_acc": 0.924,
+      "subspace_only_acc": 1.0,
+      "random_erased_acc_mean": 1.0,
+      "random_erased_acc_std": 0.0,
+      "n_concept_directions": 1,
+      "necessity_drop": 0.07599999999999996,
+      "sufficiency_preserved": 1.0,
+      "random_drop": 0.0,
+      "specificity": 0.07599999999999996
+    }
+  },
+  "Chronos": {
+    "trend": {
+      "original_acc": 1.0,
+      "leace_erased_acc": 0.779,
+      "subspace_only_acc": 1.0,
+      "random_erased_acc_mean": 1.0,
+      "random_erased_acc_std": 0.0,
+      "n_concept_directions": 2,
+      "necessity_drop": 0.22099999999999997,
+      "sufficiency_preserved": 1.0,
+      "random_drop": 0.0,
+      "specificity": 0.22099999999999997
+    },
+    "stationarity": {
+      "original_acc": 1.0,
+      "leace_erased_acc": 0.477,
+      "subspace_only_acc": 0.816,
+      "random_erased_acc_mean": 1.0,
+      "random_erased_acc_std": 0.0,
+      "n_concept_directions": 1,
+      "necessity_drop": 0.523,
+      "sufficiency_preserved": 0.816,
+      "random_drop": 0.0,
+      "specificity": 0.523
+    },
+    "frequency": {
+      "original_acc": 1.0,
+      "leace_erased_acc": 1.0,
+      "subspace_only_acc": 1.0,
+      "random_erased_acc_mean": 1.0,
+      "random_erased_acc_std": 0.0,
+      "n_concept_directions": 7,
+      "necessity_drop": 0.0,
+      "sufficiency_preserved": 1.0,
+      "random_drop": 0.0,
+      "specificity": 0.0
+    },
+    "change_point": {
+      "original_acc": 1.0,
+      "leace_erased_acc": 0.529,
+      "subspace_only_acc": 0.692,
+      "random_erased_acc_mean": 1.0,
+      "random_erased_acc_std": 0.0,
+      "n_concept_directions": 1,
+      "necessity_drop": 0.471,
+      "sufficiency_preserved": 0.692,
+      "random_drop": 0.0,
+      "specificity": 0.471
+    }
+  },
+  "PatchTST": {
+    "trend": {
+      "original_acc": 1.0,
+      "leace_erased_acc": 0.84,
+      "subspace_only_acc": 1.0,
+      "random_erased_acc_mean": 1.0,
+      "random_erased_acc_std": 0.0,
+      "n_concept_directions": 2,
+      "necessity_drop": 0.16000000000000003,
+      "sufficiency_preserved": 1.0,
+      "random_drop": 0.0,
+      "specificity": 0.16000000000000003
+    },
+    "stationarity": {
+      "original_acc": 1.0,
+      "leace_erased_acc": 0.536,
+      "subspace_only_acc": 1.0,
+      "random_erased_acc_mean": 1.0,
+      "random_erased_acc_std": 0.0,
+      "n_concept_directions": 1,
+      "necessity_drop": 0.46399999999999997,
+      "sufficiency_preserved": 1.0,
+      "random_drop": 0.0,
+      "specificity": 0.46399999999999997
+    },
+    "frequency": {
+      "original_acc": 1.0,
+      "leace_erased_acc": 1.0,
+      "subspace_only_acc": 1.0,
+      "random_erased_acc_mean": 1.0,
+      "random_erased_acc_std": 0.0,
+      "n_concept_directions": 7,
+      "necessity_drop": 0.0,
+      "sufficiency_preserved": 1.0,
+      "random_drop": 0.0,
+      "specificity": 0.0
+    },
+    "change_point": {
+      "original_acc": 1.0,
+      "leace_erased_acc": 0.552,
+      "subspace_only_acc": 1.0,
+      "random_erased_acc_mean": 1.0,
+      "random_erased_acc_std": 0.0,
+      "n_concept_directions": 1,
+      "necessity_drop": 0.44799999999999995,
+      "sufficiency_preserved": 1.0,
+      "random_drop": 0.0,
+      "specificity": 0.44799999999999995
+    }
+  },
+  "GPT4TS": {
+    "trend": {
+      "original_acc": 1.0,
+      "leace_erased_acc": 0.585,
+      "subspace_only_acc": 1.0,
+      "random_erased_acc_mean": 1.0,
+      "random_erased_acc_std": 0.0,
+      "n_concept_directions": 2,
+      "necessity_drop": 0.41500000000000004,
+      "sufficiency_preserved": 1.0,
+      "random_drop": 0.0,
+      "specificity": 0.41500000000000004
+    },
+    "stationarity": {
+      "original_acc": 1.0,
+      "leace_erased_acc": 0.61,
+      "subspace_only_acc": 1.0,
+      "random_erased_acc_mean": 1.0,
+      "random_erased_acc_std": 0.0,
+      "n_concept_directions": 1,
+      "necessity_drop": 0.39,
+      "sufficiency_preserved": 1.0,
+      "random_drop": 0.0,
+      "specificity": 0.39
+    },
+    "frequency": {
+      "original_acc": 1.0,
+      "leace_erased_acc": 1.0,
+      "subspace_only_acc": 1.0,
+      "random_erased_acc_mean": 1.0,
+      "random_erased_acc_std": 0.0,
+      "n_concept_directions": 7,
+      "necessity_drop": 0.0,
+      "sufficiency_preserved": 1.0,
+      "random_drop": 0.0,
+      "specificity": 0.0
+    },
+    "change_point": {
+      "original_acc": 1.0,
+      "leace_erased_acc": 0.989,
+      "subspace_only_acc": 1.0,
+      "random_erased_acc_mean": 1.0,
+      "random_erased_acc_std": 0.0,
+      "n_concept_directions": 1,
+      "necessity_drop": 0.01100000000000001,
+      "sufficiency_preserved": 1.0,
+      "random_drop": 0.0,
+      "specificity": 0.01100000000000001
+    }
+  },
+  "Timer": {
+    "trend": {
+      "original_acc": 1.0,
+      "leace_erased_acc": 0.665,
+      "subspace_only_acc": 1.0,
+      "random_erased_acc_mean": 1.0,
+      "random_erased_acc_std": 0.0,
+      "n_concept_directions": 2,
+      "necessity_drop": 0.33499999999999996,
+      "sufficiency_preserved": 1.0,
+      "random_drop": 0.0,
+      "specificity": 0.33499999999999996
+    },
+    "stationarity": {
+      "original_acc": 1.0,
+      "leace_erased_acc": 0.515,
+      "subspace_only_acc": 1.0,
+      "random_erased_acc_mean": 1.0,
+      "random_erased_acc_std": 0.0,
+      "n_concept_directions": 1,
+      "necessity_drop": 0.485,
+      "sufficiency_preserved": 1.0,
+      "random_drop": 0.0,
+      "specificity": 0.485
+    },
+    "frequency": {
+      "original_acc": 1.0,
+      "leace_erased_acc": 1.0,
+      "subspace_only_acc": 1.0,
+      "random_erased_acc_mean": 1.0,
+      "random_erased_acc_std": 0.0,
+      "n_concept_directions": 7,
+      "necessity_drop": 0.0,
+      "sufficiency_preserved": 1.0,
+      "random_drop": 0.0,
+      "specificity": 0.0
+    },
+    "change_point": {
+      "original_acc": 1.0,
+      "leace_erased_acc": 0.53,
+      "subspace_only_acc": 1.0,
+      "random_erased_acc_mean": 1.0,
+      "random_erased_acc_std": 0.0,
+      "n_concept_directions": 1,
+      "necessity_drop": 0.47,
+      "sufficiency_preserved": 1.0,
+      "random_drop": 0.0,
+      "specificity": 0.47
+    }
+  },
+  "TimesFM": {
+    "trend": {
+      "original_acc": 1.0,
+      "leace_erased_acc": 0.67,
+      "subspace_only_acc": 1.0,
+      "random_erased_acc_mean": 1.0,
+      "random_erased_acc_std": 0.0,
+      "n_concept_directions": 2,
+      "necessity_drop": 0.32999999999999996,
+      "sufficiency_preserved": 1.0,
+      "random_drop": 0.0,
+      "specificity": 0.32999999999999996
+    },
+    "stationarity": {
+      "original_acc": 1.0,
+      "leace_erased_acc": 0.47,
+      "subspace_only_acc": 1.0,
+      "random_erased_acc_mean": 1.0,
+      "random_erased_acc_std": 0.0,
+      "n_concept_directions": 1,
+      "necessity_drop": 0.53,
+      "sufficiency_preserved": 1.0,
+      "random_drop": 0.0,
+      "specificity": 0.53
+    },
+    "frequency": {
+      "original_acc": 1.0,
+      "leace_erased_acc": 1.0,
+      "subspace_only_acc": 1.0,
+      "random_erased_acc_mean": 1.0,
+      "random_erased_acc_std": 0.0,
+      "n_concept_directions": 7,
+      "necessity_drop": 0.0,
+      "sufficiency_preserved": 1.0,
+      "random_drop": 0.0,
+      "specificity": 0.0
+    },
+    "change_point": {
+      "original_acc": 1.0,
+      "leace_erased_acc": 0.49,
+      "subspace_only_acc": 1.0,
+      "random_erased_acc_mean": 1.0,
+      "random_erased_acc_std": 0.0,
+      "n_concept_directions": 1,
+      "necessity_drop": 0.51,
+      "sufficiency_preserved": 1.0,
+      "random_drop": 0.0,
+      "specificity": 0.51
+    }
+  },
+  "Moirai": {
+    "trend": {
+      "original_acc": 1.0,
+      "leace_erased_acc": 0.68,
+      "subspace_only_acc": 1.0,
+      "random_erased_acc_mean": 1.0,
+      "random_erased_acc_std": 0.0,
+      "n_concept_directions": 2,
+      "necessity_drop": 0.31999999999999995,
+      "sufficiency_preserved": 1.0,
+      "random_drop": 0.0,
+      "specificity": 0.31999999999999995
+    },
+    "stationarity": {
+      "original_acc": 1.0,
+      "leace_erased_acc": 0.485,
+      "subspace_only_acc": 1.0,
+      "random_erased_acc_mean": 1.0,
+      "random_erased_acc_std": 0.0,
+      "n_concept_directions": 1,
+      "necessity_drop": 0.515,
+      "sufficiency_preserved": 1.0,
+      "random_drop": 0.0,
+      "specificity": 0.515
+    },
+    "frequency": {
+      "original_acc": 1.0,
+      "leace_erased_acc": 1.0,
+      "subspace_only_acc": 1.0,
+      "random_erased_acc_mean": 1.0,
+      "random_erased_acc_std": 0.0,
+      "n_concept_directions": 7,
+      "necessity_drop": 0.0,
+      "sufficiency_preserved": 1.0,
+      "random_drop": 0.0,
+      "specificity": 0.0
+    },
+    "change_point": {
+      "original_acc": 1.0,
+      "leace_erased_acc": 0.545,
+      "subspace_only_acc": 1.0,
+      "random_erased_acc_mean": 1.0,
+      "random_erased_acc_std": 0.0,
+      "n_concept_directions": 1,
+      "necessity_drop": 0.45499999999999996,
+      "sufficiency_preserved": 1.0,
+      "random_drop": 0.0,
+      "specificity": 0.45499999999999996
+    }
+  }
+}

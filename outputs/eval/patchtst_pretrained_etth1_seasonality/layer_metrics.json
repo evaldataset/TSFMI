@@ -1,0 +1,26 @@
+[
+  {
+    "layer": "model_encoder_layers_0",
+    "val_r2": -14.159235000610352,
+    "val_mae": 179.96510314941406,
+    "val_mse": 34658.97265625,
+    "train_loss": 27593.314453125,
+    "selectivity": -13.827115058898926
+  },
+  {
+    "layer": "model_encoder_layers_1",
+    "val_r2": -13.31539249420166,
+    "val_mae": 174.54791259765625,
+    "val_mse": 32729.669921875,
+    "train_loss": 25922.19140625,
+    "selectivity": -12.897555708885193
+  },
+  {
+    "layer": "model_encoder_layers_2",
+    "val_r2": -9.0286283493042,
+    "val_mae": 142.83009338378906,
+    "val_mse": 22928.7265625,
+    "train_loss": 18809.044921875,
+    "selectivity": -8.421676874160767
+  }
+]

@@ -1,0 +1,226 @@
+{
+  "moment_pca512": {
+    "trend": {
+      "mean": 1.0,
+      "ci_low": 1.0,
+      "ci_high": 1.0
+    },
+    "seasonality": {
+      "mean": 1.0,
+      "ci_low": 1.0,
+      "ci_high": 1.0
+    },
+    "frequency": {
+      "mean": 1.0,
+      "ci_low": 1.0,
+      "ci_high": 1.0
+    },
+    "stationarity": {
+      "mean": 1.0,
+      "ci_low": 1.0,
+      "ci_high": 1.0
+    },
+    "anomaly": {
+      "mean": 0.5486,
+      "ci_low": 0.5386,
+      "ci_high": 0.5648
+    },
+    "change_point": {
+      "mean": 1.0,
+      "ci_low": 1.0,
+      "ci_high": 1.0
+    }
+  },
+  "chronos": {
+    "trend": {
+      "mean": 1.0,
+      "ci_low": 1.0,
+      "ci_high": 1.0
+    },
+    "seasonality": {
+      "mean": 0.9999,
+      "ci_low": 0.9999,
+      "ci_high": 1.0
+    },
+    "frequency": {
+      "mean": 1.0,
+      "ci_low": 1.0,
+      "ci_high": 1.0
+    },
+    "stationarity": {
+      "mean": 1.0,
+      "ci_low": 1.0,
+      "ci_high": 1.0
+    },
+    "anomaly": {
+      "mean": 0.727,
+      "ci_low": 0.72,
+      "ci_high": 0.735
+    },
+    "change_point": {
+      "mean": 1.0,
+      "ci_low": 1.0,
+      "ci_high": 1.0
+    }
+  },
+  "patchtst_pretrained": {
+    "trend": {
+      "mean": 1.0,
+      "ci_low": 1.0,
+      "ci_high": 1.0
+    },
+    "seasonality": {
+      "mean": 1.0,
+      "ci_low": 1.0,
+      "ci_high": 1.0
+    },
+    "frequency": {
+      "mean": 1.0,
+      "ci_low": 1.0,
+      "ci_high": 1.0
+    },
+    "stationarity": {
+      "mean": 0.9998,
+      "ci_low": 0.9994,
+      "ci_high": 1.0
+    },
+    "anomaly": {
+      "mean": 0.5004,
+      "ci_low": 0.49,
+      "ci_high": 0.5108
+    },
+    "change_point": {
+      "mean": 0.9988,
+      "ci_low": 0.9978,
+      "ci_high": 0.9998
+    }
+  },
+  "gpt4ts_pca512": {
+    "trend": {
+      "mean": 1.0,
+      "ci_low": 1.0,
+      "ci_high": 1.0
+    },
+    "seasonality": {
+      "mean": 0.9998,
+      "ci_low": 0.9997,
+      "ci_high": 0.9998
+    },
+    "frequency": {
+      "mean": 1.0,
+      "ci_low": 1.0,
+      "ci_high": 1.0
+    },
+    "stationarity": {
+      "mean": 1.0,
+      "ci_low": 1.0,
+      "ci_high": 1.0
+    },
+    "anomaly": {
+      "mean": 0.5268,
+      "ci_low": 0.5082,
+      "ci_high": 0.5396
+    },
+    "change_point": {
+      "mean": 1.0,
+      "ci_low": 1.0,
+      "ci_high": 1.0
+    }
+  },
+  "timer_meanpool": {
+    "trend": {
+      "mean": 1.0,
+      "ci_low": 1.0,
+      "ci_high": 1.0
+    },
+    "seasonality": {
+      "mean": 0.9999,
+      "ci_low": 0.9998,
+      "ci_high": 0.9999
+    },
+    "frequency": {
+      "mean": 1.0,
+      "ci_low": 1.0,
+      "ci_high": 1.0
+    },
+    "stationarity": {
+      "mean": 1.0,
+      "ci_low": 1.0,
+      "ci_high": 1.0
+    },
+    "anomaly": {
+      "mean": 0.603,
+      "ci_low": 0.579,
+      "ci_high": 0.632
+    },
+    "change_point": {
+      "mean": 0.999,
+      "ci_low": 0.997,
+      "ci_high": 1.0
+    }
+  },
+  "timesfm_meanpool": {
+    "trend": {
+      "mean": 1.0,
+      "ci_low": 1.0,
+      "ci_high": 1.0
+    },
+    "seasonality": {
+      "mean": 1.0,
+      "ci_low": 0.9999,
+      "ci_high": 1.0
+    },
+    "frequency": {
+      "mean": 0.999,
+      "ci_low": 0.997,
+      "ci_high": 1.0
+    },
+    "stationarity": {
+      "mean": 1.0,
+      "ci_low": 1.0,
+      "ci_high": 1.0
+    },
+    "anomaly": {
+      "mean": 0.753,
+      "ci_low": 0.72,
+      "ci_high": 0.788
+    },
+    "change_point": {
+      "mean": 1.0,
+      "ci_low": 1.0,
+      "ci_high": 1.0
+    }
+  },
+  "moirai_meanpool": {
+    "trend": {
+      "mean": 1.0,
+      "ci_low": 1.0,
+      "ci_high": 1.0
+    },
+    "seasonality": {
+      "mean": 0.9998,
+      "ci_low": 0.9998,
+      "ci_high": 0.9998
+    },
+    "frequency": {
+      "mean": 1.0,
+      "ci_low": 1.0,
+      "ci_high": 1.0
+    },
+    "stationarity": {
+      "mean": 1.0,
+      "ci_low": 1.0,
+      "ci_high": 1.0
+    },
+    "anomaly": {
+      "mean": 0.694,
+      "ci_low": 0.676,
+      "ci_high": 0.706
+    },
+    "change_point": {
+      "mean": 1.0,
+      "ci_low": 1.0,
+      "ci_high": 1.0
+    }
+  }
+}

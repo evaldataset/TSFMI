@@ -1,0 +1,1010 @@
+[
+  {
+    "property": "trend",
+    "model": "moment_pca512",
+    "hc_per_seed": [
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0
+    ],
+    "tsfm_per_seed": [
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0
+    ],
+    "hc_mean": 1.0,
+    "tsfm_mean": 1.0,
+    "mean_diff": 0.0,
+    "wilcoxon_stat": 0.0,
+    "p_value_raw": 1.0,
+    "p_value_holm": 1.0
+  },
+  {
+    "property": "trend",
+    "model": "chronos",
+    "hc_per_seed": [
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0
+    ],
+    "tsfm_per_seed": [
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0
+    ],
+    "hc_mean": 1.0,
+    "tsfm_mean": 1.0,
+    "mean_diff": 0.0,
+    "wilcoxon_stat": 0.0,
+    "p_value_raw": 1.0,
+    "p_value_holm": 1.0
+  },
+  {
+    "property": "trend",
+    "model": "patchtst_pretrained",
+    "hc_per_seed": [
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0
+    ],
+    "tsfm_per_seed": [
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0
+    ],
+    "hc_mean": 1.0,
+    "tsfm_mean": 1.0,
+    "mean_diff": 0.0,
+    "wilcoxon_stat": 0.0,
+    "p_value_raw": 1.0,
+    "p_value_holm": 1.0
+  },
+  {
+    "property": "trend",
+    "model": "gpt4ts_pca512",
+    "hc_per_seed": [
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0
+    ],
+    "tsfm_per_seed": [
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0
+    ],
+    "hc_mean": 1.0,
+    "tsfm_mean": 1.0,
+    "mean_diff": 0.0,
+    "wilcoxon_stat": 0.0,
+    "p_value_raw": 1.0,
+    "p_value_holm": 1.0
+  },
+  {
+    "property": "trend",
+    "model": "timer_meanpool",
+    "hc_per_seed": [
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0
+    ],
+    "tsfm_per_seed": [
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0
+    ],
+    "hc_mean": 1.0,
+    "tsfm_mean": 1.0,
+    "mean_diff": 0.0,
+    "wilcoxon_stat": 0.0,
+    "p_value_raw": 1.0,
+    "p_value_holm": 1.0
+  },
+  {
+    "property": "trend",
+    "model": "timesfm_meanpool",
+    "hc_per_seed": [
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0
+    ],
+    "tsfm_per_seed": [
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0
+    ],
+    "hc_mean": 1.0,
+    "tsfm_mean": 1.0,
+    "mean_diff": 0.0,
+    "wilcoxon_stat": 0.0,
+    "p_value_raw": 1.0,
+    "p_value_holm": 1.0
+  },
+  {
+    "property": "trend",
+    "model": "moirai_meanpool",
+    "hc_per_seed": [
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0
+    ],
+    "tsfm_per_seed": [
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0
+    ],
+    "hc_mean": 1.0,
+    "tsfm_mean": 1.0,
+    "mean_diff": 0.0,
+    "wilcoxon_stat": 0.0,
+    "p_value_raw": 1.0,
+    "p_value_holm": 1.0
+  },
+  {
+    "property": "seasonality",
+    "model": "moment_pca512",
+    "hc_per_seed": [
+      0.9557,
+      0.9595,
+      0.9555,
+      0.9594,
+      0.9643
+    ],
+    "tsfm_per_seed": [
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0
+    ],
+    "hc_mean": 0.9589,
+    "tsfm_mean": 1.0,
+    "mean_diff": -0.0411,
+    "wilcoxon_stat": 0.0,
+    "p_value_raw": 0.0625,
+    "p_value_holm": 0.4375
+  },
+  {
+    "property": "seasonality",
+    "model": "chronos",
+    "hc_per_seed": [
+      0.9557,
+      0.9595,
+      0.9555,
+      0.9594,
+      0.9643
+    ],
+    "tsfm_per_seed": [
+      0.9999,
+      0.9999,
+      0.9999,
+      0.9999,
+      1.0
+    ],
+    "hc_mean": 0.9589,
+    "tsfm_mean": 0.9999,
+    "mean_diff": -0.041,
+    "wilcoxon_stat": 0.0,
+    "p_value_raw": 0.0625,
+    "p_value_holm": 0.4375
+  },
+  {
+    "property": "seasonality",
+    "model": "patchtst_pretrained",
+    "hc_per_seed": [
+      0.9557,
+      0.9595,
+      0.9555,
+      0.9594,
+      0.9643
+    ],
+    "tsfm_per_seed": [
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0
+    ],
+    "hc_mean": 0.9589,
+    "tsfm_mean": 1.0,
+    "mean_diff": -0.0411,
+    "wilcoxon_stat": 0.0,
+    "p_value_raw": 0.0625,
+    "p_value_holm": 0.4375
+  },
+  {
+    "property": "seasonality",
+    "model": "gpt4ts_pca512",
+    "hc_per_seed": [
+      0.9557,
+      0.9595,
+      0.9555,
+      0.9594,
+      0.9643
+    ],
+    "tsfm_per_seed": [
+      0.9998,
+      0.9998,
+      0.9997,
+      0.9998,
+      0.9998
+    ],
+    "hc_mean": 0.9589,
+    "tsfm_mean": 0.9998,
+    "mean_diff": -0.0409,
+    "wilcoxon_stat": 0.0,
+    "p_value_raw": 0.0625,
+    "p_value_holm": 0.4375
+  },
+  {
+    "property": "seasonality",
+    "model": "timer_meanpool",
+    "hc_per_seed": [
+      0.9557,
+      0.9595,
+      0.9555,
+      0.9594,
+      0.9643
+    ],
+    "tsfm_per_seed": [
+      0.9999,
+      0.9999,
+      0.9999,
+      0.9999,
+      0.9998
+    ],
+    "hc_mean": 0.9589,
+    "tsfm_mean": 0.9999,
+    "mean_diff": -0.041,
+    "wilcoxon_stat": 0.0,
+    "p_value_raw": 0.0625,
+    "p_value_holm": 0.4375
+  },
+  {
+    "property": "seasonality",
+    "model": "timesfm_meanpool",
+    "hc_per_seed": [
+      0.9557,
+      0.9595,
+      0.9555,
+      0.9594,
+      0.9643
+    ],
+    "tsfm_per_seed": [
+      0.9999,
+      1.0,
+      1.0,
+      1.0,
+      1.0
+    ],
+    "hc_mean": 0.9589,
+    "tsfm_mean": 1.0,
+    "mean_diff": -0.0411,
+    "wilcoxon_stat": 0.0,
+    "p_value_raw": 0.0625,
+    "p_value_holm": 0.4375
+  },
+  {
+    "property": "seasonality",
+    "model": "moirai_meanpool",
+    "hc_per_seed": [
+      0.9557,
+      0.9595,
+      0.9555,
+      0.9594,
+      0.9643
+    ],
+    "tsfm_per_seed": [
+      0.9998,
+      0.9998,
+      0.9998,
+      0.9998,
+      0.9999
+    ],
+    "hc_mean": 0.9589,
+    "tsfm_mean": 0.9998,
+    "mean_diff": -0.0409,
+    "wilcoxon_stat": 0.0,
+    "p_value_raw": 0.0625,
+    "p_value_holm": 0.4375
+  },
+  {
+    "property": "frequency",
+    "model": "moment_pca512",
+    "hc_per_seed": [
+      0.96,
+      0.89,
+      0.945,
+      0.93,
+      0.995
+    ],
+    "tsfm_per_seed": [
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0
+    ],
+    "hc_mean": 0.944,
+    "tsfm_mean": 1.0,
+    "mean_diff": -0.056,
+    "wilcoxon_stat": 0.0,
+    "p_value_raw": 0.0625,
+    "p_value_holm": 0.4375
+  },
+  {
+    "property": "frequency",
+    "model": "chronos",
+    "hc_per_seed": [
+      0.96,
+      0.89,
+      0.945,
+      0.93,
+      0.995
+    ],
+    "tsfm_per_seed": [
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0
+    ],
+    "hc_mean": 0.944,
+    "tsfm_mean": 1.0,
+    "mean_diff": -0.056,
+    "wilcoxon_stat": 0.0,
+    "p_value_raw": 0.0625,
+    "p_value_holm": 0.4375
+  },
+  {
+    "property": "frequency",
+    "model": "patchtst_pretrained",
+    "hc_per_seed": [
+      0.96,
+      0.89,
+      0.945,
+      0.93,
+      0.995
+    ],
+    "tsfm_per_seed": [
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0
+    ],
+    "hc_mean": 0.944,
+    "tsfm_mean": 1.0,
+    "mean_diff": -0.056,
+    "wilcoxon_stat": 0.0,
+    "p_value_raw": 0.0625,
+    "p_value_holm": 0.4375
+  },
+  {
+    "property": "frequency",
+    "model": "gpt4ts_pca512",
+    "hc_per_seed": [
+      0.96,
+      0.89,
+      0.945,
+      0.93,
+      0.995
+    ],
+    "tsfm_per_seed": [
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0
+    ],
+    "hc_mean": 0.944,
+    "tsfm_mean": 1.0,
+    "mean_diff": -0.056,
+    "wilcoxon_stat": 0.0,
+    "p_value_raw": 0.0625,
+    "p_value_holm": 0.4375
+  },
+  {
+    "property": "frequency",
+    "model": "timer_meanpool",
+    "hc_per_seed": [
+      0.96,
+      0.89,
+      0.945,
+      0.93,
+      0.995
+    ],
+    "tsfm_per_seed": [
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0
+    ],
+    "hc_mean": 0.944,
+    "tsfm_mean": 1.0,
+    "mean_diff": -0.056,
+    "wilcoxon_stat": 0.0,
+    "p_value_raw": 0.0625,
+    "p_value_holm": 0.4375
+  },
+  {
+    "property": "frequency",
+    "model": "timesfm_meanpool",
+    "hc_per_seed": [
+      0.96,
+      0.89,
+      0.945,
+      0.93,
+      0.995
+    ],
+    "tsfm_per_seed": [
+      1.0,
+      1.0,
+      0.995,
+      1.0,
+      1.0
+    ],
+    "hc_mean": 0.944,
+    "tsfm_mean": 0.999,
+    "mean_diff": -0.055,
+    "wilcoxon_stat": 0.0,
+    "p_value_raw": 0.0625,
+    "p_value_holm": 0.4375
+  },
+  {
+    "property": "frequency",
+    "model": "moirai_meanpool",
+    "hc_per_seed": [
+      0.96,
+      0.89,
+      0.945,
+      0.93,
+      0.995
+    ],
+    "tsfm_per_seed": [
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0
+    ],
+    "hc_mean": 0.944,
+    "tsfm_mean": 1.0,
+    "mean_diff": -0.056,
+    "wilcoxon_stat": 0.0,
+    "p_value_raw": 0.0625,
+    "p_value_holm": 0.4375
+  },
+  {
+    "property": "stationarity",
+    "model": "moment_pca512",
+    "hc_per_seed": [
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0
+    ],
+    "tsfm_per_seed": [
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0
+    ],
+    "hc_mean": 1.0,
+    "tsfm_mean": 1.0,
+    "mean_diff": 0.0,
+    "wilcoxon_stat": 0.0,
+    "p_value_raw": 1.0,
+    "p_value_holm": 1.0
+  },
+  {
+    "property": "stationarity",
+    "model": "chronos",
+    "hc_per_seed": [
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0
+    ],
+    "tsfm_per_seed": [
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0
+    ],
+    "hc_mean": 1.0,
+    "tsfm_mean": 1.0,
+    "mean_diff": 0.0,
+    "wilcoxon_stat": 0.0,
+    "p_value_raw": 1.0,
+    "p_value_holm": 1.0
+  },
+  {
+    "property": "stationarity",
+    "model": "patchtst_pretrained",
+    "hc_per_seed": [
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0
+    ],
+    "tsfm_per_seed": [
+      1.0,
+      0.999,
+      1.0,
+      1.0,
+      1.0
+    ],
+    "hc_mean": 1.0,
+    "tsfm_mean": 0.9998,
+    "mean_diff": 0.0002,
+    "wilcoxon_stat": 0.0,
+    "p_value_raw": 1.0,
+    "p_value_holm": 1.0
+  },
+  {
+    "property": "stationarity",
+    "model": "gpt4ts_pca512",
+    "hc_per_seed": [
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0
+    ],
+    "tsfm_per_seed": [
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0
+    ],
+    "hc_mean": 1.0,
+    "tsfm_mean": 1.0,
+    "mean_diff": 0.0,
+    "wilcoxon_stat": 0.0,
+    "p_value_raw": 1.0,
+    "p_value_holm": 1.0
+  },
+  {
+    "property": "stationarity",
+    "model": "timer_meanpool",
+    "hc_per_seed": [
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0
+    ],
+    "tsfm_per_seed": [
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0
+    ],
+    "hc_mean": 1.0,
+    "tsfm_mean": 1.0,
+    "mean_diff": 0.0,
+    "wilcoxon_stat": 0.0,
+    "p_value_raw": 1.0,
+    "p_value_holm": 1.0
+  },
+  {
+    "property": "stationarity",
+    "model": "timesfm_meanpool",
+    "hc_per_seed": [
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0
+    ],
+    "tsfm_per_seed": [
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0
+    ],
+    "hc_mean": 1.0,
+    "tsfm_mean": 1.0,
+    "mean_diff": 0.0,
+    "wilcoxon_stat": 0.0,
+    "p_value_raw": 1.0,
+    "p_value_holm": 1.0
+  },
+  {
+    "property": "stationarity",
+    "model": "moirai_meanpool",
+    "hc_per_seed": [
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0
+    ],
+    "tsfm_per_seed": [
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0
+    ],
+    "hc_mean": 1.0,
+    "tsfm_mean": 1.0,
+    "mean_diff": 0.0,
+    "wilcoxon_stat": 0.0,
+    "p_value_raw": 1.0,
+    "p_value_holm": 1.0
+  },
+  {
+    "property": "anomaly",
+    "model": "moment_pca512",
+    "hc_per_seed": [
+      0.875,
+      0.845,
+      0.835,
+      0.9,
+      0.835
+    ],
+    "tsfm_per_seed": [
+      0.545,
+      0.535,
+      0.539,
+      0.578,
+      0.546
+    ],
+    "hc_mean": 0.858,
+    "tsfm_mean": 0.5486,
+    "mean_diff": 0.3094,
+    "wilcoxon_stat": 0.0,
+    "p_value_raw": 0.0625,
+    "p_value_holm": 0.4375
+  },
+  {
+    "property": "anomaly",
+    "model": "chronos",
+    "hc_per_seed": [
+      0.875,
+      0.845,
+      0.835,
+      0.9,
+      0.835
+    ],
+    "tsfm_per_seed": [
+      0.73,
+      0.726,
+      0.742,
+      0.719,
+      0.718
+    ],
+    "hc_mean": 0.858,
+    "tsfm_mean": 0.727,
+    "mean_diff": 0.131,
+    "wilcoxon_stat": 0.0,
+    "p_value_raw": 0.0625,
+    "p_value_holm": 0.4375
+  },
+  {
+    "property": "anomaly",
+    "model": "patchtst_pretrained",
+    "hc_per_seed": [
+      0.875,
+      0.845,
+      0.835,
+      0.9,
+      0.835
+    ],
+    "tsfm_per_seed": [
+      0.498,
+      0.485,
+      0.513,
+      0.517,
+      0.489
+    ],
+    "hc_mean": 0.858,
+    "tsfm_mean": 0.5004,
+    "mean_diff": 0.3576,
+    "wilcoxon_stat": 0.0,
+    "p_value_raw": 0.0625,
+    "p_value_holm": 0.4375
+  },
+  {
+    "property": "anomaly",
+    "model": "gpt4ts_pca512",
+    "hc_per_seed": [
+      0.875,
+      0.845,
+      0.835,
+      0.9,
+      0.835
+    ],
+    "tsfm_per_seed": [
+      0.546,
+      0.493,
+      0.527,
+      0.533,
+      0.535
+    ],
+    "hc_mean": 0.858,
+    "tsfm_mean": 0.5268,
+    "mean_diff": 0.3312,
+    "wilcoxon_stat": 0.0,
+    "p_value_raw": 0.0625,
+    "p_value_holm": 0.4375
+  },
+  {
+    "property": "anomaly",
+    "model": "timer_meanpool",
+    "hc_per_seed": [
+      0.875,
+      0.845,
+      0.835,
+      0.9,
+      0.835
+    ],
+    "tsfm_per_seed": [
+      0.57,
+      0.66,
+      0.58,
+      0.595,
+      0.61
+    ],
+    "hc_mean": 0.858,
+    "tsfm_mean": 0.603,
+    "mean_diff": 0.255,
+    "wilcoxon_stat": 0.0,
+    "p_value_raw": 0.0625,
+    "p_value_holm": 0.4375
+  },
+  {
+    "property": "anomaly",
+    "model": "timesfm_meanpool",
+    "hc_per_seed": [
+      0.875,
+      0.845,
+      0.835,
+      0.9,
+      0.835
+    ],
+    "tsfm_per_seed": [
+      0.725,
+      0.705,
+      0.81,
+      0.785,
+      0.74
+    ],
+    "hc_mean": 0.858,
+    "tsfm_mean": 0.753,
+    "mean_diff": 0.105,
+    "wilcoxon_stat": 0.0,
+    "p_value_raw": 0.0625,
+    "p_value_holm": 0.4375
+  },
+  {
+    "property": "anomaly",
+    "model": "moirai_meanpool",
+    "hc_per_seed": [
+      0.875,
+      0.845,
+      0.835,
+      0.9,
+      0.835
+    ],
+    "tsfm_per_seed": [
+      0.7,
+      0.695,
+      0.66,
+      0.705,
+      0.71
+    ],
+    "hc_mean": 0.858,
+    "tsfm_mean": 0.694,
+    "mean_diff": 0.164,
+    "wilcoxon_stat": 0.0,
+    "p_value_raw": 0.0625,
+    "p_value_holm": 0.4375
+  },
+  {
+    "property": "change_point",
+    "model": "moment_pca512",
+    "hc_per_seed": [
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0
+    ],
+    "tsfm_per_seed": [
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0
+    ],
+    "hc_mean": 1.0,
+    "tsfm_mean": 1.0,
+    "mean_diff": 0.0,
+    "wilcoxon_stat": 0.0,
+    "p_value_raw": 1.0,
+    "p_value_holm": 1.0
+  },
+  {
+    "property": "change_point",
+    "model": "chronos",
+    "hc_per_seed": [
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0
+    ],
+    "tsfm_per_seed": [
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0
+    ],
+    "hc_mean": 1.0,
+    "tsfm_mean": 1.0,
+    "mean_diff": 0.0,
+    "wilcoxon_stat": 0.0,
+    "p_value_raw": 1.0,
+    "p_value_holm": 1.0
+  },
+  {
+    "property": "change_point",
+    "model": "patchtst_pretrained",
+    "hc_per_seed": [
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0
+    ],
+    "tsfm_per_seed": [
+      0.997,
+      1.0,
+      1.0,
+      0.998,
+      0.999
+    ],
+    "hc_mean": 1.0,
+    "tsfm_mean": 0.9988,
+    "mean_diff": 0.0012,
+    "wilcoxon_stat": 0.0,
+    "p_value_raw": 0.25,
+    "p_value_holm": 1.0
+  },
+  {
+    "property": "change_point",
+    "model": "gpt4ts_pca512",
+    "hc_per_seed": [
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0
+    ],
+    "tsfm_per_seed": [
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0
+    ],
+    "hc_mean": 1.0,
+    "tsfm_mean": 1.0,
+    "mean_diff": 0.0,
+    "wilcoxon_stat": 0.0,
+    "p_value_raw": 1.0,
+    "p_value_holm": 1.0
+  },
+  {
+    "property": "change_point",
+    "model": "timer_meanpool",
+    "hc_per_seed": [
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0
+    ],
+    "tsfm_per_seed": [
+      1.0,
+      1.0,
+      1.0,
+      0.995,
+      1.0
+    ],
+    "hc_mean": 1.0,
+    "tsfm_mean": 0.999,
+    "mean_diff": 0.001,
+    "wilcoxon_stat": 0.0,
+    "p_value_raw": 1.0,
+    "p_value_holm": 1.0
+  },
+  {
+    "property": "change_point",
+    "model": "timesfm_meanpool",
+    "hc_per_seed": [
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0
+    ],
+    "tsfm_per_seed": [
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0
+    ],
+    "hc_mean": 1.0,
+    "tsfm_mean": 1.0,
+    "mean_diff": 0.0,
+    "wilcoxon_stat": 0.0,
+    "p_value_raw": 1.0,
+    "p_value_holm": 1.0
+  },
+  {
+    "property": "change_point",
+    "model": "moirai_meanpool",
+    "hc_per_seed": [
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0
+    ],
+    "tsfm_per_seed": [
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0
+    ],
+    "hc_mean": 1.0,
+    "tsfm_mean": 1.0,
+    "mean_diff": 0.0,
+    "wilcoxon_stat": 0.0,
+    "p_value_raw": 1.0,
+    "p_value_holm": 1.0
+  }
+]

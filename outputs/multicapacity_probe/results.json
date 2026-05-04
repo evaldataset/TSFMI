@@ -1,0 +1,1442 @@
+[
+  {
+    "property": "anomaly",
+    "model": "HAND_CRAFTED",
+    "probe": "linear",
+    "mean": 0.8533,
+    "std": 0.0118,
+    "per_seed": [
+      0.87,
+      0.845,
+      0.845
+    ]
+  },
+  {
+    "property": "anomaly",
+    "model": "Timer",
+    "probe": "linear",
+    "mean": 0.5717,
+    "std": 0.017,
+    "per_seed": [
+      0.595,
+      0.555,
+      0.565
+    ]
+  },
+  {
+    "property": "anomaly",
+    "model": "Timer",
+    "probe": "mlp_64",
+    "mean": 0.5517,
+    "std": 0.0301,
+    "per_seed": [
+      0.51,
+      0.58,
+      0.565
+    ]
+  },
+  {
+    "property": "anomaly",
+    "model": "Timer",
+    "probe": "mlp_128",
+    "mean": 0.5833,
+    "std": 0.0357,
+    "per_seed": [
+      0.535,
+      0.62,
+      0.595
+    ]
+  },
+  {
+    "property": "anomaly",
+    "model": "Timer",
+    "probe": "mlp_256",
+    "mean": 0.5683,
+    "std": 0.037,
+    "per_seed": [
+      0.535,
+      0.55,
+      0.62
+    ]
+  },
+  {
+    "property": "anomaly",
+    "model": "Timer",
+    "probe": "mlp_512",
+    "mean": 0.5967,
+    "std": 0.0062,
+    "per_seed": [
+      0.605,
+      0.59,
+      0.595
+    ]
+  },
+  {
+    "property": "anomaly",
+    "model": "Timer",
+    "probe": "mlp_1024",
+    "mean": 0.5583,
+    "std": 0.029,
+    "per_seed": [
+      0.52,
+      0.565,
+      0.59
+    ]
+  },
+  {
+    "property": "anomaly",
+    "model": "Timer",
+    "probe": "mlp_2x512",
+    "mean": NaN,
+    "std": NaN,
+    "per_seed": []
+  },
+  {
+    "property": "anomaly",
+    "model": "Timer",
+    "probe": "rf",
+    "mean": 0.5883,
+    "std": 0.0484,
+    "per_seed": [
+      0.52,
+      0.62,
+      0.625
+    ]
+  },
+  {
+    "property": "anomaly",
+    "model": "TimesFM",
+    "probe": "linear",
+    "mean": 0.785,
+    "std": 0.0255,
+    "per_seed": [
+      0.81,
+      0.75,
+      0.795
+    ]
+  },
+  {
+    "property": "anomaly",
+    "model": "TimesFM",
+    "probe": "mlp_64",
+    "mean": 0.7583,
+    "std": 0.0301,
+    "per_seed": [
+      0.745,
+      0.73,
+      0.8
+    ]
+  },
+  {
+    "property": "anomaly",
+    "model": "TimesFM",
+    "probe": "mlp_128",
+    "mean": 0.76,
+    "std": 0.0319,
+    "per_seed": [
+      0.785,
+      0.78,
+      0.715
+    ]
+  },
+  {
+    "property": "anomaly",
+    "model": "TimesFM",
+    "probe": "mlp_256",
+    "mean": 0.7733,
+    "std": 0.0225,
+    "per_seed": [
+      0.8,
+      0.745,
+      0.775
+    ]
+  },
+  {
+    "property": "anomaly",
+    "model": "TimesFM",
+    "probe": "mlp_512",
+    "mean": 0.7467,
+    "std": 0.0103,
+    "per_seed": [
+      0.745,
+      0.735,
+      0.76
+    ]
+  },
+  {
+    "property": "anomaly",
+    "model": "TimesFM",
+    "probe": "mlp_1024",
+    "mean": 0.7767,
+    "std": 0.0125,
+    "per_seed": [
+      0.79,
+      0.76,
+      0.78
+    ]
+  },
+  {
+    "property": "anomaly",
+    "model": "TimesFM",
+    "probe": "mlp_2x512",
+    "mean": NaN,
+    "std": NaN,
+    "per_seed": []
+  },
+  {
+    "property": "anomaly",
+    "model": "TimesFM",
+    "probe": "rf",
+    "mean": 0.7433,
+    "std": 0.017,
+    "per_seed": [
+      0.72,
+      0.76,
+      0.75
+    ]
+  },
+  {
+    "property": "anomaly",
+    "model": "Moirai",
+    "probe": "linear",
+    "mean": 0.6967,
+    "std": 0.0193,
+    "per_seed": [
+      0.715,
+      0.705,
+      0.67
+    ]
+  },
+  {
+    "property": "anomaly",
+    "model": "Moirai",
+    "probe": "mlp_64",
+    "mean": 0.6383,
+    "std": 0.0306,
+    "per_seed": [
+      0.675,
+      0.64,
+      0.6
+    ]
+  },
+  {
+    "property": "anomaly",
+    "model": "Moirai",
+    "probe": "mlp_128",
+    "mean": 0.6683,
+    "std": 0.0306,
+    "per_seed": [
+      0.69,
+      0.625,
+      0.69
+    ]
+  },
+  {
+    "property": "anomaly",
+    "model": "Moirai",
+    "probe": "mlp_256",
+    "mean": 0.6467,
+    "std": 0.0225,
+    "per_seed": [
+      0.62,
+      0.645,
+      0.675
+    ]
+  },
+  {
+    "property": "anomaly",
+    "model": "Moirai",
+    "probe": "mlp_512",
+    "mean": 0.6817,
+    "std": 0.0062,
+    "per_seed": [
+      0.69,
+      0.68,
+      0.675
+    ]
+  },
+  {
+    "property": "anomaly",
+    "model": "Moirai",
+    "probe": "mlp_1024",
+    "mean": 0.69,
+    "std": 0.0248,
+    "per_seed": [
+      0.725,
+      0.67,
+      0.675
+    ]
+  },
+  {
+    "property": "anomaly",
+    "model": "Moirai",
+    "probe": "mlp_2x512",
+    "mean": NaN,
+    "std": NaN,
+    "per_seed": []
+  },
+  {
+    "property": "anomaly",
+    "model": "Moirai",
+    "probe": "rf",
+    "mean": 0.6817,
+    "std": 0.0193,
+    "per_seed": [
+      0.69,
+      0.7,
+      0.655
+    ]
+  },
+  {
+    "property": "trend",
+    "model": "HAND_CRAFTED",
+    "probe": "linear",
+    "mean": 1.0,
+    "std": 0.0,
+    "per_seed": [
+      1.0,
+      1.0,
+      1.0
+    ]
+  },
+  {
+    "property": "trend",
+    "model": "Timer",
+    "probe": "linear",
+    "mean": 1.0,
+    "std": 0.0,
+    "per_seed": [
+      1.0,
+      1.0,
+      1.0
+    ]
+  },
+  {
+    "property": "trend",
+    "model": "Timer",
+    "probe": "mlp_64",
+    "mean": 1.0,
+    "std": 0.0,
+    "per_seed": [
+      1.0,
+      1.0,
+      1.0
+    ]
+  },
+  {
+    "property": "trend",
+    "model": "Timer",
+    "probe": "mlp_128",
+    "mean": 1.0,
+    "std": 0.0,
+    "per_seed": [
+      1.0,
+      1.0,
+      1.0
+    ]
+  },
+  {
+    "property": "trend",
+    "model": "Timer",
+    "probe": "mlp_256",
+    "mean": 1.0,
+    "std": 0.0,
+    "per_seed": [
+      1.0,
+      1.0,
+      1.0
+    ]
+  },
+  {
+    "property": "trend",
+    "model": "Timer",
+    "probe": "mlp_512",
+    "mean": 1.0,
+    "std": 0.0,
+    "per_seed": [
+      1.0,
+      1.0,
+      1.0
+    ]
+  },
+  {
+    "property": "trend",
+    "model": "Timer",
+    "probe": "mlp_1024",
+    "mean": 0.9983,
+    "std": 0.0024,
+    "per_seed": [
+      0.995,
+      1.0,
+      1.0
+    ]
+  },
+  {
+    "property": "trend",
+    "model": "Timer",
+    "probe": "mlp_2x512",
+    "mean": NaN,
+    "std": NaN,
+    "per_seed": []
+  },
+  {
+    "property": "trend",
+    "model": "Timer",
+    "probe": "rf",
+    "mean": 1.0,
+    "std": 0.0,
+    "per_seed": [
+      1.0,
+      1.0,
+      1.0
+    ]
+  },
+  {
+    "property": "trend",
+    "model": "TimesFM",
+    "probe": "linear",
+    "mean": 1.0,
+    "std": 0.0,
+    "per_seed": [
+      1.0,
+      1.0,
+      1.0
+    ]
+  },
+  {
+    "property": "trend",
+    "model": "TimesFM",
+    "probe": "mlp_64",
+    "mean": 1.0,
+    "std": 0.0,
+    "per_seed": [
+      1.0,
+      1.0,
+      1.0
+    ]
+  },
+  {
+    "property": "trend",
+    "model": "TimesFM",
+    "probe": "mlp_128",
+    "mean": 1.0,
+    "std": 0.0,
+    "per_seed": [
+      1.0,
+      1.0,
+      1.0
+    ]
+  },
+  {
+    "property": "trend",
+    "model": "TimesFM",
+    "probe": "mlp_256",
+    "mean": 1.0,
+    "std": 0.0,
+    "per_seed": [
+      1.0,
+      1.0,
+      1.0
+    ]
+  },
+  {
+    "property": "trend",
+    "model": "TimesFM",
+    "probe": "mlp_512",
+    "mean": 1.0,
+    "std": 0.0,
+    "per_seed": [
+      1.0,
+      1.0,
+      1.0
+    ]
+  },
+  {
+    "property": "trend",
+    "model": "TimesFM",
+    "probe": "mlp_1024",
+    "mean": 1.0,
+    "std": 0.0,
+    "per_seed": [
+      1.0,
+      1.0,
+      1.0
+    ]
+  },
+  {
+    "property": "trend",
+    "model": "TimesFM",
+    "probe": "mlp_2x512",
+    "mean": NaN,
+    "std": NaN,
+    "per_seed": []
+  },
+  {
+    "property": "trend",
+    "model": "TimesFM",
+    "probe": "rf",
+    "mean": 1.0,
+    "std": 0.0,
+    "per_seed": [
+      1.0,
+      1.0,
+      1.0
+    ]
+  },
+  {
+    "property": "trend",
+    "model": "Moirai",
+    "probe": "linear",
+    "mean": 1.0,
+    "std": 0.0,
+    "per_seed": [
+      1.0,
+      1.0,
+      1.0
+    ]
+  },
+  {
+    "property": "trend",
+    "model": "Moirai",
+    "probe": "mlp_64",
+    "mean": 0.9967,
+    "std": 0.0047,
+    "per_seed": [
+      0.99,
+      1.0,
+      1.0
+    ]
+  },
+  {
+    "property": "trend",
+    "model": "Moirai",
+    "probe": "mlp_128",
+    "mean": 0.9967,
+    "std": 0.0024,
+    "per_seed": [
+      0.995,
+      1.0,
+      0.995
+    ]
+  },
+  {
+    "property": "trend",
+    "model": "Moirai",
+    "probe": "mlp_256",
+    "mean": 1.0,
+    "std": 0.0,
+    "per_seed": [
+      1.0,
+      1.0,
+      1.0
+    ]
+  },
+  {
+    "property": "trend",
+    "model": "Moirai",
+    "probe": "mlp_512",
+    "mean": 0.9933,
+    "std": 0.0047,
+    "per_seed": [
+      0.99,
+      1.0,
+      0.99
+    ]
+  },
+  {
+    "property": "trend",
+    "model": "Moirai",
+    "probe": "mlp_1024",
+    "mean": 0.99,
+    "std": 0.0082,
+    "per_seed": [
+      0.98,
+      0.99,
+      1.0
+    ]
+  },
+  {
+    "property": "trend",
+    "model": "Moirai",
+    "probe": "mlp_2x512",
+    "mean": NaN,
+    "std": NaN,
+    "per_seed": []
+  },
+  {
+    "property": "trend",
+    "model": "Moirai",
+    "probe": "rf",
+    "mean": 1.0,
+    "std": 0.0,
+    "per_seed": [
+      1.0,
+      1.0,
+      1.0
+    ]
+  },
+  {
+    "property": "frequency",
+    "model": "HAND_CRAFTED",
+    "probe": "linear",
+    "mean": 0.9717,
+    "std": 0.0085,
+    "per_seed": [
+      0.98,
+      0.96,
+      0.975
+    ]
+  },
+  {
+    "property": "frequency",
+    "model": "Timer",
+    "probe": "linear",
+    "mean": 1.0,
+    "std": 0.0,
+    "per_seed": [
+      1.0,
+      1.0,
+      1.0
+    ]
+  },
+  {
+    "property": "frequency",
+    "model": "Timer",
+    "probe": "mlp_64",
+    "mean": 0.995,
+    "std": 0.0041,
+    "per_seed": [
+      0.995,
+      0.99,
+      1.0
+    ]
+  },
+  {
+    "property": "frequency",
+    "model": "Timer",
+    "probe": "mlp_128",
+    "mean": 0.99,
+    "std": 0.0141,
+    "per_seed": [
+      1.0,
+      1.0,
+      0.97
+    ]
+  },
+  {
+    "property": "frequency",
+    "model": "Timer",
+    "probe": "mlp_256",
+    "mean": 0.9917,
+    "std": 0.0085,
+    "per_seed": [
+      0.995,
+      0.98,
+      1.0
+    ]
+  },
+  {
+    "property": "frequency",
+    "model": "Timer",
+    "probe": "mlp_512",
+    "mean": 0.9917,
+    "std": 0.0047,
+    "per_seed": [
+      0.995,
+      0.985,
+      0.995
+    ]
+  },
+  {
+    "property": "frequency",
+    "model": "Timer",
+    "probe": "mlp_1024",
+    "mean": 0.995,
+    "std": 0.0071,
+    "per_seed": [
+      1.0,
+      0.985,
+      1.0
+    ]
+  },
+  {
+    "property": "frequency",
+    "model": "Timer",
+    "probe": "mlp_2x512",
+    "mean": NaN,
+    "std": NaN,
+    "per_seed": []
+  },
+  {
+    "property": "frequency",
+    "model": "Timer",
+    "probe": "rf",
+    "mean": 0.9983,
+    "std": 0.0024,
+    "per_seed": [
+      1.0,
+      0.995,
+      1.0
+    ]
+  },
+  {
+    "property": "frequency",
+    "model": "TimesFM",
+    "probe": "linear",
+    "mean": 0.9967,
+    "std": 0.0024,
+    "per_seed": [
+      1.0,
+      0.995,
+      0.995
+    ]
+  },
+  {
+    "property": "frequency",
+    "model": "TimesFM",
+    "probe": "mlp_64",
+    "mean": 0.98,
+    "std": 0.0178,
+    "per_seed": [
+      0.955,
+      0.995,
+      0.99
+    ]
+  },
+  {
+    "property": "frequency",
+    "model": "TimesFM",
+    "probe": "mlp_128",
+    "mean": 0.9783,
+    "std": 0.0103,
+    "per_seed": [
+      0.99,
+      0.965,
+      0.98
+    ]
+  },
+  {
+    "property": "frequency",
+    "model": "TimesFM",
+    "probe": "mlp_256",
+    "mean": 0.9817,
+    "std": 0.0024,
+    "per_seed": [
+      0.98,
+      0.98,
+      0.985
+    ]
+  },
+  {
+    "property": "frequency",
+    "model": "TimesFM",
+    "probe": "mlp_512",
+    "mean": 0.9883,
+    "std": 0.0085,
+    "per_seed": [
+      0.98,
+      0.985,
+      1.0
+    ]
+  },
+  {
+    "property": "frequency",
+    "model": "TimesFM",
+    "probe": "mlp_1024",
+    "mean": 0.99,
+    "std": 0.0082,
+    "per_seed": [
+      1.0,
+      0.98,
+      0.99
+    ]
+  },
+  {
+    "property": "frequency",
+    "model": "TimesFM",
+    "probe": "mlp_2x512",
+    "mean": NaN,
+    "std": NaN,
+    "per_seed": []
+  },
+  {
+    "property": "frequency",
+    "model": "TimesFM",
+    "probe": "rf",
+    "mean": 0.9933,
+    "std": 0.0024,
+    "per_seed": [
+      0.995,
+      0.995,
+      0.99
+    ]
+  },
+  {
+    "property": "frequency",
+    "model": "Moirai",
+    "probe": "linear",
+    "mean": 1.0,
+    "std": 0.0,
+    "per_seed": [
+      1.0,
+      1.0,
+      1.0
+    ]
+  },
+  {
+    "property": "frequency",
+    "model": "Moirai",
+    "probe": "mlp_64",
+    "mean": 0.965,
+    "std": 0.0,
+    "per_seed": [
+      0.965,
+      0.965,
+      0.965
+    ]
+  },
+  {
+    "property": "frequency",
+    "model": "Moirai",
+    "probe": "mlp_128",
+    "mean": 0.9883,
+    "std": 0.0047,
+    "per_seed": [
+      0.985,
+      0.995,
+      0.985
+    ]
+  },
+  {
+    "property": "frequency",
+    "model": "Moirai",
+    "probe": "mlp_256",
+    "mean": 0.9767,
+    "std": 0.0103,
+    "per_seed": [
+      0.975,
+      0.965,
+      0.99
+    ]
+  },
+  {
+    "property": "frequency",
+    "model": "Moirai",
+    "probe": "mlp_512",
+    "mean": 0.9867,
+    "std": 0.0024,
+    "per_seed": [
+      0.99,
+      0.985,
+      0.985
+    ]
+  },
+  {
+    "property": "frequency",
+    "model": "Moirai",
+    "probe": "mlp_1024",
+    "mean": 0.9933,
+    "std": 0.0047,
+    "per_seed": [
+      0.99,
+      1.0,
+      0.99
+    ]
+  },
+  {
+    "property": "frequency",
+    "model": "Moirai",
+    "probe": "mlp_2x512",
+    "mean": NaN,
+    "std": NaN,
+    "per_seed": []
+  },
+  {
+    "property": "frequency",
+    "model": "Moirai",
+    "probe": "rf",
+    "mean": 0.9917,
+    "std": 0.0062,
+    "per_seed": [
+      0.99,
+      0.985,
+      1.0
+    ]
+  },
+  {
+    "property": "stationarity",
+    "model": "HAND_CRAFTED",
+    "probe": "linear",
+    "mean": 1.0,
+    "std": 0.0,
+    "per_seed": [
+      1.0,
+      1.0,
+      1.0
+    ]
+  },
+  {
+    "property": "stationarity",
+    "model": "Timer",
+    "probe": "linear",
+    "mean": 1.0,
+    "std": 0.0,
+    "per_seed": [
+      1.0,
+      1.0,
+      1.0
+    ]
+  },
+  {
+    "property": "stationarity",
+    "model": "Timer",
+    "probe": "mlp_64",
+    "mean": 1.0,
+    "std": 0.0,
+    "per_seed": [
+      1.0,
+      1.0,
+      1.0
+    ]
+  },
+  {
+    "property": "stationarity",
+    "model": "Timer",
+    "probe": "mlp_128",
+    "mean": 1.0,
+    "std": 0.0,
+    "per_seed": [
+      1.0,
+      1.0,
+      1.0
+    ]
+  },
+  {
+    "property": "stationarity",
+    "model": "Timer",
+    "probe": "mlp_256",
+    "mean": 1.0,
+    "std": 0.0,
+    "per_seed": [
+      1.0,
+      1.0,
+      1.0
+    ]
+  },
+  {
+    "property": "stationarity",
+    "model": "Timer",
+    "probe": "mlp_512",
+    "mean": 1.0,
+    "std": 0.0,
+    "per_seed": [
+      1.0,
+      1.0,
+      1.0
+    ]
+  },
+  {
+    "property": "stationarity",
+    "model": "Timer",
+    "probe": "mlp_1024",
+    "mean": 1.0,
+    "std": 0.0,
+    "per_seed": [
+      1.0,
+      1.0,
+      1.0
+    ]
+  },
+  {
+    "property": "stationarity",
+    "model": "Timer",
+    "probe": "mlp_2x512",
+    "mean": NaN,
+    "std": NaN,
+    "per_seed": []
+  },
+  {
+    "property": "stationarity",
+    "model": "Timer",
+    "probe": "rf",
+    "mean": 1.0,
+    "std": 0.0,
+    "per_seed": [
+      1.0,
+      1.0,
+      1.0
+    ]
+  },
+  {
+    "property": "stationarity",
+    "model": "TimesFM",
+    "probe": "linear",
+    "mean": 1.0,
+    "std": 0.0,
+    "per_seed": [
+      1.0,
+      1.0,
+      1.0
+    ]
+  },
+  {
+    "property": "stationarity",
+    "model": "TimesFM",
+    "probe": "mlp_64",
+    "mean": 1.0,
+    "std": 0.0,
+    "per_seed": [
+      1.0,
+      1.0,
+      1.0
+    ]
+  },
+  {
+    "property": "stationarity",
+    "model": "TimesFM",
+    "probe": "mlp_128",
+    "mean": 1.0,
+    "std": 0.0,
+    "per_seed": [
+      1.0,
+      1.0,
+      1.0
+    ]
+  },
+  {
+    "property": "stationarity",
+    "model": "TimesFM",
+    "probe": "mlp_256",
+    "mean": 1.0,
+    "std": 0.0,
+    "per_seed": [
+      1.0,
+      1.0,
+      1.0
+    ]
+  },
+  {
+    "property": "stationarity",
+    "model": "TimesFM",
+    "probe": "mlp_512",
+    "mean": 1.0,
+    "std": 0.0,
+    "per_seed": [
+      1.0,
+      1.0,
+      1.0
+    ]
+  },
+  {
+    "property": "stationarity",
+    "model": "TimesFM",
+    "probe": "mlp_1024",
+    "mean": 1.0,
+    "std": 0.0,
+    "per_seed": [
+      1.0,
+      1.0,
+      1.0
+    ]
+  },
+  {
+    "property": "stationarity",
+    "model": "TimesFM",
+    "probe": "mlp_2x512",
+    "mean": NaN,
+    "std": NaN,
+    "per_seed": []
+  },
+  {
+    "property": "stationarity",
+    "model": "TimesFM",
+    "probe": "rf",
+    "mean": 1.0,
+    "std": 0.0,
+    "per_seed": [
+      1.0,
+      1.0,
+      1.0
+    ]
+  },
+  {
+    "property": "stationarity",
+    "model": "Moirai",
+    "probe": "linear",
+    "mean": 1.0,
+    "std": 0.0,
+    "per_seed": [
+      1.0,
+      1.0,
+      1.0
+    ]
+  },
+  {
+    "property": "stationarity",
+    "model": "Moirai",
+    "probe": "mlp_64",
+    "mean": 0.9983,
+    "std": 0.0024,
+    "per_seed": [
+      1.0,
+      1.0,
+      0.995
+    ]
+  },
+  {
+    "property": "stationarity",
+    "model": "Moirai",
+    "probe": "mlp_128",
+    "mean": 0.9983,
+    "std": 0.0024,
+    "per_seed": [
+      0.995,
+      1.0,
+      1.0
+    ]
+  },
+  {
+    "property": "stationarity",
+    "model": "Moirai",
+    "probe": "mlp_256",
+    "mean": 1.0,
+    "std": 0.0,
+    "per_seed": [
+      1.0,
+      1.0,
+      1.0
+    ]
+  },
+  {
+    "property": "stationarity",
+    "model": "Moirai",
+    "probe": "mlp_512",
+    "mean": 1.0,
+    "std": 0.0,
+    "per_seed": [
+      1.0,
+      1.0,
+      1.0
+    ]
+  },
+  {
+    "property": "stationarity",
+    "model": "Moirai",
+    "probe": "mlp_1024",
+    "mean": 1.0,
+    "std": 0.0,
+    "per_seed": [
+      1.0,
+      1.0,
+      1.0
+    ]
+  },
+  {
+    "property": "stationarity",
+    "model": "Moirai",
+    "probe": "mlp_2x512",
+    "mean": NaN,
+    "std": NaN,
+    "per_seed": []
+  },
+  {
+    "property": "stationarity",
+    "model": "Moirai",
+    "probe": "rf",
+    "mean": 1.0,
+    "std": 0.0,
+    "per_seed": [
+      1.0,
+      1.0,
+      1.0
+    ]
+  },
+  {
+    "property": "change_point",
+    "model": "HAND_CRAFTED",
+    "probe": "linear",
+    "mean": 1.0,
+    "std": 0.0,
+    "per_seed": [
+      1.0,
+      1.0,
+      1.0
+    ]
+  },
+  {
+    "property": "change_point",
+    "model": "Timer",
+    "probe": "linear",
+    "mean": 1.0,
+    "std": 0.0,
+    "per_seed": [
+      1.0,
+      1.0,
+      1.0
+    ]
+  },
+  {
+    "property": "change_point",
+    "model": "Timer",
+    "probe": "mlp_64",
+    "mean": 0.9967,
+    "std": 0.0024,
+    "per_seed": [
+      0.995,
+      1.0,
+      0.995
+    ]
+  },
+  {
+    "property": "change_point",
+    "model": "Timer",
+    "probe": "mlp_128",
+    "mean": 0.995,
+    "std": 0.0041,
+    "per_seed": [
+      0.995,
+      0.99,
+      1.0
+    ]
+  },
+  {
+    "property": "change_point",
+    "model": "Timer",
+    "probe": "mlp_256",
+    "mean": 0.995,
+    "std": 0.0041,
+    "per_seed": [
+      0.995,
+      1.0,
+      0.99
+    ]
+  },
+  {
+    "property": "change_point",
+    "model": "Timer",
+    "probe": "mlp_512",
+    "mean": 0.9967,
+    "std": 0.0024,
+    "per_seed": [
+      0.995,
+      1.0,
+      0.995
+    ]
+  },
+  {
+    "property": "change_point",
+    "model": "Timer",
+    "probe": "mlp_1024",
+    "mean": 0.9983,
+    "std": 0.0024,
+    "per_seed": [
+      0.995,
+      1.0,
+      1.0
+    ]
+  },
+  {
+    "property": "change_point",
+    "model": "Timer",
+    "probe": "mlp_2x512",
+    "mean": NaN,
+    "std": NaN,
+    "per_seed": []
+  },
+  {
+    "property": "change_point",
+    "model": "Timer",
+    "probe": "rf",
+    "mean": 0.995,
+    "std": 0.0041,
+    "per_seed": [
+      0.99,
+      1.0,
+      0.995
+    ]
+  },
+  {
+    "property": "change_point",
+    "model": "TimesFM",
+    "probe": "linear",
+    "mean": 1.0,
+    "std": 0.0,
+    "per_seed": [
+      1.0,
+      1.0,
+      1.0
+    ]
+  },
+  {
+    "property": "change_point",
+    "model": "TimesFM",
+    "probe": "mlp_64",
+    "mean": 0.9933,
+    "std": 0.0062,
+    "per_seed": [
+      1.0,
+      0.995,
+      0.985
+    ]
+  },
+  {
+    "property": "change_point",
+    "model": "TimesFM",
+    "probe": "mlp_128",
+    "mean": 0.9833,
+    "std": 0.0024,
+    "per_seed": [
+      0.985,
+      0.985,
+      0.98
+    ]
+  },
+  {
+    "property": "change_point",
+    "model": "TimesFM",
+    "probe": "mlp_256",
+    "mean": 0.9933,
+    "std": 0.0062,
+    "per_seed": [
+      1.0,
+      0.995,
+      0.985
+    ]
+  },
+  {
+    "property": "change_point",
+    "model": "TimesFM",
+    "probe": "mlp_512",
+    "mean": 0.9817,
+    "std": 0.0047,
+    "per_seed": [
+      0.975,
+      0.985,
+      0.985
+    ]
+  },
+  {
+    "property": "change_point",
+    "model": "TimesFM",
+    "probe": "mlp_1024",
+    "mean": 0.9883,
+    "std": 0.0024,
+    "per_seed": [
+      0.99,
+      0.99,
+      0.985
+    ]
+  },
+  {
+    "property": "change_point",
+    "model": "TimesFM",
+    "probe": "mlp_2x512",
+    "mean": NaN,
+    "std": NaN,
+    "per_seed": []
+  },
+  {
+    "property": "change_point",
+    "model": "TimesFM",
+    "probe": "rf",
+    "mean": 1.0,
+    "std": 0.0,
+    "per_seed": [
+      1.0,
+      1.0,
+      1.0
+    ]
+  },
+  {
+    "property": "change_point",
+    "model": "Moirai",
+    "probe": "linear",
+    "mean": 1.0,
+    "std": 0.0,
+    "per_seed": [
+      1.0,
+      1.0,
+      1.0
+    ]
+  },
+  {
+    "property": "change_point",
+    "model": "Moirai",
+    "probe": "mlp_64",
+    "mean": 0.9833,
+    "std": 0.0085,
+    "per_seed": [
+      0.995,
+      0.98,
+      0.975
+    ]
+  },
+  {
+    "property": "change_point",
+    "model": "Moirai",
+    "probe": "mlp_128",
+    "mean": 0.9983,
+    "std": 0.0024,
+    "per_seed": [
+      0.995,
+      1.0,
+      1.0
+    ]
+  },
+  {
+    "property": "change_point",
+    "model": "Moirai",
+    "probe": "mlp_256",
+    "mean": 0.9983,
+    "std": 0.0024,
+    "per_seed": [
+      0.995,
+      1.0,
+      1.0
+    ]
+  },
+  {
+    "property": "change_point",
+    "model": "Moirai",
+    "probe": "mlp_512",
+    "mean": 0.9983,
+    "std": 0.0024,
+    "per_seed": [
+      0.995,
+      1.0,
+      1.0
+    ]
+  },
+  {
+    "property": "change_point",
+    "model": "Moirai",
+    "probe": "mlp_1024",
+    "mean": 1.0,
+    "std": 0.0,
+    "per_seed": [
+      1.0,
+      1.0,
+      1.0
+    ]
+  },
+  {
+    "property": "change_point",
+    "model": "Moirai",
+    "probe": "mlp_2x512",
+    "mean": NaN,
+    "std": NaN,
+    "per_seed": []
+  },
+  {
+    "property": "change_point",
+    "model": "Moirai",
+    "probe": "rf",
+    "mean": 1.0,
+    "std": 0.0,
+    "per_seed": [
+      1.0,
+      1.0,
+      1.0
+    ]
+  }
+]
