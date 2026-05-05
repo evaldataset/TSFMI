@@ -1,84 +1,131 @@
-# TSFMI
+# TSFMI: Baseline-Controlled Probing of Time-Series Foundation Models
 
-TSFMI is a research codebase for probing and interpreting temporal concept
-representations in time series foundation models.
+Anonymous code+data artefact for the paper **"TSFMI: A Baseline-Controlled
+Evaluation Protocol for Time-Series Foundation Model Representations"**
+(NeurIPS 2026 Evaluations & Datasets Track, double-blind submission).
 
-Current repository status:
-- 170 tests passing
-- `ruff check src scripts tests` clean
-- NeurIPS paper compiles with `tectonic`
-- Appendix includes a numeric 7x7 cross-model CKA table and Timer main-text summary
+- 📂 **Code**: https://github.com/evaldataset/TSFMI (this repo)
+- 🤗 **Dataset**: https://huggingface.co/datasets/EvalData/TSFMI (Croissant 1.0 + RAI)
+- 📄 **Paper**: see OpenReview supplementary (`outputs/paper/latex/main.pdf` locally; intentionally excluded from this public mirror until camera-ready)
 
-## Quickstart
+## Headline result
 
-```bash
-python -m venv .venv
-source .venv/bin/activate
-python -m pip install -r requirements.txt
-python -m pip install -e ".[dev]"
-```
+Under a canonical 60/20/20 train/val/test protocol with matched sklearn
+estimators, 5 seeds, and bootstrap 95% CIs:
 
-## Common Commands
+| Property | HC | Best TSFM | Gap |
+|---|---:|---:|---:|
+| Trend | 1.000 | 1.000 | 0.000 |
+| Seasonality (R²) | 0.959 | 1.000 | +0.041 |
+| Frequency | 0.944 | 1.000 | +0.056 |
+| Stationarity | 1.000 | 1.000 | 0.000 |
+| **Anomaly** | **0.858** | **0.753** | **−0.105** |
+| Change Point | 1.000 | 1.000 | 0.000 |
 
-```bash
-make test
-make lint
-make format
-make paper
-```
+**Anomaly inversion** is the only meaningful gap, and it has a direct
+mechanistic explanation (kurtosis sufficiency; Appendix A.8 of the paper).
+A single kurtosis feature alone reaches 0.859, and `max(|x|)` alone reaches
+0.907 — six of seven TSFMs cannot regress kurtosis from their representations.
 
-`make paper` uses `latexmk` from your `PATH` (override with `make paper LATEXMK=/path/to/latexmk` if needed).
-
-## Reproduce Main Pipeline
-
-1. Extract representations
+## Quickstart (CPU, <10 minutes)
 
 ```bash
-PYTHONPATH=. .venv/bin/python scripts/extract_representations.py \
-  --model moment \
-  --dataset synthetic_trend \
-  --layers all \
-  --output_dir outputs/representations/
+git clone https://github.com/evaldataset/TSFMI.git && cd TSFMI
+python -m venv .venv && source .venv/bin/activate
+pip install -r requirements.txt && pip install -e ".[dev]"
+make smoke
 ```
 
-2. Train probes
+`make smoke` reproduces one cell of the canonical baseline grid + per-feature
+kurtosis attribution + the test suite. No GPU required.
+
+## Full reproduction (~48 A100-hours)
 
 ```bash
-PYTHONPATH=. .venv/bin/python scripts/train_probe.py \
-  --representations_dir outputs/representations/moment/synthetic_trend \
-  --output_dir outputs/probes/moment_synthetic_trend_linear \
-  --probe_type linear
+make extract-representations    # ~40 GPU-hours, 7 models × 6 datasets
+make reproduce-all              # baselines + canonical + figures + paper
 ```
 
-3. Evaluate probes
+## Confirmatory additional experiments (CHECK.md G1–G7)
 
-```bash
-PYTHONPATH=. .venv/bin/python scripts/evaluate_probe.py \
-  --probe_dir outputs/probes/moment_synthetic_trend_linear \
-  --representations_dir outputs/representations/moment/synthetic_trend \
-  --output_dir outputs/eval/moment_synthetic_trend_linear
+Each is a one-line Make target that writes results to `outputs/<exp>/`:
+
+| Target | Output | Purpose |
+|---|---|---|
+| `make per-feature-anomaly` | `outputs/per_feature_anomaly/` | Per-HC-feature attribution (kurtosis sufficiency) |
+| `make paired-wilcoxon` | `outputs/paired_tests/` | Paired Wilcoxon HC vs each TSFM, Holm-corrected |
+| `make rocket-baselines` | `outputs/rocket_baselines/` | 1024-kernel ROCKET baseline |
+| `make dataset-seed-bootstrap` | `outputs/dataset_seed_bootstrap/` | 5×5 (data × split) seed CI |
+| `make realistic-anomaly` | `outputs/realistic_anomaly/` | Mixed-type anomaly on structured background |
+| `make mdl-probe` | `outputs/mdl_probe/` | Voita-Titov MDL probe |
+| `make cross-leace-bootstrap` | `outputs/cross_leace_bootstrap/` | Bootstrap entanglement diagnostic |
+| `make benchmark-time` | `outputs/paper/timing.json` | Wall-clock instrumentation |
+
+## Repository layout
+
+```
+TSFMI/
+├── src/                 7 model wrappers, 12 synthetic generators, probe/LEACE/CKA library
+├── scripts/             extraction, canonical benchmark, baselines, additional experiments
+├── tests/               170 automated tests
+├── configs/             reference YAML configurations
+├── outputs/             paper-cited confirmatory artefacts (canonical/, leace/, cka/, ...)
+├── data/                README only — users obtain real-world datasets from original sources
+├── LICENSE              MIT (code) + pointers to public-dataset original licenses
+├── CROISSANT.json       Croissant 1.0 + RAI metadata describing the synthetic data
+├── Makefile             one-line entry points for every reproducible target
+└── pyproject.toml       Python 3.10+, torch 2.10.0, transformers 4.57.6 (pinned)
 ```
 
-4. Build the paper
+## HuggingFace dataset
 
-```bash
-make paper
-# or, manually: cd outputs/paper/latex && latexmk -pdf main.tex
+The synthetic data (11 task configurations, 60/20/20 splits) is mirrored on
+the Hub:
+
+```python
+from datasets import load_dataset
+
+ds = load_dataset("EvalData/TSFMI", "anomaly")
+print(ds)            # train: 600, validation: 200, test: 200
+print(ds["train"][0]["sequence"][:8], ds["train"][0]["label"])
 ```
 
-## Provenance
+Configurations: `trend`, `seasonality`, `frequency`, `stationarity`, `anomaly`,
+`change_point` + `*_hard` variants. Each row has `sequence` (list[float]×512),
+`label`, `seed=42`, `split_seed=0`. See the dataset card on the Hub for full
+schema and Croissant + RAI metadata.
 
-For command-level provenance of paper figures, enhancement outputs, LEACE results,
-and steering artifacts, see `PROVENANCE.md`.
+## Pretrained model checkpoints
+
+All 7 TSFM checkpoints are loaded via HuggingFace `transformers.AutoModel`
+(or `momentfm` for MOMENT) — auto-downloaded from the official model card on
+first run; no TSFMI-side redistribution.
+
+| Model | HuggingFace ID | Layers | Params |
+|---|---|---|---|
+| MOMENT | `AutonLab/MOMENT-1-large` | 24 | 385 M |
+| Chronos-Bolt | `amazon/chronos-bolt-small` | 6 | 710 M |
+| PatchTST | `ibm-granite/granite-timeseries-patchtst` | 3 | 1.5 M |
+| GPT4TS | `gpt2` (frozen backbone) | 12 | 124 M |
+| Timer | `thuml/timer-base-84m` | 8 | 84 M |
+| TimesFM | `google/timesfm-2.0-500m-pytorch` | 50 | 494 M |
+| Moirai | `Salesforce/moirai-2.0-R-small` | 6 | 11.4 M |
 
 ## Validation
 
 ```bash
-ruff check src scripts tests
-pytest tests/ -q
+make test     # 170/170 passing
+make lint     # ruff clean
 ```
 
-## Notes
+## Citation
 
-- `configs/*.yaml` are reference configuration documents; the current scripts use CLI arguments.
-- Cross-model CKA results separate encoder-family models from decoder-only models, while Timer achieves perfect trend/frequency/stationarity/change-point separation but remains weak on anomaly detection.
+```bibtex
+@misc{tsfmi2026,
+  title  = {{TSFMI}: A Baseline-Controlled Evaluation Protocol for Time-Series Foundation Model Representations},
+  author = {Anonymous Authors},
+  howpublished = {Anonymous submission to the NeurIPS 2026 Evaluations \& Datasets Track},
+  year   = {2026},
+  url    = {https://github.com/evaldataset/TSFMI}
+}
+```
