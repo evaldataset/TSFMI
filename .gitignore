@@ -111,7 +111,9 @@ outputs/*
 !outputs/anomaly_mechanism/
 !outputs/hard_variant_benchmark/
 !outputs/causal_controls/
-!outputs/paper/
+# outputs/paper/ is intentionally NOT redistributed via GitHub.
+# The compiled paper PDF and supplementary zip are uploaded to OpenReview;
+# the LaTeX sources and figures live only in the local working tree.
 
 # Within the included confirmatory dirs, drop tensor / model-weight blobs.
 *.pt
