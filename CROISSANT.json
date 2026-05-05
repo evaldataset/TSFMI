@@ -2,15 +2,23 @@
   "@context": {
     "@language": "en",
     "@vocab": "https://schema.org/",
+    "arrayShape": "cr:arrayShape",
     "citeAs": "cr:citeAs",
     "column": "cr:column",
     "conformsTo": "dct:conformsTo",
+    "containedIn": "cr:containedIn",
     "cr": "http://mlcommons.org/croissant/",
-    "rai": "http://mlcommons.org/croissant/RAI/",
-    "data": {"@id": "cr:data", "@type": "@json"},
-    "dataType": {"@id": "cr:dataType", "@type": "@vocab"},
+    "data": {
+      "@id": "cr:data",
+      "@type": "@json"
+    },
+    "dataBiases": "cr:dataBiases",
+    "dataCollection": "cr:dataCollection",
+    "dataType": {
+      "@id": "cr:dataType",
+      "@type": "@vocab"
+    },
     "dct": "http://purl.org/dc/terms/",
-    "examples": {"@id": "cr:examples", "@type": "@json"},
     "extract": "cr:extract",
     "field": "cr:field",
     "fileProperty": "cr:fileProperty",
@@ -18,12 +26,14 @@
     "fileSet": "cr:fileSet",
     "format": "cr:format",
     "includes": "cr:includes",
+    "isArray": "cr:isArray",
     "isLiveDataset": "cr:isLiveDataset",
     "jsonPath": "cr:jsonPath",
     "key": "cr:key",
     "md5": "cr:md5",
     "parentField": "cr:parentField",
     "path": "cr:path",
+    "personalSensitiveInformation": "cr:personalSensitiveInformation",
     "recordSet": "cr:recordSet",
     "references": "cr:references",
     "regex": "cr:regex",
@@ -33,123 +43,1385 @@
     "separator": "cr:separator",
     "source": "cr:source",
     "subField": "cr:subField",
-    "transform": "cr:transform"
+    "transform": "cr:transform",
+    "rai": "http://mlcommons.org/croissant/RAI/"
   },
-  "@type": "Dataset",
-  "name": "TSFMI-Synthetic",
-  "description": "Synthetic time-series datasets with mathematically exact ground-truth labels for the TSFMI baseline-controlled evaluation protocol. Six standard properties (trend, seasonality, frequency, stationarity, anomaly, change point) plus five hard variants. Each dataset is generated on-demand by deterministic seeded generators in src/datasets/synthetic.py; this manifest documents the canonical seed=42 instantiation used for all confirmatory results in the paper. The TSFMI paper itself is the protocol/benchmark contribution; the datasets here exist only to instantiate the protocol and have no claim of independent novelty.",
-  "conformsTo": "http://mlcommons.org/croissant/1.0",
-  "license": "https://opensource.org/licenses/MIT",
-  "url": "https://anonymous.4open.science/r/TSFMI/",
-  "version": "1.0.0",
-  "datePublished": "2026-05-06",
-  "isLiveDataset": false,
-  "citeAs": "TSFMI: A Baseline-Controlled Evaluation Protocol for Time-Series Foundation Model Representations. Anonymous submission to NeurIPS 2026 Evaluations & Datasets Track.",
-  "creator": {
-    "@type": "Organization",
-    "name": "Anonymous (NeurIPS 2026 ED Track double-blind submission)"
-  },
-
-  "rai:dataCollection": "Synthetic generation via deterministic Python procedures with NumPy random number generators. No human subjects, no scraping, no third-party data ingestion.",
-  "rai:dataCollectionType": "Synthetic / procedural",
-  "rai:dataPreprocessingProtocol": "None. Generators emit final tensors (N x seq_len) with labels directly.",
-  "rai:dataAnnotationProtocol": "Labels are derived analytically from generation parameters (slope sign for trend, period for seasonality, frequency bin for frequency, presence-of-cumsum for stationarity, presence-of-spike for anomaly, presence-of-shift for change-point). No human annotation.",
-  "rai:dataLimitations": "Each generator instantiates ONE family of synthetic constructions (e.g., the canonical anomaly task is a single 5-sigma spike on N(0,1) noise) and is therefore a statistically simple test bed. The kurtosis sufficiency of the canonical anomaly task is documented in the paper (sec:anomaly_mechanism); a 'realistic_anomaly' variant with mixed anomaly types is included to bound this limitation. Synthetic-to-real transfer is weak (paper sec 4.2).",
-  "rai:dataBiases": "By construction the synthetic data has no human / demographic content and therefore no demographic bias. The 'bias' that does exist is statistical: the canonical generators are deliberately simple, which is why baseline-controlled probing is the recommended interpretation lens.",
-  "rai:personalSensitiveInformation": "None. Datasets contain no personal, demographic, medical, or otherwise sensitive information.",
-  "rai:dataUseCases": "Probing internal representations of pre-trained time-series foundation models; calibrating new probing protocols against simple non-model baselines; comparing intervention diagnostics (LEACE, LDA steering, CKA) under matched controls.",
-  "rai:dataMisuseCases": "Not intended for deployment-time decision making, anomaly detection in production, or as a substitute for any real-world benchmark. Specifically, the canonical anomaly task should not be used to claim a model 'detects anomalies' in any operational sense; see paper sec 6 (Misuse Risks).",
-  "rai:dataSocialImpact": "The protocol is intended to raise the rigor bar on TSFM representation claims. Direct social impact is low (synthetic data, no human subjects); indirect impact is methodological -- discouraging over-claiming in time-series probing literature.",
-  "rai:syntheticDataIndicator": "All TSFMI-Synthetic data is fully synthetic; no real-world or human-derived signals.",
-
+  "@type": "sc:Dataset",
   "distribution": [
     {
       "@type": "cr:FileObject",
-      "@id": "synthetic-generator-script",
-      "name": "synthetic.py",
-      "description": "Deterministic generator implementing all six standard and five hard-variant temporal-property datasets. All canonical paper artifacts use the seed=42 instantiation.",
-      "contentUrl": "src/datasets/synthetic.py",
-      "encodingFormat": "text/x-python",
-      "sha256": "computed-by-prepare_anonymous_release.sh"
+      "@id": "repo",
+      "name": "repo",
+      "description": "The Hugging Face git repository.",
+      "contentUrl": "https://huggingface.co/datasets/EvalData/TSFMI/tree/refs%2Fconvert%2Fparquet",
+      "encodingFormat": "git+https",
+      "sha256": "https://github.com/mlcommons/croissant/issues/80"
     },
     {
-      "@type": "cr:FileObject",
-      "@id": "real-world-loader",
-      "name": "real_world.py",
-      "description": "Loaders for ETTh1, Weather (Jena Climate), Electricity, Traffic, Exchange-Rate. The TSFMI repository does NOT redistribute these datasets; loaders read user-supplied files from data/ under the original public licenses.",
-      "contentUrl": "src/datasets/real_world.py",
-      "encodingFormat": "text/x-python"
+      "@type": "cr:FileSet",
+      "@id": "parquet-files-for-config-anomaly",
+      "containedIn": {
+        "@id": "repo"
+      },
+      "encodingFormat": "application/x-parquet",
+      "includes": "anomaly/*/*.parquet"
     },
     {
-      "@type": "cr:FileObject",
-      "@id": "manifest-json",
-      "name": "experiment_manifest.json",
-      "description": "Machine-countable provenance of every artifact on disk (canonical 60/20/20 cells, baseline cells, LEACE erasures, CKA matrices, intervention runs, hard-variant comparisons, layer probe runs). Auto-generated by scripts/count_experiments.py.",
-      "contentUrl": "outputs/paper/experiment_manifest.json",
-      "encodingFormat": "application/json"
+      "@type": "cr:FileSet",
+      "@id": "parquet-files-for-config-anomaly_hard",
+      "containedIn": {
+        "@id": "repo"
+      },
+      "encodingFormat": "application/x-parquet",
+      "includes": "anomaly_hard/*/*.parquet"
+    },
+    {
+      "@type": "cr:FileSet",
+      "@id": "parquet-files-for-config-change_point",
+      "containedIn": {
+        "@id": "repo"
+      },
+      "encodingFormat": "application/x-parquet",
+      "includes": "change_point/*/*.parquet"
+    },
+    {
+      "@type": "cr:FileSet",
+      "@id": "parquet-files-for-config-change_point_hard",
+      "containedIn": {
+        "@id": "repo"
+      },
+      "encodingFormat": "application/x-parquet",
+      "includes": "change_point_hard/*/*.parquet"
+    },
+    {
+      "@type": "cr:FileSet",
+      "@id": "parquet-files-for-config-frequency",
+      "containedIn": {
+        "@id": "repo"
+      },
+      "encodingFormat": "application/x-parquet",
+      "includes": "frequency/*/*.parquet"
+    },
+    {
+      "@type": "cr:FileSet",
+      "@id": "parquet-files-for-config-frequency_hard",
+      "containedIn": {
+        "@id": "repo"
+      },
+      "encodingFormat": "application/x-parquet",
+      "includes": "frequency_hard/*/*.parquet"
+    },
+    {
+      "@type": "cr:FileSet",
+      "@id": "parquet-files-for-config-seasonality",
+      "containedIn": {
+        "@id": "repo"
+      },
+      "encodingFormat": "application/x-parquet",
+      "includes": "seasonality/*/*.parquet"
+    },
+    {
+      "@type": "cr:FileSet",
+      "@id": "parquet-files-for-config-stationarity",
+      "containedIn": {
+        "@id": "repo"
+      },
+      "encodingFormat": "application/x-parquet",
+      "includes": "stationarity/*/*.parquet"
+    },
+    {
+      "@type": "cr:FileSet",
+      "@id": "parquet-files-for-config-stationarity_hard",
+      "containedIn": {
+        "@id": "repo"
+      },
+      "encodingFormat": "application/x-parquet",
+      "includes": "stationarity_hard/*/*.parquet"
+    },
+    {
+      "@type": "cr:FileSet",
+      "@id": "parquet-files-for-config-trend",
+      "containedIn": {
+        "@id": "repo"
+      },
+      "encodingFormat": "application/x-parquet",
+      "includes": "trend/*/*.parquet"
+    },
+    {
+      "@type": "cr:FileSet",
+      "@id": "parquet-files-for-config-trend_hard",
+      "containedIn": {
+        "@id": "repo"
+      },
+      "encodingFormat": "application/x-parquet",
+      "includes": "trend_hard/*/*.parquet"
     }
   ],
-
   "recordSet": [
     {
       "@type": "cr:RecordSet",
-      "@id": "synthetic-trend",
-      "name": "synthetic_trend",
-      "description": "1000 sequences of length 512, three-class (up / down / flat). Labels are the slope-direction class, exact by construction.",
+      "dataType": "cr:Split",
+      "key": {
+        "@id": "anomaly_splits/split_name"
+      },
+      "@id": "anomaly_splits",
+      "name": "anomaly_splits",
+      "description": "Splits for the anomaly config.",
       "field": [
-        {"@type": "cr:Field", "name": "sequence", "dataType": "sc:Float", "repeated": true},
-        {"@type": "cr:Field", "name": "label", "dataType": "sc:Integer", "description": "0=up, 1=down, 2=flat"}
+        {
+          "@type": "cr:Field",
+          "@id": "anomaly_splits/split_name",
+          "dataType": "sc:Text"
+        }
+      ],
+      "data": [
+        {
+          "anomaly_splits/split_name": "train"
+        },
+        {
+          "anomaly_splits/split_name": "validation"
+        },
+        {
+          "anomaly_splits/split_name": "test"
+        }
       ]
     },
     {
       "@type": "cr:RecordSet",
-      "@id": "synthetic-seasonality",
-      "name": "synthetic_seasonality",
-      "description": "1000 sequences of length 512, regression target = period in {8,16,32,64}. Sinusoid + amplitude noise.",
+      "@id": "anomaly",
+      "description": "EvalData/TSFMI - 'anomaly' subset\n\nAdditional information:\n- 3 splits: train, validation, test",
       "field": [
-        {"@type": "cr:Field", "name": "sequence", "dataType": "sc:Float", "repeated": true},
-        {"@type": "cr:Field", "name": "label", "dataType": "sc:Float", "description": "Period length (regression target)"}
+        {
+          "@type": "cr:Field",
+          "@id": "anomaly/split",
+          "dataType": "sc:Text",
+          "source": {
+            "fileSet": {
+              "@id": "parquet-files-for-config-anomaly"
+            },
+            "extract": {
+              "fileProperty": "fullpath"
+            },
+            "transform": {
+              "regex": "anomaly/(?:partial-)?(train|validation|test)/.+parquet$"
+            }
+          },
+          "references": {
+            "field": {
+              "@id": "anomaly_splits/split_name"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "anomaly/sequence",
+          "dataType": "cr:Float32",
+          "source": {
+            "fileSet": {
+              "@id": "parquet-files-for-config-anomaly"
+            },
+            "extract": {
+              "column": "sequence"
+            }
+          },
+          "isArray": true,
+          "arrayShape": "-1"
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "anomaly/label",
+          "dataType": "cr:Int64",
+          "source": {
+            "fileSet": {
+              "@id": "parquet-files-for-config-anomaly"
+            },
+            "extract": {
+              "column": "label"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "anomaly/seed",
+          "dataType": "cr:Int64",
+          "source": {
+            "fileSet": {
+              "@id": "parquet-files-for-config-anomaly"
+            },
+            "extract": {
+              "column": "seed"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "anomaly/split_seed",
+          "dataType": "cr:Int64",
+          "source": {
+            "fileSet": {
+              "@id": "parquet-files-for-config-anomaly"
+            },
+            "extract": {
+              "column": "split_seed"
+            }
+          }
+        }
       ]
     },
     {
       "@type": "cr:RecordSet",
-      "@id": "synthetic-frequency",
-      "name": "synthetic_frequency",
-      "description": "1000 sequences of length 512, eight-class frequency-band classification. f_k = (k+1)/seq_len.",
+      "dataType": "cr:Split",
+      "key": {
+        "@id": "anomaly_hard_splits/split_name"
+      },
+      "@id": "anomaly_hard_splits",
+      "name": "anomaly_hard_splits",
+      "description": "Splits for the anomaly_hard config.",
       "field": [
-        {"@type": "cr:Field", "name": "sequence", "dataType": "sc:Float", "repeated": true},
-        {"@type": "cr:Field", "name": "label", "dataType": "sc:Integer", "description": "Frequency bin index 0..7"}
+        {
+          "@type": "cr:Field",
+          "@id": "anomaly_hard_splits/split_name",
+          "dataType": "sc:Text"
+        }
+      ],
+      "data": [
+        {
+          "anomaly_hard_splits/split_name": "train"
+        },
+        {
+          "anomaly_hard_splits/split_name": "validation"
+        },
+        {
+          "anomaly_hard_splits/split_name": "test"
+        }
       ]
     },
     {
       "@type": "cr:RecordSet",
-      "@id": "synthetic-stationarity",
-      "name": "synthetic_stationarity",
-      "description": "1000 sequences of length 512, binary (stationary noise vs non-stationary random walk).",
+      "@id": "anomaly_hard",
+      "description": "EvalData/TSFMI - 'anomaly_hard' subset\n\nAdditional information:\n- 3 splits: train, validation, test",
       "field": [
-        {"@type": "cr:Field", "name": "sequence", "dataType": "sc:Float", "repeated": true},
-        {"@type": "cr:Field", "name": "label", "dataType": "sc:Integer", "description": "0=stationary, 1=non-stationary"}
+        {
+          "@type": "cr:Field",
+          "@id": "anomaly_hard/split",
+          "dataType": "sc:Text",
+          "source": {
+            "fileSet": {
+              "@id": "parquet-files-for-config-anomaly_hard"
+            },
+            "extract": {
+              "fileProperty": "fullpath"
+            },
+            "transform": {
+              "regex": "anomaly_hard/(?:partial-)?(train|validation|test)/.+parquet$"
+            }
+          },
+          "references": {
+            "field": {
+              "@id": "anomaly_hard_splits/split_name"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "anomaly_hard/sequence",
+          "dataType": "cr:Float32",
+          "source": {
+            "fileSet": {
+              "@id": "parquet-files-for-config-anomaly_hard"
+            },
+            "extract": {
+              "column": "sequence"
+            }
+          },
+          "isArray": true,
+          "arrayShape": "-1"
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "anomaly_hard/label",
+          "dataType": "cr:Int64",
+          "source": {
+            "fileSet": {
+              "@id": "parquet-files-for-config-anomaly_hard"
+            },
+            "extract": {
+              "column": "label"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "anomaly_hard/seed",
+          "dataType": "cr:Int64",
+          "source": {
+            "fileSet": {
+              "@id": "parquet-files-for-config-anomaly_hard"
+            },
+            "extract": {
+              "column": "seed"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "anomaly_hard/split_seed",
+          "dataType": "cr:Int64",
+          "source": {
+            "fileSet": {
+              "@id": "parquet-files-for-config-anomaly_hard"
+            },
+            "extract": {
+              "column": "split_seed"
+            }
+          }
+        }
       ]
     },
     {
       "@type": "cr:RecordSet",
-      "@id": "synthetic-anomaly",
-      "name": "synthetic_anomaly",
-      "description": "1000 sequences of length 512, binary (normal vs +/- 5-sigma point spike). Single sufficient statistic = kurtosis (paper sec_anomaly_mechanism).",
+      "dataType": "cr:Split",
+      "key": {
+        "@id": "change_point_splits/split_name"
+      },
+      "@id": "change_point_splits",
+      "name": "change_point_splits",
+      "description": "Splits for the change_point config.",
       "field": [
-        {"@type": "cr:Field", "name": "sequence", "dataType": "sc:Float", "repeated": true},
-        {"@type": "cr:Field", "name": "label", "dataType": "sc:Integer", "description": "0=normal, 1=anomaly"}
+        {
+          "@type": "cr:Field",
+          "@id": "change_point_splits/split_name",
+          "dataType": "sc:Text"
+        }
+      ],
+      "data": [
+        {
+          "change_point_splits/split_name": "train"
+        },
+        {
+          "change_point_splits/split_name": "validation"
+        },
+        {
+          "change_point_splits/split_name": "test"
+        }
       ]
     },
     {
       "@type": "cr:RecordSet",
-      "@id": "synthetic-change-point",
-      "name": "synthetic_change_point",
-      "description": "1000 sequences of length 512, binary (no change-point vs mean+variance shift at midpoint).",
+      "@id": "change_point",
+      "description": "EvalData/TSFMI - 'change_point' subset\n\nAdditional information:\n- 3 splits: train, validation, test",
       "field": [
-        {"@type": "cr:Field", "name": "sequence", "dataType": "sc:Float", "repeated": true},
-        {"@type": "cr:Field", "name": "label", "dataType": "sc:Integer", "description": "0=no_cp, 1=has_cp"}
+        {
+          "@type": "cr:Field",
+          "@id": "change_point/split",
+          "dataType": "sc:Text",
+          "source": {
+            "fileSet": {
+              "@id": "parquet-files-for-config-change_point"
+            },
+            "extract": {
+              "fileProperty": "fullpath"
+            },
+            "transform": {
+              "regex": "change_point/(?:partial-)?(train|validation|test)/.+parquet$"
+            }
+          },
+          "references": {
+            "field": {
+              "@id": "change_point_splits/split_name"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "change_point/sequence",
+          "dataType": "cr:Float32",
+          "source": {
+            "fileSet": {
+              "@id": "parquet-files-for-config-change_point"
+            },
+            "extract": {
+              "column": "sequence"
+            }
+          },
+          "isArray": true,
+          "arrayShape": "-1"
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "change_point/label",
+          "dataType": "cr:Int64",
+          "source": {
+            "fileSet": {
+              "@id": "parquet-files-for-config-change_point"
+            },
+            "extract": {
+              "column": "label"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "change_point/seed",
+          "dataType": "cr:Int64",
+          "source": {
+            "fileSet": {
+              "@id": "parquet-files-for-config-change_point"
+            },
+            "extract": {
+              "column": "seed"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "change_point/split_seed",
+          "dataType": "cr:Int64",
+          "source": {
+            "fileSet": {
+              "@id": "parquet-files-for-config-change_point"
+            },
+            "extract": {
+              "column": "split_seed"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "@type": "cr:RecordSet",
+      "dataType": "cr:Split",
+      "key": {
+        "@id": "change_point_hard_splits/split_name"
+      },
+      "@id": "change_point_hard_splits",
+      "name": "change_point_hard_splits",
+      "description": "Splits for the change_point_hard config.",
+      "field": [
+        {
+          "@type": "cr:Field",
+          "@id": "change_point_hard_splits/split_name",
+          "dataType": "sc:Text"
+        }
+      ],
+      "data": [
+        {
+          "change_point_hard_splits/split_name": "train"
+        },
+        {
+          "change_point_hard_splits/split_name": "validation"
+        },
+        {
+          "change_point_hard_splits/split_name": "test"
+        }
+      ]
+    },
+    {
+      "@type": "cr:RecordSet",
+      "@id": "change_point_hard",
+      "description": "EvalData/TSFMI - 'change_point_hard' subset\n\nAdditional information:\n- 3 splits: train, validation, test",
+      "field": [
+        {
+          "@type": "cr:Field",
+          "@id": "change_point_hard/split",
+          "dataType": "sc:Text",
+          "source": {
+            "fileSet": {
+              "@id": "parquet-files-for-config-change_point_hard"
+            },
+            "extract": {
+              "fileProperty": "fullpath"
+            },
+            "transform": {
+              "regex": "change_point_hard/(?:partial-)?(train|validation|test)/.+parquet$"
+            }
+          },
+          "references": {
+            "field": {
+              "@id": "change_point_hard_splits/split_name"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "change_point_hard/sequence",
+          "dataType": "cr:Float32",
+          "source": {
+            "fileSet": {
+              "@id": "parquet-files-for-config-change_point_hard"
+            },
+            "extract": {
+              "column": "sequence"
+            }
+          },
+          "isArray": true,
+          "arrayShape": "-1"
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "change_point_hard/label",
+          "dataType": "cr:Int64",
+          "source": {
+            "fileSet": {
+              "@id": "parquet-files-for-config-change_point_hard"
+            },
+            "extract": {
+              "column": "label"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "change_point_hard/seed",
+          "dataType": "cr:Int64",
+          "source": {
+            "fileSet": {
+              "@id": "parquet-files-for-config-change_point_hard"
+            },
+            "extract": {
+              "column": "seed"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "change_point_hard/split_seed",
+          "dataType": "cr:Int64",
+          "source": {
+            "fileSet": {
+              "@id": "parquet-files-for-config-change_point_hard"
+            },
+            "extract": {
+              "column": "split_seed"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "@type": "cr:RecordSet",
+      "dataType": "cr:Split",
+      "key": {
+        "@id": "frequency_splits/split_name"
+      },
+      "@id": "frequency_splits",
+      "name": "frequency_splits",
+      "description": "Splits for the frequency config.",
+      "field": [
+        {
+          "@type": "cr:Field",
+          "@id": "frequency_splits/split_name",
+          "dataType": "sc:Text"
+        }
+      ],
+      "data": [
+        {
+          "frequency_splits/split_name": "train"
+        },
+        {
+          "frequency_splits/split_name": "validation"
+        },
+        {
+          "frequency_splits/split_name": "test"
+        }
+      ]
+    },
+    {
+      "@type": "cr:RecordSet",
+      "@id": "frequency",
+      "description": "EvalData/TSFMI - 'frequency' subset\n\nAdditional information:\n- 3 splits: train, validation, test",
+      "field": [
+        {
+          "@type": "cr:Field",
+          "@id": "frequency/split",
+          "dataType": "sc:Text",
+          "source": {
+            "fileSet": {
+              "@id": "parquet-files-for-config-frequency"
+            },
+            "extract": {
+              "fileProperty": "fullpath"
+            },
+            "transform": {
+              "regex": "frequency/(?:partial-)?(train|validation|test)/.+parquet$"
+            }
+          },
+          "references": {
+            "field": {
+              "@id": "frequency_splits/split_name"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "frequency/sequence",
+          "dataType": "cr:Float32",
+          "source": {
+            "fileSet": {
+              "@id": "parquet-files-for-config-frequency"
+            },
+            "extract": {
+              "column": "sequence"
+            }
+          },
+          "isArray": true,
+          "arrayShape": "-1"
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "frequency/label",
+          "dataType": "cr:Int64",
+          "source": {
+            "fileSet": {
+              "@id": "parquet-files-for-config-frequency"
+            },
+            "extract": {
+              "column": "label"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "frequency/seed",
+          "dataType": "cr:Int64",
+          "source": {
+            "fileSet": {
+              "@id": "parquet-files-for-config-frequency"
+            },
+            "extract": {
+              "column": "seed"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "frequency/split_seed",
+          "dataType": "cr:Int64",
+          "source": {
+            "fileSet": {
+              "@id": "parquet-files-for-config-frequency"
+            },
+            "extract": {
+              "column": "split_seed"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "@type": "cr:RecordSet",
+      "dataType": "cr:Split",
+      "key": {
+        "@id": "frequency_hard_splits/split_name"
+      },
+      "@id": "frequency_hard_splits",
+      "name": "frequency_hard_splits",
+      "description": "Splits for the frequency_hard config.",
+      "field": [
+        {
+          "@type": "cr:Field",
+          "@id": "frequency_hard_splits/split_name",
+          "dataType": "sc:Text"
+        }
+      ],
+      "data": [
+        {
+          "frequency_hard_splits/split_name": "train"
+        },
+        {
+          "frequency_hard_splits/split_name": "validation"
+        },
+        {
+          "frequency_hard_splits/split_name": "test"
+        }
+      ]
+    },
+    {
+      "@type": "cr:RecordSet",
+      "@id": "frequency_hard",
+      "description": "EvalData/TSFMI - 'frequency_hard' subset\n\nAdditional information:\n- 3 splits: train, validation, test",
+      "field": [
+        {
+          "@type": "cr:Field",
+          "@id": "frequency_hard/split",
+          "dataType": "sc:Text",
+          "source": {
+            "fileSet": {
+              "@id": "parquet-files-for-config-frequency_hard"
+            },
+            "extract": {
+              "fileProperty": "fullpath"
+            },
+            "transform": {
+              "regex": "frequency_hard/(?:partial-)?(train|validation|test)/.+parquet$"
+            }
+          },
+          "references": {
+            "field": {
+              "@id": "frequency_hard_splits/split_name"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "frequency_hard/sequence",
+          "dataType": "cr:Float32",
+          "source": {
+            "fileSet": {
+              "@id": "parquet-files-for-config-frequency_hard"
+            },
+            "extract": {
+              "column": "sequence"
+            }
+          },
+          "isArray": true,
+          "arrayShape": "-1"
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "frequency_hard/label",
+          "dataType": "cr:Int64",
+          "source": {
+            "fileSet": {
+              "@id": "parquet-files-for-config-frequency_hard"
+            },
+            "extract": {
+              "column": "label"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "frequency_hard/seed",
+          "dataType": "cr:Int64",
+          "source": {
+            "fileSet": {
+              "@id": "parquet-files-for-config-frequency_hard"
+            },
+            "extract": {
+              "column": "seed"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "frequency_hard/split_seed",
+          "dataType": "cr:Int64",
+          "source": {
+            "fileSet": {
+              "@id": "parquet-files-for-config-frequency_hard"
+            },
+            "extract": {
+              "column": "split_seed"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "@type": "cr:RecordSet",
+      "dataType": "cr:Split",
+      "key": {
+        "@id": "seasonality_splits/split_name"
+      },
+      "@id": "seasonality_splits",
+      "name": "seasonality_splits",
+      "description": "Splits for the seasonality config.",
+      "field": [
+        {
+          "@type": "cr:Field",
+          "@id": "seasonality_splits/split_name",
+          "dataType": "sc:Text"
+        }
+      ],
+      "data": [
+        {
+          "seasonality_splits/split_name": "train"
+        },
+        {
+          "seasonality_splits/split_name": "validation"
+        },
+        {
+          "seasonality_splits/split_name": "test"
+        }
+      ]
+    },
+    {
+      "@type": "cr:RecordSet",
+      "@id": "seasonality",
+      "description": "EvalData/TSFMI - 'seasonality' subset\n\nAdditional information:\n- 3 splits: train, validation, test",
+      "field": [
+        {
+          "@type": "cr:Field",
+          "@id": "seasonality/split",
+          "dataType": "sc:Text",
+          "source": {
+            "fileSet": {
+              "@id": "parquet-files-for-config-seasonality"
+            },
+            "extract": {
+              "fileProperty": "fullpath"
+            },
+            "transform": {
+              "regex": "seasonality/(?:partial-)?(train|validation|test)/.+parquet$"
+            }
+          },
+          "references": {
+            "field": {
+              "@id": "seasonality_splits/split_name"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "seasonality/sequence",
+          "dataType": "cr:Float32",
+          "source": {
+            "fileSet": {
+              "@id": "parquet-files-for-config-seasonality"
+            },
+            "extract": {
+              "column": "sequence"
+            }
+          },
+          "isArray": true,
+          "arrayShape": "-1"
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "seasonality/label",
+          "dataType": "cr:Float64",
+          "source": {
+            "fileSet": {
+              "@id": "parquet-files-for-config-seasonality"
+            },
+            "extract": {
+              "column": "label"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "seasonality/seed",
+          "dataType": "cr:Int64",
+          "source": {
+            "fileSet": {
+              "@id": "parquet-files-for-config-seasonality"
+            },
+            "extract": {
+              "column": "seed"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "seasonality/split_seed",
+          "dataType": "cr:Int64",
+          "source": {
+            "fileSet": {
+              "@id": "parquet-files-for-config-seasonality"
+            },
+            "extract": {
+              "column": "split_seed"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "@type": "cr:RecordSet",
+      "dataType": "cr:Split",
+      "key": {
+        "@id": "stationarity_splits/split_name"
+      },
+      "@id": "stationarity_splits",
+      "name": "stationarity_splits",
+      "description": "Splits for the stationarity config.",
+      "field": [
+        {
+          "@type": "cr:Field",
+          "@id": "stationarity_splits/split_name",
+          "dataType": "sc:Text"
+        }
+      ],
+      "data": [
+        {
+          "stationarity_splits/split_name": "train"
+        },
+        {
+          "stationarity_splits/split_name": "validation"
+        },
+        {
+          "stationarity_splits/split_name": "test"
+        }
+      ]
+    },
+    {
+      "@type": "cr:RecordSet",
+      "@id": "stationarity",
+      "description": "EvalData/TSFMI - 'stationarity' subset\n\nAdditional information:\n- 3 splits: train, validation, test",
+      "field": [
+        {
+          "@type": "cr:Field",
+          "@id": "stationarity/split",
+          "dataType": "sc:Text",
+          "source": {
+            "fileSet": {
+              "@id": "parquet-files-for-config-stationarity"
+            },
+            "extract": {
+              "fileProperty": "fullpath"
+            },
+            "transform": {
+              "regex": "stationarity/(?:partial-)?(train|validation|test)/.+parquet$"
+            }
+          },
+          "references": {
+            "field": {
+              "@id": "stationarity_splits/split_name"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "stationarity/sequence",
+          "dataType": "cr:Float32",
+          "source": {
+            "fileSet": {
+              "@id": "parquet-files-for-config-stationarity"
+            },
+            "extract": {
+              "column": "sequence"
+            }
+          },
+          "isArray": true,
+          "arrayShape": "-1"
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "stationarity/label",
+          "dataType": "cr:Int64",
+          "source": {
+            "fileSet": {
+              "@id": "parquet-files-for-config-stationarity"
+            },
+            "extract": {
+              "column": "label"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "stationarity/seed",
+          "dataType": "cr:Int64",
+          "source": {
+            "fileSet": {
+              "@id": "parquet-files-for-config-stationarity"
+            },
+            "extract": {
+              "column": "seed"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "stationarity/split_seed",
+          "dataType": "cr:Int64",
+          "source": {
+            "fileSet": {
+              "@id": "parquet-files-for-config-stationarity"
+            },
+            "extract": {
+              "column": "split_seed"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "@type": "cr:RecordSet",
+      "dataType": "cr:Split",
+      "key": {
+        "@id": "stationarity_hard_splits/split_name"
+      },
+      "@id": "stationarity_hard_splits",
+      "name": "stationarity_hard_splits",
+      "description": "Splits for the stationarity_hard config.",
+      "field": [
+        {
+          "@type": "cr:Field",
+          "@id": "stationarity_hard_splits/split_name",
+          "dataType": "sc:Text"
+        }
+      ],
+      "data": [
+        {
+          "stationarity_hard_splits/split_name": "train"
+        },
+        {
+          "stationarity_hard_splits/split_name": "validation"
+        },
+        {
+          "stationarity_hard_splits/split_name": "test"
+        }
+      ]
+    },
+    {
+      "@type": "cr:RecordSet",
+      "@id": "stationarity_hard",
+      "description": "EvalData/TSFMI - 'stationarity_hard' subset\n\nAdditional information:\n- 3 splits: train, validation, test",
+      "field": [
+        {
+          "@type": "cr:Field",
+          "@id": "stationarity_hard/split",
+          "dataType": "sc:Text",
+          "source": {
+            "fileSet": {
+              "@id": "parquet-files-for-config-stationarity_hard"
+            },
+            "extract": {
+              "fileProperty": "fullpath"
+            },
+            "transform": {
+              "regex": "stationarity_hard/(?:partial-)?(train|validation|test)/.+parquet$"
+            }
+          },
+          "references": {
+            "field": {
+              "@id": "stationarity_hard_splits/split_name"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "stationarity_hard/sequence",
+          "dataType": "cr:Float32",
+          "source": {
+            "fileSet": {
+              "@id": "parquet-files-for-config-stationarity_hard"
+            },
+            "extract": {
+              "column": "sequence"
+            }
+          },
+          "isArray": true,
+          "arrayShape": "-1"
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "stationarity_hard/label",
+          "dataType": "cr:Int64",
+          "source": {
+            "fileSet": {
+              "@id": "parquet-files-for-config-stationarity_hard"
+            },
+            "extract": {
+              "column": "label"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "stationarity_hard/seed",
+          "dataType": "cr:Int64",
+          "source": {
+            "fileSet": {
+              "@id": "parquet-files-for-config-stationarity_hard"
+            },
+            "extract": {
+              "column": "seed"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "stationarity_hard/split_seed",
+          "dataType": "cr:Int64",
+          "source": {
+            "fileSet": {
+              "@id": "parquet-files-for-config-stationarity_hard"
+            },
+            "extract": {
+              "column": "split_seed"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "@type": "cr:RecordSet",
+      "dataType": "cr:Split",
+      "key": {
+        "@id": "trend_splits/split_name"
+      },
+      "@id": "trend_splits",
+      "name": "trend_splits",
+      "description": "Splits for the trend config.",
+      "field": [
+        {
+          "@type": "cr:Field",
+          "@id": "trend_splits/split_name",
+          "dataType": "sc:Text"
+        }
+      ],
+      "data": [
+        {
+          "trend_splits/split_name": "train"
+        },
+        {
+          "trend_splits/split_name": "validation"
+        },
+        {
+          "trend_splits/split_name": "test"
+        }
+      ]
+    },
+    {
+      "@type": "cr:RecordSet",
+      "@id": "trend",
+      "description": "EvalData/TSFMI - 'trend' subset\n\nAdditional information:\n- 3 splits: train, validation, test",
+      "field": [
+        {
+          "@type": "cr:Field",
+          "@id": "trend/split",
+          "dataType": "sc:Text",
+          "source": {
+            "fileSet": {
+              "@id": "parquet-files-for-config-trend"
+            },
+            "extract": {
+              "fileProperty": "fullpath"
+            },
+            "transform": {
+              "regex": "trend/(?:partial-)?(train|validation|test)/.+parquet$"
+            }
+          },
+          "references": {
+            "field": {
+              "@id": "trend_splits/split_name"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "trend/sequence",
+          "dataType": "cr:Float32",
+          "source": {
+            "fileSet": {
+              "@id": "parquet-files-for-config-trend"
+            },
+            "extract": {
+              "column": "sequence"
+            }
+          },
+          "isArray": true,
+          "arrayShape": "-1"
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "trend/label",
+          "dataType": "cr:Int64",
+          "source": {
+            "fileSet": {
+              "@id": "parquet-files-for-config-trend"
+            },
+            "extract": {
+              "column": "label"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "trend/seed",
+          "dataType": "cr:Int64",
+          "source": {
+            "fileSet": {
+              "@id": "parquet-files-for-config-trend"
+            },
+            "extract": {
+              "column": "seed"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "trend/split_seed",
+          "dataType": "cr:Int64",
+          "source": {
+            "fileSet": {
+              "@id": "parquet-files-for-config-trend"
+            },
+            "extract": {
+              "column": "split_seed"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "@type": "cr:RecordSet",
+      "dataType": "cr:Split",
+      "key": {
+        "@id": "trend_hard_splits/split_name"
+      },
+      "@id": "trend_hard_splits",
+      "name": "trend_hard_splits",
+      "description": "Splits for the trend_hard config.",
+      "field": [
+        {
+          "@type": "cr:Field",
+          "@id": "trend_hard_splits/split_name",
+          "dataType": "sc:Text"
+        }
+      ],
+      "data": [
+        {
+          "trend_hard_splits/split_name": "train"
+        },
+        {
+          "trend_hard_splits/split_name": "validation"
+        },
+        {
+          "trend_hard_splits/split_name": "test"
+        }
+      ]
+    },
+    {
+      "@type": "cr:RecordSet",
+      "@id": "trend_hard",
+      "description": "EvalData/TSFMI - 'trend_hard' subset\n\nAdditional information:\n- 3 splits: train, validation, test",
+      "field": [
+        {
+          "@type": "cr:Field",
+          "@id": "trend_hard/split",
+          "dataType": "sc:Text",
+          "source": {
+            "fileSet": {
+              "@id": "parquet-files-for-config-trend_hard"
+            },
+            "extract": {
+              "fileProperty": "fullpath"
+            },
+            "transform": {
+              "regex": "trend_hard/(?:partial-)?(train|validation|test)/.+parquet$"
+            }
+          },
+          "references": {
+            "field": {
+              "@id": "trend_hard_splits/split_name"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "trend_hard/sequence",
+          "dataType": "cr:Float32",
+          "source": {
+            "fileSet": {
+              "@id": "parquet-files-for-config-trend_hard"
+            },
+            "extract": {
+              "column": "sequence"
+            }
+          },
+          "isArray": true,
+          "arrayShape": "-1"
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "trend_hard/label",
+          "dataType": "cr:Int64",
+          "source": {
+            "fileSet": {
+              "@id": "parquet-files-for-config-trend_hard"
+            },
+            "extract": {
+              "column": "label"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "trend_hard/seed",
+          "dataType": "cr:Int64",
+          "source": {
+            "fileSet": {
+              "@id": "parquet-files-for-config-trend_hard"
+            },
+            "extract": {
+              "column": "seed"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "trend_hard/split_seed",
+          "dataType": "cr:Int64",
+          "source": {
+            "fileSet": {
+              "@id": "parquet-files-for-config-trend_hard"
+            },
+            "extract": {
+              "column": "split_seed"
+            }
+          }
+        }
       ]
     }
-  ]
+  ],
+  "conformsTo": "http://mlcommons.org/croissant/1.1",
+  "name": "TSFMI",
+  "description": "\n\t\n\t\t\n\t\tTSFMI-Synthetic\n\t\n\nSynthetic time-series datasets with mathematically exact ground-truth labels\nfor the TSFMI baseline-controlled probing protocol.\n\nCompanion data for the NeurIPS 2026 Evaluations & Datasets Track submission\n\"TSFMI: A Baseline-Controlled Evaluation Protocol for Time-Series Foundation\nModel Representations.\" The code (anonymous) lives at\nhttps://anonymous.4open.science/r/TSFMI.\n\n\n\t\n\t\t\n\t\n\t\n\t\tWhy this dataset exists\n\t\n\nProbing time-series foundation models (TSFMs) is hard\u2026 See the full description on the dataset page: https://huggingface.co/datasets/EvalData/TSFMI.",
+  "alternateName": [
+    "EvalData/TSFMI",
+    "TSFMI-Synthetic"
+  ],
+  "creator": {
+    "@type": "Person",
+    "name": "Evaldataset",
+    "url": "https://huggingface.co/EvalData"
+  },
+  "keywords": [
+    "time-series-forecasting",
+    "tabular-classification",
+    "tabular-regression",
+    "English",
+    "mit",
+    "10K - 100K",
+    "parquet",
+    "Tabular",
+    "Time-series",
+    "Datasets",
+    "pandas",
+    "Polars",
+    "Croissant",
+    "\ud83c\uddfa\ud83c\uddf8 Region: US",
+    "time-series",
+    "foundation-models",
+    "probing",
+    "benchmark",
+    "evaluation",
+    "Synthetic",
+    "baseline-controlled",
+    "neurips-2026"
+  ],
+  "license": "https://choosealicense.com/licenses/mit/",
+  "url": "https://huggingface.co/datasets/EvalData/TSFMI",
+  "rai:dataCollection": "Synthetic generation via deterministic Python procedures with NumPy random number generators. No human subjects, no scraping, no third-party data ingestion.",
+  "rai:dataCollectionType": "Synthetic / procedural",
+  "rai:dataPreprocessingProtocol": "None. Generators emit final tensors (N x seq_len) with labels directly.",
+  "rai:dataAnnotationProtocol": "Labels are derived analytically from generation parameters. No human annotation.",
+  "rai:dataLimitations": "Each generator instantiates ONE family of synthetic constructions and is therefore a statistically simple test bed. The kurtosis sufficiency of the canonical anomaly task is documented in the paper Appendix A.8; a 'realistic_anomaly' variant with mixed anomaly types is included to bound this limitation. Synthetic-to-real transfer is weak (paper \u00a74.2).",
+  "rai:dataBiases": "By construction the synthetic data has no human or demographic content and therefore no demographic bias. The canonical generators are deliberately simple; this motivates the baseline-controlled probing protocol that is the paper's main contribution.",
+  "rai:personalSensitiveInformation": "None. Datasets contain no personal, demographic, medical, or otherwise sensitive information.",
+  "rai:dataUseCases": "Probing internal representations of pre-trained time-series foundation models; calibrating new probing protocols against simple non-model baselines; comparing intervention diagnostics (LEACE, LDA steering, CKA) under matched controls.",
+  "rai:dataMisuseCases": "Not intended for deployment-time decision making, anomaly detection in production, or as a substitute for any real-world benchmark. The canonical anomaly task should not be used to claim a model 'detects anomalies' in any operational sense (paper \u00a76 Misuse Risks).",
+  "rai:dataSocialImpact": "The protocol is intended to raise the rigor bar on TSFM representation claims. Direct social impact is low (synthetic data, no human subjects); indirect impact is methodological -- discouraging over-claiming in time-series probing literature.",
+  "rai:syntheticDataIndicator": "All TSFMI-Synthetic data is fully synthetic; no real-world or human-derived signals.",
+  "rai:provenanceActivities": "Procedural generation by src/datasets/synthetic.py (seed=42), 60/20/20 split (split_seed=0), Parquet serialization. See the GitHub-anonymous mirror at https://anonymous.4open.science/r/TSFMI/ for source code.",
+  "rai:sourceDatasets": "None. TSFMI-Synthetic is generated from scratch and does not incorporate or transform any pre-existing dataset.",
+  "citeAs": "Anonymous Authors, TSFMI: A Baseline-Controlled Evaluation Protocol for Time-Series Foundation Model Representations. NeurIPS 2026 Evaluations & Datasets Track. https://anonymous.4open.science/r/TSFMI/",
+  "isLiveDataset": false,
+  "version": "1.0.0",
+  "datePublished": "2026-05-05"
 }
