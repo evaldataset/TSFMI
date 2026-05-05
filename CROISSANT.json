@@ -40,7 +40,7 @@
   "description": "Synthetic time-series datasets with mathematically exact ground-truth labels for the TSFMI baseline-controlled evaluation protocol. Six standard properties (trend, seasonality, frequency, stationarity, anomaly, change point) plus five hard variants. Each dataset is generated on-demand by deterministic seeded generators in src/datasets/synthetic.py; this manifest documents the canonical seed=42 instantiation used for all confirmatory results in the paper. The TSFMI paper itself is the protocol/benchmark contribution; the datasets here exist only to instantiate the protocol and have no claim of independent novelty.",
   "conformsTo": "http://mlcommons.org/croissant/1.0",
   "license": "https://opensource.org/licenses/MIT",
-  "url": "https://anonymous.4open.science/r/tsfmi (anonymized for review)",
+  "url": "https://anonymous.4open.science/r/TSFMI/",
   "version": "1.0.0",
   "datePublished": "2026-05-06",
   "isLiveDataset": false,

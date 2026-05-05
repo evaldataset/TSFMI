@@ -4,7 +4,7 @@ Anonymous code+data artefact for the paper **"TSFMI: A Baseline-Controlled
 Evaluation Protocol for Time-Series Foundation Model Representations"**
 (NeurIPS 2026 Evaluations & Datasets Track, double-blind submission).
 
-- 📂 **Code**: https://github.com/evaldataset/TSFMI (this repo)
+- 📂 **Code (anonymous mirror)**: https://anonymous.4open.science/r/TSFMI/
 - 🤗 **Dataset**: https://huggingface.co/datasets/EvalData/TSFMI (Croissant 1.0 + RAI)
 - 📄 **Paper**: see OpenReview supplementary (`outputs/paper/latex/main.pdf` locally; intentionally excluded from this public mirror until camera-ready)
 
@@ -30,7 +30,8 @@ A single kurtosis feature alone reaches 0.859, and `max(|x|)` alone reaches
 ## Quickstart (CPU, <10 minutes)
 
 ```bash
-git clone https://github.com/evaldataset/TSFMI.git && cd TSFMI
+curl -L -o TSFMI.zip "https://anonymous.4open.science/api/repo/TSFMI/zip"
+unzip TSFMI.zip && cd TSFMI
 python -m venv .venv && source .venv/bin/activate
 pip install -r requirements.txt && pip install -e ".[dev]"
 make smoke
@@ -126,6 +127,6 @@ make lint     # ruff clean
   author = {Anonymous Authors},
   howpublished = {Anonymous submission to the NeurIPS 2026 Evaluations \& Datasets Track},
   year   = {2026},
-  url    = {https://github.com/evaldataset/TSFMI}
+  url    = {https://anonymous.4open.science/r/TSFMI}
 }
 ```
