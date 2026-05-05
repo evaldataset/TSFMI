@@ -44,7 +44,9 @@
     "source": "cr:source",
     "subField": "cr:subField",
     "transform": "cr:transform",
-    "rai": "http://mlcommons.org/croissant/RAI/"
+    "rai": "http://mlcommons.org/croissant/RAI/",
+    "hasSyntheticData": "rai:hasSyntheticData",
+    "syntheticDataGeneration": "rai:syntheticDataGeneration"
   },
   "@type": "sc:Dataset",
   "distribution": [
@@ -1417,11 +1419,12 @@
   "rai:dataUseCases": "Probing internal representations of pre-trained time-series foundation models; calibrating new probing protocols against simple non-model baselines; comparing intervention diagnostics (LEACE, LDA steering, CKA) under matched controls.",
   "rai:dataMisuseCases": "Not intended for deployment-time decision making, anomaly detection in production, or as a substitute for any real-world benchmark. The canonical anomaly task should not be used to claim a model 'detects anomalies' in any operational sense (paper \u00a76 Misuse Risks).",
   "rai:dataSocialImpact": "The protocol is intended to raise the rigor bar on TSFM representation claims. Direct social impact is low (synthetic data, no human subjects); indirect impact is methodological -- discouraging over-claiming in time-series probing literature.",
-  "rai:syntheticDataIndicator": "All TSFMI-Synthetic data is fully synthetic; no real-world or human-derived signals.",
   "rai:provenanceActivities": "Procedural generation by src/datasets/synthetic.py (seed=42), 60/20/20 split (split_seed=0), Parquet serialization. See the GitHub-anonymous mirror at https://anonymous.4open.science/r/TSFMI/ for source code.",
   "rai:sourceDatasets": "None. TSFMI-Synthetic is generated from scratch and does not incorporate or transform any pre-existing dataset.",
   "citeAs": "Anonymous Authors, TSFMI: A Baseline-Controlled Evaluation Protocol for Time-Series Foundation Model Representations. NeurIPS 2026 Evaluations & Datasets Track. https://anonymous.4open.science/r/TSFMI/",
   "isLiveDataset": false,
   "version": "1.0.0",
-  "datePublished": "2026-05-05"
+  "datePublished": "2026-05-05",
+  "rai:hasSyntheticData": true,
+  "rai:syntheticDataGeneration": "All TSFMI-Synthetic data is fully synthetic; no real-world or human-derived signals."
 }
