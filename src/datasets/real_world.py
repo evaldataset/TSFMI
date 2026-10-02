@@ -60,7 +60,6 @@ DATASET_CONFIGS: dict[str, dict[str, str | None]] = {
 PROPERTY_NAMES = ["trend", "stationarity", "seasonality", "seasonality_binary", "change_point"]
 
 _ADF_PVALUE_THRESHOLD: float = 0.05
-_VARIANCE_RATIO_THRESHOLD: float = 2.0
 _ACF_PEAK_THRESHOLD: float = 0.3
 _CHANGEPOINT_STAT_THRESHOLD: float = 2.0
 _MISSING_VALUE_FILLER: float = -9000.0
@@ -250,9 +249,10 @@ def _label_trend(window: NDArray[np.float64]) -> int:
 
 
 def _label_stationarity(window: NDArray[np.float64]) -> int:
-    """Classify stationarity of a single window.
+    """Classify stationarity of a single window with the augmented Dickey-Fuller test.
 
-    Tries statsmodels ADF test first; falls back to variance-ratio test.
+    Uses statsmodels ``adfuller`` with AIC lag selection; p < 0.05 is stationary.
+    There is no fallback test: statsmodels is required.
 
     Args:
         window: 1D array of length seq_len.

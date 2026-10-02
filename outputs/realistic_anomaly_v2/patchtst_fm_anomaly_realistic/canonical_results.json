@@ -1,0 +1,43 @@
+{
+  "representations_dir": "outputs/representations_v2/patchtst_fm_meanpool/synthetic_anomaly_realistic",
+  "property": "anomaly_realistic",
+  "task_type": "classification",
+  "seeds": [
+    0,
+    1,
+    2,
+    3,
+    4
+  ],
+  "val_score_per_seed": [
+    0.785,
+    0.785,
+    0.735,
+    0.77,
+    0.79
+  ],
+  "test_score_per_seed": [
+    0.78,
+    0.735,
+    0.725,
+    0.69,
+    0.73
+  ],
+  "best_layer_per_seed": [
+    "backbone_blocks_12",
+    "backbone_blocks_12",
+    "backbone_blocks_17",
+    "backbone_blocks_11",
+    "backbone_blocks_7"
+  ],
+  "test_mean": 0.732,
+  "test_ci95_low": 0.706,
+  "test_ci95_high": 0.76,
+  "protocol": {
+    "split": "60/20/20 train/val/test",
+    "selection": "best layer chosen on val only",
+    "reporting": "test score only",
+    "estimator": "sklearn LogisticRegression",
+    "n_bootstrap": 1000
+  }
+}

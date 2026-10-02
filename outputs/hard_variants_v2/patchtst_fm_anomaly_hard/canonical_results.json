@@ -1,0 +1,43 @@
+{
+  "representations_dir": "outputs/representations_v2/patchtst_fm_meanpool/synthetic_anomaly_hard",
+  "property": "anomaly_hard",
+  "task_type": "classification",
+  "seeds": [
+    0,
+    1,
+    2,
+    3,
+    4
+  ],
+  "val_score_per_seed": [
+    0.965,
+    0.965,
+    0.985,
+    0.985,
+    0.975
+  ],
+  "test_score_per_seed": [
+    0.975,
+    0.95,
+    0.965,
+    0.98,
+    0.98
+  ],
+  "best_layer_per_seed": [
+    "backbone_blocks_9",
+    "backbone_blocks_12",
+    "backbone_blocks_10",
+    "backbone_blocks_10",
+    "backbone_blocks_10"
+  ],
+  "test_mean": 0.97,
+  "test_ci95_low": 0.959,
+  "test_ci95_high": 0.979,
+  "protocol": {
+    "split": "60/20/20 train/val/test",
+    "selection": "best layer chosen on val only",
+    "reporting": "test score only",
+    "estimator": "sklearn LogisticRegression",
+    "n_bootstrap": 1000
+  }
+}

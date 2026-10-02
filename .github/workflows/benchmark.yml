@@ -26,7 +26,7 @@ jobs:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5
         with:
-          python-version: "3.10"
+          python-version: "3.12"
       - name: Install dependencies
         run: |
           python -m pip install --upgrade pip
@@ -45,7 +45,7 @@ jobs:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5
         with:
-          python-version: "3.10"
+          python-version: "3.12"
       - name: Install dependencies
         run: |
           python -m pip install --upgrade pip
@@ -57,12 +57,21 @@ jobs:
           import importlib
           import pkgutil
           import src.models
-          from src.models.base_wrapper import BaseModelWrapper
+          from src.models.base import BaseModelWrapper
 
+          n_ok = 0
           for _, modname, _ in pkgutil.iter_modules(src.models.__path__):
+              if modname == "base":
+                  continue
               mod = importlib.import_module(f"src.models.{modname}")
               for attr in dir(mod):
                   obj = getattr(mod, attr)
-                  if isinstance(obj, type) and issubclass(obj, BaseModelWrapper) and obj is not BaseModelWrapper:
+                  if (
+                      isinstance(obj, type)
+                      and issubclass(obj, BaseModelWrapper)
+                      and obj is not BaseModelWrapper
+                  ):
                       print(f"[OK] {modname}.{attr} conforms to BaseModelWrapper")
+                      n_ok += 1
+          assert n_ok > 0, "No conforming wrappers found under src.models/."
           EOF

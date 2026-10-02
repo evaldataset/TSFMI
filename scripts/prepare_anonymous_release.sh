@@ -57,6 +57,12 @@ This is the anonymized code/data artifact for the submission
 Foundation Model Representations"** to the NeurIPS 2026 Evaluations &
 Datasets Track.
 
+**Review policy: double-blind.** All identifying information is removed from
+this bundle, the LaTeX source compiles with `\usepackage[eandd]{neurips_2026}`
+(default double-blind), and any external URLs in the paper or in `CROISSANT.json`
+either point to public prior-work resources (cited references) or to anonymous
+hosting (e.g., `https://anonymous.4open.science/r/TSFMI/`).
+
 The artefact contains:
 
 - `src/`: 7 TSFM wrappers, 12 synthetic generators, probing & intervention library
@@ -159,6 +165,9 @@ rm -f "$RELEASE_DIR/tsfmi/REVISION.md"
 rm -f "$RELEASE_DIR/tsfmi/PLAN.md"
 rm -f "$RELEASE_DIR/tsfmi/CLAUDE.md"
 rm -f "$RELEASE_DIR/tsfmi/SUBMISSION_CHECKLIST.md"
+rm -f "$RELEASE_DIR/tsfmi/SUBMISSION_FORM.md"
+rm -f "$RELEASE_DIR/tsfmi/PAPER_AUDIT.md"
+rm -f "$RELEASE_DIR/tsfmi/SUBMISSION_GUIDE.md"
 
 # Remove stale/alternate build artifacts that could confuse reviewers
 rm -f "$RELEASE_DIR/tsfmi/outputs/paper/latex/_final.tex"
@@ -182,10 +191,10 @@ find "$RELEASE_DIR/tsfmi/outputs" -name "*.txt" -delete 2>/dev/null || true
 
 # Final safety sweep: fail if any sentinel internal doc leaks, or if
 # representations/log files survived the cleanup above.
-LEAKS=$(find "$RELEASE_DIR" \( -name "AUDIT.md" -o -name "CHECK.md" -o -name "REVIEW*.md" -o -name "REVISION.md" -o -name "PLAN.md" -o -name "SUBMISSION_CHECKLIST.md" \) 2>/dev/null | wc -l)
+LEAKS=$(find "$RELEASE_DIR" \( -name "AUDIT.md" -o -name "CHECK.md" -o -name "REVIEW*.md" -o -name "REVISION.md" -o -name "PLAN.md" -o -name "SUBMISSION_CHECKLIST.md" -o -name "SUBMISSION_FORM.md" -o -name "PAPER_AUDIT.md" -o -name "SUBMISSION_GUIDE.md" \) 2>/dev/null | wc -l)
 if [[ "$LEAKS" != "0" ]]; then
     echo "ERROR: internal review docs leaked into release dir!"
-    find "$RELEASE_DIR" \( -name "AUDIT.md" -o -name "CHECK.md" -o -name "REVIEW*.md" -o -name "REVISION.md" -o -name "PLAN.md" -o -name "SUBMISSION_CHECKLIST.md" \) 2>/dev/null
+    find "$RELEASE_DIR" \( -name "AUDIT.md" -o -name "CHECK.md" -o -name "REVIEW*.md" -o -name "REVISION.md" -o -name "PLAN.md" -o -name "SUBMISSION_CHECKLIST.md" -o -name "SUBMISSION_FORM.md" \) 2>/dev/null
     exit 2
 fi
 REPR_LEAKS=$(find "$RELEASE_DIR" -type d -name "representations*" 2>/dev/null | wc -l)

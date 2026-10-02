@@ -87,7 +87,7 @@ class _AutoformerEncoder(nn.Module):
 
 
 class AutoformerWrapper(BaseModelWrapper):
-    """Wrapper for Autoformer (Wu et al., ICLR 2022) for probing experiments.
+    """Wrapper for Autoformer (Wu et al., NeurIPS 2021) for probing experiments.
 
     Inline implementation with simplified auto-correlation attention.
 

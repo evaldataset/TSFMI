@@ -1,0 +1,50 @@
+{
+  "representations_dir": "outputs/representations_v2/raw/gpt4ts/synthetic_trend_hard",
+  "property": "trend_hard",
+  "task_type": "classification",
+  "seeds": [
+    0,
+    1,
+    2,
+    3,
+    4
+  ],
+  "val_score_per_seed": [
+    0.97,
+    0.96,
+    0.955,
+    0.945,
+    0.935
+  ],
+  "test_score_per_seed": [
+    0.965,
+    0.96,
+    0.96,
+    0.94,
+    0.965
+  ],
+  "best_layer_per_seed": [
+    "transformer_h_11",
+    "transformer_h_10",
+    "transformer_h_0",
+    "transformer_h_11",
+    "transformer_h_1"
+  ],
+  "test_mean": 0.958,
+  "test_ci95_low": 0.949,
+  "test_ci95_high": 0.964,
+  "protocol": {
+    "split": "60/20/20 train/val/test",
+    "selection": "best layer chosen on val only",
+    "reporting": "test score only",
+    "estimator": "sklearn LogisticRegression",
+    "n_bootstrap": 1000,
+    "pca_in_pipeline": {
+      "n_components": 512,
+      "pipeline": "StandardScaler -> PCA -> estimator",
+      "fit_scope": "training split of each split seed only",
+      "input": "flattened full-dimensional layer representations",
+      "skipped_when": "layer dim <= 512"
+    }
+  }
+}

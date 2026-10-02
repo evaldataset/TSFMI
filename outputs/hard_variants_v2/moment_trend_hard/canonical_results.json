@@ -1,0 +1,50 @@
+{
+  "representations_dir": "outputs/representations_v2/raw/moment/synthetic_trend_hard",
+  "property": "trend_hard",
+  "task_type": "classification",
+  "seeds": [
+    0,
+    1,
+    2,
+    3,
+    4
+  ],
+  "val_score_per_seed": [
+    0.98,
+    0.97,
+    0.95,
+    0.95,
+    0.95
+  ],
+  "test_score_per_seed": [
+    0.97,
+    0.97,
+    0.945,
+    0.945,
+    0.96
+  ],
+  "best_layer_per_seed": [
+    "encoder_block_12",
+    "encoder_block_18",
+    "encoder_block_4",
+    "encoder_block_10",
+    "encoder_block_11"
+  ],
+  "test_mean": 0.958,
+  "test_ci95_low": 0.948,
+  "test_ci95_high": 0.968,
+  "protocol": {
+    "split": "60/20/20 train/val/test",
+    "selection": "best layer chosen on val only",
+    "reporting": "test score only",
+    "estimator": "sklearn LogisticRegression",
+    "n_bootstrap": 1000,
+    "pca_in_pipeline": {
+      "n_components": 512,
+      "pipeline": "StandardScaler -> PCA -> estimator",
+      "fit_scope": "training split of each split seed only",
+      "input": "flattened full-dimensional layer representations",
+      "skipped_when": "layer dim <= 512"
+    }
+  }
+}

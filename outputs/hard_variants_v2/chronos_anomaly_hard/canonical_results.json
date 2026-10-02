@@ -1,0 +1,43 @@
+{
+  "representations_dir": "outputs/representations_v2/chronos_meanpool/synthetic_anomaly_hard",
+  "property": "anomaly_hard",
+  "task_type": "classification",
+  "seeds": [
+    0,
+    1,
+    2,
+    3,
+    4
+  ],
+  "val_score_per_seed": [
+    0.865,
+    0.895,
+    0.92,
+    0.915,
+    0.92
+  ],
+  "test_score_per_seed": [
+    0.9,
+    0.905,
+    0.885,
+    0.95,
+    0.895
+  ],
+  "best_layer_per_seed": [
+    "encoder_block_3",
+    "encoder_block_4",
+    "encoder_block_3",
+    "encoder_block_4",
+    "encoder_block_5"
+  ],
+  "test_mean": 0.907,
+  "test_ci95_low": 0.892,
+  "test_ci95_high": 0.93,
+  "protocol": {
+    "split": "60/20/20 train/val/test",
+    "selection": "best layer chosen on val only",
+    "reporting": "test score only",
+    "estimator": "sklearn LogisticRegression",
+    "n_bootstrap": 1000
+  }
+}

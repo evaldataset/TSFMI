@@ -1,0 +1,17 @@
+# PatchTST-FM-r1 (ibm-granite/granite-timeseries-patchtst-fm-r1) is loaded through tsfm_public.
+# granite-tsfm 0.3.9 declares scikit-learn<1.8, pandas>=2.3.3, torch>=2.10,<2.12 and
+# transformers>=4.57.6; the requirements.txt pins (scikit-learn 1.7.2, pandas 2.3.3, torch 2.10.0,
+# transformers 4.57.6) satisfy all of them, so --no-deps is no longer required. (The earlier
+# conflict came from the old scikit-learn==1.8.0 / pandas==2.1.4 pins, and a stale
+# torch-2.4.1.dist-info that made pip plan a torch upgrade.)
+# The only remaining difference is granite-tsfm's filelock>=3.20.3 (environment has 3.20.0; filelock
+# is not pinned in requirements.txt), which a normal install upgrades harmlessly:
+#
+#   python -m pip install -r requirements.txt
+#   python -m pip install -r requirements-patchtst-fm.txt
+#
+# The PatchTST-FM code path was verified with this combination (tests/test_model_wrappers.py,
+# outputs/canonical_v2/patchtst_fm_*).
+granite-tsfm==0.3.9
+datasets==5.0.1
+deprecated==1.3.1

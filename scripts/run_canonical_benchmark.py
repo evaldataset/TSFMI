@@ -4,7 +4,10 @@ This script implements the canonical protocol described in PLAN.md T1.1:
     - train / val / test 3-way split (60/20/20)
     - best-layer selection on val only
     - final reporting on held-out test only
-    - PCA fit on train split only (already handled upstream)
+    - PCA fit on train split only: either upstream (legacy default), or inside the
+      per-seed pipeline with --pca-in-pipeline N (StandardScaler -> PCA(N) -> estimator,
+      fit on the training rows of each split seed only; pass full-dimensional
+      representations)
     - Scaler inside CV loop (via Pipeline)
     - Matched estimator (sklearn LogisticRegression for classification,
       Ridge for regression) for both baseline and model probes
@@ -34,9 +37,10 @@ from pathlib import Path
 import numpy as np
 import torch
 from numpy.typing import NDArray
+from sklearn.decomposition import PCA
 from sklearn.linear_model import LogisticRegression, Ridge
 from sklearn.metrics import accuracy_score, r2_score
-from sklearn.pipeline import make_pipeline
+from sklearn.pipeline import Pipeline, make_pipeline
 from sklearn.preprocessing import StandardScaler
 
 SEEDS = [0, 1, 2, 3, 4]
@@ -45,7 +49,7 @@ VAL_RATIO = 0.20
 TEST_RATIO = 0.20
 
 
-def parse_args() -> argparse.Namespace:
+def parse_args(argv: list[str] | None = None) -> argparse.Namespace:
     p = argparse.ArgumentParser(description="Canonical benchmark rerun")
     p.add_argument("--representations_dir", type=str, required=True)
     p.add_argument("--output_dir", type=str, required=True)
@@ -55,7 +59,20 @@ def parse_args() -> argparse.Namespace:
         choices=["classification", "regression"],
         required=True,
     )
-    return p.parse_args()
+    p.add_argument(
+        "--pca-in-pipeline",
+        dest="pca_in_pipeline",
+        type=int,
+        default=None,
+        metavar="N",
+        help=(
+            "Insert PCA(N) after StandardScaler inside the per-seed probe pipeline, so PCA is "
+            "fit on the training split of each split seed only. Pass full-dimensional "
+            "(flattened) representations. Layers with <= N features skip PCA. Default: off "
+            "(legacy behaviour; any reduction was applied upstream)."
+        ),
+    )
+    return p.parse_args(argv)
 
 
 def three_way_split(
@@ -89,6 +106,35 @@ def three_way_split(
     )
 
 
+def build_pipeline(
+    task_type: str,
+    seed: int,
+    n_features: int,
+    pca_components: int | None = None,
+) -> Pipeline:
+    """Build the matched-estimator probe pipeline.
+
+    Args:
+        task_type: "classification" (LogisticRegression) or "regression" (Ridge).
+        seed: Split seed; seeds the estimator and, if used, the PCA.
+        n_features: Input dimensionality of the layer.
+        pca_components: If set and smaller than ``n_features``, a PCA with this many
+            components is inserted after the StandardScaler. Everything in the pipeline is
+            fit on the training rows passed to ``fit`` only.
+
+    Returns:
+        Unfitted sklearn pipeline.
+    """
+    steps: list = [StandardScaler()]
+    if pca_components is not None and n_features > pca_components:
+        steps.append(PCA(n_components=pca_components, random_state=seed))
+    if task_type == "classification":
+        steps.append(LogisticRegression(max_iter=1000, random_state=seed, solver="lbfgs"))
+    else:
+        steps.append(Ridge(alpha=1.0))
+    return make_pipeline(*steps)
+
+
 def train_and_score(
     X_tr: NDArray[np.float64],
     y_tr: NDArray[np.float64],
@@ -96,19 +142,19 @@ def train_and_score(
     y_eval: NDArray[np.float64],
     task_type: str,
     seed: int,
+    pca_components: int | None = None,
 ) -> float:
-    """Train matched-estimator probe and return score on eval split."""
+    """Train matched-estimator probe on the train split and return its score on eval.
+
+    With ``pca_components=None`` (default) the pipeline is StandardScaler -> estimator,
+    identical to the original canonical protocol.
+    """
+    pipe = build_pipeline(task_type, seed, X_tr.shape[1], pca_components)
     if task_type == "classification":
-        pipe = make_pipeline(
-            StandardScaler(),
-            LogisticRegression(max_iter=1000, random_state=seed, solver="lbfgs"),
-        )
         pipe.fit(X_tr, y_tr.astype(np.int64))
         return float(accuracy_score(y_eval.astype(np.int64), pipe.predict(X_eval)))
-    else:
-        pipe = make_pipeline(StandardScaler(), Ridge(alpha=1.0))
-        pipe.fit(X_tr, y_tr)
-        return float(r2_score(y_eval, pipe.predict(X_eval)))
+    pipe.fit(X_tr, y_tr)
+    return float(r2_score(y_eval, pipe.predict(X_eval)))
 
 
 def bootstrap_ci(
@@ -130,8 +176,9 @@ def bootstrap_ci(
     )
 
 
-def main() -> None:
-    args = parse_args()
+def main(argv: list[str] | None = None) -> None:
+    args = parse_args(argv)
+    pca_n = args.pca_in_pipeline
     repr_dir = Path(args.representations_dir)
     out_dir = Path(args.output_dir)
     out_dir.mkdir(parents=True, exist_ok=True)
@@ -164,11 +211,13 @@ def main() -> None:
                 continue
             X_tr, y_tr, X_val, y_val, X_te, y_te = three_way_split(X, labels, seed)
 
-            val_score = train_and_score(X_tr, y_tr, X_val, y_val, args.task_type, seed)
+            val_score = train_and_score(
+                X_tr, y_tr, X_val, y_val, args.task_type, seed, pca_components=pca_n
+            )
             if val_score > best_val:
                 best_val = val_score
                 best_test_score = train_and_score(
-                    X_tr, y_tr, X_te, y_te, args.task_type, seed
+                    X_tr, y_tr, X_te, y_te, args.task_type, seed, pca_components=pca_n
                 )
                 best_layer = lf.stem
 
@@ -207,6 +256,14 @@ def main() -> None:
             "n_bootstrap": N_BOOTSTRAP,
         },
     }
+    if pca_n is not None:
+        result["protocol"]["pca_in_pipeline"] = {
+            "n_components": pca_n,
+            "pipeline": "StandardScaler -> PCA -> estimator",
+            "fit_scope": "training split of each split seed only",
+            "input": "flattened full-dimensional layer representations",
+            "skipped_when": f"layer dim <= {pca_n}",
+        }
     out_path = out_dir / "canonical_results.json"
     with open(out_path, "w") as f:
         json.dump(result, f, indent=2)

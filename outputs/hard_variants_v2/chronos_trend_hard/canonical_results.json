@@ -1,0 +1,43 @@
+{
+  "representations_dir": "outputs/representations_v2/chronos_meanpool/synthetic_trend_hard",
+  "property": "trend_hard",
+  "task_type": "classification",
+  "seeds": [
+    0,
+    1,
+    2,
+    3,
+    4
+  ],
+  "val_score_per_seed": [
+    0.99,
+    0.98,
+    0.965,
+    0.96,
+    0.98
+  ],
+  "test_score_per_seed": [
+    0.995,
+    0.99,
+    0.94,
+    0.95,
+    0.975
+  ],
+  "best_layer_per_seed": [
+    "encoder_block_4",
+    "encoder_block_5",
+    "encoder_block_2",
+    "encoder_block_3",
+    "encoder_block_4"
+  ],
+  "test_mean": 0.97,
+  "test_ci95_low": 0.951,
+  "test_ci95_high": 0.989,
+  "protocol": {
+    "split": "60/20/20 train/val/test",
+    "selection": "best layer chosen on val only",
+    "reporting": "test score only",
+    "estimator": "sklearn LogisticRegression",
+    "n_bootstrap": 1000
+  }
+}

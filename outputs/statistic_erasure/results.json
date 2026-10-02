@@ -1,0 +1,636 @@
+{
+  "protocol": "Does anomaly accessibility in TSFM representations run through the sufficient statistics?\n\nFor the canonical anomaly task, the Bayes statistic (LLR), max|x| and excess kurtosis nearly\ndetermine the label. This script removes all linear information about those three statistics\nfrom each representation with LEACE (Belrose et al., 2023) and re-probes the anomaly label.\n\nProtocol (canonical v2): split seeds 0-4 and 60/20/20 splits, the layer that canonical v2 selected\non validation for each seed, StandardScaler (then PCA-512 for MOMENT and GPT4TS) fit on the training\nsplit, LEACE fit on the training split only and applied to both splits, then the canonical\nlogistic-regression probe. Conditions:\n    none         no erasure (reproduces the canonical v2 test score)\n    statistics   erase z = standardized (LLR, max|x|, kurtosis)\n    random       erase a 3-D Gaussian z independent of the data (negative control)\n    label        erase the anomaly label itself (positive control; should reach chance)\nFor each erasure the held-out R^2 of a ridge regression from the erased representation to the three\nstatistics is recorded to confirm that the linear information is gone.",
+  "conditions": [
+    "none",
+    "statistics",
+    "random",
+    "label"
+  ],
+  "rows": {
+    "moment": {
+      "none": {
+        "acc_mean": 0.53,
+        "acc_ci95": [
+          0.518,
+          0.542
+        ],
+        "acc_per_seed": [
+          0.545,
+          0.51,
+          0.545,
+          0.52,
+          0.53
+        ],
+        "stat_r2_mean": {
+          "llr": -0.2172,
+          "max_abs": -0.2238,
+          "kurtosis": -0.1314
+        }
+      },
+      "statistics": {
+        "acc_mean": 0.517,
+        "acc_ci95": [
+          0.496,
+          0.542
+        ],
+        "acc_per_seed": [
+          0.52,
+          0.48,
+          0.56,
+          0.51,
+          0.515
+        ],
+        "stat_r2_mean": {
+          "llr": -0.0111,
+          "max_abs": -0.0111,
+          "kurtosis": -0.0042
+        }
+      },
+      "random": {
+        "acc_mean": 0.533,
+        "acc_ci95": [
+          0.517,
+          0.548
+        ],
+        "acc_per_seed": [
+          0.56,
+          0.505,
+          0.535,
+          0.54,
+          0.525
+        ],
+        "stat_r2_mean": {
+          "llr": -0.2205,
+          "max_abs": -0.227,
+          "kurtosis": -0.1348
+        }
+      },
+      "label": {
+        "acc_mean": 0.499,
+        "acc_ci95": [
+          0.463,
+          0.535
+        ],
+        "acc_per_seed": [
+          0.485,
+          0.43,
+          0.5,
+          0.525,
+          0.555
+        ],
+        "stat_r2_mean": {
+          "llr": -0.1386,
+          "max_abs": -0.1384,
+          "kurtosis": -0.1169
+        }
+      }
+    },
+    "chronos": {
+      "none": {
+        "acc_mean": 0.676,
+        "acc_ci95": [
+          0.669,
+          0.684
+        ],
+        "acc_per_seed": [
+          0.675,
+          0.67,
+          0.665,
+          0.69,
+          0.68
+        ],
+        "stat_r2_mean": {
+          "llr": 0.289,
+          "max_abs": 0.2732,
+          "kurtosis": 0.3962
+        }
+      },
+      "statistics": {
+        "acc_mean": 0.564,
+        "acc_ci95": [
+          0.556,
+          0.571
+        ],
+        "acc_per_seed": [
+          0.57,
+          0.575,
+          0.565,
+          0.55,
+          0.56
+        ],
+        "stat_r2_mean": {
+          "llr": -0.009,
+          "max_abs": -0.0088,
+          "kurtosis": -0.0082
+        }
+      },
+      "random": {
+        "acc_mean": 0.682,
+        "acc_ci95": [
+          0.666,
+          0.699
+        ],
+        "acc_per_seed": [
+          0.69,
+          0.66,
+          0.66,
+          0.705,
+          0.695
+        ],
+        "stat_r2_mean": {
+          "llr": 0.2791,
+          "max_abs": 0.2632,
+          "kurtosis": 0.3843
+        }
+      },
+      "label": {
+        "acc_mean": 0.469,
+        "acc_ci95": [
+          0.446,
+          0.49
+        ],
+        "acc_per_seed": [
+          0.485,
+          0.43,
+          0.5,
+          0.475,
+          0.455
+        ],
+        "stat_r2_mean": {
+          "llr": 0.0681,
+          "max_abs": 0.0672,
+          "kurtosis": 0.0721
+        }
+      }
+    },
+    "timer": {
+      "none": {
+        "acc_mean": 0.603,
+        "acc_ci95": [
+          0.579,
+          0.632
+        ],
+        "acc_per_seed": [
+          0.57,
+          0.66,
+          0.58,
+          0.595,
+          0.61
+        ],
+        "stat_r2_mean": {
+          "llr": -1.2499,
+          "max_abs": -1.2761,
+          "kurtosis": -1.1501
+        }
+      },
+      "statistics": {
+        "acc_mean": 0.536,
+        "acc_ci95": [
+          0.499,
+          0.575
+        ],
+        "acc_per_seed": [
+          0.565,
+          0.61,
+          0.48,
+          0.51,
+          0.515
+        ],
+        "stat_r2_mean": {
+          "llr": -0.009,
+          "max_abs": -0.0088,
+          "kurtosis": -0.0082
+        }
+      },
+      "random": {
+        "acc_mean": 0.595,
+        "acc_ci95": [
+          0.571,
+          0.621
+        ],
+        "acc_per_seed": [
+          0.565,
+          0.645,
+          0.565,
+          0.605,
+          0.595
+        ],
+        "stat_r2_mean": {
+          "llr": -1.2668,
+          "max_abs": -1.2917,
+          "kurtosis": -1.1689
+        }
+      },
+      "label": {
+        "acc_mean": 0.469,
+        "acc_ci95": [
+          0.446,
+          0.49
+        ],
+        "acc_per_seed": [
+          0.485,
+          0.43,
+          0.5,
+          0.475,
+          0.455
+        ],
+        "stat_r2_mean": {
+          "llr": -0.8562,
+          "max_abs": -0.8379,
+          "kurtosis": -1.009
+        }
+      }
+    },
+    "timesfm": {
+      "none": {
+        "acc_mean": 0.753,
+        "acc_ci95": [
+          0.72,
+          0.788
+        ],
+        "acc_per_seed": [
+          0.725,
+          0.705,
+          0.81,
+          0.785,
+          0.74
+        ],
+        "stat_r2_mean": {
+          "llr": 0.4612,
+          "max_abs": 0.428,
+          "kurtosis": 0.5444
+        }
+      },
+      "statistics": {
+        "acc_mean": 0.52,
+        "acc_ci95": [
+          0.496,
+          0.545
+        ],
+        "acc_per_seed": [
+          0.535,
+          0.475,
+          0.56,
+          0.52,
+          0.51
+        ],
+        "stat_r2_mean": {
+          "llr": -0.009,
+          "max_abs": -0.0088,
+          "kurtosis": -0.0082
+        }
+      },
+      "random": {
+        "acc_mean": 0.755,
+        "acc_ci95": [
+          0.718,
+          0.793
+        ],
+        "acc_per_seed": [
+          0.725,
+          0.7,
+          0.815,
+          0.795,
+          0.74
+        ],
+        "stat_r2_mean": {
+          "llr": 0.4522,
+          "max_abs": 0.4198,
+          "kurtosis": 0.5374
+        }
+      },
+      "label": {
+        "acc_mean": 0.469,
+        "acc_ci95": [
+          0.446,
+          0.49
+        ],
+        "acc_per_seed": [
+          0.485,
+          0.43,
+          0.5,
+          0.475,
+          0.455
+        ],
+        "stat_r2_mean": {
+          "llr": 0.0567,
+          "max_abs": 0.0427,
+          "kurtosis": 0.1094
+        }
+      }
+    },
+    "moirai": {
+      "none": {
+        "acc_mean": 0.694,
+        "acc_ci95": [
+          0.676,
+          0.706
+        ],
+        "acc_per_seed": [
+          0.7,
+          0.695,
+          0.66,
+          0.705,
+          0.71
+        ],
+        "stat_r2_mean": {
+          "llr": 0.0783,
+          "max_abs": 0.0746,
+          "kurtosis": 0.1322
+        }
+      },
+      "statistics": {
+        "acc_mean": 0.537,
+        "acc_ci95": [
+          0.511,
+          0.554
+        ],
+        "acc_per_seed": [
+          0.56,
+          0.55,
+          0.55,
+          0.54,
+          0.485
+        ],
+        "stat_r2_mean": {
+          "llr": -0.009,
+          "max_abs": -0.0088,
+          "kurtosis": -0.0082
+        }
+      },
+      "random": {
+        "acc_mean": 0.698,
+        "acc_ci95": [
+          0.682,
+          0.712
+        ],
+        "acc_per_seed": [
+          0.7,
+          0.7,
+          0.67,
+          0.72,
+          0.7
+        ],
+        "stat_r2_mean": {
+          "llr": 0.0849,
+          "max_abs": 0.0803,
+          "kurtosis": 0.136
+        }
+      },
+      "label": {
+        "acc_mean": 0.469,
+        "acc_ci95": [
+          0.446,
+          0.49
+        ],
+        "acc_per_seed": [
+          0.485,
+          0.43,
+          0.5,
+          0.475,
+          0.455
+        ],
+        "stat_r2_mean": {
+          "llr": -0.1156,
+          "max_abs": -0.1095,
+          "kurtosis": -0.105
+        }
+      }
+    },
+    "gpt4ts": {
+      "none": {
+        "acc_mean": 0.492,
+        "acc_ci95": [
+          0.466,
+          0.518
+        ],
+        "acc_per_seed": [
+          0.52,
+          0.5,
+          0.525,
+          0.46,
+          0.455
+        ],
+        "stat_r2_mean": {
+          "llr": -0.4039,
+          "max_abs": -0.4119,
+          "kurtosis": -0.4266
+        }
+      },
+      "statistics": {
+        "acc_mean": 0.504,
+        "acc_ci95": [
+          0.487,
+          0.523
+        ],
+        "acc_per_seed": [
+          0.535,
+          0.52,
+          0.475,
+          0.5,
+          0.49
+        ],
+        "stat_r2_mean": {
+          "llr": -0.0044,
+          "max_abs": -0.0041,
+          "kurtosis": -0.0089
+        }
+      },
+      "random": {
+        "acc_mean": 0.486,
+        "acc_ci95": [
+          0.456,
+          0.514
+        ],
+        "acc_per_seed": [
+          0.5,
+          0.515,
+          0.52,
+          0.455,
+          0.44
+        ],
+        "stat_r2_mean": {
+          "llr": -0.4052,
+          "max_abs": -0.4126,
+          "kurtosis": -0.4307
+        }
+      },
+      "label": {
+        "acc_mean": 0.526,
+        "acc_ci95": [
+          0.496,
+          0.549
+        ],
+        "acc_per_seed": [
+          0.545,
+          0.47,
+          0.535,
+          0.52,
+          0.56
+        ],
+        "stat_r2_mean": {
+          "llr": -0.205,
+          "max_abs": -0.2011,
+          "kurtosis": -0.2966
+        }
+      }
+    },
+    "patchtst_fm": {
+      "none": {
+        "acc_mean": 0.704,
+        "acc_ci95": [
+          0.675,
+          0.733
+        ],
+        "acc_per_seed": [
+          0.655,
+          0.695,
+          0.74,
+          0.745,
+          0.685
+        ],
+        "stat_r2_mean": {
+          "llr": -0.1929,
+          "max_abs": -0.2392,
+          "kurtosis": 0.0858
+        }
+      },
+      "statistics": {
+        "acc_mean": 0.518,
+        "acc_ci95": [
+          0.501,
+          0.545
+        ],
+        "acc_per_seed": [
+          0.515,
+          0.5,
+          0.57,
+          0.5,
+          0.505
+        ],
+        "stat_r2_mean": {
+          "llr": -0.009,
+          "max_abs": -0.0088,
+          "kurtosis": -0.0082
+        }
+      },
+      "random": {
+        "acc_mean": 0.7,
+        "acc_ci95": [
+          0.668,
+          0.732
+        ],
+        "acc_per_seed": [
+          0.655,
+          0.7,
+          0.75,
+          0.73,
+          0.665
+        ],
+        "stat_r2_mean": {
+          "llr": -0.2005,
+          "max_abs": -0.2478,
+          "kurtosis": 0.0813
+        }
+      },
+      "label": {
+        "acc_mean": 0.469,
+        "acc_ci95": [
+          0.446,
+          0.49
+        ],
+        "acc_per_seed": [
+          0.485,
+          0.43,
+          0.5,
+          0.475,
+          0.455
+        ],
+        "stat_r2_mean": {
+          "llr": -0.2183,
+          "max_abs": -0.2221,
+          "kurtosis": -0.1744
+        }
+      }
+    },
+    "hand_crafted": {
+      "none": {
+        "acc_mean": 0.858,
+        "acc_ci95": [
+          0.837,
+          0.8821
+        ],
+        "acc_per_seed": [
+          0.875,
+          0.845,
+          0.835,
+          0.9,
+          0.835
+        ],
+        "stat_r2_mean": {
+          "llr": 0.8984,
+          "max_abs": 0.8796,
+          "kurtosis": 1.0
+        }
+      },
+      "statistics": {
+        "acc_mean": 0.492,
+        "acc_ci95": [
+          0.468,
+          0.522
+        ],
+        "acc_per_seed": [
+          0.49,
+          0.485,
+          0.455,
+          0.545,
+          0.485
+        ],
+        "stat_r2_mean": {
+          "llr": -0.0091,
+          "max_abs": -0.0087,
+          "kurtosis": -0.0082
+        }
+      },
+      "random": {
+        "acc_mean": 0.711,
+        "acc_ci95": [
+          0.668,
+          0.75
+        ],
+        "acc_per_seed": [
+          0.68,
+          0.765,
+          0.74,
+          0.73,
+          0.64
+        ],
+        "stat_r2_mean": {
+          "llr": 0.5601,
+          "max_abs": 0.5496,
+          "kurtosis": 0.605
+        }
+      },
+      "label": {
+        "acc_mean": 0.469,
+        "acc_ci95": [
+          0.446,
+          0.49
+        ],
+        "acc_per_seed": [
+          0.485,
+          0.43,
+          0.5,
+          0.475,
+          0.455
+        ],
+        "stat_r2_mean": {
+          "llr": 0.0074,
+          "max_abs": 0.006,
+          "kurtosis": 0.0866
+        }
+      }
+    }
+  },
+  "command": "scripts/run_statistic_erasure.py --out outputs/statistic_erasure"
+}

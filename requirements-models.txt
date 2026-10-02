@@ -1,0 +1,15 @@
+# Model-loading packages installed WITHOUT dependency resolution (after requirements.txt):
+#
+#   python -m pip install --no-deps -r requirements-models.txt
+#
+# Their published metadata pins versions that contradict requirements.txt, although the code paths
+# TSFMI uses run with the requirements.txt versions (verified by outputs/canonical_v2/):
+#   momentfm 0.1.4            -> huggingface-hub==0.24.0, transformers==4.33.3, numpy==1.25.2
+#   uni2ts 2.0.0 (Moirai)     -> torch<2.5, numpy~=1.26, scipy~=1.11.3, datasets~=2.17.1,
+#                                gluonts~=0.14.3, jax
+#   chronos-forecasting 2.2.2 -> no conflict; listed here so all model packages install the same way
+# The remaining transitive packages (gluonts, lightning, accelerate, jaxtyping, ...) are pinned in the
+# full lock, outputs/canonical_v2/environment.txt.
+momentfm==0.1.4
+chronos-forecasting==2.2.2
+uni2ts==2.0.0

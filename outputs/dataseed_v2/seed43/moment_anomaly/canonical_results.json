@@ -1,0 +1,50 @@
+{
+  "representations_dir": "outputs/representations_v2_dataseed43/raw/moment/synthetic_anomaly",
+  "property": "anomaly",
+  "task_type": "classification",
+  "seeds": [
+    0,
+    1,
+    2,
+    3,
+    4
+  ],
+  "val_score_per_seed": [
+    0.555,
+    0.555,
+    0.545,
+    0.57,
+    0.565
+  ],
+  "test_score_per_seed": [
+    0.505,
+    0.495,
+    0.515,
+    0.455,
+    0.535
+  ],
+  "best_layer_per_seed": [
+    "encoder_block_23",
+    "encoder_block_14",
+    "encoder_block_16",
+    "encoder_block_8",
+    "encoder_block_10"
+  ],
+  "test_mean": 0.501,
+  "test_ci95_low": 0.475,
+  "test_ci95_high": 0.521,
+  "protocol": {
+    "split": "60/20/20 train/val/test",
+    "selection": "best layer chosen on val only",
+    "reporting": "test score only",
+    "estimator": "sklearn LogisticRegression",
+    "n_bootstrap": 1000,
+    "pca_in_pipeline": {
+      "n_components": 512,
+      "pipeline": "StandardScaler -> PCA -> estimator",
+      "fit_scope": "training split of each split seed only",
+      "input": "flattened full-dimensional layer representations",
+      "skipped_when": "layer dim <= 512"
+    }
+  }
+}

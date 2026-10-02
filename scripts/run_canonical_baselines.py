@@ -13,10 +13,13 @@ Baselines:
     - random projection (256D Gaussian projection of raw signal)
 
 Output: outputs/canonical_baselines/<property>/canonical_results.json
+(override with --output_dir; --num_samples / --seq_len / --data_seed default to the
+published 1000 / 512 / 42).
 """
 
 from __future__ import annotations
 
+import argparse
 import json
 from pathlib import Path
 
@@ -29,11 +32,16 @@ from sklearn.preprocessing import StandardScaler
 
 from src.datasets.synthetic import (
     generate_anomaly_dataset,
+    generate_anomaly_hard_dataset,
     generate_change_point_dataset,
+    generate_change_point_hard_dataset,
     generate_frequency_dataset,
+    generate_frequency_hard_dataset,
     generate_seasonality_dataset,
     generate_stationarity_dataset,
+    generate_stationarity_hard_dataset,
     generate_trend_dataset,
+    generate_trend_hard_dataset,
 )
 from src.utils.seed import seed_everything
 
@@ -164,14 +172,45 @@ DATASETS = {
     "anomaly": ("classification", generate_anomaly_dataset),
     "change_point": ("classification", generate_change_point_dataset),
 }
+# Hard variants (no seasonality_hard generator exists). Not run by default, so the default
+# invocation still reproduces outputs/canonical_baselines.
+HARD_DATASETS = {
+    "trend_hard": ("classification", generate_trend_hard_dataset),
+    "frequency_hard": ("classification", generate_frequency_hard_dataset),
+    "anomaly_hard": ("classification", generate_anomaly_hard_dataset),
+    "stationarity_hard": ("classification", generate_stationarity_hard_dataset),
+    "change_point_hard": ("classification", generate_change_point_hard_dataset),
+}
 
 
-def main() -> None:
+def parse_args(argv: list[str] | None = None) -> argparse.Namespace:
+    """Parse CLI arguments; defaults reproduce outputs/canonical_baselines."""
+    p = argparse.ArgumentParser(description="Canonical no-model baseline controls")
+    p.add_argument("--output_dir", type=str, default=str(OUT_ROOT))
+    p.add_argument("--num_samples", type=int, default=NUM_SAMPLES)
+    p.add_argument("--seq_len", type=int, default=SEQ_LEN)
+    p.add_argument("--data_seed", type=int, default=42)
+    p.add_argument(
+        "--properties",
+        nargs="*",
+        default=list(DATASETS),
+        choices=list(DATASETS) + list(HARD_DATASETS),
+        help="Properties to run (default: the six canonical ones).",
+    )
+    return p.parse_args(argv)
+
+
+def main(argv: list[str] | None = None) -> None:
+    args = parse_args(argv)
+    out_root = Path(args.output_dir)
+    out_root.mkdir(parents=True, exist_ok=True)
     seed_everything(42)
     all_results = []
 
-    for prop_name, (task, gen_fn) in DATASETS.items():
-        ds = gen_fn(NUM_SAMPLES, SEQ_LEN, seed=42)
+    registry = {**DATASETS, **HARD_DATASETS}
+    for prop_name in args.properties:
+        task, gen_fn = registry[prop_name]
+        ds = gen_fn(args.num_samples, args.seq_len, seed=args.data_seed)
         sequences = ds.sequences
         labels = ds.labels
 
@@ -208,7 +247,7 @@ def main() -> None:
             )
 
         # Save per-property
-        out_dir = OUT_ROOT / prop_name
+        out_dir = out_root / prop_name
         out_dir.mkdir(parents=True, exist_ok=True)
         prop_results = [r for r in all_results if r["property"] == prop_name]
         (out_dir / "canonical_results.json").write_text(
@@ -216,8 +255,8 @@ def main() -> None:
         )
 
     # Save all
-    (OUT_ROOT / "all_results.json").write_text(json.dumps(all_results, indent=2))
-    print(f"\nSaved to {OUT_ROOT}")
+    (out_root / "all_results.json").write_text(json.dumps(all_results, indent=2))
+    print(f"\nSaved to {out_root}")
 
 
 if __name__ == "__main__":

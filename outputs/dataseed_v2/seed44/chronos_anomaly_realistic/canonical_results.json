@@ -1,0 +1,43 @@
+{
+  "representations_dir": "outputs/representations_v2_dataseed44/chronos_meanpool/synthetic_anomaly_realistic",
+  "property": "anomaly_realistic",
+  "task_type": "classification",
+  "seeds": [
+    0,
+    1,
+    2,
+    3,
+    4
+  ],
+  "val_score_per_seed": [
+    0.735,
+    0.73,
+    0.69,
+    0.73,
+    0.7
+  ],
+  "test_score_per_seed": [
+    0.645,
+    0.66,
+    0.73,
+    0.74,
+    0.67
+  ],
+  "best_layer_per_seed": [
+    "encoder_block_3",
+    "encoder_block_3",
+    "encoder_block_0",
+    "encoder_block_0",
+    "encoder_block_1"
+  ],
+  "test_mean": 0.689,
+  "test_ci95_low": 0.656,
+  "test_ci95_high": 0.722,
+  "protocol": {
+    "split": "60/20/20 train/val/test",
+    "selection": "best layer chosen on val only",
+    "reporting": "test score only",
+    "estimator": "sklearn LogisticRegression",
+    "n_bootstrap": 1000
+  }
+}

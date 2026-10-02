@@ -1,0 +1,43 @@
+{
+  "representations_dir": "outputs/representations_v2/timesfm_meanpool/synthetic_frequency_hard",
+  "property": "frequency_hard",
+  "task_type": "classification",
+  "seeds": [
+    0,
+    1,
+    2,
+    3,
+    4
+  ],
+  "val_score_per_seed": [
+    1.0,
+    1.0,
+    1.0,
+    1.0,
+    0.995
+  ],
+  "test_score_per_seed": [
+    1.0,
+    0.98,
+    1.0,
+    0.99,
+    1.0
+  ],
+  "best_layer_per_seed": [
+    "layers_46",
+    "layers_23",
+    "layers_44",
+    "layers_25",
+    "layers_25"
+  ],
+  "test_mean": 0.994,
+  "test_ci95_low": 0.986,
+  "test_ci95_high": 1.0,
+  "protocol": {
+    "split": "60/20/20 train/val/test",
+    "selection": "best layer chosen on val only",
+    "reporting": "test score only",
+    "estimator": "sklearn LogisticRegression",
+    "n_bootstrap": 1000
+  }
+}

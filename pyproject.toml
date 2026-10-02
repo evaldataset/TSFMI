@@ -7,7 +7,7 @@ name = "tsfmi"
 version = "0.1.0"
 description = "Time Series Foundation Model Interpretability via Linear Probing"
 readme = "README.md"
-requires-python = ">=3.10"
+requires-python = ">=3.11"
 license = {text = "MIT"}
 authors = [
     {name = "TSFMI Contributors"}
@@ -24,29 +24,30 @@ classifiers = [
 dependencies = [
     # Versions are pinned in requirements.txt. The bounds below mirror the pin;
     # for a fully reproducible run, install via `pip install -r requirements.txt`
-    # first, then `pip install -e ".[dev]"`.
+    # first, then `pip install -e ".[dev]"`. momentfm (MOMENT) is not listed: its
+    # metadata pins huggingface-hub==0.24.0 / transformers==4.33.3 / numpy==1.25.2,
+    # so it is installed with --no-deps from requirements-models.txt.
     "torch==2.10.0",
     "transformers==4.57.6",
-    "momentfm==0.1.4",
-    "numpy==1.26.4",
-    "pandas==2.1.4",
-    "scipy==1.11.4",
-    "scikit-learn==1.8.0",
+    "numpy==2.3.5",
+    "pandas==2.3.3",
+    "scipy==1.17.1",
+    "scikit-learn==1.7.2",
     "matplotlib==3.10.8",
     "seaborn==0.13.2",
     "einops==0.7.0",
     "pyyaml==6.0.3",
     "dacite==1.9.2",
     "concept-erasure==0.2.4",
-    "statsmodels==0.14.4",
+    "statsmodels==0.14.6",
 ]
 
 [project.optional-dependencies]
 dev = [
     "pytest==9.0.2",
     "pytest-cov==7.0.0",
-    "ruff==0.14.3",
-    "mypy==1.18.2",
+    "ruff==0.15.4",
+    "mypy==1.19.1",
 ]
 
 [tool.setuptools.packages.find]

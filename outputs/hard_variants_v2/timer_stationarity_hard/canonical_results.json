@@ -1,0 +1,43 @@
+{
+  "representations_dir": "outputs/representations_v2/timer_meanpool/synthetic_stationarity_hard",
+  "property": "stationarity_hard",
+  "task_type": "classification",
+  "seeds": [
+    0,
+    1,
+    2,
+    3,
+    4
+  ],
+  "val_score_per_seed": [
+    0.995,
+    0.995,
+    0.995,
+    0.995,
+    0.99
+  ],
+  "test_score_per_seed": [
+    0.995,
+    0.995,
+    0.99,
+    0.995,
+    0.99
+  ],
+  "best_layer_per_seed": [
+    "model_layers_1",
+    "model_layers_1",
+    "model_layers_1",
+    "model_layers_0",
+    "model_layers_1"
+  ],
+  "test_mean": 0.993,
+  "test_ci95_low": 0.991,
+  "test_ci95_high": 0.995,
+  "protocol": {
+    "split": "60/20/20 train/val/test",
+    "selection": "best layer chosen on val only",
+    "reporting": "test score only",
+    "estimator": "sklearn LogisticRegression",
+    "n_bootstrap": 1000
+  }
+}

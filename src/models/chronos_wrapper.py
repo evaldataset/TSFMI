@@ -100,12 +100,31 @@ class ChronosBoltWrapper(BaseModelWrapper):
             parameter.requires_grad = False
         self._model.eval()
 
+    _REQUIRED_MODEL_ATTRS = (
+        "dtype",
+        "encoder",
+        "chronos_config",
+        "config",
+        "instance_norm",
+        "patch",
+        "input_patch_embedding",
+        "shared",
+    )
+
     def _chronos_model(self) -> _ChronosModelProtocol:
         if self._model is None:
             raise RuntimeError("Model not loaded. Call load() first.")
-        if not isinstance(self._model, _ChronosModelProtocol):
-            raise RuntimeError("Chronos-Bolt model does not expose the expected encoder API.")
-        return self._model
+        # Duck-typed structural check. ``@runtime_checkable`` Protocols with data
+        # members are unreliable under ``isinstance`` (they can yield false
+        # negatives across chronos releases), so we verify the required encoder
+        # API explicitly instead.
+        missing = [a for a in self._REQUIRED_MODEL_ATTRS if not hasattr(self._model, a)]
+        if missing or not hasattr(self._model.encoder, "block"):
+            raise RuntimeError(
+                "Chronos-Bolt model does not expose the expected encoder API "
+                f"(missing: {missing or ['encoder.block']})."
+            )
+        return self._model  # type: ignore[return-value]
 
     def get_layer_names(self) -> list[str]:
         """Return Chronos-Bolt encoder block names for HookManager."""

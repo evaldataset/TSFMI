@@ -1,0 +1,43 @@
+{
+  "representations_dir": "outputs/representations_v2/patchtst_fm_meanpool/synthetic_trend_hard",
+  "property": "trend_hard",
+  "task_type": "classification",
+  "seeds": [
+    0,
+    1,
+    2,
+    3,
+    4
+  ],
+  "val_score_per_seed": [
+    0.995,
+    0.98,
+    0.97,
+    0.965,
+    0.965
+  ],
+  "test_score_per_seed": [
+    0.985,
+    0.98,
+    0.97,
+    0.96,
+    0.97
+  ],
+  "best_layer_per_seed": [
+    "backbone_blocks_11",
+    "backbone_blocks_14",
+    "backbone_blocks_16",
+    "backbone_blocks_16",
+    "backbone_blocks_11"
+  ],
+  "test_mean": 0.973,
+  "test_ci95_low": 0.966,
+  "test_ci95_high": 0.981,
+  "protocol": {
+    "split": "60/20/20 train/val/test",
+    "selection": "best layer chosen on val only",
+    "reporting": "test score only",
+    "estimator": "sklearn LogisticRegression",
+    "n_bootstrap": 1000
+  }
+}

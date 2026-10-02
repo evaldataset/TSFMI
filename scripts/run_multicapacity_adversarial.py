@@ -16,6 +16,7 @@ Output: outputs/multicapacity_probe/results.json
 from __future__ import annotations
 
 import json
+import os
 from pathlib import Path
 
 import numpy as np
@@ -46,7 +47,8 @@ from src.utils.seed import seed_everything
 
 OUT_DIR = Path("outputs/multicapacity_probe")
 OUT_DIR.mkdir(parents=True, exist_ok=True)
-REPR_ROOT = Path("outputs/representations")
+# Canonical v2 store by default; override with TSFMI_REPR_ROOT.
+REPR_ROOT = Path(os.environ.get("TSFMI_REPR_ROOT", "outputs/representations_v2"))
 
 SEED = 42
 NUM_SAMPLES = 1000
