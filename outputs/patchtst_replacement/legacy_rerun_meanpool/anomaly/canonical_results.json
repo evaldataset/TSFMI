@@ -1,0 +1,43 @@
+{
+  "representations_dir": "outputs/representations_patchtst_legacy_rerun/patchtst_pretrained_meanpool/synthetic_anomaly",
+  "property": "anomaly",
+  "task_type": "classification",
+  "seeds": [
+    0,
+    1,
+    2,
+    3,
+    4
+  ],
+  "val_score_per_seed": [
+    0.475,
+    0.51,
+    0.475,
+    0.51,
+    0.49
+  ],
+  "test_score_per_seed": [
+    0.475,
+    0.475,
+    0.47,
+    0.44,
+    0.425
+  ],
+  "best_layer_per_seed": [
+    "model_encoder_layers_0",
+    "model_encoder_layers_0",
+    "model_encoder_layers_1",
+    "model_encoder_layers_0",
+    "model_encoder_layers_0"
+  ],
+  "test_mean": 0.457,
+  "test_ci95_low": 0.438,
+  "test_ci95_high": 0.474,
+  "protocol": {
+    "split": "60/20/20 train/val/test",
+    "selection": "best layer chosen on val only",
+    "reporting": "test score only",
+    "estimator": "sklearn LogisticRegression",
+    "n_bootstrap": 1000
+  }
+}

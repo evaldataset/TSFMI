@@ -1,0 +1,43 @@
+{
+  "representations_dir": "outputs/representations_v2_dataseed44/timesfm_meanpool/synthetic_anomaly_realistic",
+  "property": "anomaly_realistic",
+  "task_type": "classification",
+  "seeds": [
+    0,
+    1,
+    2,
+    3,
+    4
+  ],
+  "val_score_per_seed": [
+    0.82,
+    0.755,
+    0.785,
+    0.78,
+    0.76
+  ],
+  "test_score_per_seed": [
+    0.7,
+    0.675,
+    0.74,
+    0.75,
+    0.795
+  ],
+  "best_layer_per_seed": [
+    "layers_20",
+    "layers_5",
+    "layers_12",
+    "layers_31",
+    "layers_12"
+  ],
+  "test_mean": 0.732,
+  "test_ci95_low": 0.698,
+  "test_ci95_high": 0.767,
+  "protocol": {
+    "split": "60/20/20 train/val/test",
+    "selection": "best layer chosen on val only",
+    "reporting": "test score only",
+    "estimator": "sklearn LogisticRegression",
+    "n_bootstrap": 1000
+  }
+}

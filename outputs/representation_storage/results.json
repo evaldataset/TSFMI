@@ -1,0 +1,95 @@
+{
+  "dataset": "synthetic_anomaly",
+  "num_samples": 1000,
+  "seq_len": 512,
+  "input": {
+    "shape": [
+      1000,
+      512
+    ],
+    "dtype": "float32",
+    "bytes": 2048000
+  },
+  "models": {
+    "moment": {
+      "directory": "raw/moment/synthetic_anomaly",
+      "view": "all layers, per patch token",
+      "n_layers": 24,
+      "layer_shape": [
+        1000,
+        64,
+        1024
+      ],
+      "dtype": "float32",
+      "bytes": 6291495290
+    },
+    "gpt4ts": {
+      "directory": "raw/gpt4ts/synthetic_anomaly",
+      "view": "all layers, per token",
+      "n_layers": 12,
+      "layer_shape": [
+        1000,
+        32,
+        768
+      ],
+      "dtype": "float32",
+      "bytes": 1179667610
+    },
+    "chronos": {
+      "directory": "chronos_meanpool/synthetic_anomaly",
+      "view": "all layers, mean-pooled",
+      "n_layers": 6,
+      "layer_shape": [
+        1000,
+        512
+      ],
+      "dtype": "float32",
+      "bytes": 12297798
+    },
+    "timer": {
+      "directory": "timer_meanpool/synthetic_anomaly",
+      "view": "all layers, mean-pooled",
+      "n_layers": 8,
+      "layer_shape": [
+        1000,
+        1024
+      ],
+      "dtype": "float32",
+      "bytes": 32781008
+    },
+    "timesfm": {
+      "directory": "timesfm_meanpool/synthetic_anomaly",
+      "view": "all layers, mean-pooled",
+      "n_layers": 50,
+      "layer_shape": [
+        1000,
+        1280
+      ],
+      "dtype": "float32",
+      "bytes": 256079480
+    },
+    "moirai": {
+      "directory": "moirai_meanpool/synthetic_anomaly",
+      "view": "all layers, mean-pooled",
+      "n_layers": 6,
+      "layer_shape": [
+        1000,
+        384
+      ],
+      "dtype": "float32",
+      "bytes": 9225840
+    },
+    "patchtst_fm": {
+      "directory": "patchtst_fm_meanpool/synthetic_anomaly",
+      "view": "all layers, mean-pooled",
+      "n_layers": 20,
+      "layer_shape": [
+        1000,
+        1024
+      ],
+      "dtype": "float32",
+      "bytes": 81953010
+    }
+  },
+  "command": "scripts/measure_representation_storage.py --repr-root outputs/representations_v2 --out outputs/representation_storage"
+}

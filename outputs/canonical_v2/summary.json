@@ -1,0 +1,3040 @@
+{
+  "protocol": {
+    "data": "6 synthetic properties, n=1000, seq_len=512, data seed 42",
+    "split": "60/20/20 train/val/test, split seeds 0-4",
+    "selection": "best layer on validation only; test score reported",
+    "ci": "1000-resample bootstrap over the 5 seed scores, 95%",
+    "estimator": "StandardScaler + LogisticRegression(lbfgs, max_iter=1000) / Ridge(1.0)",
+    "views": {
+      "moment": "flattened full layer; PCA-512 fit on train split per seed (in pipeline)",
+      "gpt4ts": "flattened full layer; PCA-512 fit on train split per seed (in pipeline)",
+      "chronos": "mean-pool over tokens",
+      "timer": "mean-pool over patches",
+      "timesfm": "mean-pool over patches",
+      "moirai": "mean-pool over patches",
+      "patchtst_fm": "mean-pool over patches"
+    }
+  },
+  "cells": [
+    {
+      "kind": "model",
+      "name": "moment",
+      "property": "trend",
+      "metric": "acc",
+      "new": {
+        "mean": 1.0,
+        "ci95": [
+          1.0,
+          1.0
+        ],
+        "per_seed": [
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0
+        ],
+        "best_layer_per_seed": [
+          "encoder_block_0",
+          "encoder_block_0",
+          "encoder_block_0",
+          "encoder_block_0",
+          "encoder_block_0"
+        ]
+      },
+      "new_view": "flattened full layer; PCA-512 fit on train split per seed (in pipeline)",
+      "old_source": "outputs/canonical/moment_pca512_trend",
+      "old_recipe": "n=5000; PCA-512 fit on all 5000 samples (incl. val/test) before splitting",
+      "old": {
+        "mean": 1.0,
+        "ci95": [
+          1.0,
+          1.0
+        ],
+        "per_seed": [
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0
+        ],
+        "best_layer_per_seed": [
+          "encoder_block_0",
+          "encoder_block_0",
+          "encoder_block_0",
+          "encoder_block_0",
+          "encoder_block_0"
+        ]
+      },
+      "delta": 0.0,
+      "outside_old_ci": false,
+      "ci_overlap": true
+    },
+    {
+      "kind": "model",
+      "name": "moment",
+      "property": "seasonality",
+      "metric": "R2",
+      "new": {
+        "mean": 1.0,
+        "ci95": [
+          1.0,
+          1.0
+        ],
+        "per_seed": [
+          0.9999,
+          1.0,
+          1.0,
+          1.0,
+          1.0
+        ],
+        "best_layer_per_seed": [
+          "encoder_block_17",
+          "encoder_block_20",
+          "encoder_block_20",
+          "encoder_block_23",
+          "encoder_block_23"
+        ]
+      },
+      "new_view": "flattened full layer; PCA-512 fit on train split per seed (in pipeline)",
+      "old_source": "outputs/canonical/moment_pca512_seasonality",
+      "old_recipe": "n=5000; PCA-512 fit on all 5000 samples (incl. val/test) before splitting",
+      "old": {
+        "mean": 1.0,
+        "ci95": [
+          1.0,
+          1.0
+        ],
+        "per_seed": [
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0
+        ],
+        "best_layer_per_seed": [
+          "encoder_block_17",
+          "encoder_block_17",
+          "encoder_block_23",
+          "encoder_block_20",
+          "encoder_block_17"
+        ]
+      },
+      "delta": 0.0,
+      "outside_old_ci": false,
+      "ci_overlap": true
+    },
+    {
+      "kind": "model",
+      "name": "moment",
+      "property": "frequency",
+      "metric": "acc",
+      "new": {
+        "mean": 1.0,
+        "ci95": [
+          1.0,
+          1.0
+        ],
+        "per_seed": [
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0
+        ],
+        "best_layer_per_seed": [
+          "encoder_block_0",
+          "encoder_block_0",
+          "encoder_block_0",
+          "encoder_block_0",
+          "encoder_block_0"
+        ]
+      },
+      "new_view": "flattened full layer; PCA-512 fit on train split per seed (in pipeline)",
+      "old_source": "outputs/canonical/moment_pca512_frequency",
+      "old_recipe": "n=5000; PCA-512 fit on all 5000 samples (incl. val/test) before splitting",
+      "old": {
+        "mean": 1.0,
+        "ci95": [
+          1.0,
+          1.0
+        ],
+        "per_seed": [
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0
+        ],
+        "best_layer_per_seed": [
+          "encoder_block_0",
+          "encoder_block_0",
+          "encoder_block_0",
+          "encoder_block_0",
+          "encoder_block_0"
+        ]
+      },
+      "delta": 0.0,
+      "outside_old_ci": false,
+      "ci_overlap": true
+    },
+    {
+      "kind": "model",
+      "name": "moment",
+      "property": "stationarity",
+      "metric": "acc",
+      "new": {
+        "mean": 1.0,
+        "ci95": [
+          1.0,
+          1.0
+        ],
+        "per_seed": [
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0
+        ],
+        "best_layer_per_seed": [
+          "encoder_block_0",
+          "encoder_block_0",
+          "encoder_block_0",
+          "encoder_block_0",
+          "encoder_block_0"
+        ]
+      },
+      "new_view": "flattened full layer; PCA-512 fit on train split per seed (in pipeline)",
+      "old_source": "outputs/canonical/moment_pca512_stationarity",
+      "old_recipe": "n=5000; PCA-512 fit on all 5000 samples (incl. val/test) before splitting",
+      "old": {
+        "mean": 1.0,
+        "ci95": [
+          1.0,
+          1.0
+        ],
+        "per_seed": [
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0
+        ],
+        "best_layer_per_seed": [
+          "encoder_block_0",
+          "encoder_block_0",
+          "encoder_block_0",
+          "encoder_block_0",
+          "encoder_block_0"
+        ]
+      },
+      "delta": 0.0,
+      "outside_old_ci": false,
+      "ci_overlap": true
+    },
+    {
+      "kind": "model",
+      "name": "moment",
+      "property": "anomaly",
+      "metric": "acc",
+      "new": {
+        "mean": 0.53,
+        "ci95": [
+          0.518,
+          0.542
+        ],
+        "per_seed": [
+          0.545,
+          0.51,
+          0.545,
+          0.52,
+          0.53
+        ],
+        "best_layer_per_seed": [
+          "encoder_block_17",
+          "encoder_block_12",
+          "encoder_block_20",
+          "encoder_block_5",
+          "encoder_block_10"
+        ]
+      },
+      "new_view": "flattened full layer; PCA-512 fit on train split per seed (in pipeline)",
+      "old_source": "outputs/canonical/moment_pca512_anomaly",
+      "old_recipe": "n=5000; PCA-512 fit on all 5000 samples (incl. val/test) before splitting",
+      "old": {
+        "mean": 0.5486,
+        "ci95": [
+          0.5386,
+          0.5648
+        ],
+        "per_seed": [
+          0.545,
+          0.535,
+          0.539,
+          0.578,
+          0.546
+        ],
+        "best_layer_per_seed": [
+          "encoder_block_11",
+          "encoder_block_11",
+          "encoder_block_8",
+          "encoder_block_17",
+          "encoder_block_16"
+        ]
+      },
+      "delta": -0.0186,
+      "outside_old_ci": true,
+      "ci_overlap": true
+    },
+    {
+      "kind": "model",
+      "name": "moment",
+      "property": "change_point",
+      "metric": "acc",
+      "new": {
+        "mean": 1.0,
+        "ci95": [
+          1.0,
+          1.0
+        ],
+        "per_seed": [
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0
+        ],
+        "best_layer_per_seed": [
+          "encoder_block_0",
+          "encoder_block_0",
+          "encoder_block_0",
+          "encoder_block_0",
+          "encoder_block_0"
+        ]
+      },
+      "new_view": "flattened full layer; PCA-512 fit on train split per seed (in pipeline)",
+      "old_source": "outputs/canonical/moment_pca512_change_point",
+      "old_recipe": "n=5000; PCA-512 fit on all 5000 samples (incl. val/test) before splitting",
+      "old": {
+        "mean": 1.0,
+        "ci95": [
+          1.0,
+          1.0
+        ],
+        "per_seed": [
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0
+        ],
+        "best_layer_per_seed": [
+          "encoder_block_0",
+          "encoder_block_0",
+          "encoder_block_0",
+          "encoder_block_0",
+          "encoder_block_0"
+        ]
+      },
+      "delta": 0.0,
+      "outside_old_ci": false,
+      "ci_overlap": true
+    },
+    {
+      "kind": "model",
+      "name": "gpt4ts",
+      "property": "trend",
+      "metric": "acc",
+      "new": {
+        "mean": 1.0,
+        "ci95": [
+          1.0,
+          1.0
+        ],
+        "per_seed": [
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0
+        ],
+        "best_layer_per_seed": [
+          "transformer_h_0",
+          "transformer_h_0",
+          "transformer_h_0",
+          "transformer_h_0",
+          "transformer_h_0"
+        ]
+      },
+      "new_view": "flattened full layer; PCA-512 fit on train split per seed (in pipeline)",
+      "old_source": "outputs/canonical/gpt4ts_pca512_trend",
+      "old_recipe": "n=5000; PCA-512 fit on all 5000 samples (incl. val/test) before splitting",
+      "old": {
+        "mean": 1.0,
+        "ci95": [
+          1.0,
+          1.0
+        ],
+        "per_seed": [
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0
+        ],
+        "best_layer_per_seed": [
+          "transformer_h_0",
+          "transformer_h_0",
+          "transformer_h_0",
+          "transformer_h_0",
+          "transformer_h_0"
+        ]
+      },
+      "delta": 0.0,
+      "outside_old_ci": false,
+      "ci_overlap": true
+    },
+    {
+      "kind": "model",
+      "name": "gpt4ts",
+      "property": "seasonality",
+      "metric": "R2",
+      "new": {
+        "mean": 0.9998,
+        "ci95": [
+          0.9997,
+          0.9998
+        ],
+        "per_seed": [
+          0.9997,
+          0.9998,
+          0.9998,
+          0.9997,
+          0.9998
+        ],
+        "best_layer_per_seed": [
+          "transformer_h_2",
+          "transformer_h_2",
+          "transformer_h_2",
+          "transformer_h_4",
+          "transformer_h_10"
+        ]
+      },
+      "new_view": "flattened full layer; PCA-512 fit on train split per seed (in pipeline)",
+      "old_source": "outputs/canonical/gpt4ts_pca512_seasonality",
+      "old_recipe": "n=5000; PCA-512 fit on all 5000 samples (incl. val/test) before splitting",
+      "old": {
+        "mean": 0.9998,
+        "ci95": [
+          0.9997,
+          0.9998
+        ],
+        "per_seed": [
+          0.9998,
+          0.9998,
+          0.9997,
+          0.9998,
+          0.9998
+        ],
+        "best_layer_per_seed": [
+          "transformer_h_0",
+          "transformer_h_0",
+          "transformer_h_11",
+          "transformer_h_1",
+          "transformer_h_0"
+        ]
+      },
+      "delta": 0.0,
+      "outside_old_ci": false,
+      "ci_overlap": true
+    },
+    {
+      "kind": "model",
+      "name": "gpt4ts",
+      "property": "frequency",
+      "metric": "acc",
+      "new": {
+        "mean": 1.0,
+        "ci95": [
+          1.0,
+          1.0
+        ],
+        "per_seed": [
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0
+        ],
+        "best_layer_per_seed": [
+          "transformer_h_0",
+          "transformer_h_0",
+          "transformer_h_0",
+          "transformer_h_0",
+          "transformer_h_0"
+        ]
+      },
+      "new_view": "flattened full layer; PCA-512 fit on train split per seed (in pipeline)",
+      "old_source": "outputs/canonical/gpt4ts_pca512_frequency",
+      "old_recipe": "n=5000; PCA-512 fit on all 5000 samples (incl. val/test) before splitting",
+      "old": {
+        "mean": 1.0,
+        "ci95": [
+          1.0,
+          1.0
+        ],
+        "per_seed": [
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0
+        ],
+        "best_layer_per_seed": [
+          "transformer_h_0",
+          "transformer_h_0",
+          "transformer_h_0",
+          "transformer_h_0",
+          "transformer_h_0"
+        ]
+      },
+      "delta": 0.0,
+      "outside_old_ci": false,
+      "ci_overlap": true
+    },
+    {
+      "kind": "model",
+      "name": "gpt4ts",
+      "property": "stationarity",
+      "metric": "acc",
+      "new": {
+        "mean": 1.0,
+        "ci95": [
+          1.0,
+          1.0
+        ],
+        "per_seed": [
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0
+        ],
+        "best_layer_per_seed": [
+          "transformer_h_10",
+          "transformer_h_0",
+          "transformer_h_0",
+          "transformer_h_0",
+          "transformer_h_0"
+        ]
+      },
+      "new_view": "flattened full layer; PCA-512 fit on train split per seed (in pipeline)",
+      "old_source": "outputs/canonical/gpt4ts_pca512_stationarity",
+      "old_recipe": "n=5000; PCA-512 fit on all 5000 samples (incl. val/test) before splitting",
+      "old": {
+        "mean": 1.0,
+        "ci95": [
+          1.0,
+          1.0
+        ],
+        "per_seed": [
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0
+        ],
+        "best_layer_per_seed": [
+          "transformer_h_0",
+          "transformer_h_0",
+          "transformer_h_0",
+          "transformer_h_0",
+          "transformer_h_0"
+        ]
+      },
+      "delta": 0.0,
+      "outside_old_ci": false,
+      "ci_overlap": true
+    },
+    {
+      "kind": "model",
+      "name": "gpt4ts",
+      "property": "anomaly",
+      "metric": "acc",
+      "new": {
+        "mean": 0.492,
+        "ci95": [
+          0.466,
+          0.518
+        ],
+        "per_seed": [
+          0.52,
+          0.5,
+          0.525,
+          0.46,
+          0.455
+        ],
+        "best_layer_per_seed": [
+          "transformer_h_2",
+          "transformer_h_10",
+          "transformer_h_10",
+          "transformer_h_1",
+          "transformer_h_11"
+        ]
+      },
+      "new_view": "flattened full layer; PCA-512 fit on train split per seed (in pipeline)",
+      "old_source": "outputs/canonical/gpt4ts_pca512_anomaly",
+      "old_recipe": "n=5000; PCA-512 fit on all 5000 samples (incl. val/test) before splitting",
+      "old": {
+        "mean": 0.5268,
+        "ci95": [
+          0.5082,
+          0.5396
+        ],
+        "per_seed": [
+          0.546,
+          0.493,
+          0.527,
+          0.533,
+          0.535
+        ],
+        "best_layer_per_seed": [
+          "transformer_h_10",
+          "transformer_h_10",
+          "transformer_h_3",
+          "transformer_h_0",
+          "transformer_h_1"
+        ]
+      },
+      "delta": -0.0348,
+      "outside_old_ci": true,
+      "ci_overlap": true
+    },
+    {
+      "kind": "model",
+      "name": "gpt4ts",
+      "property": "change_point",
+      "metric": "acc",
+      "new": {
+        "mean": 1.0,
+        "ci95": [
+          1.0,
+          1.0
+        ],
+        "per_seed": [
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0
+        ],
+        "best_layer_per_seed": [
+          "transformer_h_0",
+          "transformer_h_0",
+          "transformer_h_0",
+          "transformer_h_0",
+          "transformer_h_0"
+        ]
+      },
+      "new_view": "flattened full layer; PCA-512 fit on train split per seed (in pipeline)",
+      "old_source": "outputs/canonical/gpt4ts_pca512_change_point",
+      "old_recipe": "n=5000; PCA-512 fit on all 5000 samples (incl. val/test) before splitting",
+      "old": {
+        "mean": 1.0,
+        "ci95": [
+          1.0,
+          1.0
+        ],
+        "per_seed": [
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0
+        ],
+        "best_layer_per_seed": [
+          "transformer_h_0",
+          "transformer_h_0",
+          "transformer_h_0",
+          "transformer_h_0",
+          "transformer_h_0"
+        ]
+      },
+      "delta": 0.0,
+      "outside_old_ci": false,
+      "ci_overlap": true
+    },
+    {
+      "kind": "model",
+      "name": "chronos",
+      "property": "trend",
+      "metric": "acc",
+      "new": {
+        "mean": 1.0,
+        "ci95": [
+          1.0,
+          1.0
+        ],
+        "per_seed": [
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0
+        ],
+        "best_layer_per_seed": [
+          "encoder_block_0",
+          "encoder_block_0",
+          "encoder_block_0",
+          "encoder_block_0",
+          "encoder_block_0"
+        ]
+      },
+      "new_view": "mean-pool over tokens",
+      "old_source": "outputs/canonical/chronos_trend",
+      "old_recipe": "n=5000; mean-pool over 33 tokens",
+      "old": {
+        "mean": 1.0,
+        "ci95": [
+          1.0,
+          1.0
+        ],
+        "per_seed": [
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0
+        ],
+        "best_layer_per_seed": [
+          "encoder_block_0",
+          "encoder_block_0",
+          "encoder_block_0",
+          "encoder_block_0",
+          "encoder_block_0"
+        ]
+      },
+      "delta": 0.0,
+      "outside_old_ci": false,
+      "ci_overlap": true
+    },
+    {
+      "kind": "model",
+      "name": "chronos",
+      "property": "seasonality",
+      "metric": "R2",
+      "new": {
+        "mean": 0.9999,
+        "ci95": [
+          0.9999,
+          0.9999
+        ],
+        "per_seed": [
+          0.9999,
+          0.9999,
+          0.9999,
+          0.9999,
+          0.9999
+        ],
+        "best_layer_per_seed": [
+          "encoder_block_3",
+          "encoder_block_4",
+          "encoder_block_4",
+          "encoder_block_2",
+          "encoder_block_4"
+        ]
+      },
+      "new_view": "mean-pool over tokens",
+      "old_source": "outputs/canonical/chronos_seasonality",
+      "old_recipe": "n=5000; mean-pool over 33 tokens",
+      "old": {
+        "mean": 0.9999,
+        "ci95": [
+          0.9999,
+          1.0
+        ],
+        "per_seed": [
+          0.9999,
+          0.9999,
+          0.9999,
+          0.9999,
+          1.0
+        ],
+        "best_layer_per_seed": [
+          "encoder_block_4",
+          "encoder_block_4",
+          "encoder_block_5",
+          "encoder_block_4",
+          "encoder_block_4"
+        ]
+      },
+      "delta": 0.0,
+      "outside_old_ci": false,
+      "ci_overlap": true
+    },
+    {
+      "kind": "model",
+      "name": "chronos",
+      "property": "frequency",
+      "metric": "acc",
+      "new": {
+        "mean": 1.0,
+        "ci95": [
+          1.0,
+          1.0
+        ],
+        "per_seed": [
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0
+        ],
+        "best_layer_per_seed": [
+          "encoder_block_0",
+          "encoder_block_0",
+          "encoder_block_0",
+          "encoder_block_0",
+          "encoder_block_0"
+        ]
+      },
+      "new_view": "mean-pool over tokens",
+      "old_source": "outputs/canonical/chronos_frequency",
+      "old_recipe": "n=5000; mean-pool over 33 tokens",
+      "old": {
+        "mean": 1.0,
+        "ci95": [
+          1.0,
+          1.0
+        ],
+        "per_seed": [
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0
+        ],
+        "best_layer_per_seed": [
+          "encoder_block_0",
+          "encoder_block_0",
+          "encoder_block_0",
+          "encoder_block_0",
+          "encoder_block_0"
+        ]
+      },
+      "delta": 0.0,
+      "outside_old_ci": false,
+      "ci_overlap": true
+    },
+    {
+      "kind": "model",
+      "name": "chronos",
+      "property": "stationarity",
+      "metric": "acc",
+      "new": {
+        "mean": 1.0,
+        "ci95": [
+          1.0,
+          1.0
+        ],
+        "per_seed": [
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0
+        ],
+        "best_layer_per_seed": [
+          "encoder_block_0",
+          "encoder_block_0",
+          "encoder_block_0",
+          "encoder_block_0",
+          "encoder_block_0"
+        ]
+      },
+      "new_view": "mean-pool over tokens",
+      "old_source": "outputs/canonical/chronos_stationarity",
+      "old_recipe": "n=5000; mean-pool over 33 tokens",
+      "old": {
+        "mean": 1.0,
+        "ci95": [
+          1.0,
+          1.0
+        ],
+        "per_seed": [
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0
+        ],
+        "best_layer_per_seed": [
+          "encoder_block_0",
+          "encoder_block_0",
+          "encoder_block_0",
+          "encoder_block_0",
+          "encoder_block_0"
+        ]
+      },
+      "delta": 0.0,
+      "outside_old_ci": false,
+      "ci_overlap": true
+    },
+    {
+      "kind": "model",
+      "name": "chronos",
+      "property": "anomaly",
+      "metric": "acc",
+      "new": {
+        "mean": 0.676,
+        "ci95": [
+          0.669,
+          0.684
+        ],
+        "per_seed": [
+          0.675,
+          0.67,
+          0.665,
+          0.69,
+          0.68
+        ],
+        "best_layer_per_seed": [
+          "encoder_block_1",
+          "encoder_block_0",
+          "encoder_block_0",
+          "encoder_block_4",
+          "encoder_block_4"
+        ]
+      },
+      "new_view": "mean-pool over tokens",
+      "old_source": "outputs/canonical/chronos_anomaly",
+      "old_recipe": "n=5000; mean-pool over 33 tokens",
+      "old": {
+        "mean": 0.727,
+        "ci95": [
+          0.72,
+          0.735
+        ],
+        "per_seed": [
+          0.73,
+          0.726,
+          0.742,
+          0.719,
+          0.718
+        ],
+        "best_layer_per_seed": [
+          "encoder_block_3",
+          "encoder_block_5",
+          "encoder_block_5",
+          "encoder_block_3",
+          "encoder_block_3"
+        ]
+      },
+      "delta": -0.051,
+      "outside_old_ci": true,
+      "ci_overlap": false
+    },
+    {
+      "kind": "model",
+      "name": "chronos",
+      "property": "change_point",
+      "metric": "acc",
+      "new": {
+        "mean": 1.0,
+        "ci95": [
+          1.0,
+          1.0
+        ],
+        "per_seed": [
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0
+        ],
+        "best_layer_per_seed": [
+          "encoder_block_0",
+          "encoder_block_0",
+          "encoder_block_0",
+          "encoder_block_0",
+          "encoder_block_0"
+        ]
+      },
+      "new_view": "mean-pool over tokens",
+      "old_source": "outputs/canonical/chronos_change_point",
+      "old_recipe": "n=5000; mean-pool over 33 tokens",
+      "old": {
+        "mean": 1.0,
+        "ci95": [
+          1.0,
+          1.0
+        ],
+        "per_seed": [
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0
+        ],
+        "best_layer_per_seed": [
+          "encoder_block_0",
+          "encoder_block_0",
+          "encoder_block_0",
+          "encoder_block_0",
+          "encoder_block_0"
+        ]
+      },
+      "delta": 0.0,
+      "outside_old_ci": false,
+      "ci_overlap": true
+    },
+    {
+      "kind": "model",
+      "name": "timer",
+      "property": "trend",
+      "metric": "acc",
+      "new": {
+        "mean": 1.0,
+        "ci95": [
+          1.0,
+          1.0
+        ],
+        "per_seed": [
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0
+        ],
+        "best_layer_per_seed": [
+          "model_layers_0",
+          "model_layers_0",
+          "model_layers_0",
+          "model_layers_0",
+          "model_layers_0"
+        ]
+      },
+      "new_view": "mean-pool over patches",
+      "old_source": "outputs/canonical/timer_meanpool_trend",
+      "old_recipe": "n=1000; mean-pool over patches",
+      "old": {
+        "mean": 1.0,
+        "ci95": [
+          1.0,
+          1.0
+        ],
+        "per_seed": [
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0
+        ],
+        "best_layer_per_seed": [
+          "model_layers_0",
+          "model_layers_0",
+          "model_layers_0",
+          "model_layers_0",
+          "model_layers_0"
+        ]
+      },
+      "delta": 0.0,
+      "outside_old_ci": false,
+      "ci_overlap": true
+    },
+    {
+      "kind": "model",
+      "name": "timer",
+      "property": "seasonality",
+      "metric": "R2",
+      "new": {
+        "mean": 0.9999,
+        "ci95": [
+          0.9998,
+          0.9999
+        ],
+        "per_seed": [
+          0.9999,
+          0.9999,
+          0.9999,
+          0.9999,
+          0.9998
+        ],
+        "best_layer_per_seed": [
+          "model_layers_2",
+          "model_layers_2",
+          "model_layers_2",
+          "model_layers_4",
+          "model_layers_5"
+        ]
+      },
+      "new_view": "mean-pool over patches",
+      "old_source": "outputs/canonical/timer_meanpool_seasonality",
+      "old_recipe": "n=1000; mean-pool over patches",
+      "old": {
+        "mean": 0.9999,
+        "ci95": [
+          0.9998,
+          0.9999
+        ],
+        "per_seed": [
+          0.9999,
+          0.9999,
+          0.9999,
+          0.9999,
+          0.9998
+        ],
+        "best_layer_per_seed": [
+          "model_layers_2",
+          "model_layers_2",
+          "model_layers_2",
+          "model_layers_4",
+          "model_layers_5"
+        ]
+      },
+      "delta": 0.0,
+      "outside_old_ci": false,
+      "ci_overlap": true
+    },
+    {
+      "kind": "model",
+      "name": "timer",
+      "property": "frequency",
+      "metric": "acc",
+      "new": {
+        "mean": 1.0,
+        "ci95": [
+          1.0,
+          1.0
+        ],
+        "per_seed": [
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0
+        ],
+        "best_layer_per_seed": [
+          "model_layers_0",
+          "model_layers_0",
+          "model_layers_0",
+          "model_layers_0",
+          "model_layers_0"
+        ]
+      },
+      "new_view": "mean-pool over patches",
+      "old_source": "outputs/canonical/timer_meanpool_frequency",
+      "old_recipe": "n=1000; mean-pool over patches",
+      "old": {
+        "mean": 1.0,
+        "ci95": [
+          1.0,
+          1.0
+        ],
+        "per_seed": [
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0
+        ],
+        "best_layer_per_seed": [
+          "model_layers_0",
+          "model_layers_0",
+          "model_layers_0",
+          "model_layers_0",
+          "model_layers_0"
+        ]
+      },
+      "delta": 0.0,
+      "outside_old_ci": false,
+      "ci_overlap": true
+    },
+    {
+      "kind": "model",
+      "name": "timer",
+      "property": "stationarity",
+      "metric": "acc",
+      "new": {
+        "mean": 1.0,
+        "ci95": [
+          1.0,
+          1.0
+        ],
+        "per_seed": [
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0
+        ],
+        "best_layer_per_seed": [
+          "model_layers_0",
+          "model_layers_0",
+          "model_layers_0",
+          "model_layers_0",
+          "model_layers_0"
+        ]
+      },
+      "new_view": "mean-pool over patches",
+      "old_source": "outputs/canonical/timer_meanpool_stationarity",
+      "old_recipe": "n=1000; mean-pool over patches",
+      "old": {
+        "mean": 1.0,
+        "ci95": [
+          1.0,
+          1.0
+        ],
+        "per_seed": [
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0
+        ],
+        "best_layer_per_seed": [
+          "model_layers_0",
+          "model_layers_0",
+          "model_layers_0",
+          "model_layers_0",
+          "model_layers_0"
+        ]
+      },
+      "delta": 0.0,
+      "outside_old_ci": false,
+      "ci_overlap": true
+    },
+    {
+      "kind": "model",
+      "name": "timer",
+      "property": "anomaly",
+      "metric": "acc",
+      "new": {
+        "mean": 0.603,
+        "ci95": [
+          0.579,
+          0.632
+        ],
+        "per_seed": [
+          0.57,
+          0.66,
+          0.58,
+          0.595,
+          0.61
+        ],
+        "best_layer_per_seed": [
+          "model_layers_2",
+          "model_layers_0",
+          "model_layers_1",
+          "model_layers_2",
+          "model_layers_1"
+        ]
+      },
+      "new_view": "mean-pool over patches",
+      "old_source": "outputs/canonical/timer_meanpool_anomaly",
+      "old_recipe": "n=1000; mean-pool over patches",
+      "old": {
+        "mean": 0.603,
+        "ci95": [
+          0.579,
+          0.632
+        ],
+        "per_seed": [
+          0.57,
+          0.66,
+          0.58,
+          0.595,
+          0.61
+        ],
+        "best_layer_per_seed": [
+          "model_layers_2",
+          "model_layers_0",
+          "model_layers_1",
+          "model_layers_2",
+          "model_layers_1"
+        ]
+      },
+      "delta": 0.0,
+      "outside_old_ci": false,
+      "ci_overlap": true
+    },
+    {
+      "kind": "model",
+      "name": "timer",
+      "property": "change_point",
+      "metric": "acc",
+      "new": {
+        "mean": 0.999,
+        "ci95": [
+          0.997,
+          1.0
+        ],
+        "per_seed": [
+          1.0,
+          1.0,
+          1.0,
+          0.995,
+          1.0
+        ],
+        "best_layer_per_seed": [
+          "model_layers_1",
+          "model_layers_1",
+          "model_layers_0",
+          "model_layers_0",
+          "model_layers_0"
+        ]
+      },
+      "new_view": "mean-pool over patches",
+      "old_source": "outputs/canonical/timer_meanpool_change_point",
+      "old_recipe": "n=1000; mean-pool over patches",
+      "old": {
+        "mean": 0.999,
+        "ci95": [
+          0.997,
+          1.0
+        ],
+        "per_seed": [
+          1.0,
+          1.0,
+          1.0,
+          0.995,
+          1.0
+        ],
+        "best_layer_per_seed": [
+          "model_layers_1",
+          "model_layers_1",
+          "model_layers_0",
+          "model_layers_0",
+          "model_layers_0"
+        ]
+      },
+      "delta": 0.0,
+      "outside_old_ci": false,
+      "ci_overlap": true
+    },
+    {
+      "kind": "model",
+      "name": "timesfm",
+      "property": "trend",
+      "metric": "acc",
+      "new": {
+        "mean": 1.0,
+        "ci95": [
+          1.0,
+          1.0
+        ],
+        "per_seed": [
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0
+        ],
+        "best_layer_per_seed": [
+          "layers_0",
+          "layers_0",
+          "layers_0",
+          "layers_0",
+          "layers_0"
+        ]
+      },
+      "new_view": "mean-pool over patches",
+      "old_source": "outputs/canonical/timesfm_meanpool_trend",
+      "old_recipe": "n=1000; mean-pool over patches",
+      "old": {
+        "mean": 1.0,
+        "ci95": [
+          1.0,
+          1.0
+        ],
+        "per_seed": [
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0
+        ],
+        "best_layer_per_seed": [
+          "layers_0",
+          "layers_0",
+          "layers_0",
+          "layers_0",
+          "layers_0"
+        ]
+      },
+      "delta": 0.0,
+      "outside_old_ci": false,
+      "ci_overlap": true
+    },
+    {
+      "kind": "model",
+      "name": "timesfm",
+      "property": "seasonality",
+      "metric": "R2",
+      "new": {
+        "mean": 1.0,
+        "ci95": [
+          0.9999,
+          1.0
+        ],
+        "per_seed": [
+          0.9999,
+          1.0,
+          1.0,
+          1.0,
+          1.0
+        ],
+        "best_layer_per_seed": [
+          "layers_14",
+          "layers_15",
+          "layers_15",
+          "layers_11",
+          "layers_12"
+        ]
+      },
+      "new_view": "mean-pool over patches",
+      "old_source": "outputs/canonical/timesfm_meanpool_seasonality",
+      "old_recipe": "n=1000; mean-pool over patches",
+      "old": {
+        "mean": 1.0,
+        "ci95": [
+          0.9999,
+          1.0
+        ],
+        "per_seed": [
+          0.9999,
+          1.0,
+          1.0,
+          1.0,
+          1.0
+        ],
+        "best_layer_per_seed": [
+          "layers_14",
+          "layers_15",
+          "layers_15",
+          "layers_11",
+          "layers_12"
+        ]
+      },
+      "delta": 0.0,
+      "outside_old_ci": false,
+      "ci_overlap": true
+    },
+    {
+      "kind": "model",
+      "name": "timesfm",
+      "property": "frequency",
+      "metric": "acc",
+      "new": {
+        "mean": 0.999,
+        "ci95": [
+          0.997,
+          1.0
+        ],
+        "per_seed": [
+          1.0,
+          1.0,
+          0.995,
+          1.0,
+          1.0
+        ],
+        "best_layer_per_seed": [
+          "layers_1",
+          "layers_0",
+          "layers_0",
+          "layers_10",
+          "layers_0"
+        ]
+      },
+      "new_view": "mean-pool over patches",
+      "old_source": "outputs/canonical/timesfm_meanpool_frequency",
+      "old_recipe": "n=1000; mean-pool over patches",
+      "old": {
+        "mean": 0.999,
+        "ci95": [
+          0.997,
+          1.0
+        ],
+        "per_seed": [
+          1.0,
+          1.0,
+          0.995,
+          1.0,
+          1.0
+        ],
+        "best_layer_per_seed": [
+          "layers_1",
+          "layers_0",
+          "layers_0",
+          "layers_10",
+          "layers_0"
+        ]
+      },
+      "delta": 0.0,
+      "outside_old_ci": false,
+      "ci_overlap": true
+    },
+    {
+      "kind": "model",
+      "name": "timesfm",
+      "property": "stationarity",
+      "metric": "acc",
+      "new": {
+        "mean": 1.0,
+        "ci95": [
+          1.0,
+          1.0
+        ],
+        "per_seed": [
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0
+        ],
+        "best_layer_per_seed": [
+          "layers_10",
+          "layers_0",
+          "layers_0",
+          "layers_0",
+          "layers_0"
+        ]
+      },
+      "new_view": "mean-pool over patches",
+      "old_source": "outputs/canonical/timesfm_meanpool_stationarity",
+      "old_recipe": "n=1000; mean-pool over patches",
+      "old": {
+        "mean": 1.0,
+        "ci95": [
+          1.0,
+          1.0
+        ],
+        "per_seed": [
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0
+        ],
+        "best_layer_per_seed": [
+          "layers_10",
+          "layers_0",
+          "layers_0",
+          "layers_0",
+          "layers_0"
+        ]
+      },
+      "delta": 0.0,
+      "outside_old_ci": false,
+      "ci_overlap": true
+    },
+    {
+      "kind": "model",
+      "name": "timesfm",
+      "property": "anomaly",
+      "metric": "acc",
+      "new": {
+        "mean": 0.753,
+        "ci95": [
+          0.72,
+          0.788
+        ],
+        "per_seed": [
+          0.725,
+          0.705,
+          0.81,
+          0.785,
+          0.74
+        ],
+        "best_layer_per_seed": [
+          "layers_12",
+          "layers_33",
+          "layers_32",
+          "layers_18",
+          "layers_34"
+        ]
+      },
+      "new_view": "mean-pool over patches",
+      "old_source": "outputs/canonical/timesfm_meanpool_anomaly",
+      "old_recipe": "n=1000; mean-pool over patches",
+      "old": {
+        "mean": 0.753,
+        "ci95": [
+          0.72,
+          0.788
+        ],
+        "per_seed": [
+          0.725,
+          0.705,
+          0.81,
+          0.785,
+          0.74
+        ],
+        "best_layer_per_seed": [
+          "layers_12",
+          "layers_33",
+          "layers_32",
+          "layers_18",
+          "layers_34"
+        ]
+      },
+      "delta": 0.0,
+      "outside_old_ci": false,
+      "ci_overlap": true
+    },
+    {
+      "kind": "model",
+      "name": "timesfm",
+      "property": "change_point",
+      "metric": "acc",
+      "new": {
+        "mean": 1.0,
+        "ci95": [
+          1.0,
+          1.0
+        ],
+        "per_seed": [
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0
+        ],
+        "best_layer_per_seed": [
+          "layers_0",
+          "layers_10",
+          "layers_0",
+          "layers_0",
+          "layers_0"
+        ]
+      },
+      "new_view": "mean-pool over patches",
+      "old_source": "outputs/canonical/timesfm_meanpool_change_point",
+      "old_recipe": "n=1000; mean-pool over patches",
+      "old": {
+        "mean": 1.0,
+        "ci95": [
+          1.0,
+          1.0
+        ],
+        "per_seed": [
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0
+        ],
+        "best_layer_per_seed": [
+          "layers_0",
+          "layers_10",
+          "layers_0",
+          "layers_0",
+          "layers_0"
+        ]
+      },
+      "delta": 0.0,
+      "outside_old_ci": false,
+      "ci_overlap": true
+    },
+    {
+      "kind": "model",
+      "name": "moirai",
+      "property": "trend",
+      "metric": "acc",
+      "new": {
+        "mean": 1.0,
+        "ci95": [
+          1.0,
+          1.0
+        ],
+        "per_seed": [
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0
+        ],
+        "best_layer_per_seed": [
+          "encoder_layers_0",
+          "encoder_layers_0",
+          "encoder_layers_0",
+          "encoder_layers_0",
+          "encoder_layers_0"
+        ]
+      },
+      "new_view": "mean-pool over patches",
+      "old_source": "outputs/canonical/moirai_meanpool_trend",
+      "old_recipe": "n=1000; mean-pool over patches",
+      "old": {
+        "mean": 1.0,
+        "ci95": [
+          1.0,
+          1.0
+        ],
+        "per_seed": [
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0
+        ],
+        "best_layer_per_seed": [
+          "encoder_layers_0",
+          "encoder_layers_0",
+          "encoder_layers_0",
+          "encoder_layers_0",
+          "encoder_layers_0"
+        ]
+      },
+      "delta": 0.0,
+      "outside_old_ci": false,
+      "ci_overlap": true
+    },
+    {
+      "kind": "model",
+      "name": "moirai",
+      "property": "seasonality",
+      "metric": "R2",
+      "new": {
+        "mean": 0.9998,
+        "ci95": [
+          0.9998,
+          0.9998
+        ],
+        "per_seed": [
+          0.9998,
+          0.9998,
+          0.9998,
+          0.9998,
+          0.9999
+        ],
+        "best_layer_per_seed": [
+          "encoder_layers_2",
+          "encoder_layers_2",
+          "encoder_layers_2",
+          "encoder_layers_2",
+          "encoder_layers_2"
+        ]
+      },
+      "new_view": "mean-pool over patches",
+      "old_source": "outputs/canonical/moirai_meanpool_seasonality",
+      "old_recipe": "n=1000; mean-pool over patches",
+      "old": {
+        "mean": 0.9998,
+        "ci95": [
+          0.9998,
+          0.9998
+        ],
+        "per_seed": [
+          0.9998,
+          0.9998,
+          0.9998,
+          0.9998,
+          0.9999
+        ],
+        "best_layer_per_seed": [
+          "encoder_layers_2",
+          "encoder_layers_2",
+          "encoder_layers_2",
+          "encoder_layers_2",
+          "encoder_layers_2"
+        ]
+      },
+      "delta": 0.0,
+      "outside_old_ci": false,
+      "ci_overlap": true
+    },
+    {
+      "kind": "model",
+      "name": "moirai",
+      "property": "frequency",
+      "metric": "acc",
+      "new": {
+        "mean": 1.0,
+        "ci95": [
+          1.0,
+          1.0
+        ],
+        "per_seed": [
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0
+        ],
+        "best_layer_per_seed": [
+          "encoder_layers_0",
+          "encoder_layers_1",
+          "encoder_layers_1",
+          "encoder_layers_0",
+          "encoder_layers_0"
+        ]
+      },
+      "new_view": "mean-pool over patches",
+      "old_source": "outputs/canonical/moirai_meanpool_frequency",
+      "old_recipe": "n=1000; mean-pool over patches",
+      "old": {
+        "mean": 1.0,
+        "ci95": [
+          1.0,
+          1.0
+        ],
+        "per_seed": [
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0
+        ],
+        "best_layer_per_seed": [
+          "encoder_layers_0",
+          "encoder_layers_1",
+          "encoder_layers_1",
+          "encoder_layers_0",
+          "encoder_layers_0"
+        ]
+      },
+      "delta": 0.0,
+      "outside_old_ci": false,
+      "ci_overlap": true
+    },
+    {
+      "kind": "model",
+      "name": "moirai",
+      "property": "stationarity",
+      "metric": "acc",
+      "new": {
+        "mean": 1.0,
+        "ci95": [
+          1.0,
+          1.0
+        ],
+        "per_seed": [
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0
+        ],
+        "best_layer_per_seed": [
+          "encoder_layers_0",
+          "encoder_layers_0",
+          "encoder_layers_0",
+          "encoder_layers_0",
+          "encoder_layers_0"
+        ]
+      },
+      "new_view": "mean-pool over patches",
+      "old_source": "outputs/canonical/moirai_meanpool_stationarity",
+      "old_recipe": "n=1000; mean-pool over patches",
+      "old": {
+        "mean": 1.0,
+        "ci95": [
+          1.0,
+          1.0
+        ],
+        "per_seed": [
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0
+        ],
+        "best_layer_per_seed": [
+          "encoder_layers_0",
+          "encoder_layers_0",
+          "encoder_layers_0",
+          "encoder_layers_0",
+          "encoder_layers_0"
+        ]
+      },
+      "delta": 0.0,
+      "outside_old_ci": false,
+      "ci_overlap": true
+    },
+    {
+      "kind": "model",
+      "name": "moirai",
+      "property": "anomaly",
+      "metric": "acc",
+      "new": {
+        "mean": 0.694,
+        "ci95": [
+          0.676,
+          0.706
+        ],
+        "per_seed": [
+          0.7,
+          0.695,
+          0.66,
+          0.705,
+          0.71
+        ],
+        "best_layer_per_seed": [
+          "encoder_layers_3",
+          "encoder_layers_1",
+          "encoder_layers_0",
+          "encoder_layers_0",
+          "encoder_layers_2"
+        ]
+      },
+      "new_view": "mean-pool over patches",
+      "old_source": "outputs/canonical/moirai_meanpool_anomaly",
+      "old_recipe": "n=1000; mean-pool over patches",
+      "old": {
+        "mean": 0.694,
+        "ci95": [
+          0.676,
+          0.706
+        ],
+        "per_seed": [
+          0.7,
+          0.695,
+          0.66,
+          0.705,
+          0.71
+        ],
+        "best_layer_per_seed": [
+          "encoder_layers_3",
+          "encoder_layers_1",
+          "encoder_layers_0",
+          "encoder_layers_0",
+          "encoder_layers_2"
+        ]
+      },
+      "delta": 0.0,
+      "outside_old_ci": false,
+      "ci_overlap": true
+    },
+    {
+      "kind": "model",
+      "name": "moirai",
+      "property": "change_point",
+      "metric": "acc",
+      "new": {
+        "mean": 1.0,
+        "ci95": [
+          1.0,
+          1.0
+        ],
+        "per_seed": [
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0
+        ],
+        "best_layer_per_seed": [
+          "encoder_layers_0",
+          "encoder_layers_0",
+          "encoder_layers_0",
+          "encoder_layers_0",
+          "encoder_layers_0"
+        ]
+      },
+      "new_view": "mean-pool over patches",
+      "old_source": "outputs/canonical/moirai_meanpool_change_point",
+      "old_recipe": "n=1000; mean-pool over patches",
+      "old": {
+        "mean": 1.0,
+        "ci95": [
+          1.0,
+          1.0
+        ],
+        "per_seed": [
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0
+        ],
+        "best_layer_per_seed": [
+          "encoder_layers_0",
+          "encoder_layers_0",
+          "encoder_layers_0",
+          "encoder_layers_0",
+          "encoder_layers_0"
+        ]
+      },
+      "delta": 0.0,
+      "outside_old_ci": false,
+      "ci_overlap": true
+    },
+    {
+      "kind": "model",
+      "name": "patchtst_fm",
+      "property": "trend",
+      "metric": "acc",
+      "new": {
+        "mean": 1.0,
+        "ci95": [
+          1.0,
+          1.0
+        ],
+        "per_seed": [
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0
+        ],
+        "best_layer_per_seed": [
+          "backbone_blocks_0",
+          "backbone_blocks_0",
+          "backbone_blocks_0",
+          "backbone_blocks_0",
+          "backbone_blocks_0"
+        ]
+      },
+      "new_view": "mean-pool over patches",
+      "old_source": "outputs/canonical/patchtst_fm_meanpool_trend",
+      "old_recipe": "n=1000; mean-pool over patches (outputs/patchtst_replacement)",
+      "old": {
+        "mean": 1.0,
+        "ci95": [
+          1.0,
+          1.0
+        ],
+        "per_seed": [
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0
+        ],
+        "best_layer_per_seed": [
+          "backbone_blocks_0",
+          "backbone_blocks_0",
+          "backbone_blocks_0",
+          "backbone_blocks_0",
+          "backbone_blocks_0"
+        ]
+      },
+      "delta": 0.0,
+      "outside_old_ci": false,
+      "ci_overlap": true
+    },
+    {
+      "kind": "model",
+      "name": "patchtst_fm",
+      "property": "seasonality",
+      "metric": "R2",
+      "new": {
+        "mean": 0.9999,
+        "ci95": [
+          0.9999,
+          0.9999
+        ],
+        "per_seed": [
+          0.9999,
+          0.9998,
+          0.9999,
+          0.9999,
+          0.9999
+        ],
+        "best_layer_per_seed": [
+          "backbone_blocks_17",
+          "backbone_blocks_13",
+          "backbone_blocks_17",
+          "backbone_blocks_16",
+          "backbone_blocks_15"
+        ]
+      },
+      "new_view": "mean-pool over patches",
+      "old_source": "outputs/canonical/patchtst_fm_meanpool_seasonality",
+      "old_recipe": "n=1000; mean-pool over patches (outputs/patchtst_replacement)",
+      "old": {
+        "mean": 0.9999,
+        "ci95": [
+          0.9999,
+          0.9999
+        ],
+        "per_seed": [
+          0.9999,
+          0.9998,
+          0.9999,
+          0.9999,
+          0.9999
+        ],
+        "best_layer_per_seed": [
+          "backbone_blocks_17",
+          "backbone_blocks_13",
+          "backbone_blocks_17",
+          "backbone_blocks_16",
+          "backbone_blocks_15"
+        ]
+      },
+      "delta": 0.0,
+      "outside_old_ci": false,
+      "ci_overlap": true
+    },
+    {
+      "kind": "model",
+      "name": "patchtst_fm",
+      "property": "frequency",
+      "metric": "acc",
+      "new": {
+        "mean": 1.0,
+        "ci95": [
+          1.0,
+          1.0
+        ],
+        "per_seed": [
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0
+        ],
+        "best_layer_per_seed": [
+          "backbone_blocks_0",
+          "backbone_blocks_0",
+          "backbone_blocks_10",
+          "backbone_blocks_0",
+          "backbone_blocks_0"
+        ]
+      },
+      "new_view": "mean-pool over patches",
+      "old_source": "outputs/canonical/patchtst_fm_meanpool_frequency",
+      "old_recipe": "n=1000; mean-pool over patches (outputs/patchtst_replacement)",
+      "old": {
+        "mean": 0.998,
+        "ci95": [
+          0.994,
+          1.0
+        ],
+        "per_seed": [
+          1.0,
+          1.0,
+          0.99,
+          1.0,
+          1.0
+        ],
+        "best_layer_per_seed": [
+          "backbone_blocks_0",
+          "backbone_blocks_0",
+          "backbone_blocks_0",
+          "backbone_blocks_0",
+          "backbone_blocks_0"
+        ]
+      },
+      "delta": 0.002,
+      "outside_old_ci": false,
+      "ci_overlap": true
+    },
+    {
+      "kind": "model",
+      "name": "patchtst_fm",
+      "property": "stationarity",
+      "metric": "acc",
+      "new": {
+        "mean": 1.0,
+        "ci95": [
+          1.0,
+          1.0
+        ],
+        "per_seed": [
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0
+        ],
+        "best_layer_per_seed": [
+          "backbone_blocks_0",
+          "backbone_blocks_0",
+          "backbone_blocks_0",
+          "backbone_blocks_0",
+          "backbone_blocks_0"
+        ]
+      },
+      "new_view": "mean-pool over patches",
+      "old_source": "outputs/canonical/patchtst_fm_meanpool_stationarity",
+      "old_recipe": "n=1000; mean-pool over patches (outputs/patchtst_replacement)",
+      "old": {
+        "mean": 1.0,
+        "ci95": [
+          1.0,
+          1.0
+        ],
+        "per_seed": [
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0
+        ],
+        "best_layer_per_seed": [
+          "backbone_blocks_0",
+          "backbone_blocks_0",
+          "backbone_blocks_0",
+          "backbone_blocks_0",
+          "backbone_blocks_0"
+        ]
+      },
+      "delta": 0.0,
+      "outside_old_ci": false,
+      "ci_overlap": true
+    },
+    {
+      "kind": "model",
+      "name": "patchtst_fm",
+      "property": "anomaly",
+      "metric": "acc",
+      "new": {
+        "mean": 0.704,
+        "ci95": [
+          0.675,
+          0.733
+        ],
+        "per_seed": [
+          0.655,
+          0.695,
+          0.74,
+          0.745,
+          0.685
+        ],
+        "best_layer_per_seed": [
+          "backbone_blocks_7",
+          "backbone_blocks_8",
+          "backbone_blocks_11",
+          "backbone_blocks_7",
+          "backbone_blocks_12"
+        ]
+      },
+      "new_view": "mean-pool over patches",
+      "old_source": "outputs/canonical/patchtst_fm_meanpool_anomaly",
+      "old_recipe": "n=1000; mean-pool over patches (outputs/patchtst_replacement)",
+      "old": {
+        "mean": 0.704,
+        "ci95": [
+          0.675,
+          0.733
+        ],
+        "per_seed": [
+          0.655,
+          0.695,
+          0.74,
+          0.745,
+          0.685
+        ],
+        "best_layer_per_seed": [
+          "backbone_blocks_7",
+          "backbone_blocks_8",
+          "backbone_blocks_11",
+          "backbone_blocks_7",
+          "backbone_blocks_12"
+        ]
+      },
+      "delta": 0.0,
+      "outside_old_ci": false,
+      "ci_overlap": true
+    },
+    {
+      "kind": "model",
+      "name": "patchtst_fm",
+      "property": "change_point",
+      "metric": "acc",
+      "new": {
+        "mean": 1.0,
+        "ci95": [
+          1.0,
+          1.0
+        ],
+        "per_seed": [
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0
+        ],
+        "best_layer_per_seed": [
+          "backbone_blocks_0",
+          "backbone_blocks_1",
+          "backbone_blocks_0",
+          "backbone_blocks_0",
+          "backbone_blocks_0"
+        ]
+      },
+      "new_view": "mean-pool over patches",
+      "old_source": "outputs/canonical/patchtst_fm_meanpool_change_point",
+      "old_recipe": "n=1000; mean-pool over patches (outputs/patchtst_replacement)",
+      "old": {
+        "mean": 1.0,
+        "ci95": [
+          1.0,
+          1.0
+        ],
+        "per_seed": [
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0
+        ],
+        "best_layer_per_seed": [
+          "backbone_blocks_0",
+          "backbone_blocks_1",
+          "backbone_blocks_0",
+          "backbone_blocks_0",
+          "backbone_blocks_0"
+        ]
+      },
+      "delta": 0.0,
+      "outside_old_ci": false,
+      "ci_overlap": true
+    },
+    {
+      "kind": "baseline",
+      "name": "hand_crafted",
+      "property": "trend",
+      "metric": "acc",
+      "new": {
+        "mean": 1.0,
+        "ci95": [
+          1.0,
+          1.0
+        ],
+        "per_seed": [
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0
+        ]
+      },
+      "old_source": "outputs/canonical_baselines/all_results.json",
+      "old_recipe": "n=1000, data seed 42 (same data and splits)",
+      "old": {
+        "mean": 1.0,
+        "ci95": [
+          1.0,
+          1.0
+        ],
+        "per_seed": [
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0
+        ]
+      },
+      "delta": 0.0,
+      "outside_old_ci": false,
+      "ci_overlap": true
+    },
+    {
+      "kind": "baseline",
+      "name": "raw_signal",
+      "property": "trend",
+      "metric": "acc",
+      "new": {
+        "mean": 1.0,
+        "ci95": [
+          1.0,
+          1.0
+        ],
+        "per_seed": [
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0
+        ]
+      },
+      "old_source": "outputs/canonical_baselines/all_results.json",
+      "old_recipe": "n=1000, data seed 42 (same data and splits)",
+      "old": {
+        "mean": 1.0,
+        "ci95": [
+          1.0,
+          1.0
+        ],
+        "per_seed": [
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0
+        ]
+      },
+      "delta": 0.0,
+      "outside_old_ci": false,
+      "ci_overlap": true
+    },
+    {
+      "kind": "baseline",
+      "name": "random_projection",
+      "property": "trend",
+      "metric": "acc",
+      "new": {
+        "mean": 1.0,
+        "ci95": [
+          1.0,
+          1.0
+        ],
+        "per_seed": [
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0
+        ]
+      },
+      "old_source": "outputs/canonical_baselines/all_results.json",
+      "old_recipe": "n=1000, data seed 42 (same data and splits)",
+      "old": {
+        "mean": 1.0,
+        "ci95": [
+          1.0,
+          1.0
+        ],
+        "per_seed": [
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0
+        ]
+      },
+      "delta": 0.0,
+      "outside_old_ci": false,
+      "ci_overlap": true
+    },
+    {
+      "kind": "baseline",
+      "name": "hand_crafted",
+      "property": "seasonality",
+      "metric": "R2",
+      "new": {
+        "mean": 0.9589,
+        "ci95": [
+          0.9563,
+          0.9623
+        ],
+        "per_seed": [
+          0.9557,
+          0.9595,
+          0.9555,
+          0.9594,
+          0.9643
+        ]
+      },
+      "old_source": "outputs/canonical_baselines/all_results.json",
+      "old_recipe": "n=1000, data seed 42 (same data and splits)",
+      "old": {
+        "mean": 0.9589,
+        "ci95": [
+          0.9563,
+          0.9623
+        ],
+        "per_seed": [
+          0.9557,
+          0.9595,
+          0.9555,
+          0.9594,
+          0.9643
+        ]
+      },
+      "delta": 0.0,
+      "outside_old_ci": false,
+      "ci_overlap": true
+    },
+    {
+      "kind": "baseline",
+      "name": "raw_signal",
+      "property": "seasonality",
+      "metric": "R2",
+      "new": {
+        "mean": 0.789,
+        "ci95": [
+          0.7792,
+          0.8027
+        ],
+        "per_seed": [
+          0.7921,
+          0.7754,
+          0.8135,
+          0.7828,
+          0.7811
+        ]
+      },
+      "old_source": "outputs/canonical_baselines/all_results.json",
+      "old_recipe": "n=1000, data seed 42 (same data and splits)",
+      "old": {
+        "mean": 0.789,
+        "ci95": [
+          0.7792,
+          0.8027
+        ],
+        "per_seed": [
+          0.7921,
+          0.7754,
+          0.8135,
+          0.7828,
+          0.7811
+        ]
+      },
+      "delta": 0.0,
+      "outside_old_ci": false,
+      "ci_overlap": true
+    },
+    {
+      "kind": "baseline",
+      "name": "random_projection",
+      "property": "seasonality",
+      "metric": "R2",
+      "new": {
+        "mean": 0.8564,
+        "ci95": [
+          0.8456,
+          0.8672
+        ],
+        "per_seed": [
+          0.8401,
+          0.8643,
+          0.875,
+          0.8453,
+          0.8575
+        ]
+      },
+      "old_source": "outputs/canonical_baselines/all_results.json",
+      "old_recipe": "n=1000, data seed 42 (same data and splits)",
+      "old": {
+        "mean": 0.8564,
+        "ci95": [
+          0.8456,
+          0.8672
+        ],
+        "per_seed": [
+          0.8401,
+          0.8643,
+          0.875,
+          0.8453,
+          0.8575
+        ]
+      },
+      "delta": 0.0,
+      "outside_old_ci": false,
+      "ci_overlap": true
+    },
+    {
+      "kind": "baseline",
+      "name": "hand_crafted",
+      "property": "frequency",
+      "metric": "acc",
+      "new": {
+        "mean": 0.944,
+        "ci95": [
+          0.912,
+          0.974
+        ],
+        "per_seed": [
+          0.96,
+          0.89,
+          0.945,
+          0.93,
+          0.995
+        ]
+      },
+      "old_source": "outputs/canonical_baselines/all_results.json",
+      "old_recipe": "n=1000, data seed 42 (same data and splits)",
+      "old": {
+        "mean": 0.944,
+        "ci95": [
+          0.912,
+          0.974
+        ],
+        "per_seed": [
+          0.96,
+          0.89,
+          0.945,
+          0.93,
+          0.995
+        ]
+      },
+      "delta": 0.0,
+      "outside_old_ci": false,
+      "ci_overlap": true
+    },
+    {
+      "kind": "baseline",
+      "name": "raw_signal",
+      "property": "frequency",
+      "metric": "acc",
+      "new": {
+        "mean": 1.0,
+        "ci95": [
+          1.0,
+          1.0
+        ],
+        "per_seed": [
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0
+        ]
+      },
+      "old_source": "outputs/canonical_baselines/all_results.json",
+      "old_recipe": "n=1000, data seed 42 (same data and splits)",
+      "old": {
+        "mean": 1.0,
+        "ci95": [
+          1.0,
+          1.0
+        ],
+        "per_seed": [
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0
+        ]
+      },
+      "delta": 0.0,
+      "outside_old_ci": false,
+      "ci_overlap": true
+    },
+    {
+      "kind": "baseline",
+      "name": "random_projection",
+      "property": "frequency",
+      "metric": "acc",
+      "new": {
+        "mean": 1.0,
+        "ci95": [
+          1.0,
+          1.0
+        ],
+        "per_seed": [
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0
+        ]
+      },
+      "old_source": "outputs/canonical_baselines/all_results.json",
+      "old_recipe": "n=1000, data seed 42 (same data and splits)",
+      "old": {
+        "mean": 1.0,
+        "ci95": [
+          1.0,
+          1.0
+        ],
+        "per_seed": [
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0
+        ]
+      },
+      "delta": 0.0,
+      "outside_old_ci": false,
+      "ci_overlap": true
+    },
+    {
+      "kind": "baseline",
+      "name": "hand_crafted",
+      "property": "stationarity",
+      "metric": "acc",
+      "new": {
+        "mean": 1.0,
+        "ci95": [
+          1.0,
+          1.0
+        ],
+        "per_seed": [
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0
+        ]
+      },
+      "old_source": "outputs/canonical_baselines/all_results.json",
+      "old_recipe": "n=1000, data seed 42 (same data and splits)",
+      "old": {
+        "mean": 1.0,
+        "ci95": [
+          1.0,
+          1.0
+        ],
+        "per_seed": [
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0
+        ]
+      },
+      "delta": 0.0,
+      "outside_old_ci": false,
+      "ci_overlap": true
+    },
+    {
+      "kind": "baseline",
+      "name": "raw_signal",
+      "property": "stationarity",
+      "metric": "acc",
+      "new": {
+        "mean": 0.496,
+        "ci95": [
+          0.476,
+          0.523
+        ],
+        "per_seed": [
+          0.47,
+          0.505,
+          0.545,
+          0.475,
+          0.485
+        ]
+      },
+      "old_source": "outputs/canonical_baselines/all_results.json",
+      "old_recipe": "n=1000, data seed 42 (same data and splits)",
+      "old": {
+        "mean": 0.496,
+        "ci95": [
+          0.476,
+          0.523
+        ],
+        "per_seed": [
+          0.47,
+          0.505,
+          0.545,
+          0.475,
+          0.485
+        ]
+      },
+      "delta": 0.0,
+      "outside_old_ci": false,
+      "ci_overlap": true
+    },
+    {
+      "kind": "baseline",
+      "name": "random_projection",
+      "property": "stationarity",
+      "metric": "acc",
+      "new": {
+        "mean": 0.55,
+        "ci95": [
+          0.5289,
+          0.568
+        ],
+        "per_seed": [
+          0.545,
+          0.55,
+          0.57,
+          0.575,
+          0.51
+        ]
+      },
+      "old_source": "outputs/canonical_baselines/all_results.json",
+      "old_recipe": "n=1000, data seed 42 (same data and splits)",
+      "old": {
+        "mean": 0.55,
+        "ci95": [
+          0.5289,
+          0.568
+        ],
+        "per_seed": [
+          0.545,
+          0.55,
+          0.57,
+          0.575,
+          0.51
+        ]
+      },
+      "delta": 0.0,
+      "outside_old_ci": false,
+      "ci_overlap": true
+    },
+    {
+      "kind": "baseline",
+      "name": "hand_crafted",
+      "property": "anomaly",
+      "metric": "acc",
+      "new": {
+        "mean": 0.858,
+        "ci95": [
+          0.837,
+          0.8821
+        ],
+        "per_seed": [
+          0.875,
+          0.845,
+          0.835,
+          0.9,
+          0.835
+        ]
+      },
+      "old_source": "outputs/canonical_baselines/all_results.json",
+      "old_recipe": "n=1000, data seed 42 (same data and splits)",
+      "old": {
+        "mean": 0.858,
+        "ci95": [
+          0.837,
+          0.8821
+        ],
+        "per_seed": [
+          0.875,
+          0.845,
+          0.835,
+          0.9,
+          0.835
+        ]
+      },
+      "delta": 0.0,
+      "outside_old_ci": false,
+      "ci_overlap": true
+    },
+    {
+      "kind": "baseline",
+      "name": "raw_signal",
+      "property": "anomaly",
+      "metric": "acc",
+      "new": {
+        "mean": 0.485,
+        "ci95": [
+          0.459,
+          0.516
+        ],
+        "per_seed": [
+          0.535,
+          0.505,
+          0.44,
+          0.475,
+          0.47
+        ]
+      },
+      "old_source": "outputs/canonical_baselines/all_results.json",
+      "old_recipe": "n=1000, data seed 42 (same data and splits)",
+      "old": {
+        "mean": 0.485,
+        "ci95": [
+          0.459,
+          0.516
+        ],
+        "per_seed": [
+          0.535,
+          0.505,
+          0.44,
+          0.475,
+          0.47
+        ]
+      },
+      "delta": 0.0,
+      "outside_old_ci": false,
+      "ci_overlap": true
+    },
+    {
+      "kind": "baseline",
+      "name": "random_projection",
+      "property": "anomaly",
+      "metric": "acc",
+      "new": {
+        "mean": 0.513,
+        "ci95": [
+          0.478,
+          0.535
+        ],
+        "per_seed": [
+          0.525,
+          0.52,
+          0.535,
+          0.445,
+          0.54
+        ]
+      },
+      "old_source": "outputs/canonical_baselines/all_results.json",
+      "old_recipe": "n=1000, data seed 42 (same data and splits)",
+      "old": {
+        "mean": 0.513,
+        "ci95": [
+          0.478,
+          0.535
+        ],
+        "per_seed": [
+          0.525,
+          0.52,
+          0.535,
+          0.445,
+          0.54
+        ]
+      },
+      "delta": 0.0,
+      "outside_old_ci": false,
+      "ci_overlap": true
+    },
+    {
+      "kind": "baseline",
+      "name": "hand_crafted",
+      "property": "change_point",
+      "metric": "acc",
+      "new": {
+        "mean": 1.0,
+        "ci95": [
+          1.0,
+          1.0
+        ],
+        "per_seed": [
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0
+        ]
+      },
+      "old_source": "outputs/canonical_baselines/all_results.json",
+      "old_recipe": "n=1000, data seed 42 (same data and splits)",
+      "old": {
+        "mean": 1.0,
+        "ci95": [
+          1.0,
+          1.0
+        ],
+        "per_seed": [
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0
+        ]
+      },
+      "delta": 0.0,
+      "outside_old_ci": false,
+      "ci_overlap": true
+    },
+    {
+      "kind": "baseline",
+      "name": "raw_signal",
+      "property": "change_point",
+      "metric": "acc",
+      "new": {
+        "mean": 1.0,
+        "ci95": [
+          1.0,
+          1.0
+        ],
+        "per_seed": [
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0
+        ]
+      },
+      "old_source": "outputs/canonical_baselines/all_results.json",
+      "old_recipe": "n=1000, data seed 42 (same data and splits)",
+      "old": {
+        "mean": 1.0,
+        "ci95": [
+          1.0,
+          1.0
+        ],
+        "per_seed": [
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0
+        ]
+      },
+      "delta": 0.0,
+      "outside_old_ci": false,
+      "ci_overlap": true
+    },
+    {
+      "kind": "baseline",
+      "name": "random_projection",
+      "property": "change_point",
+      "metric": "acc",
+      "new": {
+        "mean": 0.999,
+        "ci95": [
+          0.997,
+          1.0
+        ],
+        "per_seed": [
+          1.0,
+          0.995,
+          1.0,
+          1.0,
+          1.0
+        ]
+      },
+      "old_source": "outputs/canonical_baselines/all_results.json",
+      "old_recipe": "n=1000, data seed 42 (same data and splits)",
+      "old": {
+        "mean": 0.999,
+        "ci95": [
+          0.997,
+          1.0
+        ],
+        "per_seed": [
+          1.0,
+          0.995,
+          1.0,
+          1.0,
+          1.0
+        ]
+      },
+      "delta": 0.0,
+      "outside_old_ci": false,
+      "ci_overlap": true
+    }
+  ],
+  "missing_cells": [],
+  "flagged_outside_old_ci": [
+    "moment/anomaly",
+    "gpt4ts/anomaly",
+    "chronos/anomaly"
+  ],
+  "anomaly_vs_hand_crafted": [
+    {
+      "model": "moment",
+      "old_gap_vs_hc": -0.3094,
+      "new_gap_vs_hc": -0.328,
+      "new_ci_below_hc_ci": true
+    },
+    {
+      "model": "gpt4ts",
+      "old_gap_vs_hc": -0.3312,
+      "new_gap_vs_hc": -0.366,
+      "new_ci_below_hc_ci": true
+    },
+    {
+      "model": "chronos",
+      "old_gap_vs_hc": -0.131,
+      "new_gap_vs_hc": -0.182,
+      "new_ci_below_hc_ci": true
+    },
+    {
+      "model": "timer",
+      "old_gap_vs_hc": -0.255,
+      "new_gap_vs_hc": -0.255,
+      "new_ci_below_hc_ci": true
+    },
+    {
+      "model": "timesfm",
+      "old_gap_vs_hc": -0.105,
+      "new_gap_vs_hc": -0.105,
+      "new_ci_below_hc_ci": true
+    },
+    {
+      "model": "moirai",
+      "old_gap_vs_hc": -0.164,
+      "new_gap_vs_hc": -0.164,
+      "new_ci_below_hc_ci": true
+    },
+    {
+      "model": "patchtst_fm",
+      "old_gap_vs_hc": -0.154,
+      "new_gap_vs_hc": -0.154,
+      "new_ci_below_hc_ci": true
+    }
+  ]
+}

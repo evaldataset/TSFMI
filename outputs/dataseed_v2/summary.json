@@ -1,0 +1,174 @@
+{
+  "data_seeds": [
+    42,
+    43,
+    44
+  ],
+  "tasks": {
+    "canonical": {
+      "moment": {
+        "per_data_seed": {
+          "42": 0.53,
+          "43": 0.501,
+          "44": 0.531
+        },
+        "range": 0.03
+      },
+      "chronos": {
+        "per_data_seed": {
+          "42": 0.676,
+          "43": 0.663,
+          "44": 0.682
+        },
+        "range": 0.019
+      },
+      "timer": {
+        "per_data_seed": {
+          "42": 0.603,
+          "43": 0.615,
+          "44": 0.563
+        },
+        "range": 0.052
+      },
+      "timesfm": {
+        "per_data_seed": {
+          "42": 0.753,
+          "43": 0.757,
+          "44": 0.776
+        },
+        "range": 0.023
+      },
+      "moirai": {
+        "per_data_seed": {
+          "42": 0.694,
+          "43": 0.678,
+          "44": 0.686
+        },
+        "range": 0.016
+      },
+      "gpt4ts": {
+        "per_data_seed": {
+          "42": 0.492,
+          "43": 0.523,
+          "44": 0.504
+        },
+        "range": 0.031
+      },
+      "patchtst_fm": {
+        "per_data_seed": {
+          "42": 0.704,
+          "43": 0.625,
+          "44": 0.682
+        },
+        "range": 0.079
+      },
+      "hand_crafted": {
+        "per_data_seed": {
+          "42": 0.858,
+          "43": 0.841,
+          "44": 0.881
+        },
+        "range": 0.04
+      },
+      "raw_signal": {
+        "per_data_seed": {
+          "42": 0.485,
+          "43": 0.508,
+          "44": 0.501
+        },
+        "range": 0.023
+      }
+    },
+    "realistic": {
+      "moment": {
+        "per_data_seed": {
+          "42": 0.538,
+          "43": 0.53,
+          "44": 0.541
+        },
+        "range": 0.011
+      },
+      "chronos": {
+        "per_data_seed": {
+          "42": 0.632,
+          "43": 0.648,
+          "44": 0.689
+        },
+        "range": 0.057
+      },
+      "timer": {
+        "per_data_seed": {
+          "42": 0.596,
+          "43": 0.652,
+          "44": 0.605
+        },
+        "range": 0.056
+      },
+      "timesfm": {
+        "per_data_seed": {
+          "42": 0.73,
+          "43": 0.7,
+          "44": 0.732
+        },
+        "range": 0.032
+      },
+      "moirai": {
+        "per_data_seed": {
+          "42": 0.704,
+          "43": 0.721,
+          "44": 0.716
+        },
+        "range": 0.017
+      },
+      "gpt4ts": {
+        "per_data_seed": {
+          "42": 0.522,
+          "43": 0.515,
+          "44": 0.466
+        },
+        "range": 0.056
+      },
+      "patchtst_fm": {
+        "per_data_seed": {
+          "42": 0.732,
+          "43": 0.738,
+          "44": 0.752
+        },
+        "range": 0.02
+      },
+      "hand_crafted": {
+        "per_data_seed": {
+          "42": 0.701,
+          "43": 0.698,
+          "44": 0.695
+        },
+        "range": 0.006
+      },
+      "raw_signal": {
+        "per_data_seed": {
+          "42": 0.513,
+          "43": 0.536,
+          "44": 0.475
+        },
+        "range": 0.061
+      }
+    }
+  },
+  "claims": {
+    "canonical": {
+      "nseeds": 3,
+      "nmodels_below_hc_every_seed": 7,
+      "nmodels_above_hc_every_seed": 0,
+      "timesfm_seeds_above_hc": 0,
+      "max_model_range": 0.079
+    },
+    "realistic": {
+      "nseeds": 3,
+      "nmodels_below_hc_every_seed": 4,
+      "nmodels_above_hc_every_seed": 3,
+      "timesfm_seeds_above_hc": 3,
+      "max_model_range": 0.057
+    }
+  },
+  "command": "scripts/summarize_dataseed.py --out outputs/dataseed_v2/summary.json"
+}

@@ -1,0 +1,43 @@
+{
+  "representations_dir": "outputs/representations_v2/moirai_meanpool/synthetic_change_point_hard",
+  "property": "change_point_hard",
+  "task_type": "classification",
+  "seeds": [
+    0,
+    1,
+    2,
+    3,
+    4
+  ],
+  "val_score_per_seed": [
+    0.995,
+    0.97,
+    1.0,
+    0.98,
+    0.995
+  ],
+  "test_score_per_seed": [
+    0.975,
+    0.98,
+    0.985,
+    0.99,
+    0.985
+  ],
+  "best_layer_per_seed": [
+    "encoder_layers_0",
+    "encoder_layers_0",
+    "encoder_layers_1",
+    "encoder_layers_1",
+    "encoder_layers_1"
+  ],
+  "test_mean": 0.983,
+  "test_ci95_low": 0.978,
+  "test_ci95_high": 0.987,
+  "protocol": {
+    "split": "60/20/20 train/val/test",
+    "selection": "best layer chosen on val only",
+    "reporting": "test score only",
+    "estimator": "sklearn LogisticRegression",
+    "n_bootstrap": 1000
+  }
+}

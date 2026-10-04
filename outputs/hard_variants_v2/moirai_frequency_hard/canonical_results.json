@@ -1,0 +1,43 @@
+{
+  "representations_dir": "outputs/representations_v2/moirai_meanpool/synthetic_frequency_hard",
+  "property": "frequency_hard",
+  "task_type": "classification",
+  "seeds": [
+    0,
+    1,
+    2,
+    3,
+    4
+  ],
+  "val_score_per_seed": [
+    0.995,
+    1.0,
+    0.995,
+    1.0,
+    0.99
+  ],
+  "test_score_per_seed": [
+    1.0,
+    0.995,
+    0.99,
+    0.99,
+    0.985
+  ],
+  "best_layer_per_seed": [
+    "encoder_layers_2",
+    "encoder_layers_2",
+    "encoder_layers_3",
+    "encoder_layers_2",
+    "encoder_layers_3"
+  ],
+  "test_mean": 0.992,
+  "test_ci95_low": 0.988,
+  "test_ci95_high": 0.996,
+  "protocol": {
+    "split": "60/20/20 train/val/test",
+    "selection": "best layer chosen on val only",
+    "reporting": "test score only",
+    "estimator": "sklearn LogisticRegression",
+    "n_bootstrap": 1000
+  }
+}

@@ -1,0 +1,38 @@
+[
+  {
+    "dataset": "ECG200",
+    "hand_crafted": 0.7691,
+    "raw_signal": 0.9084,
+    "moment": 0.9453,
+    "chronos": 0.908,
+    "gpt4ts": 0.8355,
+    "timer": 0.9201,
+    "timesfm": 0.9284,
+    "moirai": 0.9518,
+    "patchtst_fm": 0.8854
+  },
+  {
+    "dataset": "Wafer",
+    "hand_crafted": 0.7666,
+    "raw_signal": 0.8666,
+    "moment": 0.9854,
+    "chronos": 0.9993,
+    "gpt4ts": 0.976,
+    "timer": 0.9989,
+    "timesfm": 0.9997,
+    "moirai": 0.9998,
+    "patchtst_fm": 0.9996
+  },
+  {
+    "dataset": "Earthquakes",
+    "hand_crafted": 0.6308,
+    "raw_signal": 0.5516,
+    "moment": 0.5335,
+    "chronos": 0.6074,
+    "gpt4ts": 0.5445,
+    "timer": 0.5291,
+    "timesfm": 0.4802,
+    "moirai": 0.6049,
+    "patchtst_fm": 0.5808
+  }
+]

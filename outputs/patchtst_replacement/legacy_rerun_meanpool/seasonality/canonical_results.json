@@ -1,0 +1,43 @@
+{
+  "representations_dir": "outputs/representations_patchtst_legacy_rerun/patchtst_pretrained_meanpool/synthetic_seasonality",
+  "property": "seasonality",
+  "task_type": "regression",
+  "seeds": [
+    0,
+    1,
+    2,
+    3,
+    4
+  ],
+  "val_score_per_seed": [
+    0.9991,
+    0.9991,
+    0.9992,
+    0.999,
+    0.9992
+  ],
+  "test_score_per_seed": [
+    0.999,
+    0.9992,
+    0.9993,
+    0.9991,
+    0.9994
+  ],
+  "best_layer_per_seed": [
+    "model_encoder_layers_1",
+    "model_encoder_layers_1",
+    "model_encoder_layers_1",
+    "model_encoder_layers_1",
+    "model_encoder_layers_1"
+  ],
+  "test_mean": 0.9992,
+  "test_ci95_low": 0.9991,
+  "test_ci95_high": 0.9993,
+  "protocol": {
+    "split": "60/20/20 train/val/test",
+    "selection": "best layer chosen on val only",
+    "reporting": "test score only",
+    "estimator": "sklearn Ridge",
+    "n_bootstrap": 1000
+  }
+}

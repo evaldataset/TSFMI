@@ -1,0 +1,50 @@
+{
+  "representations_dir": "outputs/representations_v2/raw/moment/synthetic_anomaly_hard",
+  "property": "anomaly_hard",
+  "task_type": "classification",
+  "seeds": [
+    0,
+    1,
+    2,
+    3,
+    4
+  ],
+  "val_score_per_seed": [
+    0.82,
+    0.8,
+    0.82,
+    0.81,
+    0.815
+  ],
+  "test_score_per_seed": [
+    0.805,
+    0.755,
+    0.79,
+    0.765,
+    0.795
+  ],
+  "best_layer_per_seed": [
+    "encoder_block_13",
+    "encoder_block_10",
+    "encoder_block_13",
+    "encoder_block_7",
+    "encoder_block_15"
+  ],
+  "test_mean": 0.782,
+  "test_ci95_low": 0.765,
+  "test_ci95_high": 0.798,
+  "protocol": {
+    "split": "60/20/20 train/val/test",
+    "selection": "best layer chosen on val only",
+    "reporting": "test score only",
+    "estimator": "sklearn LogisticRegression",
+    "n_bootstrap": 1000,
+    "pca_in_pipeline": {
+      "n_components": 512,
+      "pipeline": "StandardScaler -> PCA -> estimator",
+      "fit_scope": "training split of each split seed only",
+      "input": "flattened full-dimensional layer representations",
+      "skipped_when": "layer dim <= 512"
+    }
+  }
+}

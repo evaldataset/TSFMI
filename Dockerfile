@@ -32,7 +32,9 @@ RUN pip install -r requirements.txt && \
 
 COPY . /app
 
-# Smoke test during build
-RUN pytest tests/ -q -m "not slow" --no-header -x || true
+# Smoke test during build: image build FAILS if any test fails. Previously
+# this line ended in `|| true` which swallowed the failure; that masked
+# environment regressions and is incompatible with reproducibility claims.
+RUN pytest tests/ -q -m "not slow" --no-header -x
 
 CMD ["bash"]

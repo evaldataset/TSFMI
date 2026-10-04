@@ -1,0 +1,50 @@
+{
+  "representations_dir": "outputs/representations_v2/raw/gpt4ts/synthetic_seasonality",
+  "property": "seasonality",
+  "task_type": "regression",
+  "seeds": [
+    0,
+    1,
+    2,
+    3,
+    4
+  ],
+  "val_score_per_seed": [
+    0.9998,
+    0.9997,
+    0.9997,
+    0.9997,
+    0.9998
+  ],
+  "test_score_per_seed": [
+    0.9997,
+    0.9998,
+    0.9998,
+    0.9997,
+    0.9998
+  ],
+  "best_layer_per_seed": [
+    "transformer_h_2",
+    "transformer_h_2",
+    "transformer_h_2",
+    "transformer_h_4",
+    "transformer_h_10"
+  ],
+  "test_mean": 0.9998,
+  "test_ci95_low": 0.9997,
+  "test_ci95_high": 0.9998,
+  "protocol": {
+    "split": "60/20/20 train/val/test",
+    "selection": "best layer chosen on val only",
+    "reporting": "test score only",
+    "estimator": "sklearn Ridge",
+    "n_bootstrap": 1000,
+    "pca_in_pipeline": {
+      "n_components": 512,
+      "pipeline": "StandardScaler -> PCA -> estimator",
+      "fit_scope": "training split of each split seed only",
+      "input": "flattened full-dimensional layer representations",
+      "skipped_when": "layer dim <= 512"
+    }
+  }
+}

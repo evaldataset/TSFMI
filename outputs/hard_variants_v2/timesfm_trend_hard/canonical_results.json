@@ -1,0 +1,43 @@
+{
+  "representations_dir": "outputs/representations_v2/timesfm_meanpool/synthetic_trend_hard",
+  "property": "trend_hard",
+  "task_type": "classification",
+  "seeds": [
+    0,
+    1,
+    2,
+    3,
+    4
+  ],
+  "val_score_per_seed": [
+    0.995,
+    0.975,
+    0.97,
+    0.96,
+    0.975
+  ],
+  "test_score_per_seed": [
+    0.985,
+    0.98,
+    0.97,
+    0.945,
+    0.97
+  ],
+  "best_layer_per_seed": [
+    "layers_27",
+    "layers_19",
+    "layers_31",
+    "layers_22",
+    "layers_41"
+  ],
+  "test_mean": 0.97,
+  "test_ci95_low": 0.957,
+  "test_ci95_high": 0.981,
+  "protocol": {
+    "split": "60/20/20 train/val/test",
+    "selection": "best layer chosen on val only",
+    "reporting": "test score only",
+    "estimator": "sklearn LogisticRegression",
+    "n_bootstrap": 1000
+  }
+}

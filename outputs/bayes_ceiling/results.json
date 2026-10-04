@@ -1,0 +1,19 @@
+{
+  "generator": "normal: x ~ N(0, I_512); anomaly: same plus one spike of +-5 at a uniform position (generate_anomaly_dataset(1000, 512, seed=42))",
+  "statistic": "LLR(x) = log mean_t cosh(5 x_t) - 12.5; rule: anomaly iff LLR > 0",
+  "bayes_rule": {
+    "mean": 0.906,
+    "ci95": [
+      0.898,
+      0.915
+    ],
+    "per_seed": [
+      0.915,
+      0.9,
+      0.895,
+      0.92,
+      0.9
+    ]
+  },
+  "command": "scripts/run_bayes_ceiling.py --out outputs/bayes_ceiling"
+}

@@ -1,0 +1,71 @@
+{
+  "device": "NVIDIA A100 80GB PCIe",
+  "batch": 32,
+  "seq_len": 512,
+  "models": {
+    "moment": {
+      "gpu_utilization_before_percent": 86,
+      "n_layers": 24,
+      "windows": 512,
+      "seconds": 4.091,
+      "windows_per_second": 125.1,
+      "activation_bytes_per_window": 6291456,
+      "peak_gpu_mib": 1707.7
+    },
+    "chronos": {
+      "gpu_utilization_before_percent": 97,
+      "n_layers": 6,
+      "windows": 512,
+      "seconds": 0.28,
+      "windows_per_second": 1825.6,
+      "activation_bytes_per_window": 405504,
+      "peak_gpu_mib": 227.0
+    },
+    "timer": {
+      "gpu_utilization_before_percent": 91,
+      "n_layers": 8,
+      "windows": 512,
+      "seconds": 0.23,
+      "windows_per_second": 2224.4,
+      "activation_bytes_per_window": 163840,
+      "peak_gpu_mib": 420.3
+    },
+    "timesfm": {
+      "gpu_utilization_before_percent": 94,
+      "n_layers": 50,
+      "windows": 512,
+      "seconds": 6.345,
+      "windows_per_second": 80.7,
+      "activation_bytes_per_window": 16384000,
+      "peak_gpu_mib": 2474.3
+    },
+    "moirai": {
+      "gpu_utilization_before_percent": 99,
+      "n_layers": 6,
+      "windows": 512,
+      "seconds": 0.576,
+      "windows_per_second": 888.3,
+      "activation_bytes_per_window": 294912,
+      "peak_gpu_mib": 77.0
+    },
+    "gpt4ts": {
+      "gpu_utilization_before_percent": 94,
+      "n_layers": 12,
+      "windows": 512,
+      "seconds": 0.587,
+      "windows_per_second": 872.6,
+      "activation_bytes_per_window": 1179648,
+      "peak_gpu_mib": 663.4
+    },
+    "patchtst_fm": {
+      "gpu_utilization_before_percent": 100,
+      "n_layers": 20,
+      "windows": 512,
+      "seconds": 1.145,
+      "windows_per_second": 447.3,
+      "activation_bytes_per_window": 2621440,
+      "peak_gpu_mib": 1189.5
+    }
+  },
+  "command": "scripts/measure_extraction_throughput.py --out outputs/extraction_throughput"
+}

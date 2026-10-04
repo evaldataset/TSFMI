@@ -1,0 +1,294 @@
+{
+  "protocol": "How much does the extraction view change the anomaly result? (MOMENT and GPT4TS)\n\nThe canonical v2 protocol probes MOMENT and GPT4TS through a PCA-512 of the flattened per-token\nactivations, fit inside each seed's training fold, because only these two models keep per-token\ntensors. This script re-probes the same stored tensors under three token-pooling views -- mean over\ntokens, max over tokens, and the last token -- with the unchanged protocol: 60/20/20 splits, split\nseeds 0-4, layer selected on validation per seed, StandardScaler + LogisticRegression, bootstrap CI.\nThe PCA view is read from the canonical v2 results, not recomputed.",
+  "rows": {
+    "canonical/moment": {
+      "pca512_canonical": {
+        "test_mean": 0.53,
+        "test_ci95": [
+          0.518,
+          0.542
+        ]
+      },
+      "mean": {
+        "test_mean": 0.599,
+        "test_ci95": [
+          0.574,
+          0.6291
+        ],
+        "per_seed": [
+          0.56,
+          0.59,
+          0.655,
+          0.58,
+          0.61
+        ],
+        "best_layer_per_seed": [
+          "encoder_block_16",
+          "encoder_block_16",
+          "encoder_block_8",
+          "encoder_block_5",
+          "encoder_block_5"
+        ]
+      },
+      "max": {
+        "test_mean": 0.601,
+        "test_ci95": [
+          0.5689,
+          0.624
+        ],
+        "per_seed": [
+          0.61,
+          0.535,
+          0.63,
+          0.62,
+          0.61
+        ],
+        "best_layer_per_seed": [
+          "encoder_block_3",
+          "encoder_block_18",
+          "encoder_block_3",
+          "encoder_block_5",
+          "encoder_block_0"
+        ]
+      },
+      "last": {
+        "test_mean": 0.536,
+        "test_ci95": [
+          0.489,
+          0.576
+        ],
+        "per_seed": [
+          0.55,
+          0.445,
+          0.59,
+          0.575,
+          0.52
+        ],
+        "best_layer_per_seed": [
+          "encoder_block_1",
+          "encoder_block_16",
+          "encoder_block_7",
+          "encoder_block_5",
+          "encoder_block_10"
+        ]
+      }
+    },
+    "canonical/gpt4ts": {
+      "pca512_canonical": {
+        "test_mean": 0.492,
+        "test_ci95": [
+          0.466,
+          0.518
+        ]
+      },
+      "mean": {
+        "test_mean": 0.56,
+        "test_ci95": [
+          0.527,
+          0.586
+        ],
+        "per_seed": [
+          0.55,
+          0.57,
+          0.595,
+          0.585,
+          0.5
+        ],
+        "best_layer_per_seed": [
+          "transformer_h_1",
+          "transformer_h_4",
+          "transformer_h_9",
+          "transformer_h_1",
+          "transformer_h_1"
+        ]
+      },
+      "max": {
+        "test_mean": 0.626,
+        "test_ci95": [
+          0.609,
+          0.645
+        ],
+        "per_seed": [
+          0.605,
+          0.635,
+          0.66,
+          0.625,
+          0.605
+        ],
+        "best_layer_per_seed": [
+          "transformer_h_2",
+          "transformer_h_3",
+          "transformer_h_1",
+          "transformer_h_5",
+          "transformer_h_0"
+        ]
+      },
+      "last": {
+        "test_mean": 0.483,
+        "test_ci95": [
+          0.456,
+          0.511
+        ],
+        "per_seed": [
+          0.455,
+          0.525,
+          0.52,
+          0.46,
+          0.455
+        ],
+        "best_layer_per_seed": [
+          "transformer_h_6",
+          "transformer_h_0",
+          "transformer_h_11",
+          "transformer_h_8",
+          "transformer_h_10"
+        ]
+      }
+    },
+    "realistic/moment": {
+      "pca512_canonical": {
+        "test_mean": 0.538,
+        "test_ci95": [
+          0.522,
+          0.551
+        ]
+      },
+      "mean": {
+        "test_mean": 0.55,
+        "test_ci95": [
+          0.533,
+          0.566
+        ],
+        "per_seed": [
+          0.555,
+          0.58,
+          0.555,
+          0.525,
+          0.535
+        ],
+        "best_layer_per_seed": [
+          "encoder_block_17",
+          "encoder_block_11",
+          "encoder_block_12",
+          "encoder_block_7",
+          "encoder_block_11"
+        ]
+      },
+      "max": {
+        "test_mean": 0.582,
+        "test_ci95": [
+          0.554,
+          0.607
+        ],
+        "per_seed": [
+          0.56,
+          0.605,
+          0.615,
+          0.595,
+          0.535
+        ],
+        "best_layer_per_seed": [
+          "encoder_block_4",
+          "encoder_block_5",
+          "encoder_block_9",
+          "encoder_block_1",
+          "encoder_block_19"
+        ]
+      },
+      "last": {
+        "test_mean": 0.525,
+        "test_ci95": [
+          0.512,
+          0.541
+        ],
+        "per_seed": [
+          0.52,
+          0.5,
+          0.55,
+          0.535,
+          0.52
+        ],
+        "best_layer_per_seed": [
+          "encoder_block_8",
+          "encoder_block_5",
+          "encoder_block_23",
+          "encoder_block_2",
+          "encoder_block_22"
+        ]
+      }
+    },
+    "realistic/gpt4ts": {
+      "pca512_canonical": {
+        "test_mean": 0.522,
+        "test_ci95": [
+          0.488,
+          0.553
+        ]
+      },
+      "mean": {
+        "test_mean": 0.596,
+        "test_ci95": [
+          0.5699,
+          0.625
+        ],
+        "per_seed": [
+          0.615,
+          0.54,
+          0.64,
+          0.59,
+          0.595
+        ],
+        "best_layer_per_seed": [
+          "transformer_h_2",
+          "transformer_h_1",
+          "transformer_h_0",
+          "transformer_h_3",
+          "transformer_h_0"
+        ]
+      },
+      "max": {
+        "test_mean": 0.639,
+        "test_ci95": [
+          0.621,
+          0.654
+        ],
+        "per_seed": [
+          0.61,
+          0.65,
+          0.625,
+          0.65,
+          0.66
+        ],
+        "best_layer_per_seed": [
+          "transformer_h_2",
+          "transformer_h_0",
+          "transformer_h_7",
+          "transformer_h_4",
+          "transformer_h_0"
+        ]
+      },
+      "last": {
+        "test_mean": 0.556,
+        "test_ci95": [
+          0.539,
+          0.576
+        ],
+        "per_seed": [
+          0.535,
+          0.535,
+          0.56,
+          0.595,
+          0.555
+        ],
+        "best_layer_per_seed": [
+          "transformer_h_1",
+          "transformer_h_0",
+          "transformer_h_2",
+          "transformer_h_8",
+          "transformer_h_0"
+        ]
+      }
+    }
+  },
+  "command": "scripts/run_view_sensitivity.py --out outputs/view_sensitivity"
+}

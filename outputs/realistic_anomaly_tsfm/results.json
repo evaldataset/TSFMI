@@ -1,0 +1,95 @@
+{
+  "task": "realistic_anomaly_tsfm",
+  "design": "Same realistic anomaly generator as run_realistic_anomaly.py; encoder-side 4-model set; canonical 60/20/20 + 5-seed + bootstrap.",
+  "models": [
+    {
+      "model": "moment",
+      "best_layer": "encoder.block.17",
+      "test_mean": 0.533,
+      "test_ci95_low": 0.509,
+      "test_ci95_high": 0.562,
+      "per_seed_test": [
+        0.53,
+        0.5,
+        0.535,
+        0.51,
+        0.59
+      ]
+    },
+    {
+      "model": "chronos",
+      "best_layer": "encoder.block.0",
+      "test_mean": 0.654,
+      "test_ci95_low": 0.636,
+      "test_ci95_high": 0.672,
+      "per_seed_test": [
+        0.635,
+        0.625,
+        0.66,
+        0.675,
+        0.675
+      ]
+    },
+    {
+      "model": "patchtst_pretrained",
+      "error": "ValueError: Cannot load PatchTST checkpoint: namctin/patchtst_etth1_forecast"
+    },
+    {
+      "model": "gpt4ts",
+      "best_layer": "transformer.h.0",
+      "test_mean": 0.571,
+      "test_ci95_low": 0.554,
+      "test_ci95_high": 0.592,
+      "per_seed_test": [
+        0.61,
+        0.55,
+        0.56,
+        0.58,
+        0.555
+      ]
+    },
+    {
+      "model": "timesfm",
+      "best_layer": "layers.22",
+      "test_mean": 0.638,
+      "test_ci95_low": 0.609,
+      "test_ci95_high": 0.66,
+      "per_seed_test": [
+        0.65,
+        0.645,
+        0.67,
+        0.64,
+        0.585
+      ]
+    },
+    {
+      "model": "moirai",
+      "best_layer": "encoder.layers.0",
+      "test_mean": 0.703,
+      "test_ci95_low": 0.6879,
+      "test_ci95_high": 0.715,
+      "per_seed_test": [
+        0.715,
+        0.67,
+        0.715,
+        0.715,
+        0.7
+      ]
+    },
+    {
+      "model": "timer",
+      "best_layer": "model.layers.1",
+      "test_mean": 0.571,
+      "test_ci95_low": 0.543,
+      "test_ci95_high": 0.6051,
+      "per_seed_test": [
+        0.58,
+        0.565,
+        0.54,
+        0.535,
+        0.635
+      ]
+    }
+  ],
+  "note": "TSFM probes are run with the same canonical pipeline as the synthetic anomaly. The HC baseline on this realistic generator is 0.701 (run via run_realistic_anomaly.py). If max(model.test_mean) <= 0.701 the inversion is preserved on the realistic construction; otherwise the inversion narrows or reverses on this harder task and the appendix should report it."
+}

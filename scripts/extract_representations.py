@@ -29,6 +29,7 @@ MODEL_CHOICES = [
     "moment",
     "patchtst",
     "patchtst_pretrained",
+    "patchtst_fm",
     "itransformer",
     "chronos",
     "gpt4ts",
@@ -51,6 +52,7 @@ DATASET_CHOICES = [
     "synthetic_anomaly_hard",
     "synthetic_stationarity_hard",
     "synthetic_change_point_hard",
+    "synthetic_anomaly_realistic",
     "etth1_trend",
     "etth1_stationarity",
     "etth1_seasonality",
@@ -80,7 +82,11 @@ DATASET_CHOICES = [
 DEFAULT_CHECKPOINTS: dict[str, str] = {
     "moment": "AutonLab/MOMENT-1-large",
     "patchtst": "namctin/patchtst_etth1_forecast",
+    # Legacy: supervised ETTh1-forecasting PatchTST (same weights as the gated namctin id).
+    # Kept to reproduce the original patchtst_pretrained artifacts; leaks on ETTh1.
     "patchtst_pretrained": "ibm-granite/granite-timeseries-patchtst",
+    # Replacement: PatchTST-FM-r1 foundation model (ETT-free pretraining corpus).
+    "patchtst_fm": "ibm-granite/granite-timeseries-patchtst-fm-r1",
     "itransformer": "",
     "chronos": "amazon/chronos-bolt-small",
     "gpt4ts": "gpt2",
@@ -212,7 +218,7 @@ def load_model_wrapper(
     if model_name == "moment":
         wrapper = MOMENTWrapper()
         wrapper.load(ckpt, device=device)
-    elif model_name in {"patchtst", "patchtst_pretrained"}:
+    elif model_name in {"patchtst", "patchtst_pretrained", "patchtst_fm"}:
         wrapper = PatchTSTWrapper()
         wrapper.load(ckpt, device=device, seq_len=seq_len)
     elif model_name == "itransformer":
@@ -317,6 +323,34 @@ def _load_synthetic(
         generate_trend_hard_dataset,
     )
 
+    # Realistic anomaly generator (mixed-type anomalies on a structured
+    # background). Imported lazily to avoid a hard dependency from this script
+    # on the rebuttal-experiment helper.
+    def _realistic_anomaly_factory(
+        *, num_samples: int, seq_len: int, seed: int
+    ) -> SyntheticDataset:
+        from scripts.run_realistic_anomaly import realistic_anomaly_dataset
+        from src.datasets.synthetic import SyntheticDataset
+
+        seqs, labs = realistic_anomaly_dataset(num_samples, seq_len, seed=seed)
+        return SyntheticDataset(
+            sequences=seqs,
+            labels=labs,
+            label_type="classification",
+            property_name="anomaly_realistic",
+            metadata={
+                "generator": "run_realistic_anomaly.realistic_anomaly_dataset",
+                "num_samples": num_samples,
+                "seq_len": seq_len,
+                "seed": seed,
+                "design": (
+                    "Mixed-type anomaly (point, level-shift, variance, contextual) "
+                    "on a structured background (seasonality + AR(1) + noise); "
+                    "subtle magnitudes (1.5--3 sigma)."
+                ),
+            },
+        )
+
     generators = {
         "synthetic_trend": generate_trend_dataset,
         "synthetic_seasonality": generate_seasonality_dataset,
@@ -329,6 +363,7 @@ def _load_synthetic(
         "synthetic_anomaly_hard": generate_anomaly_hard_dataset,
         "synthetic_stationarity_hard": generate_stationarity_hard_dataset,
         "synthetic_change_point_hard": generate_change_point_hard_dataset,
+        "synthetic_anomaly_realistic": _realistic_anomaly_factory,
     }
 
     generator = generators.get(name)

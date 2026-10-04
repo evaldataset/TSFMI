@@ -57,17 +57,27 @@ def make_background(rng: np.random.Generator, t: NDArray) -> NDArray:
     return season + ar
 
 
-def realistic_anomaly_dataset(num_samples: int, seq_len: int, seed: int):
+def realistic_anomaly_dataset(
+    num_samples: int, seq_len: int, seed: int, return_kinds: bool = False
+):
+    """Seasonal AR(1) windows; half carry one subtle anomaly of four kinds.
+
+    With ``return_kinds`` the anomaly kind of every window is returned as a third array
+    (-1 normal, 0 point, 1 level shift, 2 variance change, 3 contextual). The random stream is
+    unchanged, so sequences and labels are identical with and without it.
+    """
     rng = np.random.default_rng(seed)
     t = np.arange(seq_len, dtype=np.float64)
     sequences: list[NDArray] = []
     labels: list[int] = []
+    kinds: list[int] = []
     half = num_samples // 2
     for _ in range(half):
         # Class 0: ambiguous-normal: realistic background, NO injected anomaly,
         # but background may itself show extreme transient excursions.
         sequences.append(make_background(rng, t))
         labels.append(0)
+        kinds.append(-1)
     for _ in range(num_samples - half):
         # Class 1: subtle anomaly of one of 4 types injected on the realistic background.
         y = make_background(rng, t)
@@ -99,9 +109,12 @@ def realistic_anomaly_dataset(num_samples: int, seq_len: int, seed: int):
             )
         sequences.append(y)
         labels.append(1)
+        kinds.append(kind)
     perm = rng.permutation(num_samples)
     seqs = np.asarray(sequences, dtype=np.float64)[perm]
     labs = np.asarray(labels, dtype=np.int64)[perm]
+    if return_kinds:
+        return seqs, labs, np.asarray(kinds, dtype=np.int64)[perm]
     return seqs, labs
 
 

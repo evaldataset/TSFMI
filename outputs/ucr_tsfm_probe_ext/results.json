@@ -1,0 +1,38 @@
+[
+  {
+    "dataset": "FordA",
+    "hand_crafted": 0.6495,
+    "raw_signal": 0.4867,
+    "moment": 0.9639,
+    "chronos": 0.9845,
+    "gpt4ts": 0.9475,
+    "timer": 0.959,
+    "timesfm": 0.9738,
+    "moirai": 0.983,
+    "patchtst_fm": 0.9742
+  },
+  {
+    "dataset": "FordB",
+    "hand_crafted": 0.4828,
+    "raw_signal": 0.4803,
+    "moment": 0.8425,
+    "chronos": 0.8669,
+    "gpt4ts": 0.7819,
+    "timer": 0.8349,
+    "timesfm": 0.86,
+    "moirai": 0.8743,
+    "patchtst_fm": 0.8681
+  },
+  {
+    "dataset": "Strawberry",
+    "hand_crafted": 0.8584,
+    "raw_signal": 0.9901,
+    "moment": 0.9611,
+    "chronos": 0.994,
+    "gpt4ts": 0.9799,
+    "timer": 0.9749,
+    "timesfm": 0.9856,
+    "moirai": 0.9852,
+    "patchtst_fm": 0.9898
+  }
+]

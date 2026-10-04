@@ -1,15 +1,24 @@
+# Pins = the versions installed in the environment that produced outputs/canonical_v2/
+# (Python 3.12.3; each verified with `import X; print(X.__version__)`). The complete lock of
+# that environment is outputs/canonical_v2/environment.txt (`pip freeze`).
+# numpy 2.3.5 and scipy 1.17.1 require Python >= 3.11.
+#
+# Model packages whose published metadata conflicts with these pins (momentfm, chronos-forecasting,
+# uni2ts) are in requirements-models.txt and must be installed with --no-deps:
+#   python -m pip install -r requirements.txt
+#   python -m pip install --no-deps -r requirements-models.txt
+#   python -m pip install -r requirements-patchtst-fm.txt
 torch==2.10.0
 transformers==4.57.6
-momentfm==0.1.4
 einops==0.7.0
-numpy==1.26.4
-pandas==2.1.4
-scipy==1.11.4
-scikit-learn==1.8.0
+numpy==2.3.5
+pandas==2.3.3
+scipy==1.17.1
+scikit-learn==1.7.2
 matplotlib==3.10.8
 seaborn==0.13.2
 pyyaml==6.0.3
 dacite==1.9.2
 concept-erasure==0.2.4
-statsmodels==0.14.4
-umap-learn==0.5.7
+statsmodels==0.14.6
+umap-learn==0.5.11

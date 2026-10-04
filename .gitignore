@@ -90,6 +90,30 @@ outputs/*
 # Then re-include paper-cited confirmatory artefacts and the paper/ tree.
 !outputs/canonical/
 !outputs/canonical_baselines/
+!outputs/canonical_v2/
+!outputs/ucr_tsfm_probe_v2/
+!outputs/statistic_recoverability/
+!outputs/realistic_anomaly_v2/
+!outputs/hard_variants_v2/
+!outputs/representation_storage/
+!outputs/anomaly_diagnostics/
+!outputs/statistic_erasure/
+!outputs/dataseed_v2/
+!outputs/bayes_ceiling/
+!outputs/extraction_throughput/
+!outputs/per_feature_all_properties/
+outputs/per_feature_all_properties/r1_results.json
+!outputs/realistic_anomaly_tsfm/
+!outputs/ucr_tsfm_probe_ext/
+!outputs/view_sensitivity/
+outputs/view_sensitivity/run.log
+outputs/extraction_throughput/run.log
+outputs/ucr_tsfm_probe_ext/run.log
+outputs/canonical_v2/logs/
+outputs/hard_variants_v2/logs/
+outputs/dataseed_v2/*/logs/
+outputs/anomaly_diagnostics/run.log
+outputs/statistic_erasure/run.log
 !outputs/cka/
 !outputs/cka_bootstrap/
 !outputs/leace/
@@ -108,9 +132,13 @@ outputs/*
 !outputs/strong_baselines/
 !outputs/multicapacity_probe/
 !outputs/wilinski_reproduction/
+!outputs/wilinski_moment_ldr/
 !outputs/anomaly_mechanism/
 !outputs/hard_variant_benchmark/
 !outputs/causal_controls/
+!outputs/hl_selectivity/
+!outputs/hl_selectivity_v2/
+!outputs/patchtst_replacement/
 # outputs/paper/ is intentionally NOT redistributed via GitHub.
 # The compiled paper PDF and supplementary zip are uploaded to OpenReview;
 # the LaTeX sources and figures live only in the local working tree.
@@ -129,3 +157,34 @@ notebooks/
 
 # Claude Code orchestration state
 .claude/
+
+# local machine paths (not for release)
+.env.tsfmi
+# latex build artifacts (leak absolute paths)
+paper/*.fls
+paper/*.fdb_latexmk
+paper/*.aux
+paper/*.log
+paper/*.out
+paper/*.synctex.gz
+data/ucr_cache/
+
+# Internal working documents — never ship to the public/anonymous release.
+# These carry venue strategy, reviewer-response tactics and unpublished paper
+# text; scripts/prepare_anonymous_release.sh strips them from the bundle, but
+# they must not reach this repository in the first place.
+REBUTTAL.md
+RESEARCH_PLAN.md
+PAPER_AUDIT.md
+PAPER_A_OUTLINE.md
+PAPER_B_OUTLINE.md
+BREAKTHROUGH_FINDINGS.md
+DRAFT_A.md
+DRAFT_B.md
+SUBMISSION_FORM.md
+SUBMISSION_GUIDE.md
+
+# Local paper build tree (main_a/main_b drafts, not the submission source).
+# No trailing slash: this path is a symlink into the private docs repo, and
+# a "paper/" pattern would not match a symlink.
+paper

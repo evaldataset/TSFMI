@@ -73,11 +73,14 @@ def compute_regression_metrics(
 
 
 def compute_selectivity(probe_acc: float, control_acc: float) -> float:
-    """Compute probe selectivity (Hewitt & Liang, 2019).
+    """Compute the linear-minus-MLP probe accuracy gap.
 
-    Selectivity = linear_probe_accuracy - control_probe_accuracy.
-    Measures how much accuracy is due to LINEAR accessibility of the property,
-    as opposed to memorization or nonlinear pattern recognition.
+    Gap = linear_probe_accuracy - mlp_probe_accuracy, both on the same task and
+    splits. Despite the function name, this is NOT the selectivity of Hewitt &
+    Liang (2019), which compares one probe's accuracy on the real task with the
+    same probe's accuracy on a control task with random labels. Here the
+    contrast is between two probe families, so the number measures how much of
+    the property is linearly accessible relative to a nonlinear probe.
 
     Args:
         probe_acc: Accuracy of the linear probe.
