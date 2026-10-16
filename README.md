@@ -13,25 +13,28 @@ statistics, and leak-free extraction pipeline.
 Canonical protocol (v2): n = 1000 windows of length 512, 60/20/20 split, split seeds 0–4,
 validation-selected layer, test score reported. All values come from `outputs/canonical_v2/`.
 
-| Property | Raw signal | Hand-crafted (8-D) | Best TSFM |
+| Property | Raw signal | Hand-crafted (8-D) | Best model |
 |---|---:|---:|---:|
 | Trend | 1.000 | 1.000 | 1.000 |
 | Seasonality (R²) | 0.789 | 0.959 | 1.000 |
 | Frequency | 1.000 | 0.944 | 1.000 |
 | Stationarity | 0.496 | 1.000 | 1.000 |
-| **Anomaly** | 0.485 | **0.858** | **0.753** (TimesFM 2.0) |
+| **Anomaly** | 0.485 | **0.858** | **0.756** (TimesFM 2.0) |
 | Change point | 1.000 | 1.000 | 1.000 |
 
-- **Five of six properties are recovered without any model** at or near the ceiling, so probe
-  accuracy on them says little about the model.
+- **Strongest control.** Across 20 task settings (6 canonical properties, 5 hard variants, a
+  mixed-type anomaly generator under 3 data seeds, 6 UCR datasets) the best model exceeds the strongest
+  non-model control (raw signal, hand-crafted statistics, random projection, `tsfresh`, ROCKET-style
+  features) in 6, by at most 0.019 (`tools/make_numbers.py`, keys `sc/*`).
+- **Weak controls mislead.** Against the 8-D hand-crafted vector, TimesFM and PatchTST-FM win on the
+  mixed-type anomaly generator; the ROCKET-style transform beats every model on all three data seeds
+  (`outputs/strong_controls_ext/`).
 - **Anomaly is nearly solved by one input statistic.** `max(|x|)` alone reaches 0.907, the
-  Bayes-optimal rule 0.906 (`outputs/per_feature_anomaly/`, `outputs/bayes_ceiling/`). Erasing linear
-  information about the sufficient statistics with LEACE removes most of the models' anomaly signal
-  (`outputs/statistic_erasure/`).
-- **On mixed-type anomalies the ordering reverses for the strongest models.** TimesFM 2.0 (0.730) and
-  PatchTST-FM (0.732) exceed the hand-crafted vector (0.701), and keep accuracy well above chance after
-  every hand-crafted feature is erased (`outputs/realistic_anomaly_v2/`,
-  `outputs/statistic_erasure/realistic_handcrafted/`).
+  Bayes-optimal rule 0.906. LEACE erasure of the sufficient statistics removes most of the models'
+  anomaly signal, but a label proxy of equal predictiveness removes about as much
+  (`outputs/statistic_erasure/`), so erasure cannot attribute the signal to the statistics.
+
+Intervals are corrected resampled-t intervals (Nadeau & Bengio, 2003) for the overlapping split seeds.
 
 ## Quickstart (CPU, <10 minutes)
 
@@ -68,7 +71,9 @@ make reproduce-icde    # every result the manuscript reads (GPU; many hours)
 | `make view-sensitivity` | `outputs/view_sensitivity/` | MOMENT and GPT4TS under mean, max, and last-token views |
 | `make ucr-probe` | `outputs/ucr_tsfm_probe_v2/`, `outputs/ucr_tsfm_probe_ext/` | Minority-class probes on six UCR datasets |
 | `make wilinski-ldr` | `outputs/wilinski_moment_ldr/` | Wiliński et al.'s separability pipeline with non-model controls |
-| `make multicapacity-probe` | `outputs/multicapacity_probe/` | Linear, MLP (64–1024), and random-forest probes |
+| `make capacity-probe-v2` | `outputs/capacity_probe_v2/` | Linear, MLP (64–1024), and random-forest probes; per-probe validation-selected layer, all models |
+| `make strong-controls-ext` | `outputs/strong_controls_ext/` | ROCKET-style and `tsfresh` controls on realistic, hard, UCR, and canonical tasks |
+| `make icde-numbers` | `outputs/paper_numbers/` | Every manuscript number (`numbers.tex`) and figure, generated from the result files |
 | `make per-feature-all-properties`, `make per-feature-anomaly` | `outputs/per_feature_*` | Single-feature ablations |
 | `make bayes-ceiling`, `make rocket-baselines`, `make strong-baselines` | `outputs/bayes_ceiling/`, `outputs/rocket_baselines/`, `outputs/strong_baselines/` | Bayes rule, ROCKET-style and `tsfresh` controls |
 | `make representation-storage`, `make extraction-throughput` | `outputs/representation_storage/`, `outputs/extraction_throughput/` | Storage footprint and extraction cost |
@@ -116,11 +121,11 @@ redistribute weights. Layer counts and sizes are those of the checkpoints the co
 | Model | Hugging Face ID | Layers | Params | Probed view |
 |---|---|---|---|---|
 | MOMENT | `AutonLab/MOMENT-1-large` | 24 | 385 M | PCA-512 (train-only) |
-| Chronos-Bolt | `amazon/chronos-bolt-small` | 6 enc. + 6 dec. | 48 M | mean-pool (encoder) |
+| Chronos-Bolt | `amazon/chronos-bolt-small` | 6 encoder blocks probed | 48 M | mean-pool |
 | Timer | `thuml/timer-base-84m` | 8 | 84 M | mean-pool |
 | TimesFM 2.0 | `google/timesfm-2.0-500m-pytorch` | 50 | 494 M | mean-pool |
 | Moirai 2.0 | `Salesforce/moirai-2.0-R-small` | 6 | 11.4 M | mean-pool |
-| GPT4TS | `gpt2` (frozen backbone) | 12 | 124 M | PCA-512 (train-only) |
+| GPT-2 (random patch embedding) | `gpt2` (frozen; untrained linear patch embedding, not a GPT4TS checkpoint) | 12 | 124 M | PCA-512 (train-only) |
 | PatchTST-FM | `ibm-granite/granite-timeseries-patchtst-fm-r1` | 20 | 258 M | mean-pool |
 
 PatchTST-FM replaces an earlier PatchTST checkpoint that was a supervised ETTh1 forecaster

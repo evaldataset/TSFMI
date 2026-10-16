@@ -15,9 +15,12 @@ Usage:
 from __future__ import annotations
 
 import argparse
+import hashlib
 import json
 from pathlib import Path
 from typing import TYPE_CHECKING
+
+import numpy as np
 
 if TYPE_CHECKING:
     import torch
@@ -163,7 +166,15 @@ def parse_args(argv: list[str] | None = None) -> argparse.Namespace:
         "--seed",
         type=int,
         default=42,
-        help="Random seed for reproducibility.",
+        help="Data seed: seeds the dataset generator.",
+    )
+    parser.add_argument(
+        "--model-seed",
+        type=int,
+        default=42,
+        help="Seed for any randomly initialised model component (e.g. the GPT4TS patch "
+        "embedding). Kept separate from --seed so that a data-seed study does not also "
+        "change the model.",
     )
     parser.add_argument(
         "--stride",
@@ -445,7 +456,7 @@ def main() -> None:
     from src.utils.device import resolve_device
     from src.utils.seed import seed_everything
 
-    seed_everything(args.seed)
+    seed_everything(args.model_seed)
     device = resolve_device(args.device)
 
     print(f"Device: {device}")
@@ -519,6 +530,10 @@ def main() -> None:
         "label_type": dataset.label_type,
         "property_name": dataset.property_name,
         "seed": args.seed,
+        "model_seed": args.model_seed,
+        "sequences_sha256": hashlib.sha256(
+            np.ascontiguousarray(dataset.sequences, dtype=np.float64).tobytes()
+        ).hexdigest(),
         "device": str(device),
     }
     metadata_path = output_dir / "metadata.json"

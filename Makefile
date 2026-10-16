@@ -15,15 +15,16 @@ PAPER_MAIN := $(LATEX_DIR)/main.tex
         realistic-anomaly-v2 hard-variants-v2 dataseed-v2 hl-selectivity-v2 \
         statistic-recoverability statistic-erasure anomaly-diagnostics ucr-probe \
         representation-storage extraction-throughput wilinski-ldr reproduce-icde \
-        per-feature-all-properties bayes-ceiling strong-baselines multicapacity-probe \
-        view-sensitivity \
+        per-feature-all-properties bayes-ceiling strong-baselines capacity-probe-v2 \
+        strong-controls-ext \
+        view-sensitivity icde-numbers \
         manifest clean help
 
 test:
 	$(VENV)/python -m pytest tests/ -q
 
 lint:
-	$(VENV)/ruff check src scripts tests
+	$(VENV)/ruff check src scripts tests tools
 
 format:
 	$(VENV)/ruff format src scripts tests
@@ -173,6 +174,12 @@ statistic-erasure:
 	$(PYTHON) scripts/run_statistic_erasure.py --task realistic --concept statistics \
 	    --out outputs/statistic_erasure/realistic_statistics
 
+# Every number (numbers.tex, one LaTeX macro per value) and every figure of the manuscript, generated
+# from the committed result files.
+icde-numbers:
+	$(PYTHON) tools/make_numbers.py --out outputs/paper_numbers/numbers.tex --require-canonical-v2
+	$(PYTHON) tools/make_figures.py --out outputs/paper_numbers/figures
+
 view-sensitivity:
 	$(PYTHON) scripts/run_view_sensitivity.py --out outputs/view_sensitivity
 
@@ -185,9 +192,16 @@ bayes-ceiling:
 strong-baselines:
 	$(PYTHON) scripts/run_strong_baselines.py
 
-# Probes the mean-pooled Timer, TimesFM and Moirai views of the canonical v2 store.
-multicapacity-probe:
-	TSFMI_REPR_ROOT=$(REPR_ROOT) $(PYTHON) scripts/run_multicapacity_adversarial.py
+# Probe-capacity sweep on the anomaly tasks: canonical v2 splits, per-probe validation-selected
+# layer, all seven models. (scripts/run_multicapacity_adversarial.py is the superseded version.)
+capacity-probe-v2:
+	$(PYTHON) scripts/run_capacity_probe_v2.py --out outputs/capacity_probe_v2
+
+# ROCKET-style and tsfresh controls on the realistic generator (3 data seeds), hard variants, UCR,
+# and the canonical tasks (tsfresh with per-seed scores).
+strong-controls-ext:
+	$(PYTHON) scripts/run_strong_controls_ext.py --out outputs/strong_controls_ext \
+	    --parts canonical realistic hard ucr
 
 anomaly-diagnostics:
 	$(PYTHON) scripts/run_anomaly_diagnostics.py --out outputs/anomaly_diagnostics
@@ -214,7 +228,8 @@ wilinski-ldr:
 reproduce-icde: reproduce-canonical-v2 realistic-anomaly-v2 hard-variants-v2 dataseed-v2 \
     hl-selectivity-v2 statistic-recoverability statistic-erasure anomaly-diagnostics ucr-probe \
     representation-storage extraction-throughput wilinski-ldr per-feature-anomaly rocket-baselines \
-    per-feature-all-properties bayes-ceiling strong-baselines multicapacity-probe view-sensitivity
+    per-feature-all-properties bayes-ceiling strong-baselines capacity-probe-v2 strong-controls-ext \
+    view-sensitivity icde-numbers
 
 clean:
 	find . -type d -name __pycache__ -exec rm -rf {} + 2>/dev/null

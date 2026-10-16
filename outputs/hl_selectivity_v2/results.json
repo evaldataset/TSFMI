@@ -60,8 +60,8 @@
         "num_samples": 1000
       }
     },
-    "last_command": "CUDA_VISIBLE_DEVICES= PYTHONPATH=. .venv/bin/python scripts/run_hl_selectivity.py --protocol v2 --ks 20 50 --baseline_num_samples 1000 --negative_control --n_threads 16",
-    "last_runtime_sec": 1059.3
+    "last_command": "CUDA_VISIBLE_DEVICES= PYTHONPATH=. .venv/bin/python scripts/run_hl_selectivity.py --protocol v2 --ks 20 50 --baseline_num_samples 1000 --negative_control --n_threads 8",
+    "last_runtime_sec": 1320.3
   },
   "results": [
     {
@@ -146,7 +146,7 @@
         }
       },
       "status": "ok",
-      "command": "CUDA_VISIBLE_DEVICES= PYTHONPATH=. .venv/bin/python scripts/run_hl_selectivity.py --protocol v2 --ks 20 50 --baseline_num_samples 1000 --negative_control --n_threads 16",
+      "command": "CUDA_VISIBLE_DEVICES= PYTHONPATH=. .venv/bin/python scripts/run_hl_selectivity.py --protocol v2 --ks 20 50 --baseline_num_samples 1000 --negative_control --n_threads 8",
       "k": 20,
       "n_types": 20,
       "control": {
@@ -275,7 +275,7 @@
         }
       },
       "status": "ok",
-      "command": "CUDA_VISIBLE_DEVICES= PYTHONPATH=. .venv/bin/python scripts/run_hl_selectivity.py --protocol v2 --ks 20 50 --baseline_num_samples 1000 --negative_control --n_threads 16",
+      "command": "CUDA_VISIBLE_DEVICES= PYTHONPATH=. .venv/bin/python scripts/run_hl_selectivity.py --protocol v2 --ks 20 50 --baseline_num_samples 1000 --negative_control --n_threads 8",
       "k": 50,
       "n_types": 50,
       "control": {
@@ -404,7 +404,7 @@
         }
       },
       "status": "ok",
-      "command": "CUDA_VISIBLE_DEVICES= PYTHONPATH=. .venv/bin/python scripts/run_hl_selectivity.py --protocol v2 --ks 20 50 --baseline_num_samples 1000 --negative_control --n_threads 16",
+      "command": "CUDA_VISIBLE_DEVICES= PYTHONPATH=. .venv/bin/python scripts/run_hl_selectivity.py --protocol v2 --ks 20 50 --baseline_num_samples 1000 --negative_control --n_threads 8",
       "k": 20,
       "n_types": 20,
       "control": {
@@ -516,7 +516,7 @@
         }
       },
       "status": "ok",
-      "command": "CUDA_VISIBLE_DEVICES= PYTHONPATH=. .venv/bin/python scripts/run_hl_selectivity.py --protocol v2 --ks 20 50 --baseline_num_samples 1000 --negative_control --n_threads 16",
+      "command": "CUDA_VISIBLE_DEVICES= PYTHONPATH=. .venv/bin/python scripts/run_hl_selectivity.py --protocol v2 --ks 20 50 --baseline_num_samples 1000 --negative_control --n_threads 8",
       "k": 50,
       "n_types": 50,
       "control": {
@@ -628,7 +628,7 @@
         }
       },
       "status": "ok",
-      "command": "CUDA_VISIBLE_DEVICES= PYTHONPATH=. .venv/bin/python scripts/run_hl_selectivity.py --protocol v2 --ks 20 50 --baseline_num_samples 1000 --negative_control --n_threads 16",
+      "command": "CUDA_VISIBLE_DEVICES= PYTHONPATH=. .venv/bin/python scripts/run_hl_selectivity.py --protocol v2 --ks 20 50 --baseline_num_samples 1000 --negative_control --n_threads 8",
       "k": 20,
       "n_types": 20,
       "control": {
@@ -762,29 +762,29 @@
         }
       },
       "status": "ok",
-      "command": "CUDA_VISIBLE_DEVICES= PYTHONPATH=. .venv/bin/python scripts/run_hl_selectivity.py --protocol v2 --ks 20 50 --baseline_num_samples 1000 --negative_control --n_threads 16",
+      "command": "CUDA_VISIBLE_DEVICES= PYTHONPATH=. .venv/bin/python scripts/run_hl_selectivity.py --protocol v2 --ks 20 50 --baseline_num_samples 1000 --negative_control --n_threads 8",
       "k": 50,
       "n_types": 50,
       "control": {
-        "mean": 0.574,
-        "ci95_low": 0.532,
+        "mean": 0.573,
+        "ci95_low": 0.531,
         "ci95_high": 0.599,
         "per_seed": [
           0.595,
           0.605,
-          0.585,
+          0.58,
           0.49,
           0.595
         ]
       },
       "selectivity": {
-        "mean": 0.426,
+        "mean": 0.427,
         "ci95_low": 0.401,
-        "ci95_high": 0.468,
+        "ci95_high": 0.469,
         "per_seed": [
           0.405,
           0.395,
-          0.415,
+          0.42,
           0.51,
           0.405
         ]
@@ -896,31 +896,31 @@
         }
       },
       "status": "ok",
-      "command": "CUDA_VISIBLE_DEVICES= PYTHONPATH=. .venv/bin/python scripts/run_hl_selectivity.py --protocol v2 --ks 20 50 --baseline_num_samples 1000 --negative_control --n_threads 16",
+      "command": "CUDA_VISIBLE_DEVICES= PYTHONPATH=. .venv/bin/python scripts/run_hl_selectivity.py --protocol v2 --ks 20 50 --baseline_num_samples 1000 --negative_control --n_threads 8",
       "k": 20,
       "n_types": 20,
       "control": {
-        "mean": 0.911,
-        "ci95_low": 0.897,
-        "ci95_high": 0.927,
+        "mean": 0.909,
+        "ci95_low": 0.895,
+        "ci95_high": 0.923,
         "per_seed": [
-          0.91,
-          0.89,
-          0.9,
           0.915,
-          0.94
+          0.89,
+          0.89,
+          0.915,
+          0.935
         ]
       },
       "selectivity": {
-        "mean": 0.089,
-        "ci95_low": 0.073,
-        "ci95_high": 0.103,
+        "mean": 0.091,
+        "ci95_low": 0.077,
+        "ci95_high": 0.105,
         "per_seed": [
-          0.09,
-          0.11,
-          0.1,
           0.085,
-          0.06
+          0.11,
+          0.11,
+          0.085,
+          0.065
         ]
       },
       "frac_test_types_seen_in_train": 1.0,
@@ -1024,31 +1024,31 @@
         }
       },
       "status": "ok",
-      "command": "CUDA_VISIBLE_DEVICES= PYTHONPATH=. .venv/bin/python scripts/run_hl_selectivity.py --protocol v2 --ks 20 50 --baseline_num_samples 1000 --negative_control --n_threads 16",
+      "command": "CUDA_VISIBLE_DEVICES= PYTHONPATH=. .venv/bin/python scripts/run_hl_selectivity.py --protocol v2 --ks 20 50 --baseline_num_samples 1000 --negative_control --n_threads 8",
       "k": 50,
       "n_types": 50,
       "control": {
-        "mean": 0.576,
-        "ci95_low": 0.563,
-        "ci95_high": 0.595,
+        "mean": 0.575,
+        "ci95_low": 0.561,
+        "ci95_high": 0.594,
         "per_seed": [
           0.56,
           0.58,
           0.61,
           0.565,
-          0.565
+          0.56
         ]
       },
       "selectivity": {
-        "mean": 0.424,
-        "ci95_low": 0.405,
-        "ci95_high": 0.437,
+        "mean": 0.425,
+        "ci95_low": 0.406,
+        "ci95_high": 0.439,
         "per_seed": [
           0.44,
           0.42,
           0.39,
           0.435,
-          0.435
+          0.44
         ]
       },
       "frac_test_types_seen_in_train": 0.995,
@@ -1152,7 +1152,7 @@
         }
       },
       "status": "ok",
-      "command": "CUDA_VISIBLE_DEVICES= PYTHONPATH=. .venv/bin/python scripts/run_hl_selectivity.py --protocol v2 --ks 20 50 --baseline_num_samples 1000 --negative_control --n_threads 16",
+      "command": "CUDA_VISIBLE_DEVICES= PYTHONPATH=. .venv/bin/python scripts/run_hl_selectivity.py --protocol v2 --ks 20 50 --baseline_num_samples 1000 --negative_control --n_threads 8",
       "k": 20,
       "n_types": 20,
       "control": {
@@ -1280,7 +1280,7 @@
         }
       },
       "status": "ok",
-      "command": "CUDA_VISIBLE_DEVICES= PYTHONPATH=. .venv/bin/python scripts/run_hl_selectivity.py --protocol v2 --ks 20 50 --baseline_num_samples 1000 --negative_control --n_threads 16",
+      "command": "CUDA_VISIBLE_DEVICES= PYTHONPATH=. .venv/bin/python scripts/run_hl_selectivity.py --protocol v2 --ks 20 50 --baseline_num_samples 1000 --negative_control --n_threads 8",
       "k": 50,
       "n_types": 50,
       "control": {
@@ -1408,7 +1408,7 @@
         }
       },
       "status": "ok",
-      "command": "CUDA_VISIBLE_DEVICES= PYTHONPATH=. .venv/bin/python scripts/run_hl_selectivity.py --protocol v2 --ks 20 50 --baseline_num_samples 1000 --negative_control --n_threads 16",
+      "command": "CUDA_VISIBLE_DEVICES= PYTHONPATH=. .venv/bin/python scripts/run_hl_selectivity.py --protocol v2 --ks 20 50 --baseline_num_samples 1000 --negative_control --n_threads 8",
       "k": 20,
       "n_types": 20,
       "control": {
@@ -1536,7 +1536,7 @@
         }
       },
       "status": "ok",
-      "command": "CUDA_VISIBLE_DEVICES= PYTHONPATH=. .venv/bin/python scripts/run_hl_selectivity.py --protocol v2 --ks 20 50 --baseline_num_samples 1000 --negative_control --n_threads 16",
+      "command": "CUDA_VISIBLE_DEVICES= PYTHONPATH=. .venv/bin/python scripts/run_hl_selectivity.py --protocol v2 --ks 20 50 --baseline_num_samples 1000 --negative_control --n_threads 8",
       "k": 50,
       "n_types": 50,
       "control": {
@@ -1664,7 +1664,7 @@
         }
       },
       "status": "ok",
-      "command": "CUDA_VISIBLE_DEVICES= PYTHONPATH=. .venv/bin/python scripts/run_hl_selectivity.py --protocol v2 --ks 20 50 --baseline_num_samples 1000 --negative_control --n_threads 16",
+      "command": "CUDA_VISIBLE_DEVICES= PYTHONPATH=. .venv/bin/python scripts/run_hl_selectivity.py --protocol v2 --ks 20 50 --baseline_num_samples 1000 --negative_control --n_threads 8",
       "k": 20,
       "n_types": 20,
       "control": {
@@ -1793,29 +1793,29 @@
         }
       },
       "status": "ok",
-      "command": "CUDA_VISIBLE_DEVICES= PYTHONPATH=. .venv/bin/python scripts/run_hl_selectivity.py --protocol v2 --ks 20 50 --baseline_num_samples 1000 --negative_control --n_threads 16",
+      "command": "CUDA_VISIBLE_DEVICES= PYTHONPATH=. .venv/bin/python scripts/run_hl_selectivity.py --protocol v2 --ks 20 50 --baseline_num_samples 1000 --negative_control --n_threads 8",
       "k": 50,
       "n_types": 50,
       "control": {
         "mean": 0.793,
         "ci95_low": 0.782,
-        "ci95_high": 0.805,
+        "ci95_high": 0.803,
         "per_seed": [
-          0.815,
+          0.81,
           0.79,
-          0.795,
+          0.8,
           0.79,
           0.775
         ]
       },
       "selectivity": {
         "mean": 0.207,
-        "ci95_low": 0.195,
+        "ci95_low": 0.197,
         "ci95_high": 0.218,
         "per_seed": [
-          0.185,
+          0.19,
           0.21,
-          0.205,
+          0.2,
           0.21,
           0.225
         ]
@@ -1922,7 +1922,7 @@
         }
       },
       "status": "ok",
-      "command": "CUDA_VISIBLE_DEVICES= PYTHONPATH=. .venv/bin/python scripts/run_hl_selectivity.py --protocol v2 --ks 20 50 --baseline_num_samples 1000 --negative_control --n_threads 16",
+      "command": "CUDA_VISIBLE_DEVICES= PYTHONPATH=. .venv/bin/python scripts/run_hl_selectivity.py --protocol v2 --ks 20 50 --baseline_num_samples 1000 --negative_control --n_threads 8",
       "k": 20,
       "n_types": 20,
       "control": {
@@ -2034,7 +2034,7 @@
         }
       },
       "status": "ok",
-      "command": "CUDA_VISIBLE_DEVICES= PYTHONPATH=. .venv/bin/python scripts/run_hl_selectivity.py --protocol v2 --ks 20 50 --baseline_num_samples 1000 --negative_control --n_threads 16",
+      "command": "CUDA_VISIBLE_DEVICES= PYTHONPATH=. .venv/bin/python scripts/run_hl_selectivity.py --protocol v2 --ks 20 50 --baseline_num_samples 1000 --negative_control --n_threads 8",
       "k": 50,
       "n_types": 50,
       "control": {
@@ -2146,7 +2146,7 @@
         }
       },
       "status": "ok",
-      "command": "CUDA_VISIBLE_DEVICES= PYTHONPATH=. .venv/bin/python scripts/run_hl_selectivity.py --protocol v2 --ks 20 50 --baseline_num_samples 1000 --negative_control --n_threads 16",
+      "command": "CUDA_VISIBLE_DEVICES= PYTHONPATH=. .venv/bin/python scripts/run_hl_selectivity.py --protocol v2 --ks 20 50 --baseline_num_samples 1000 --negative_control --n_threads 8",
       "k": 20,
       "n_types": 20,
       "control": {
@@ -2280,31 +2280,31 @@
         }
       },
       "status": "ok",
-      "command": "CUDA_VISIBLE_DEVICES= PYTHONPATH=. .venv/bin/python scripts/run_hl_selectivity.py --protocol v2 --ks 20 50 --baseline_num_samples 1000 --negative_control --n_threads 16",
+      "command": "CUDA_VISIBLE_DEVICES= PYTHONPATH=. .venv/bin/python scripts/run_hl_selectivity.py --protocol v2 --ks 20 50 --baseline_num_samples 1000 --negative_control --n_threads 8",
       "k": 50,
       "n_types": 50,
       "control": {
-        "mean": 0.625,
-        "ci95_low": 0.608,
+        "mean": 0.624,
+        "ci95_low": 0.605,
         "ci95_high": 0.64,
         "per_seed": [
           0.625,
           0.65,
           0.625,
           0.63,
-          0.595
+          0.59
         ]
       },
       "selectivity": {
-        "mean": 0.375,
+        "mean": 0.376,
         "ci95_low": 0.36,
-        "ci95_high": 0.392,
+        "ci95_high": 0.395,
         "per_seed": [
           0.375,
           0.35,
           0.375,
           0.37,
-          0.405
+          0.41
         ]
       },
       "frac_test_types_seen_in_train": 0.982,
@@ -2414,31 +2414,31 @@
         }
       },
       "status": "ok",
-      "command": "CUDA_VISIBLE_DEVICES= PYTHONPATH=. .venv/bin/python scripts/run_hl_selectivity.py --protocol v2 --ks 20 50 --baseline_num_samples 1000 --negative_control --n_threads 16",
+      "command": "CUDA_VISIBLE_DEVICES= PYTHONPATH=. .venv/bin/python scripts/run_hl_selectivity.py --protocol v2 --ks 20 50 --baseline_num_samples 1000 --negative_control --n_threads 8",
       "k": 20,
       "n_types": 20,
       "control": {
-        "mean": 0.893,
+        "mean": 0.892,
         "ci95_low": 0.886,
-        "ci95_high": 0.9,
+        "ci95_high": 0.899,
         "per_seed": [
           0.89,
           0.905,
-          0.88,
-          0.9,
-          0.89
+          0.885,
+          0.895,
+          0.885
         ]
       },
       "selectivity": {
-        "mean": 0.107,
-        "ci95_low": 0.1,
+        "mean": 0.108,
+        "ci95_low": 0.101,
         "ci95_high": 0.114,
         "per_seed": [
           0.11,
           0.095,
-          0.12,
-          0.1,
-          0.11
+          0.115,
+          0.105,
+          0.115
         ]
       },
       "frac_test_types_seen_in_train": 1.0,
@@ -2542,7 +2542,7 @@
         }
       },
       "status": "ok",
-      "command": "CUDA_VISIBLE_DEVICES= PYTHONPATH=. .venv/bin/python scripts/run_hl_selectivity.py --protocol v2 --ks 20 50 --baseline_num_samples 1000 --negative_control --n_threads 16",
+      "command": "CUDA_VISIBLE_DEVICES= PYTHONPATH=. .venv/bin/python scripts/run_hl_selectivity.py --protocol v2 --ks 20 50 --baseline_num_samples 1000 --negative_control --n_threads 8",
       "k": 50,
       "n_types": 50,
       "control": {
@@ -2670,7 +2670,7 @@
         }
       },
       "status": "ok",
-      "command": "CUDA_VISIBLE_DEVICES= PYTHONPATH=. .venv/bin/python scripts/run_hl_selectivity.py --protocol v2 --ks 20 50 --baseline_num_samples 1000 --negative_control --n_threads 16",
+      "command": "CUDA_VISIBLE_DEVICES= PYTHONPATH=. .venv/bin/python scripts/run_hl_selectivity.py --protocol v2 --ks 20 50 --baseline_num_samples 1000 --negative_control --n_threads 8",
       "k": 20,
       "n_types": 20,
       "control": {
@@ -2798,7 +2798,7 @@
         }
       },
       "status": "ok",
-      "command": "CUDA_VISIBLE_DEVICES= PYTHONPATH=. .venv/bin/python scripts/run_hl_selectivity.py --protocol v2 --ks 20 50 --baseline_num_samples 1000 --negative_control --n_threads 16",
+      "command": "CUDA_VISIBLE_DEVICES= PYTHONPATH=. .venv/bin/python scripts/run_hl_selectivity.py --protocol v2 --ks 20 50 --baseline_num_samples 1000 --negative_control --n_threads 8",
       "k": 50,
       "n_types": 50,
       "control": {
@@ -2926,7 +2926,7 @@
         }
       },
       "status": "ok",
-      "command": "CUDA_VISIBLE_DEVICES= PYTHONPATH=. .venv/bin/python scripts/run_hl_selectivity.py --protocol v2 --ks 20 50 --baseline_num_samples 1000 --negative_control --n_threads 16",
+      "command": "CUDA_VISIBLE_DEVICES= PYTHONPATH=. .venv/bin/python scripts/run_hl_selectivity.py --protocol v2 --ks 20 50 --baseline_num_samples 1000 --negative_control --n_threads 8",
       "k": 20,
       "n_types": 20,
       "control": {
@@ -3054,7 +3054,7 @@
         }
       },
       "status": "ok",
-      "command": "CUDA_VISIBLE_DEVICES= PYTHONPATH=. .venv/bin/python scripts/run_hl_selectivity.py --protocol v2 --ks 20 50 --baseline_num_samples 1000 --negative_control --n_threads 16",
+      "command": "CUDA_VISIBLE_DEVICES= PYTHONPATH=. .venv/bin/python scripts/run_hl_selectivity.py --protocol v2 --ks 20 50 --baseline_num_samples 1000 --negative_control --n_threads 8",
       "k": 50,
       "n_types": 50,
       "control": {
@@ -3175,7 +3175,7 @@
         }
       },
       "status": "ok",
-      "command": "CUDA_VISIBLE_DEVICES= PYTHONPATH=. .venv/bin/python scripts/run_hl_selectivity.py --protocol v2 --ks 20 50 --baseline_num_samples 1000 --negative_control --n_threads 16",
+      "command": "CUDA_VISIBLE_DEVICES= PYTHONPATH=. .venv/bin/python scripts/run_hl_selectivity.py --protocol v2 --ks 20 50 --baseline_num_samples 1000 --negative_control --n_threads 8",
       "k": 20,
       "n_types": 20,
       "control": {
@@ -3297,7 +3297,7 @@
         }
       },
       "status": "ok",
-      "command": "CUDA_VISIBLE_DEVICES= PYTHONPATH=. .venv/bin/python scripts/run_hl_selectivity.py --protocol v2 --ks 20 50 --baseline_num_samples 1000 --negative_control --n_threads 16",
+      "command": "CUDA_VISIBLE_DEVICES= PYTHONPATH=. .venv/bin/python scripts/run_hl_selectivity.py --protocol v2 --ks 20 50 --baseline_num_samples 1000 --negative_control --n_threads 8",
       "k": 50,
       "n_types": 50,
       "control": {
@@ -3419,7 +3419,7 @@
         }
       },
       "status": "ok",
-      "command": "CUDA_VISIBLE_DEVICES= PYTHONPATH=. .venv/bin/python scripts/run_hl_selectivity.py --protocol v2 --ks 20 50 --baseline_num_samples 1000 --negative_control --n_threads 16",
+      "command": "CUDA_VISIBLE_DEVICES= PYTHONPATH=. .venv/bin/python scripts/run_hl_selectivity.py --protocol v2 --ks 20 50 --baseline_num_samples 1000 --negative_control --n_threads 8",
       "k": 20,
       "n_types": 20,
       "control": {
@@ -3524,7 +3524,7 @@
         }
       },
       "status": "ok",
-      "command": "CUDA_VISIBLE_DEVICES= PYTHONPATH=. .venv/bin/python scripts/run_hl_selectivity.py --protocol v2 --ks 20 50 --baseline_num_samples 1000 --negative_control --n_threads 16",
+      "command": "CUDA_VISIBLE_DEVICES= PYTHONPATH=. .venv/bin/python scripts/run_hl_selectivity.py --protocol v2 --ks 20 50 --baseline_num_samples 1000 --negative_control --n_threads 8",
       "k": 50,
       "n_types": 50,
       "control": {
@@ -3629,7 +3629,7 @@
         }
       },
       "status": "ok",
-      "command": "CUDA_VISIBLE_DEVICES= PYTHONPATH=. .venv/bin/python scripts/run_hl_selectivity.py --protocol v2 --ks 20 50 --baseline_num_samples 1000 --negative_control --n_threads 16",
+      "command": "CUDA_VISIBLE_DEVICES= PYTHONPATH=. .venv/bin/python scripts/run_hl_selectivity.py --protocol v2 --ks 20 50 --baseline_num_samples 1000 --negative_control --n_threads 8",
       "k": 20,
       "n_types": 20,
       "control": {
@@ -3756,28 +3756,28 @@
         }
       },
       "status": "ok",
-      "command": "CUDA_VISIBLE_DEVICES= PYTHONPATH=. .venv/bin/python scripts/run_hl_selectivity.py --protocol v2 --ks 20 50 --baseline_num_samples 1000 --negative_control --n_threads 16",
+      "command": "CUDA_VISIBLE_DEVICES= PYTHONPATH=. .venv/bin/python scripts/run_hl_selectivity.py --protocol v2 --ks 20 50 --baseline_num_samples 1000 --negative_control --n_threads 8",
       "k": 50,
       "n_types": 50,
       "control": {
-        "mean": 0.561,
-        "ci95_low": 0.54,
-        "ci95_high": 0.578,
+        "mean": 0.56,
+        "ci95_low": 0.539,
+        "ci95_high": 0.576,
         "per_seed": [
           0.585,
-          0.58,
+          0.575,
           0.52,
           0.56,
           0.56
         ]
       },
       "selectivity": {
-        "mean": 0.439,
-        "ci95_low": 0.422,
-        "ci95_high": 0.46,
+        "mean": 0.44,
+        "ci95_low": 0.424,
+        "ci95_high": 0.461,
         "per_seed": [
           0.415,
-          0.42,
+          0.425,
           0.48,
           0.44,
           0.44
@@ -3883,7 +3883,7 @@
         }
       },
       "status": "ok",
-      "command": "CUDA_VISIBLE_DEVICES= PYTHONPATH=. .venv/bin/python scripts/run_hl_selectivity.py --protocol v2 --ks 20 50 --baseline_num_samples 1000 --negative_control --n_threads 16",
+      "command": "CUDA_VISIBLE_DEVICES= PYTHONPATH=. .venv/bin/python scripts/run_hl_selectivity.py --protocol v2 --ks 20 50 --baseline_num_samples 1000 --negative_control --n_threads 8",
       "k": 20,
       "n_types": 20,
       "control": {
@@ -4004,7 +4004,7 @@
         }
       },
       "status": "ok",
-      "command": "CUDA_VISIBLE_DEVICES= PYTHONPATH=. .venv/bin/python scripts/run_hl_selectivity.py --protocol v2 --ks 20 50 --baseline_num_samples 1000 --negative_control --n_threads 16",
+      "command": "CUDA_VISIBLE_DEVICES= PYTHONPATH=. .venv/bin/python scripts/run_hl_selectivity.py --protocol v2 --ks 20 50 --baseline_num_samples 1000 --negative_control --n_threads 8",
       "k": 50,
       "n_types": 50,
       "control": {
@@ -4125,7 +4125,7 @@
         }
       },
       "status": "ok",
-      "command": "CUDA_VISIBLE_DEVICES= PYTHONPATH=. .venv/bin/python scripts/run_hl_selectivity.py --protocol v2 --ks 20 50 --baseline_num_samples 1000 --negative_control --n_threads 16",
+      "command": "CUDA_VISIBLE_DEVICES= PYTHONPATH=. .venv/bin/python scripts/run_hl_selectivity.py --protocol v2 --ks 20 50 --baseline_num_samples 1000 --negative_control --n_threads 8",
       "k": 20,
       "n_types": 20,
       "control": {
@@ -4246,7 +4246,7 @@
         }
       },
       "status": "ok",
-      "command": "CUDA_VISIBLE_DEVICES= PYTHONPATH=. .venv/bin/python scripts/run_hl_selectivity.py --protocol v2 --ks 20 50 --baseline_num_samples 1000 --negative_control --n_threads 16",
+      "command": "CUDA_VISIBLE_DEVICES= PYTHONPATH=. .venv/bin/python scripts/run_hl_selectivity.py --protocol v2 --ks 20 50 --baseline_num_samples 1000 --negative_control --n_threads 8",
       "k": 50,
       "n_types": 50,
       "control": {
@@ -4367,7 +4367,7 @@
         }
       },
       "status": "ok",
-      "command": "CUDA_VISIBLE_DEVICES= PYTHONPATH=. .venv/bin/python scripts/run_hl_selectivity.py --protocol v2 --ks 20 50 --baseline_num_samples 1000 --negative_control --n_threads 16",
+      "command": "CUDA_VISIBLE_DEVICES= PYTHONPATH=. .venv/bin/python scripts/run_hl_selectivity.py --protocol v2 --ks 20 50 --baseline_num_samples 1000 --negative_control --n_threads 8",
       "k": 20,
       "n_types": 20,
       "control": {
@@ -4488,7 +4488,7 @@
         }
       },
       "status": "ok",
-      "command": "CUDA_VISIBLE_DEVICES= PYTHONPATH=. .venv/bin/python scripts/run_hl_selectivity.py --protocol v2 --ks 20 50 --baseline_num_samples 1000 --negative_control --n_threads 16",
+      "command": "CUDA_VISIBLE_DEVICES= PYTHONPATH=. .venv/bin/python scripts/run_hl_selectivity.py --protocol v2 --ks 20 50 --baseline_num_samples 1000 --negative_control --n_threads 8",
       "k": 50,
       "n_types": 50,
       "control": {
@@ -4609,7 +4609,7 @@
         }
       },
       "status": "ok",
-      "command": "CUDA_VISIBLE_DEVICES= PYTHONPATH=. .venv/bin/python scripts/run_hl_selectivity.py --protocol v2 --ks 20 50 --baseline_num_samples 1000 --negative_control --n_threads 16",
+      "command": "CUDA_VISIBLE_DEVICES= PYTHONPATH=. .venv/bin/python scripts/run_hl_selectivity.py --protocol v2 --ks 20 50 --baseline_num_samples 1000 --negative_control --n_threads 8",
       "k": 20,
       "n_types": 20,
       "control": {
@@ -4731,7 +4731,7 @@
         }
       },
       "status": "ok",
-      "command": "CUDA_VISIBLE_DEVICES= PYTHONPATH=. .venv/bin/python scripts/run_hl_selectivity.py --protocol v2 --ks 20 50 --baseline_num_samples 1000 --negative_control --n_threads 16",
+      "command": "CUDA_VISIBLE_DEVICES= PYTHONPATH=. .venv/bin/python scripts/run_hl_selectivity.py --protocol v2 --ks 20 50 --baseline_num_samples 1000 --negative_control --n_threads 8",
       "k": 50,
       "n_types": 50,
       "control": {
@@ -4853,7 +4853,7 @@
         }
       },
       "status": "ok",
-      "command": "CUDA_VISIBLE_DEVICES= PYTHONPATH=. .venv/bin/python scripts/run_hl_selectivity.py --protocol v2 --ks 20 50 --baseline_num_samples 1000 --negative_control --n_threads 16",
+      "command": "CUDA_VISIBLE_DEVICES= PYTHONPATH=. .venv/bin/python scripts/run_hl_selectivity.py --protocol v2 --ks 20 50 --baseline_num_samples 1000 --negative_control --n_threads 8",
       "k": 20,
       "n_types": 20,
       "control": {
@@ -4958,7 +4958,7 @@
         }
       },
       "status": "ok",
-      "command": "CUDA_VISIBLE_DEVICES= PYTHONPATH=. .venv/bin/python scripts/run_hl_selectivity.py --protocol v2 --ks 20 50 --baseline_num_samples 1000 --negative_control --n_threads 16",
+      "command": "CUDA_VISIBLE_DEVICES= PYTHONPATH=. .venv/bin/python scripts/run_hl_selectivity.py --protocol v2 --ks 20 50 --baseline_num_samples 1000 --negative_control --n_threads 8",
       "k": 50,
       "n_types": 50,
       "control": {
@@ -5063,31 +5063,31 @@
         }
       },
       "status": "ok",
-      "command": "CUDA_VISIBLE_DEVICES= PYTHONPATH=. .venv/bin/python scripts/run_hl_selectivity.py --protocol v2 --ks 20 50 --baseline_num_samples 1000 --negative_control --n_threads 16",
+      "command": "CUDA_VISIBLE_DEVICES= PYTHONPATH=. .venv/bin/python scripts/run_hl_selectivity.py --protocol v2 --ks 20 50 --baseline_num_samples 1000 --negative_control --n_threads 8",
       "k": 20,
       "n_types": 20,
       "control": {
-        "mean": 0.882,
-        "ci95_low": 0.874,
-        "ci95_high": 0.889,
+        "mean": 0.883,
+        "ci95_low": 0.878,
+        "ci95_high": 0.888,
         "per_seed": [
-          0.885,
-          0.87,
+          0.88,
+          0.875,
           0.89,
           0.89,
-          0.875
+          0.88
         ]
       },
       "selectivity": {
-        "mean": 0.118,
-        "ci95_low": 0.111,
-        "ci95_high": 0.126,
+        "mean": 0.117,
+        "ci95_low": 0.112,
+        "ci95_high": 0.122,
         "per_seed": [
-          0.115,
-          0.13,
+          0.12,
+          0.125,
           0.11,
           0.11,
-          0.125
+          0.12
         ]
       },
       "frac_test_types_seen_in_train": 0.993,
@@ -5190,30 +5190,30 @@
         }
       },
       "status": "ok",
-      "command": "CUDA_VISIBLE_DEVICES= PYTHONPATH=. .venv/bin/python scripts/run_hl_selectivity.py --protocol v2 --ks 20 50 --baseline_num_samples 1000 --negative_control --n_threads 16",
+      "command": "CUDA_VISIBLE_DEVICES= PYTHONPATH=. .venv/bin/python scripts/run_hl_selectivity.py --protocol v2 --ks 20 50 --baseline_num_samples 1000 --negative_control --n_threads 8",
       "k": 50,
       "n_types": 50,
       "control": {
         "mean": 0.569,
-        "ci95_low": 0.535,
-        "ci95_high": 0.603,
+        "ci95_low": 0.537,
+        "ci95_high": 0.601,
         "per_seed": [
           0.615,
           0.565,
-          0.61,
-          0.515,
+          0.605,
+          0.52,
           0.54
         ]
       },
       "selectivity": {
         "mean": 0.431,
-        "ci95_low": 0.397,
-        "ci95_high": 0.465,
+        "ci95_low": 0.399,
+        "ci95_high": 0.463,
         "per_seed": [
           0.385,
           0.435,
-          0.39,
-          0.485,
+          0.395,
+          0.48,
           0.46
         ]
       },
@@ -5317,31 +5317,31 @@
         }
       },
       "status": "ok",
-      "command": "CUDA_VISIBLE_DEVICES= PYTHONPATH=. .venv/bin/python scripts/run_hl_selectivity.py --protocol v2 --ks 20 50 --baseline_num_samples 1000 --negative_control --n_threads 16",
+      "command": "CUDA_VISIBLE_DEVICES= PYTHONPATH=. .venv/bin/python scripts/run_hl_selectivity.py --protocol v2 --ks 20 50 --baseline_num_samples 1000 --negative_control --n_threads 8",
       "k": 20,
       "n_types": 20,
       "control": {
-        "mean": 0.828,
+        "mean": 0.827,
         "ci95_low": 0.816,
-        "ci95_high": 0.836,
+        "ci95_high": 0.834,
         "per_seed": [
           0.835,
           0.805,
           0.83,
           0.83,
-          0.84
+          0.835
         ]
       },
       "selectivity": {
-        "mean": 0.172,
-        "ci95_low": 0.164,
+        "mean": 0.173,
+        "ci95_low": 0.166,
         "ci95_high": 0.184,
         "per_seed": [
           0.165,
           0.195,
           0.17,
           0.17,
-          0.16
+          0.165
         ]
       },
       "frac_test_types_seen_in_train": 1.0,
@@ -5438,7 +5438,7 @@
         }
       },
       "status": "ok",
-      "command": "CUDA_VISIBLE_DEVICES= PYTHONPATH=. .venv/bin/python scripts/run_hl_selectivity.py --protocol v2 --ks 20 50 --baseline_num_samples 1000 --negative_control --n_threads 16",
+      "command": "CUDA_VISIBLE_DEVICES= PYTHONPATH=. .venv/bin/python scripts/run_hl_selectivity.py --protocol v2 --ks 20 50 --baseline_num_samples 1000 --negative_control --n_threads 8",
       "k": 50,
       "n_types": 50,
       "control": {
@@ -5559,7 +5559,7 @@
         }
       },
       "status": "ok",
-      "command": "CUDA_VISIBLE_DEVICES= PYTHONPATH=. .venv/bin/python scripts/run_hl_selectivity.py --protocol v2 --ks 20 50 --baseline_num_samples 1000 --negative_control --n_threads 16",
+      "command": "CUDA_VISIBLE_DEVICES= PYTHONPATH=. .venv/bin/python scripts/run_hl_selectivity.py --protocol v2 --ks 20 50 --baseline_num_samples 1000 --negative_control --n_threads 8",
       "k": 20,
       "n_types": 20,
       "control": {
@@ -5680,7 +5680,7 @@
         }
       },
       "status": "ok",
-      "command": "CUDA_VISIBLE_DEVICES= PYTHONPATH=. .venv/bin/python scripts/run_hl_selectivity.py --protocol v2 --ks 20 50 --baseline_num_samples 1000 --negative_control --n_threads 16",
+      "command": "CUDA_VISIBLE_DEVICES= PYTHONPATH=. .venv/bin/python scripts/run_hl_selectivity.py --protocol v2 --ks 20 50 --baseline_num_samples 1000 --negative_control --n_threads 8",
       "k": 50,
       "n_types": 50,
       "control": {
@@ -5801,7 +5801,7 @@
         }
       },
       "status": "ok",
-      "command": "CUDA_VISIBLE_DEVICES= PYTHONPATH=. .venv/bin/python scripts/run_hl_selectivity.py --protocol v2 --ks 20 50 --baseline_num_samples 1000 --negative_control --n_threads 16",
+      "command": "CUDA_VISIBLE_DEVICES= PYTHONPATH=. .venv/bin/python scripts/run_hl_selectivity.py --protocol v2 --ks 20 50 --baseline_num_samples 1000 --negative_control --n_threads 8",
       "k": 20,
       "n_types": 20,
       "control": {
@@ -5922,7 +5922,7 @@
         }
       },
       "status": "ok",
-      "command": "CUDA_VISIBLE_DEVICES= PYTHONPATH=. .venv/bin/python scripts/run_hl_selectivity.py --protocol v2 --ks 20 50 --baseline_num_samples 1000 --negative_control --n_threads 16",
+      "command": "CUDA_VISIBLE_DEVICES= PYTHONPATH=. .venv/bin/python scripts/run_hl_selectivity.py --protocol v2 --ks 20 50 --baseline_num_samples 1000 --negative_control --n_threads 8",
       "k": 50,
       "n_types": 50,
       "control": {
@@ -6043,15 +6043,15 @@
         }
       },
       "status": "ok",
-      "command": "CUDA_VISIBLE_DEVICES= PYTHONPATH=. .venv/bin/python scripts/run_hl_selectivity.py --protocol v2 --ks 20 50 --baseline_num_samples 1000 --negative_control --n_threads 16",
+      "command": "CUDA_VISIBLE_DEVICES= PYTHONPATH=. .venv/bin/python scripts/run_hl_selectivity.py --protocol v2 --ks 20 50 --baseline_num_samples 1000 --negative_control --n_threads 8",
       "k": 20,
       "n_types": 20,
       "control": {
-        "mean": 0.786,
-        "ci95_low": 0.746,
-        "ci95_high": 0.822,
+        "mean": 0.785,
+        "ci95_low": 0.745,
+        "ci95_high": 0.82,
         "per_seed": [
-          0.83,
+          0.825,
           0.75,
           0.825,
           0.8,
@@ -6059,11 +6059,11 @@
         ]
       },
       "selectivity": {
-        "mean": 0.214,
-        "ci95_low": 0.178,
-        "ci95_high": 0.254,
+        "mean": 0.215,
+        "ci95_low": 0.18,
+        "ci95_high": 0.255,
         "per_seed": [
-          0.17,
+          0.175,
           0.25,
           0.175,
           0.2,
@@ -6165,7 +6165,7 @@
         }
       },
       "status": "ok",
-      "command": "CUDA_VISIBLE_DEVICES= PYTHONPATH=. .venv/bin/python scripts/run_hl_selectivity.py --protocol v2 --ks 20 50 --baseline_num_samples 1000 --negative_control --n_threads 16",
+      "command": "CUDA_VISIBLE_DEVICES= PYTHONPATH=. .venv/bin/python scripts/run_hl_selectivity.py --protocol v2 --ks 20 50 --baseline_num_samples 1000 --negative_control --n_threads 8",
       "k": 50,
       "n_types": 50,
       "control": {
@@ -6287,7 +6287,7 @@
         }
       },
       "status": "ok",
-      "command": "CUDA_VISIBLE_DEVICES= PYTHONPATH=. .venv/bin/python scripts/run_hl_selectivity.py --protocol v2 --ks 20 50 --baseline_num_samples 1000 --negative_control --n_threads 16",
+      "command": "CUDA_VISIBLE_DEVICES= PYTHONPATH=. .venv/bin/python scripts/run_hl_selectivity.py --protocol v2 --ks 20 50 --baseline_num_samples 1000 --negative_control --n_threads 8",
       "k": 20,
       "n_types": 20,
       "control": {
@@ -6309,7 +6309,7 @@
         "per_seed": [
           0.825,
           0.8278,
-          0.7546,
+          0.7545,
           1.1732,
           0.8657
         ]
@@ -6392,7 +6392,7 @@
         }
       },
       "status": "ok",
-      "command": "CUDA_VISIBLE_DEVICES= PYTHONPATH=. .venv/bin/python scripts/run_hl_selectivity.py --protocol v2 --ks 20 50 --baseline_num_samples 1000 --negative_control --n_threads 16",
+      "command": "CUDA_VISIBLE_DEVICES= PYTHONPATH=. .venv/bin/python scripts/run_hl_selectivity.py --protocol v2 --ks 20 50 --baseline_num_samples 1000 --negative_control --n_threads 8",
       "k": 50,
       "n_types": 50,
       "control": {
@@ -6410,7 +6410,7 @@
       "selectivity": {
         "mean": 1.199,
         "ci95_low": 1.1255,
-        "ci95_high": 1.2718,
+        "ci95_high": 1.2719,
         "per_seed": [
           1.2907,
           1.2675,
@@ -6497,28 +6497,28 @@
         }
       },
       "status": "ok",
-      "command": "CUDA_VISIBLE_DEVICES= PYTHONPATH=. .venv/bin/python scripts/run_hl_selectivity.py --protocol v2 --ks 20 50 --baseline_num_samples 1000 --negative_control --n_threads 16",
+      "command": "CUDA_VISIBLE_DEVICES= PYTHONPATH=. .venv/bin/python scripts/run_hl_selectivity.py --protocol v2 --ks 20 50 --baseline_num_samples 1000 --negative_control --n_threads 8",
       "k": 20,
       "n_types": 20,
       "control": {
-        "mean": 0.872,
-        "ci95_low": 0.856,
-        "ci95_high": 0.892,
+        "mean": 0.874,
+        "ci95_low": 0.858,
+        "ci95_high": 0.893,
         "per_seed": [
-          0.87,
-          0.86,
+          0.875,
+          0.865,
           0.87,
           0.91,
           0.85
         ]
       },
       "selectivity": {
-        "mean": 0.127,
-        "ci95_low": 0.107,
-        "ci95_high": 0.144,
+        "mean": 0.125,
+        "ci95_low": 0.106,
+        "ci95_high": 0.142,
         "per_seed": [
-          0.13,
-          0.14,
+          0.125,
+          0.135,
           0.125,
           0.09,
           0.15
@@ -6624,29 +6624,29 @@
         }
       },
       "status": "ok",
-      "command": "CUDA_VISIBLE_DEVICES= PYTHONPATH=. .venv/bin/python scripts/run_hl_selectivity.py --protocol v2 --ks 20 50 --baseline_num_samples 1000 --negative_control --n_threads 16",
+      "command": "CUDA_VISIBLE_DEVICES= PYTHONPATH=. .venv/bin/python scripts/run_hl_selectivity.py --protocol v2 --ks 20 50 --baseline_num_samples 1000 --negative_control --n_threads 8",
       "k": 50,
       "n_types": 50,
       "control": {
-        "mean": 0.549,
-        "ci95_low": 0.543,
-        "ci95_high": 0.556,
+        "mean": 0.548,
+        "ci95_low": 0.54,
+        "ci95_high": 0.555,
         "per_seed": [
           0.545,
           0.55,
-          0.54,
+          0.535,
           0.55,
           0.56
         ]
       },
       "selectivity": {
-        "mean": 0.45,
+        "mean": 0.451,
         "ci95_low": 0.444,
-        "ci95_high": 0.454,
+        "ci95_high": 0.457,
         "per_seed": [
           0.455,
           0.45,
-          0.455,
+          0.46,
           0.45,
           0.44
         ]
@@ -6751,7 +6751,7 @@
         }
       },
       "status": "ok",
-      "command": "CUDA_VISIBLE_DEVICES= PYTHONPATH=. .venv/bin/python scripts/run_hl_selectivity.py --protocol v2 --ks 20 50 --baseline_num_samples 1000 --negative_control --n_threads 16",
+      "command": "CUDA_VISIBLE_DEVICES= PYTHONPATH=. .venv/bin/python scripts/run_hl_selectivity.py --protocol v2 --ks 20 50 --baseline_num_samples 1000 --negative_control --n_threads 8",
       "k": 20,
       "n_types": 20,
       "control": {
@@ -6872,7 +6872,7 @@
         }
       },
       "status": "ok",
-      "command": "CUDA_VISIBLE_DEVICES= PYTHONPATH=. .venv/bin/python scripts/run_hl_selectivity.py --protocol v2 --ks 20 50 --baseline_num_samples 1000 --negative_control --n_threads 16",
+      "command": "CUDA_VISIBLE_DEVICES= PYTHONPATH=. .venv/bin/python scripts/run_hl_selectivity.py --protocol v2 --ks 20 50 --baseline_num_samples 1000 --negative_control --n_threads 8",
       "k": 50,
       "n_types": 50,
       "control": {
@@ -6928,20 +6928,20 @@
       "best_layer_per_seed": [
         "layers_12",
         "layers_33",
-        "layers_32",
+        "layers_31",
         "layers_18",
         "layers_34"
       ],
       "reduction": "v2_meanpool",
       "task": {
-        "mean": 0.753,
-        "ci95_low": 0.72,
-        "ci95_high": 0.788,
+        "mean": 0.756,
+        "ci95_low": 0.722,
+        "ci95_high": 0.793,
         "per_seed": [
-          0.725,
+          0.73,
           0.705,
-          0.81,
-          0.785,
+          0.815,
+          0.79,
           0.74
         ],
         "sanity": {
@@ -6964,22 +6964,22 @@
               0.78
             ],
             "test_score_per_seed": [
-              0.725,
+              0.73,
               0.705,
-              0.81,
-              0.785,
+              0.815,
+              0.79,
               0.74
             ],
             "best_layer_per_seed": [
               "layers_12",
               "layers_33",
-              "layers_32",
+              "layers_31",
               "layers_18",
               "layers_34"
             ],
-            "test_mean": 0.753,
-            "test_ci95_low": 0.72,
-            "test_ci95_high": 0.788,
+            "test_mean": 0.756,
+            "test_ci95_low": 0.722,
+            "test_ci95_high": 0.793,
             "protocol": {
               "split": "60/20/20 train/val/test",
               "selection": "best layer chosen on val only",
@@ -6993,30 +6993,30 @@
         }
       },
       "status": "ok",
-      "command": "CUDA_VISIBLE_DEVICES= PYTHONPATH=. .venv/bin/python scripts/run_hl_selectivity.py --protocol v2 --ks 20 50 --baseline_num_samples 1000 --negative_control --n_threads 16",
+      "command": "CUDA_VISIBLE_DEVICES= PYTHONPATH=. .venv/bin/python scripts/run_hl_selectivity.py --protocol v2 --ks 20 50 --baseline_num_samples 1000 --negative_control --n_threads 8",
       "k": 20,
       "n_types": 20,
       "control": {
-        "mean": 0.617,
-        "ci95_low": 0.593,
+        "mean": 0.616,
+        "ci95_low": 0.59,
         "ci95_high": 0.644,
         "per_seed": [
           0.61,
           0.645,
-          0.59,
+          0.585,
           0.66,
           0.58
         ]
       },
       "selectivity": {
-        "mean": 0.136,
-        "ci95_low": 0.093,
-        "ci95_high": 0.182,
+        "mean": 0.14,
+        "ci95_low": 0.096,
+        "ci95_high": 0.19,
         "per_seed": [
-          0.115,
+          0.12,
           0.06,
-          0.22,
-          0.125,
+          0.23,
+          0.13,
           0.16
         ]
       },
@@ -7049,20 +7049,20 @@
       "best_layer_per_seed": [
         "layers_12",
         "layers_33",
-        "layers_32",
+        "layers_31",
         "layers_18",
         "layers_34"
       ],
       "reduction": "v2_meanpool",
       "task": {
-        "mean": 0.753,
-        "ci95_low": 0.72,
-        "ci95_high": 0.788,
+        "mean": 0.756,
+        "ci95_low": 0.722,
+        "ci95_high": 0.793,
         "per_seed": [
-          0.725,
+          0.73,
           0.705,
-          0.81,
-          0.785,
+          0.815,
+          0.79,
           0.74
         ],
         "sanity": {
@@ -7085,22 +7085,22 @@
               0.78
             ],
             "test_score_per_seed": [
-              0.725,
+              0.73,
               0.705,
-              0.81,
-              0.785,
+              0.815,
+              0.79,
               0.74
             ],
             "best_layer_per_seed": [
               "layers_12",
               "layers_33",
-              "layers_32",
+              "layers_31",
               "layers_18",
               "layers_34"
             ],
-            "test_mean": 0.753,
-            "test_ci95_low": 0.72,
-            "test_ci95_high": 0.788,
+            "test_mean": 0.756,
+            "test_ci95_low": 0.722,
+            "test_ci95_high": 0.793,
             "protocol": {
               "split": "60/20/20 train/val/test",
               "selection": "best layer chosen on val only",
@@ -7114,31 +7114,31 @@
         }
       },
       "status": "ok",
-      "command": "CUDA_VISIBLE_DEVICES= PYTHONPATH=. .venv/bin/python scripts/run_hl_selectivity.py --protocol v2 --ks 20 50 --baseline_num_samples 1000 --negative_control --n_threads 16",
+      "command": "CUDA_VISIBLE_DEVICES= PYTHONPATH=. .venv/bin/python scripts/run_hl_selectivity.py --protocol v2 --ks 20 50 --baseline_num_samples 1000 --negative_control --n_threads 8",
       "k": 50,
       "n_types": 50,
       "control": {
-        "mean": 0.532,
+        "mean": 0.531,
         "ci95_low": 0.509,
-        "ci95_high": 0.554,
+        "ci95_high": 0.555,
         "per_seed": [
-          0.49,
+          0.495,
           0.525,
-          0.54,
+          0.525,
           0.535,
-          0.57
+          0.575
         ]
       },
       "selectivity": {
-        "mean": 0.221,
-        "ci95_low": 0.187,
-        "ci95_high": 0.255,
+        "mean": 0.225,
+        "ci95_low": 0.185,
+        "ci95_high": 0.265,
         "per_seed": [
           0.235,
           0.18,
-          0.27,
-          0.25,
-          0.17
+          0.29,
+          0.255,
+          0.165
         ]
       },
       "frac_test_types_seen_in_train": 1.0,
@@ -7235,7 +7235,7 @@
         }
       },
       "status": "ok",
-      "command": "CUDA_VISIBLE_DEVICES= PYTHONPATH=. .venv/bin/python scripts/run_hl_selectivity.py --protocol v2 --ks 20 50 --baseline_num_samples 1000 --negative_control --n_threads 16",
+      "command": "CUDA_VISIBLE_DEVICES= PYTHONPATH=. .venv/bin/python scripts/run_hl_selectivity.py --protocol v2 --ks 20 50 --baseline_num_samples 1000 --negative_control --n_threads 8",
       "k": 20,
       "n_types": 20,
       "control": {
@@ -7356,28 +7356,28 @@
         }
       },
       "status": "ok",
-      "command": "CUDA_VISIBLE_DEVICES= PYTHONPATH=. .venv/bin/python scripts/run_hl_selectivity.py --protocol v2 --ks 20 50 --baseline_num_samples 1000 --negative_control --n_threads 16",
+      "command": "CUDA_VISIBLE_DEVICES= PYTHONPATH=. .venv/bin/python scripts/run_hl_selectivity.py --protocol v2 --ks 20 50 --baseline_num_samples 1000 --negative_control --n_threads 8",
       "k": 50,
       "n_types": 50,
       "control": {
-        "mean": 0.534,
-        "ci95_low": 0.529,
-        "ci95_high": 0.539,
+        "mean": 0.533,
+        "ci95_low": 0.528,
+        "ci95_high": 0.538,
         "per_seed": [
           0.54,
-          0.535,
+          0.53,
           0.54,
           0.53,
           0.525
         ]
       },
       "selectivity": {
-        "mean": 0.466,
-        "ci95_low": 0.461,
-        "ci95_high": 0.471,
+        "mean": 0.467,
+        "ci95_low": 0.462,
+        "ci95_high": 0.472,
         "per_seed": [
           0.46,
-          0.465,
+          0.47,
           0.46,
           0.47,
           0.475
@@ -7477,7 +7477,7 @@
         }
       },
       "status": "ok",
-      "command": "CUDA_VISIBLE_DEVICES= PYTHONPATH=. .venv/bin/python scripts/run_hl_selectivity.py --protocol v2 --ks 20 50 --baseline_num_samples 1000 --negative_control --n_threads 16",
+      "command": "CUDA_VISIBLE_DEVICES= PYTHONPATH=. .venv/bin/python scripts/run_hl_selectivity.py --protocol v2 --ks 20 50 --baseline_num_samples 1000 --negative_control --n_threads 8",
       "k": 20,
       "n_types": 20,
       "control": {
@@ -7599,7 +7599,7 @@
         }
       },
       "status": "ok",
-      "command": "CUDA_VISIBLE_DEVICES= PYTHONPATH=. .venv/bin/python scripts/run_hl_selectivity.py --protocol v2 --ks 20 50 --baseline_num_samples 1000 --negative_control --n_threads 16",
+      "command": "CUDA_VISIBLE_DEVICES= PYTHONPATH=. .venv/bin/python scripts/run_hl_selectivity.py --protocol v2 --ks 20 50 --baseline_num_samples 1000 --negative_control --n_threads 8",
       "k": 50,
       "n_types": 50,
       "control": {
@@ -7721,7 +7721,7 @@
         }
       },
       "status": "ok",
-      "command": "CUDA_VISIBLE_DEVICES= PYTHONPATH=. .venv/bin/python scripts/run_hl_selectivity.py --protocol v2 --ks 20 50 --baseline_num_samples 1000 --negative_control --n_threads 16",
+      "command": "CUDA_VISIBLE_DEVICES= PYTHONPATH=. .venv/bin/python scripts/run_hl_selectivity.py --protocol v2 --ks 20 50 --baseline_num_samples 1000 --negative_control --n_threads 8",
       "k": 20,
       "n_types": 20,
       "control": {
@@ -7826,7 +7826,7 @@
         }
       },
       "status": "ok",
-      "command": "CUDA_VISIBLE_DEVICES= PYTHONPATH=. .venv/bin/python scripts/run_hl_selectivity.py --protocol v2 --ks 20 50 --baseline_num_samples 1000 --negative_control --n_threads 16",
+      "command": "CUDA_VISIBLE_DEVICES= PYTHONPATH=. .venv/bin/python scripts/run_hl_selectivity.py --protocol v2 --ks 20 50 --baseline_num_samples 1000 --negative_control --n_threads 8",
       "k": 50,
       "n_types": 50,
       "control": {
@@ -7931,7 +7931,7 @@
         }
       },
       "status": "ok",
-      "command": "CUDA_VISIBLE_DEVICES= PYTHONPATH=. .venv/bin/python scripts/run_hl_selectivity.py --protocol v2 --ks 20 50 --baseline_num_samples 1000 --negative_control --n_threads 16",
+      "command": "CUDA_VISIBLE_DEVICES= PYTHONPATH=. .venv/bin/python scripts/run_hl_selectivity.py --protocol v2 --ks 20 50 --baseline_num_samples 1000 --negative_control --n_threads 8",
       "k": 20,
       "n_types": 20,
       "control": {
@@ -8058,7 +8058,7 @@
         }
       },
       "status": "ok",
-      "command": "CUDA_VISIBLE_DEVICES= PYTHONPATH=. .venv/bin/python scripts/run_hl_selectivity.py --protocol v2 --ks 20 50 --baseline_num_samples 1000 --negative_control --n_threads 16",
+      "command": "CUDA_VISIBLE_DEVICES= PYTHONPATH=. .venv/bin/python scripts/run_hl_selectivity.py --protocol v2 --ks 20 50 --baseline_num_samples 1000 --negative_control --n_threads 8",
       "k": 50,
       "n_types": 50,
       "control": {
@@ -8185,7 +8185,7 @@
         }
       },
       "status": "ok",
-      "command": "CUDA_VISIBLE_DEVICES= PYTHONPATH=. .venv/bin/python scripts/run_hl_selectivity.py --protocol v2 --ks 20 50 --baseline_num_samples 1000 --negative_control --n_threads 16",
+      "command": "CUDA_VISIBLE_DEVICES= PYTHONPATH=. .venv/bin/python scripts/run_hl_selectivity.py --protocol v2 --ks 20 50 --baseline_num_samples 1000 --negative_control --n_threads 8",
       "k": 20,
       "n_types": 20,
       "control": {
@@ -8306,7 +8306,7 @@
         }
       },
       "status": "ok",
-      "command": "CUDA_VISIBLE_DEVICES= PYTHONPATH=. .venv/bin/python scripts/run_hl_selectivity.py --protocol v2 --ks 20 50 --baseline_num_samples 1000 --negative_control --n_threads 16",
+      "command": "CUDA_VISIBLE_DEVICES= PYTHONPATH=. .venv/bin/python scripts/run_hl_selectivity.py --protocol v2 --ks 20 50 --baseline_num_samples 1000 --negative_control --n_threads 8",
       "k": 50,
       "n_types": 50,
       "control": {
@@ -8427,7 +8427,7 @@
         }
       },
       "status": "ok",
-      "command": "CUDA_VISIBLE_DEVICES= PYTHONPATH=. .venv/bin/python scripts/run_hl_selectivity.py --protocol v2 --ks 20 50 --baseline_num_samples 1000 --negative_control --n_threads 16",
+      "command": "CUDA_VISIBLE_DEVICES= PYTHONPATH=. .venv/bin/python scripts/run_hl_selectivity.py --protocol v2 --ks 20 50 --baseline_num_samples 1000 --negative_control --n_threads 8",
       "k": 20,
       "n_types": 20,
       "control": {
@@ -8548,7 +8548,7 @@
         }
       },
       "status": "ok",
-      "command": "CUDA_VISIBLE_DEVICES= PYTHONPATH=. .venv/bin/python scripts/run_hl_selectivity.py --protocol v2 --ks 20 50 --baseline_num_samples 1000 --negative_control --n_threads 16",
+      "command": "CUDA_VISIBLE_DEVICES= PYTHONPATH=. .venv/bin/python scripts/run_hl_selectivity.py --protocol v2 --ks 20 50 --baseline_num_samples 1000 --negative_control --n_threads 8",
       "k": 50,
       "n_types": 50,
       "control": {
@@ -8669,7 +8669,7 @@
         }
       },
       "status": "ok",
-      "command": "CUDA_VISIBLE_DEVICES= PYTHONPATH=. .venv/bin/python scripts/run_hl_selectivity.py --protocol v2 --ks 20 50 --baseline_num_samples 1000 --negative_control --n_threads 16",
+      "command": "CUDA_VISIBLE_DEVICES= PYTHONPATH=. .venv/bin/python scripts/run_hl_selectivity.py --protocol v2 --ks 20 50 --baseline_num_samples 1000 --negative_control --n_threads 8",
       "k": 20,
       "n_types": 20,
       "control": {
@@ -8790,7 +8790,7 @@
         }
       },
       "status": "ok",
-      "command": "CUDA_VISIBLE_DEVICES= PYTHONPATH=. .venv/bin/python scripts/run_hl_selectivity.py --protocol v2 --ks 20 50 --baseline_num_samples 1000 --negative_control --n_threads 16",
+      "command": "CUDA_VISIBLE_DEVICES= PYTHONPATH=. .venv/bin/python scripts/run_hl_selectivity.py --protocol v2 --ks 20 50 --baseline_num_samples 1000 --negative_control --n_threads 8",
       "k": 50,
       "n_types": 50,
       "control": {
@@ -8911,7 +8911,7 @@
         }
       },
       "status": "ok",
-      "command": "CUDA_VISIBLE_DEVICES= PYTHONPATH=. .venv/bin/python scripts/run_hl_selectivity.py --protocol v2 --ks 20 50 --baseline_num_samples 1000 --negative_control --n_threads 16",
+      "command": "CUDA_VISIBLE_DEVICES= PYTHONPATH=. .venv/bin/python scripts/run_hl_selectivity.py --protocol v2 --ks 20 50 --baseline_num_samples 1000 --negative_control --n_threads 8",
       "k": 20,
       "n_types": 20,
       "control": {
@@ -9033,7 +9033,7 @@
         }
       },
       "status": "ok",
-      "command": "CUDA_VISIBLE_DEVICES= PYTHONPATH=. .venv/bin/python scripts/run_hl_selectivity.py --protocol v2 --ks 20 50 --baseline_num_samples 1000 --negative_control --n_threads 16",
+      "command": "CUDA_VISIBLE_DEVICES= PYTHONPATH=. .venv/bin/python scripts/run_hl_selectivity.py --protocol v2 --ks 20 50 --baseline_num_samples 1000 --negative_control --n_threads 8",
       "k": 50,
       "n_types": 50,
       "control": {
@@ -9155,7 +9155,7 @@
         }
       },
       "status": "ok",
-      "command": "CUDA_VISIBLE_DEVICES= PYTHONPATH=. .venv/bin/python scripts/run_hl_selectivity.py --protocol v2 --ks 20 50 --baseline_num_samples 1000 --negative_control --n_threads 16",
+      "command": "CUDA_VISIBLE_DEVICES= PYTHONPATH=. .venv/bin/python scripts/run_hl_selectivity.py --protocol v2 --ks 20 50 --baseline_num_samples 1000 --negative_control --n_threads 8",
       "k": 20,
       "n_types": 20,
       "control": {
@@ -9260,7 +9260,7 @@
         }
       },
       "status": "ok",
-      "command": "CUDA_VISIBLE_DEVICES= PYTHONPATH=. .venv/bin/python scripts/run_hl_selectivity.py --protocol v2 --ks 20 50 --baseline_num_samples 1000 --negative_control --n_threads 16",
+      "command": "CUDA_VISIBLE_DEVICES= PYTHONPATH=. .venv/bin/python scripts/run_hl_selectivity.py --protocol v2 --ks 20 50 --baseline_num_samples 1000 --negative_control --n_threads 8",
       "k": 50,
       "n_types": 50,
       "control": {
@@ -9365,7 +9365,7 @@
         }
       },
       "status": "ok",
-      "command": "CUDA_VISIBLE_DEVICES= PYTHONPATH=. .venv/bin/python scripts/run_hl_selectivity.py --protocol v2 --ks 20 50 --baseline_num_samples 1000 --negative_control --n_threads 16",
+      "command": "CUDA_VISIBLE_DEVICES= PYTHONPATH=. .venv/bin/python scripts/run_hl_selectivity.py --protocol v2 --ks 20 50 --baseline_num_samples 1000 --negative_control --n_threads 8",
       "k": 20,
       "n_types": 20,
       "control": {
@@ -9492,30 +9492,30 @@
         }
       },
       "status": "ok",
-      "command": "CUDA_VISIBLE_DEVICES= PYTHONPATH=. .venv/bin/python scripts/run_hl_selectivity.py --protocol v2 --ks 20 50 --baseline_num_samples 1000 --negative_control --n_threads 16",
+      "command": "CUDA_VISIBLE_DEVICES= PYTHONPATH=. .venv/bin/python scripts/run_hl_selectivity.py --protocol v2 --ks 20 50 --baseline_num_samples 1000 --negative_control --n_threads 8",
       "k": 50,
       "n_types": 50,
       "control": {
-        "mean": 0.571,
-        "ci95_low": 0.557,
-        "ci95_high": 0.586,
+        "mean": 0.569,
+        "ci95_low": 0.552,
+        "ci95_high": 0.585,
         "per_seed": [
           0.58,
-          0.575,
+          0.57,
           0.56,
-          0.545,
+          0.54,
           0.595
         ]
       },
       "selectivity": {
-        "mean": 0.429,
-        "ci95_low": 0.414,
-        "ci95_high": 0.443,
+        "mean": 0.431,
+        "ci95_low": 0.415,
+        "ci95_high": 0.448,
         "per_seed": [
           0.42,
-          0.425,
+          0.43,
           0.44,
-          0.455,
+          0.46,
           0.405
         ]
       },
@@ -9619,31 +9619,31 @@
         }
       },
       "status": "ok",
-      "command": "CUDA_VISIBLE_DEVICES= PYTHONPATH=. .venv/bin/python scripts/run_hl_selectivity.py --protocol v2 --ks 20 50 --baseline_num_samples 1000 --negative_control --n_threads 16",
+      "command": "CUDA_VISIBLE_DEVICES= PYTHONPATH=. .venv/bin/python scripts/run_hl_selectivity.py --protocol v2 --ks 20 50 --baseline_num_samples 1000 --negative_control --n_threads 8",
       "k": 20,
       "n_types": 20,
       "control": {
-        "mean": 0.888,
-        "ci95_low": 0.869,
-        "ci95_high": 0.902,
+        "mean": 0.886,
+        "ci95_low": 0.868,
+        "ci95_high": 0.9,
         "per_seed": [
           0.85,
           0.89,
           0.905,
-          0.89,
-          0.905
+          0.885,
+          0.9
         ]
       },
       "selectivity": {
-        "mean": 0.112,
-        "ci95_low": 0.098,
-        "ci95_high": 0.131,
+        "mean": 0.114,
+        "ci95_low": 0.1,
+        "ci95_high": 0.132,
         "per_seed": [
           0.15,
           0.11,
           0.095,
-          0.11,
-          0.095
+          0.115,
+          0.1
         ]
       },
       "frac_test_types_seen_in_train": 1.0,
@@ -9740,30 +9740,30 @@
         }
       },
       "status": "ok",
-      "command": "CUDA_VISIBLE_DEVICES= PYTHONPATH=. .venv/bin/python scripts/run_hl_selectivity.py --protocol v2 --ks 20 50 --baseline_num_samples 1000 --negative_control --n_threads 16",
+      "command": "CUDA_VISIBLE_DEVICES= PYTHONPATH=. .venv/bin/python scripts/run_hl_selectivity.py --protocol v2 --ks 20 50 --baseline_num_samples 1000 --negative_control --n_threads 8",
       "k": 50,
       "n_types": 50,
       "control": {
         "mean": 0.558,
-        "ci95_low": 0.542,
-        "ci95_high": 0.572,
+        "ci95_low": 0.539,
+        "ci95_high": 0.574,
         "per_seed": [
           0.545,
           0.58,
-          0.57,
-          0.535,
+          0.575,
+          0.53,
           0.56
         ]
       },
       "selectivity": {
         "mean": 0.442,
-        "ci95_low": 0.428,
-        "ci95_high": 0.458,
+        "ci95_low": 0.426,
+        "ci95_high": 0.461,
         "per_seed": [
           0.455,
           0.42,
-          0.43,
-          0.465,
+          0.425,
+          0.47,
           0.44
         ]
       },
@@ -9861,7 +9861,7 @@
         }
       },
       "status": "ok",
-      "command": "CUDA_VISIBLE_DEVICES= PYTHONPATH=. .venv/bin/python scripts/run_hl_selectivity.py --protocol v2 --ks 20 50 --baseline_num_samples 1000 --negative_control --n_threads 16",
+      "command": "CUDA_VISIBLE_DEVICES= PYTHONPATH=. .venv/bin/python scripts/run_hl_selectivity.py --protocol v2 --ks 20 50 --baseline_num_samples 1000 --negative_control --n_threads 8",
       "k": 20,
       "n_types": 20,
       "control": {
@@ -9982,7 +9982,7 @@
         }
       },
       "status": "ok",
-      "command": "CUDA_VISIBLE_DEVICES= PYTHONPATH=. .venv/bin/python scripts/run_hl_selectivity.py --protocol v2 --ks 20 50 --baseline_num_samples 1000 --negative_control --n_threads 16",
+      "command": "CUDA_VISIBLE_DEVICES= PYTHONPATH=. .venv/bin/python scripts/run_hl_selectivity.py --protocol v2 --ks 20 50 --baseline_num_samples 1000 --negative_control --n_threads 8",
       "k": 50,
       "n_types": 50,
       "control": {
@@ -10103,7 +10103,7 @@
         }
       },
       "status": "ok",
-      "command": "CUDA_VISIBLE_DEVICES= PYTHONPATH=. .venv/bin/python scripts/run_hl_selectivity.py --protocol v2 --ks 20 50 --baseline_num_samples 1000 --negative_control --n_threads 16",
+      "command": "CUDA_VISIBLE_DEVICES= PYTHONPATH=. .venv/bin/python scripts/run_hl_selectivity.py --protocol v2 --ks 20 50 --baseline_num_samples 1000 --negative_control --n_threads 8",
       "k": 20,
       "n_types": 20,
       "control": {
@@ -10224,28 +10224,28 @@
         }
       },
       "status": "ok",
-      "command": "CUDA_VISIBLE_DEVICES= PYTHONPATH=. .venv/bin/python scripts/run_hl_selectivity.py --protocol v2 --ks 20 50 --baseline_num_samples 1000 --negative_control --n_threads 16",
+      "command": "CUDA_VISIBLE_DEVICES= PYTHONPATH=. .venv/bin/python scripts/run_hl_selectivity.py --protocol v2 --ks 20 50 --baseline_num_samples 1000 --negative_control --n_threads 8",
       "k": 50,
       "n_types": 50,
       "control": {
-        "mean": 0.54,
-        "ci95_low": 0.512,
-        "ci95_high": 0.573,
+        "mean": 0.541,
+        "ci95_low": 0.513,
+        "ci95_high": 0.574,
         "per_seed": [
           0.605,
-          0.525,
+          0.53,
           0.525,
           0.55,
           0.495
         ]
       },
       "selectivity": {
-        "mean": 0.46,
-        "ci95_low": 0.427,
-        "ci95_high": 0.488,
+        "mean": 0.459,
+        "ci95_low": 0.426,
+        "ci95_high": 0.487,
         "per_seed": [
           0.395,
-          0.475,
+          0.47,
           0.475,
           0.45,
           0.505
@@ -10311,7 +10311,7 @@
         }
       },
       "status": "ok",
-      "command": "CUDA_VISIBLE_DEVICES= PYTHONPATH=. .venv/bin/python scripts/run_hl_selectivity.py --protocol v2 --ks 20 50 --baseline_num_samples 1000 --negative_control --n_threads 16",
+      "command": "CUDA_VISIBLE_DEVICES= PYTHONPATH=. .venv/bin/python scripts/run_hl_selectivity.py --protocol v2 --ks 20 50 --baseline_num_samples 1000 --negative_control --n_threads 8",
       "k": 20,
       "n_types": 20,
       "control": {
@@ -10399,7 +10399,7 @@
         }
       },
       "status": "ok",
-      "command": "CUDA_VISIBLE_DEVICES= PYTHONPATH=. .venv/bin/python scripts/run_hl_selectivity.py --protocol v2 --ks 20 50 --baseline_num_samples 1000 --negative_control --n_threads 16",
+      "command": "CUDA_VISIBLE_DEVICES= PYTHONPATH=. .venv/bin/python scripts/run_hl_selectivity.py --protocol v2 --ks 20 50 --baseline_num_samples 1000 --negative_control --n_threads 8",
       "k": 50,
       "n_types": 50,
       "control": {
@@ -10487,7 +10487,7 @@
         }
       },
       "status": "ok",
-      "command": "CUDA_VISIBLE_DEVICES= PYTHONPATH=. .venv/bin/python scripts/run_hl_selectivity.py --protocol v2 --ks 20 50 --baseline_num_samples 1000 --negative_control --n_threads 16",
+      "command": "CUDA_VISIBLE_DEVICES= PYTHONPATH=. .venv/bin/python scripts/run_hl_selectivity.py --protocol v2 --ks 20 50 --baseline_num_samples 1000 --negative_control --n_threads 8",
       "k": 20,
       "n_types": 20,
       "control": {
@@ -10575,7 +10575,7 @@
         }
       },
       "status": "ok",
-      "command": "CUDA_VISIBLE_DEVICES= PYTHONPATH=. .venv/bin/python scripts/run_hl_selectivity.py --protocol v2 --ks 20 50 --baseline_num_samples 1000 --negative_control --n_threads 16",
+      "command": "CUDA_VISIBLE_DEVICES= PYTHONPATH=. .venv/bin/python scripts/run_hl_selectivity.py --protocol v2 --ks 20 50 --baseline_num_samples 1000 --negative_control --n_threads 8",
       "k": 50,
       "n_types": 50,
       "control": {
@@ -10663,7 +10663,7 @@
         }
       },
       "status": "ok",
-      "command": "CUDA_VISIBLE_DEVICES= PYTHONPATH=. .venv/bin/python scripts/run_hl_selectivity.py --protocol v2 --ks 20 50 --baseline_num_samples 1000 --negative_control --n_threads 16",
+      "command": "CUDA_VISIBLE_DEVICES= PYTHONPATH=. .venv/bin/python scripts/run_hl_selectivity.py --protocol v2 --ks 20 50 --baseline_num_samples 1000 --negative_control --n_threads 8",
       "k": 20,
       "n_types": 20,
       "control": {
@@ -10751,7 +10751,7 @@
         }
       },
       "status": "ok",
-      "command": "CUDA_VISIBLE_DEVICES= PYTHONPATH=. .venv/bin/python scripts/run_hl_selectivity.py --protocol v2 --ks 20 50 --baseline_num_samples 1000 --negative_control --n_threads 16",
+      "command": "CUDA_VISIBLE_DEVICES= PYTHONPATH=. .venv/bin/python scripts/run_hl_selectivity.py --protocol v2 --ks 20 50 --baseline_num_samples 1000 --negative_control --n_threads 8",
       "k": 50,
       "n_types": 50,
       "control": {
@@ -10839,7 +10839,7 @@
         }
       },
       "status": "ok",
-      "command": "CUDA_VISIBLE_DEVICES= PYTHONPATH=. .venv/bin/python scripts/run_hl_selectivity.py --protocol v2 --ks 20 50 --baseline_num_samples 1000 --negative_control --n_threads 16",
+      "command": "CUDA_VISIBLE_DEVICES= PYTHONPATH=. .venv/bin/python scripts/run_hl_selectivity.py --protocol v2 --ks 20 50 --baseline_num_samples 1000 --negative_control --n_threads 8",
       "k": 20,
       "n_types": 20,
       "control": {
@@ -10910,7 +10910,7 @@
         }
       },
       "status": "ok",
-      "command": "CUDA_VISIBLE_DEVICES= PYTHONPATH=. .venv/bin/python scripts/run_hl_selectivity.py --protocol v2 --ks 20 50 --baseline_num_samples 1000 --negative_control --n_threads 16",
+      "command": "CUDA_VISIBLE_DEVICES= PYTHONPATH=. .venv/bin/python scripts/run_hl_selectivity.py --protocol v2 --ks 20 50 --baseline_num_samples 1000 --negative_control --n_threads 8",
       "k": 50,
       "n_types": 50,
       "control": {
@@ -10981,7 +10981,7 @@
         }
       },
       "status": "ok",
-      "command": "CUDA_VISIBLE_DEVICES= PYTHONPATH=. .venv/bin/python scripts/run_hl_selectivity.py --protocol v2 --ks 20 50 --baseline_num_samples 1000 --negative_control --n_threads 16",
+      "command": "CUDA_VISIBLE_DEVICES= PYTHONPATH=. .venv/bin/python scripts/run_hl_selectivity.py --protocol v2 --ks 20 50 --baseline_num_samples 1000 --negative_control --n_threads 8",
       "k": 20,
       "n_types": 20,
       "control": {
@@ -11052,7 +11052,7 @@
         }
       },
       "status": "ok",
-      "command": "CUDA_VISIBLE_DEVICES= PYTHONPATH=. .venv/bin/python scripts/run_hl_selectivity.py --protocol v2 --ks 20 50 --baseline_num_samples 1000 --negative_control --n_threads 16",
+      "command": "CUDA_VISIBLE_DEVICES= PYTHONPATH=. .venv/bin/python scripts/run_hl_selectivity.py --protocol v2 --ks 20 50 --baseline_num_samples 1000 --negative_control --n_threads 8",
       "k": 50,
       "n_types": 50,
       "control": {
@@ -11123,7 +11123,7 @@
         }
       },
       "status": "ok",
-      "command": "CUDA_VISIBLE_DEVICES= PYTHONPATH=. .venv/bin/python scripts/run_hl_selectivity.py --protocol v2 --ks 20 50 --baseline_num_samples 1000 --negative_control --n_threads 16",
+      "command": "CUDA_VISIBLE_DEVICES= PYTHONPATH=. .venv/bin/python scripts/run_hl_selectivity.py --protocol v2 --ks 20 50 --baseline_num_samples 1000 --negative_control --n_threads 8",
       "k": 20,
       "n_types": 20,
       "control": {
@@ -11194,7 +11194,7 @@
         }
       },
       "status": "ok",
-      "command": "CUDA_VISIBLE_DEVICES= PYTHONPATH=. .venv/bin/python scripts/run_hl_selectivity.py --protocol v2 --ks 20 50 --baseline_num_samples 1000 --negative_control --n_threads 16",
+      "command": "CUDA_VISIBLE_DEVICES= PYTHONPATH=. .venv/bin/python scripts/run_hl_selectivity.py --protocol v2 --ks 20 50 --baseline_num_samples 1000 --negative_control --n_threads 8",
       "k": 50,
       "n_types": 50,
       "control": {
@@ -11265,7 +11265,7 @@
         }
       },
       "status": "ok",
-      "command": "CUDA_VISIBLE_DEVICES= PYTHONPATH=. .venv/bin/python scripts/run_hl_selectivity.py --protocol v2 --ks 20 50 --baseline_num_samples 1000 --negative_control --n_threads 16",
+      "command": "CUDA_VISIBLE_DEVICES= PYTHONPATH=. .venv/bin/python scripts/run_hl_selectivity.py --protocol v2 --ks 20 50 --baseline_num_samples 1000 --negative_control --n_threads 8",
       "k": 20,
       "n_types": 20,
       "control": {
@@ -11358,7 +11358,7 @@
         }
       },
       "status": "ok",
-      "command": "CUDA_VISIBLE_DEVICES= PYTHONPATH=. .venv/bin/python scripts/run_hl_selectivity.py --protocol v2 --ks 20 50 --baseline_num_samples 1000 --negative_control --n_threads 16",
+      "command": "CUDA_VISIBLE_DEVICES= PYTHONPATH=. .venv/bin/python scripts/run_hl_selectivity.py --protocol v2 --ks 20 50 --baseline_num_samples 1000 --negative_control --n_threads 8",
       "k": 50,
       "n_types": 50,
       "control": {
@@ -11451,7 +11451,7 @@
         }
       },
       "status": "ok",
-      "command": "CUDA_VISIBLE_DEVICES= PYTHONPATH=. .venv/bin/python scripts/run_hl_selectivity.py --protocol v2 --ks 20 50 --baseline_num_samples 1000 --negative_control --n_threads 16",
+      "command": "CUDA_VISIBLE_DEVICES= PYTHONPATH=. .venv/bin/python scripts/run_hl_selectivity.py --protocol v2 --ks 20 50 --baseline_num_samples 1000 --negative_control --n_threads 8",
       "k": 20,
       "n_types": 20,
       "control": {
@@ -11544,7 +11544,7 @@
         }
       },
       "status": "ok",
-      "command": "CUDA_VISIBLE_DEVICES= PYTHONPATH=. .venv/bin/python scripts/run_hl_selectivity.py --protocol v2 --ks 20 50 --baseline_num_samples 1000 --negative_control --n_threads 16",
+      "command": "CUDA_VISIBLE_DEVICES= PYTHONPATH=. .venv/bin/python scripts/run_hl_selectivity.py --protocol v2 --ks 20 50 --baseline_num_samples 1000 --negative_control --n_threads 8",
       "k": 50,
       "n_types": 50,
       "control": {
@@ -11637,15 +11637,15 @@
         }
       },
       "status": "ok",
-      "command": "CUDA_VISIBLE_DEVICES= PYTHONPATH=. .venv/bin/python scripts/run_hl_selectivity.py --protocol v2 --ks 20 50 --baseline_num_samples 1000 --negative_control --n_threads 16",
+      "command": "CUDA_VISIBLE_DEVICES= PYTHONPATH=. .venv/bin/python scripts/run_hl_selectivity.py --protocol v2 --ks 20 50 --baseline_num_samples 1000 --negative_control --n_threads 8",
       "k": 20,
       "n_types": 20,
       "control": {
-        "mean": 0.896,
-        "ci95_low": 0.889,
+        "mean": 0.895,
+        "ci95_low": 0.887,
         "ci95_high": 0.903,
         "per_seed": [
-          0.89,
+          0.885,
           0.895,
           0.91,
           0.885,
@@ -11653,11 +11653,11 @@
         ]
       },
       "selectivity": {
-        "mean": 0.104,
+        "mean": 0.105,
         "ci95_low": 0.097,
-        "ci95_high": 0.111,
+        "ci95_high": 0.113,
         "per_seed": [
-          0.11,
+          0.115,
           0.105,
           0.09,
           0.115,
@@ -11730,7 +11730,7 @@
         }
       },
       "status": "ok",
-      "command": "CUDA_VISIBLE_DEVICES= PYTHONPATH=. .venv/bin/python scripts/run_hl_selectivity.py --protocol v2 --ks 20 50 --baseline_num_samples 1000 --negative_control --n_threads 16",
+      "command": "CUDA_VISIBLE_DEVICES= PYTHONPATH=. .venv/bin/python scripts/run_hl_selectivity.py --protocol v2 --ks 20 50 --baseline_num_samples 1000 --negative_control --n_threads 8",
       "k": 50,
       "n_types": 50,
       "control": {
@@ -11823,7 +11823,7 @@
         }
       },
       "status": "ok",
-      "command": "CUDA_VISIBLE_DEVICES= PYTHONPATH=. .venv/bin/python scripts/run_hl_selectivity.py --protocol v2 --ks 20 50 --baseline_num_samples 1000 --negative_control --n_threads 16",
+      "command": "CUDA_VISIBLE_DEVICES= PYTHONPATH=. .venv/bin/python scripts/run_hl_selectivity.py --protocol v2 --ks 20 50 --baseline_num_samples 1000 --negative_control --n_threads 8",
       "k": 20,
       "n_types": 20,
       "control": {
@@ -11910,7 +11910,7 @@
         }
       },
       "status": "ok",
-      "command": "CUDA_VISIBLE_DEVICES= PYTHONPATH=. .venv/bin/python scripts/run_hl_selectivity.py --protocol v2 --ks 20 50 --baseline_num_samples 1000 --negative_control --n_threads 16",
+      "command": "CUDA_VISIBLE_DEVICES= PYTHONPATH=. .venv/bin/python scripts/run_hl_selectivity.py --protocol v2 --ks 20 50 --baseline_num_samples 1000 --negative_control --n_threads 8",
       "k": 50,
       "n_types": 50,
       "control": {
@@ -11997,7 +11997,7 @@
         }
       },
       "status": "ok",
-      "command": "CUDA_VISIBLE_DEVICES= PYTHONPATH=. .venv/bin/python scripts/run_hl_selectivity.py --protocol v2 --ks 20 50 --baseline_num_samples 1000 --negative_control --n_threads 16",
+      "command": "CUDA_VISIBLE_DEVICES= PYTHONPATH=. .venv/bin/python scripts/run_hl_selectivity.py --protocol v2 --ks 20 50 --baseline_num_samples 1000 --negative_control --n_threads 8",
       "k": 20,
       "n_types": 20,
       "control": {
@@ -12084,7 +12084,7 @@
         }
       },
       "status": "ok",
-      "command": "CUDA_VISIBLE_DEVICES= PYTHONPATH=. .venv/bin/python scripts/run_hl_selectivity.py --protocol v2 --ks 20 50 --baseline_num_samples 1000 --negative_control --n_threads 16",
+      "command": "CUDA_VISIBLE_DEVICES= PYTHONPATH=. .venv/bin/python scripts/run_hl_selectivity.py --protocol v2 --ks 20 50 --baseline_num_samples 1000 --negative_control --n_threads 8",
       "k": 50,
       "n_types": 50,
       "control": {
@@ -12171,28 +12171,28 @@
         }
       },
       "status": "ok",
-      "command": "CUDA_VISIBLE_DEVICES= PYTHONPATH=. .venv/bin/python scripts/run_hl_selectivity.py --protocol v2 --ks 20 50 --baseline_num_samples 1000 --negative_control --n_threads 16",
+      "command": "CUDA_VISIBLE_DEVICES= PYTHONPATH=. .venv/bin/python scripts/run_hl_selectivity.py --protocol v2 --ks 20 50 --baseline_num_samples 1000 --negative_control --n_threads 8",
       "k": 20,
       "n_types": 20,
       "control": {
-        "mean": 0.841,
-        "ci95_low": 0.822,
+        "mean": 0.84,
+        "ci95_low": 0.819,
         "ci95_high": 0.855,
         "per_seed": [
           0.855,
-          0.805,
+          0.8,
           0.84,
           0.845,
           0.86
         ]
       },
       "selectivity": {
-        "mean": -0.291,
+        "mean": -0.29,
         "ci95_low": -0.326,
-        "ci95_high": -0.264,
+        "ci95_high": -0.262,
         "per_seed": [
           -0.31,
-          -0.255,
+          -0.25,
           -0.27,
           -0.27,
           -0.35
@@ -12258,7 +12258,7 @@
         }
       },
       "status": "ok",
-      "command": "CUDA_VISIBLE_DEVICES= PYTHONPATH=. .venv/bin/python scripts/run_hl_selectivity.py --protocol v2 --ks 20 50 --baseline_num_samples 1000 --negative_control --n_threads 16",
+      "command": "CUDA_VISIBLE_DEVICES= PYTHONPATH=. .venv/bin/python scripts/run_hl_selectivity.py --protocol v2 --ks 20 50 --baseline_num_samples 1000 --negative_control --n_threads 8",
       "k": 50,
       "n_types": 50,
       "control": {
@@ -12345,7 +12345,7 @@
         }
       },
       "status": "ok",
-      "command": "CUDA_VISIBLE_DEVICES= PYTHONPATH=. .venv/bin/python scripts/run_hl_selectivity.py --protocol v2 --ks 20 50 --baseline_num_samples 1000 --negative_control --n_threads 16",
+      "command": "CUDA_VISIBLE_DEVICES= PYTHONPATH=. .venv/bin/python scripts/run_hl_selectivity.py --protocol v2 --ks 20 50 --baseline_num_samples 1000 --negative_control --n_threads 8",
       "k": 20,
       "n_types": 20,
       "control": {
@@ -12432,7 +12432,7 @@
         }
       },
       "status": "ok",
-      "command": "CUDA_VISIBLE_DEVICES= PYTHONPATH=. .venv/bin/python scripts/run_hl_selectivity.py --protocol v2 --ks 20 50 --baseline_num_samples 1000 --negative_control --n_threads 16",
+      "command": "CUDA_VISIBLE_DEVICES= PYTHONPATH=. .venv/bin/python scripts/run_hl_selectivity.py --protocol v2 --ks 20 50 --baseline_num_samples 1000 --negative_control --n_threads 8",
       "k": 50,
       "n_types": 50,
       "control": {
@@ -12519,7 +12519,7 @@
         }
       },
       "status": "ok",
-      "command": "CUDA_VISIBLE_DEVICES= PYTHONPATH=. .venv/bin/python scripts/run_hl_selectivity.py --protocol v2 --ks 20 50 --baseline_num_samples 1000 --negative_control --n_threads 16",
+      "command": "CUDA_VISIBLE_DEVICES= PYTHONPATH=. .venv/bin/python scripts/run_hl_selectivity.py --protocol v2 --ks 20 50 --baseline_num_samples 1000 --negative_control --n_threads 8",
       "k": 20,
       "n_types": 20,
       "control": {
@@ -12606,7 +12606,7 @@
         }
       },
       "status": "ok",
-      "command": "CUDA_VISIBLE_DEVICES= PYTHONPATH=. .venv/bin/python scripts/run_hl_selectivity.py --protocol v2 --ks 20 50 --baseline_num_samples 1000 --negative_control --n_threads 16",
+      "command": "CUDA_VISIBLE_DEVICES= PYTHONPATH=. .venv/bin/python scripts/run_hl_selectivity.py --protocol v2 --ks 20 50 --baseline_num_samples 1000 --negative_control --n_threads 8",
       "k": 50,
       "n_types": 50,
       "control": {
@@ -12693,7 +12693,7 @@
         }
       },
       "status": "ok",
-      "command": "CUDA_VISIBLE_DEVICES= PYTHONPATH=. .venv/bin/python scripts/run_hl_selectivity.py --protocol v2 --ks 20 50 --baseline_num_samples 1000 --negative_control --n_threads 16",
+      "command": "CUDA_VISIBLE_DEVICES= PYTHONPATH=. .venv/bin/python scripts/run_hl_selectivity.py --protocol v2 --ks 20 50 --baseline_num_samples 1000 --negative_control --n_threads 8",
       "k": 20,
       "n_types": 20,
       "control": {
@@ -12780,7 +12780,7 @@
         }
       },
       "status": "ok",
-      "command": "CUDA_VISIBLE_DEVICES= PYTHONPATH=. .venv/bin/python scripts/run_hl_selectivity.py --protocol v2 --ks 20 50 --baseline_num_samples 1000 --negative_control --n_threads 16",
+      "command": "CUDA_VISIBLE_DEVICES= PYTHONPATH=. .venv/bin/python scripts/run_hl_selectivity.py --protocol v2 --ks 20 50 --baseline_num_samples 1000 --negative_control --n_threads 8",
       "k": 50,
       "n_types": 50,
       "control": {
@@ -12867,7 +12867,7 @@
         }
       },
       "status": "ok",
-      "command": "CUDA_VISIBLE_DEVICES= PYTHONPATH=. .venv/bin/python scripts/run_hl_selectivity.py --protocol v2 --ks 20 50 --baseline_num_samples 1000 --negative_control --n_threads 16",
+      "command": "CUDA_VISIBLE_DEVICES= PYTHONPATH=. .venv/bin/python scripts/run_hl_selectivity.py --protocol v2 --ks 20 50 --baseline_num_samples 1000 --negative_control --n_threads 8",
       "k": 20,
       "n_types": 20,
       "control": {
@@ -12954,7 +12954,7 @@
         }
       },
       "status": "ok",
-      "command": "CUDA_VISIBLE_DEVICES= PYTHONPATH=. .venv/bin/python scripts/run_hl_selectivity.py --protocol v2 --ks 20 50 --baseline_num_samples 1000 --negative_control --n_threads 16",
+      "command": "CUDA_VISIBLE_DEVICES= PYTHONPATH=. .venv/bin/python scripts/run_hl_selectivity.py --protocol v2 --ks 20 50 --baseline_num_samples 1000 --negative_control --n_threads 8",
       "k": 50,
       "n_types": 50,
       "control": {
@@ -13041,7 +13041,7 @@
         }
       },
       "status": "ok",
-      "command": "CUDA_VISIBLE_DEVICES= PYTHONPATH=. .venv/bin/python scripts/run_hl_selectivity.py --protocol v2 --ks 20 50 --baseline_num_samples 1000 --negative_control --n_threads 16",
+      "command": "CUDA_VISIBLE_DEVICES= PYTHONPATH=. .venv/bin/python scripts/run_hl_selectivity.py --protocol v2 --ks 20 50 --baseline_num_samples 1000 --negative_control --n_threads 8",
       "k": 20,
       "n_types": 20,
       "control": {
@@ -13128,7 +13128,7 @@
         }
       },
       "status": "ok",
-      "command": "CUDA_VISIBLE_DEVICES= PYTHONPATH=. .venv/bin/python scripts/run_hl_selectivity.py --protocol v2 --ks 20 50 --baseline_num_samples 1000 --negative_control --n_threads 16",
+      "command": "CUDA_VISIBLE_DEVICES= PYTHONPATH=. .venv/bin/python scripts/run_hl_selectivity.py --protocol v2 --ks 20 50 --baseline_num_samples 1000 --negative_control --n_threads 8",
       "k": 50,
       "n_types": 50,
       "control": {
@@ -13215,7 +13215,7 @@
         }
       },
       "status": "ok",
-      "command": "CUDA_VISIBLE_DEVICES= PYTHONPATH=. .venv/bin/python scripts/run_hl_selectivity.py --protocol v2 --ks 20 50 --baseline_num_samples 1000 --negative_control --n_threads 16",
+      "command": "CUDA_VISIBLE_DEVICES= PYTHONPATH=. .venv/bin/python scripts/run_hl_selectivity.py --protocol v2 --ks 20 50 --baseline_num_samples 1000 --negative_control --n_threads 8",
       "k": 20,
       "n_types": 20,
       "control": {
@@ -13302,7 +13302,7 @@
         }
       },
       "status": "ok",
-      "command": "CUDA_VISIBLE_DEVICES= PYTHONPATH=. .venv/bin/python scripts/run_hl_selectivity.py --protocol v2 --ks 20 50 --baseline_num_samples 1000 --negative_control --n_threads 16",
+      "command": "CUDA_VISIBLE_DEVICES= PYTHONPATH=. .venv/bin/python scripts/run_hl_selectivity.py --protocol v2 --ks 20 50 --baseline_num_samples 1000 --negative_control --n_threads 8",
       "k": 50,
       "n_types": 50,
       "control": {
@@ -13432,7 +13432,7 @@
         330,
         355
       ],
-      "command": "CUDA_VISIBLE_DEVICES= PYTHONPATH=. .venv/bin/python scripts/run_hl_selectivity.py --protocol v2 --ks 20 50 --baseline_num_samples 1000 --negative_control --n_threads 16"
+      "command": "CUDA_VISIBLE_DEVICES= PYTHONPATH=. .venv/bin/python scripts/run_hl_selectivity.py --protocol v2 --ks 20 50 --baseline_num_samples 1000 --negative_control --n_threads 8"
     },
     {
       "row": "raw_signal",
@@ -13499,7 +13499,7 @@
       },
       "frac_test_types_seen_in_train": 0.0,
       "constant_fallback_seeds": 0,
-      "command": "CUDA_VISIBLE_DEVICES= PYTHONPATH=. .venv/bin/python scripts/run_hl_selectivity.py --protocol v2 --ks 20 50 --baseline_num_samples 1000 --negative_control --n_threads 16"
+      "command": "CUDA_VISIBLE_DEVICES= PYTHONPATH=. .venv/bin/python scripts/run_hl_selectivity.py --protocol v2 --ks 20 50 --baseline_num_samples 1000 --negative_control --n_threads 8"
     },
     {
       "row": "raw_signal",
@@ -13588,7 +13588,7 @@
         109,
         127
       ],
-      "command": "CUDA_VISIBLE_DEVICES= PYTHONPATH=. .venv/bin/python scripts/run_hl_selectivity.py --protocol v2 --ks 20 50 --baseline_num_samples 1000 --negative_control --n_threads 16"
+      "command": "CUDA_VISIBLE_DEVICES= PYTHONPATH=. .venv/bin/python scripts/run_hl_selectivity.py --protocol v2 --ks 20 50 --baseline_num_samples 1000 --negative_control --n_threads 8"
     },
     {
       "row": "raw_signal",
@@ -13671,7 +13671,7 @@
         463,
         537
       ],
-      "command": "CUDA_VISIBLE_DEVICES= PYTHONPATH=. .venv/bin/python scripts/run_hl_selectivity.py --protocol v2 --ks 20 50 --baseline_num_samples 1000 --negative_control --n_threads 16"
+      "command": "CUDA_VISIBLE_DEVICES= PYTHONPATH=. .venv/bin/python scripts/run_hl_selectivity.py --protocol v2 --ks 20 50 --baseline_num_samples 1000 --negative_control --n_threads 8"
     },
     {
       "row": "raw_signal",
@@ -13754,7 +13754,7 @@
         463,
         537
       ],
-      "command": "CUDA_VISIBLE_DEVICES= PYTHONPATH=. .venv/bin/python scripts/run_hl_selectivity.py --protocol v2 --ks 20 50 --baseline_num_samples 1000 --negative_control --n_threads 16"
+      "command": "CUDA_VISIBLE_DEVICES= PYTHONPATH=. .venv/bin/python scripts/run_hl_selectivity.py --protocol v2 --ks 20 50 --baseline_num_samples 1000 --negative_control --n_threads 8"
     },
     {
       "row": "raw_signal",
@@ -13837,7 +13837,7 @@
         463,
         537
       ],
-      "command": "CUDA_VISIBLE_DEVICES= PYTHONPATH=. .venv/bin/python scripts/run_hl_selectivity.py --protocol v2 --ks 20 50 --baseline_num_samples 1000 --negative_control --n_threads 16"
+      "command": "CUDA_VISIBLE_DEVICES= PYTHONPATH=. .venv/bin/python scripts/run_hl_selectivity.py --protocol v2 --ks 20 50 --baseline_num_samples 1000 --negative_control --n_threads 8"
     }
   ]
 }

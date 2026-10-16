@@ -81,8 +81,10 @@ def apply_kernel(
 
 
 def rocket_features(seq: NDArray, kernels: list) -> NDArray[np.float64]:
-    """ROCKET-style features: per-kernel PPV (proportion of positive values) +
-    max — 2 features per kernel, same as MiniROCKET's headline."""
+    """ROCKET-style features: per kernel, the proportion of positive values and the maximum.
+
+    This is ROCKET's pooling (Dempster et al., 2020) without bias terms; MiniROCKET uses PPV only.
+    """
     n = seq.shape[0]
     feats = np.zeros((n, len(kernels) * 2), dtype=np.float64)
     for i, (w, dil, pad) in enumerate(kernels):

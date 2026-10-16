@@ -1,0 +1,145 @@
+{
+  "description": "Cells re-run after the 2026-10 fixes: TimesFM run at the input length (no left padding); GPT-2 random patch embedding seeded independently of the data seed. 'before' values are the pre-fix results, kept outside the repository.",
+  "cells": [
+    {
+      "cell": "outputs/canonical_v2/timesfm_anomaly",
+      "model": "timesfm",
+      "before": 0.753,
+      "after": 0.756,
+      "change": 0.003
+    },
+    {
+      "cell": "outputs/canonical_v2/timesfm_change_point",
+      "model": "timesfm",
+      "before": 1.0,
+      "after": 1.0,
+      "change": 0.0
+    },
+    {
+      "cell": "outputs/canonical_v2/timesfm_frequency",
+      "model": "timesfm",
+      "before": 0.999,
+      "after": 0.999,
+      "change": 0.0
+    },
+    {
+      "cell": "outputs/canonical_v2/timesfm_seasonality",
+      "model": "timesfm",
+      "before": 1.0,
+      "after": 1.0,
+      "change": 0.0
+    },
+    {
+      "cell": "outputs/canonical_v2/timesfm_stationarity",
+      "model": "timesfm",
+      "before": 1.0,
+      "after": 1.0,
+      "change": 0.0
+    },
+    {
+      "cell": "outputs/canonical_v2/timesfm_trend",
+      "model": "timesfm",
+      "before": 1.0,
+      "after": 1.0,
+      "change": 0.0
+    },
+    {
+      "cell": "outputs/dataseed_v2/seed43/gpt4ts_anomaly",
+      "model": "gpt4ts",
+      "before": 0.523,
+      "after": 0.5,
+      "change": -0.023
+    },
+    {
+      "cell": "outputs/dataseed_v2/seed43/gpt4ts_anomaly_realistic",
+      "model": "gpt4ts",
+      "before": 0.515,
+      "after": 0.522,
+      "change": 0.007
+    },
+    {
+      "cell": "outputs/dataseed_v2/seed43/timesfm_anomaly",
+      "model": "timesfm",
+      "before": 0.757,
+      "after": 0.752,
+      "change": -0.005
+    },
+    {
+      "cell": "outputs/dataseed_v2/seed43/timesfm_anomaly_realistic",
+      "model": "timesfm",
+      "before": 0.7,
+      "after": 0.7,
+      "change": 0.0
+    },
+    {
+      "cell": "outputs/dataseed_v2/seed44/gpt4ts_anomaly",
+      "model": "gpt4ts",
+      "before": 0.504,
+      "after": 0.519,
+      "change": 0.015
+    },
+    {
+      "cell": "outputs/dataseed_v2/seed44/gpt4ts_anomaly_realistic",
+      "model": "gpt4ts",
+      "before": 0.466,
+      "after": 0.486,
+      "change": 0.02
+    },
+    {
+      "cell": "outputs/dataseed_v2/seed44/timesfm_anomaly",
+      "model": "timesfm",
+      "before": 0.776,
+      "after": 0.775,
+      "change": -0.001
+    },
+    {
+      "cell": "outputs/dataseed_v2/seed44/timesfm_anomaly_realistic",
+      "model": "timesfm",
+      "before": 0.732,
+      "after": 0.735,
+      "change": 0.003
+    },
+    {
+      "cell": "outputs/hard_variants_v2/timesfm_anomaly_hard",
+      "model": "timesfm",
+      "before": 0.941,
+      "after": 0.938,
+      "change": -0.003
+    },
+    {
+      "cell": "outputs/hard_variants_v2/timesfm_change_point_hard",
+      "model": "timesfm",
+      "before": 0.957,
+      "after": 0.957,
+      "change": 0.0
+    },
+    {
+      "cell": "outputs/hard_variants_v2/timesfm_frequency_hard",
+      "model": "timesfm",
+      "before": 0.994,
+      "after": 0.994,
+      "change": 0.0
+    },
+    {
+      "cell": "outputs/hard_variants_v2/timesfm_stationarity_hard",
+      "model": "timesfm",
+      "before": 0.992,
+      "after": 0.992,
+      "change": 0.0
+    },
+    {
+      "cell": "outputs/hard_variants_v2/timesfm_trend_hard",
+      "model": "timesfm",
+      "before": 0.97,
+      "after": 0.97,
+      "change": 0.0
+    },
+    {
+      "cell": "outputs/realistic_anomaly_v2/timesfm_anomaly_realistic",
+      "model": "timesfm",
+      "before": 0.73,
+      "after": 0.734,
+      "change": 0.004
+    }
+  ]
+}

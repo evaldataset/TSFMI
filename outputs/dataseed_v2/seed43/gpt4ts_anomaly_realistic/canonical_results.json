@@ -10,29 +10,29 @@
     4
   ],
   "val_score_per_seed": [
+    0.555,
+    0.535,
+    0.605,
     0.52,
-    0.54,
-    0.53,
-    0.55,
     0.56
   ],
   "test_score_per_seed": [
-    0.54,
+    0.55,
+    0.5,
+    0.475,
     0.525,
-    0.445,
-    0.53,
-    0.535
+    0.56
   ],
   "best_layer_per_seed": [
-    "transformer_h_2",
-    "transformer_h_3",
-    "transformer_h_5",
+    "transformer_h_11",
     "transformer_h_0",
-    "transformer_h_5"
+    "transformer_h_0",
+    "transformer_h_1",
+    "transformer_h_2"
   ],
-  "test_mean": 0.515,
-  "test_ci95_low": 0.479,
-  "test_ci95_high": 0.536,
+  "test_mean": 0.522,
+  "test_ci95_low": 0.492,
+  "test_ci95_high": 0.549,
   "protocol": {
     "split": "60/20/20 train/val/test",
     "selection": "best layer chosen on val only",

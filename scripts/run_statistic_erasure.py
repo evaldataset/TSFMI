@@ -50,7 +50,12 @@ from scripts.run_statistic_recoverability import targets
 from src.datasets.synthetic import generate_anomaly_dataset
 
 NUM_SAMPLES, SEQ_LEN, DATA_SEED = 1000, 512, 42
-CONDITIONS = ("none", "statistics", "random", "label")  # "statistics" = the erased concept
+# "statistics" = the erased concept. "labelproxy" and "residual" test specificity: the first erases
+# a 1-D noisy copy of the label that predicts the label as well as the concept does; the second
+# erases only the part of the concept that is not label information (the concept minus its
+# training-split class means).
+CONDITIONS = ("none", "statistics", "random", "label", "labelproxy", "residual")
+PROXY_SIGMAS = np.linspace(0.05, 2.0, 79)
 CONCEPT_NAMES = {
     "statistics": ("llr", "max_abs", "kurtosis"),
     "handcrafted": (
@@ -77,6 +82,23 @@ def erase(X_tr: NDArray, X_te: NDArray, z_tr: NDArray) -> tuple[NDArray, NDArray
     )
 
 
+def train_accuracy(z: NDArray, y: NDArray, seed: int) -> float:
+    clf = LogisticRegression(max_iter=1000, random_state=seed, solver="lbfgs").fit(z, y)
+    return float((clf.predict(z) == y).mean())
+
+
+def label_proxy(zs_tr: NDArray, y_tr: NDArray, seed: int) -> tuple[NDArray, float, float]:
+    """A 1-D noisy label whose training accuracy matches that of the erased concept."""
+    target = train_accuracy(zs_tr, y_tr, seed)
+    eps = np.random.default_rng(2000 + seed).standard_normal(len(y_tr))
+    best = min(
+        PROXY_SIGMAS,
+        key=lambda sd: abs(train_accuracy((y_tr + sd * eps)[:, None], y_tr, seed) - target),
+    )
+    z = (y_tr + best * eps)[:, None]
+    return z, target, train_accuracy(z, y_tr, seed)
+
+
 def run_row(X: NDArray, y: NDArray, S: NDArray, seed: int, pca: int | None) -> dict:
     X_tr, y_tr, _, _, X_te, y_te = three_way_split(X, y, seed)
     S_tr, _, _, _, S_te, _ = three_way_split(S, y, seed)
@@ -99,12 +121,21 @@ def run_row(X: NDArray, y: NDArray, S: NDArray, seed: int, pca: int | None) -> d
                 A_tr, A_te = erase(X_tr, X_te, rng.standard_normal((len(X_tr), S.shape[1])))
             case "label":
                 A_tr, A_te = erase(X_tr, X_te, y_tr.reshape(-1, 1).astype(np.float64))
+            case "labelproxy":
+                z, target_acc, proxy_acc = label_proxy(zs_tr, y_tr, seed)
+                A_tr, A_te = erase(X_tr, X_te, z)
+            case "residual":
+                class_means = np.stack([zs_tr[y_tr == c].mean(0) for c in np.unique(y_tr)])
+                resid = zs_tr - class_means[np.searchsorted(np.unique(y_tr), y_tr)]
+                A_tr, A_te = erase(X_tr, X_te, resid)
         clf = LogisticRegression(max_iter=1000, random_state=seed, solver="lbfgs")
         acc = float((clf.fit(A_tr, y_tr).predict(A_te) == y_te).mean())
         r2 = r2_score(
             zs_te, Ridge(alpha=1.0).fit(A_tr, zs_tr).predict(A_te), multioutput="raw_values"
         )
         out[cond] = {"acc": acc, "stat_r2": [float(v) for v in r2]}
+    out["labelproxy"]["proxy_train_acc"] = proxy_acc
+    out["labelproxy"]["concept_train_acc"] = target_acc
     return out
 
 
@@ -120,6 +151,9 @@ def summarize(per_seed: list[dict], names: tuple[str, ...]) -> dict:
             "acc_per_seed": [round(a, 4) for a in accs],
             "stat_r2_mean": {k: round(float(v), 4) for k, v in zip(names, r2, strict=True)},
         }
+        if cond == "labelproxy":
+            for k in ("proxy_train_acc", "concept_train_acc"):
+                res[cond][k] = round(float(np.mean([s[cond][k] for s in per_seed])), 4)
     return res
 
 

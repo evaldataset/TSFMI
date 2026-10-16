@@ -1,0 +1,740 @@
+{
+  "n_kernels": 1024,
+  "kernel_seed": 42,
+  "realistic": {
+    "42": {
+      "raw_signal": {
+        "mean": 0.513,
+        "ci95": [
+          0.486,
+          0.54
+        ],
+        "per_seed": [
+          0.475,
+          0.48,
+          0.54,
+          0.55,
+          0.52
+        ],
+        "dim": 512
+      },
+      "hand_crafted": {
+        "mean": 0.701,
+        "ci95": [
+          0.687,
+          0.714
+        ],
+        "per_seed": [
+          0.705,
+          0.69,
+          0.705,
+          0.725,
+          0.68
+        ],
+        "dim": 8
+      },
+      "rocket": {
+        "mean": 0.785,
+        "ci95": [
+          0.765,
+          0.805
+        ],
+        "per_seed": [
+          0.765,
+          0.765,
+          0.815,
+          0.765,
+          0.815
+        ],
+        "dim": 2048
+      },
+      "tsfresh_minimal": {
+        "mean": 0.679,
+        "ci95": [
+          0.663,
+          0.695
+        ],
+        "per_seed": [
+          0.66,
+          0.655,
+          0.695,
+          0.7,
+          0.685
+        ],
+        "dim": 10
+      },
+      "tsfresh_efficient": {
+        "mean": 0.696,
+        "ci95": [
+          0.669,
+          0.72
+        ],
+        "per_seed": [
+          0.66,
+          0.66,
+          0.735,
+          0.705,
+          0.72
+        ],
+        "dim": 777
+      }
+    },
+    "43": {
+      "raw_signal": {
+        "mean": 0.536,
+        "ci95": [
+          0.508,
+          0.567
+        ],
+        "per_seed": [
+          0.57,
+          0.515,
+          0.5,
+          0.585,
+          0.51
+        ],
+        "dim": 512
+      },
+      "hand_crafted": {
+        "mean": 0.698,
+        "ci95": [
+          0.668,
+          0.735
+        ],
+        "per_seed": [
+          0.76,
+          0.67,
+          0.665,
+          0.725,
+          0.67
+        ],
+        "dim": 8
+      },
+      "rocket": {
+        "mean": 0.787,
+        "ci95": [
+          0.761,
+          0.806
+        ],
+        "per_seed": [
+          0.81,
+          0.79,
+          0.79,
+          0.81,
+          0.735
+        ],
+        "dim": 2048
+      },
+      "tsfresh_minimal": {
+        "mean": 0.641,
+        "ci95": [
+          0.611,
+          0.6751
+        ],
+        "per_seed": [
+          0.625,
+          0.61,
+          0.605,
+          0.7,
+          0.665
+        ],
+        "dim": 10
+      },
+      "tsfresh_efficient": {
+        "mean": 0.688,
+        "ci95": [
+          0.652,
+          0.721
+        ],
+        "per_seed": [
+          0.715,
+          0.67,
+          0.625,
+          0.73,
+          0.7
+        ],
+        "dim": 777
+      }
+    },
+    "44": {
+      "raw_signal": {
+        "mean": 0.475,
+        "ci95": [
+          0.419,
+          0.518
+        ],
+        "per_seed": [
+          0.515,
+          0.47,
+          0.485,
+          0.535,
+          0.37
+        ],
+        "dim": 512
+      },
+      "hand_crafted": {
+        "mean": 0.695,
+        "ci95": [
+          0.675,
+          0.713
+        ],
+        "per_seed": [
+          0.685,
+          0.66,
+          0.71,
+          0.725,
+          0.695
+        ],
+        "dim": 8
+      },
+      "rocket": {
+        "mean": 0.793,
+        "ci95": [
+          0.779,
+          0.806
+        ],
+        "per_seed": [
+          0.8,
+          0.79,
+          0.815,
+          0.79,
+          0.77
+        ],
+        "dim": 2048
+      },
+      "tsfresh_minimal": {
+        "mean": 0.62,
+        "ci95": [
+          0.602,
+          0.636
+        ],
+        "per_seed": [
+          0.635,
+          0.59,
+          0.63,
+          0.605,
+          0.64
+        ],
+        "dim": 10
+      },
+      "tsfresh_efficient": {
+        "mean": 0.662,
+        "ci95": [
+          0.645,
+          0.679
+        ],
+        "per_seed": [
+          0.635,
+          0.665,
+          0.69,
+          0.675,
+          0.645
+        ],
+        "dim": 777
+      }
+    }
+  },
+  "hard": {
+    "trend_hard": {
+      "tsfresh_minimal": {
+        "mean": 0.514,
+        "ci95": [
+          0.485,
+          0.542
+        ],
+        "per_seed": [
+          0.515,
+          0.515,
+          0.515,
+          0.465,
+          0.56
+        ],
+        "dim": 10
+      },
+      "tsfresh_efficient": {
+        "mean": 0.953,
+        "ci95": [
+          0.936,
+          0.966
+        ],
+        "per_seed": [
+          0.97,
+          0.955,
+          0.955,
+          0.92,
+          0.965
+        ],
+        "dim": 777
+      },
+      "rocket": {
+        "mean": 0.948,
+        "ci95": [
+          0.929,
+          0.962
+        ],
+        "per_seed": [
+          0.965,
+          0.95,
+          0.965,
+          0.91,
+          0.95
+        ],
+        "dim": 2048
+      }
+    },
+    "frequency_hard": {
+      "tsfresh_minimal": {
+        "mean": 0.154,
+        "ci95": [
+          0.131,
+          0.177
+        ],
+        "per_seed": [
+          0.115,
+          0.15,
+          0.195,
+          0.15,
+          0.16
+        ],
+        "dim": 10
+      },
+      "tsfresh_efficient": {
+        "mean": 0.965,
+        "ci95": [
+          0.954,
+          0.974
+        ],
+        "per_seed": [
+          0.945,
+          0.965,
+          0.97,
+          0.965,
+          0.98
+        ],
+        "dim": 777
+      },
+      "rocket": {
+        "mean": 0.992,
+        "ci95": [
+          0.988,
+          0.995
+        ],
+        "per_seed": [
+          0.99,
+          0.985,
+          0.995,
+          0.995,
+          0.995
+        ],
+        "dim": 2048
+      }
+    },
+    "anomaly_hard": {
+      "tsfresh_minimal": {
+        "mean": 0.925,
+        "ci95": [
+          0.916,
+          0.934
+        ],
+        "per_seed": [
+          0.935,
+          0.915,
+          0.94,
+          0.915,
+          0.92
+        ],
+        "dim": 10
+      },
+      "tsfresh_efficient": {
+        "mean": 0.926,
+        "ci95": [
+          0.922,
+          0.93
+        ],
+        "per_seed": [
+          0.93,
+          0.93,
+          0.92,
+          0.93,
+          0.92
+        ],
+        "dim": 777
+      },
+      "rocket": {
+        "mean": 0.96,
+        "ci95": [
+          0.952,
+          0.968
+        ],
+        "per_seed": [
+          0.97,
+          0.96,
+          0.97,
+          0.945,
+          0.955
+        ],
+        "dim": 2048
+      }
+    },
+    "stationarity_hard": {
+      "tsfresh_minimal": {
+        "mean": 0.994,
+        "ci95": [
+          0.988,
+          1.0
+        ],
+        "per_seed": [
+          1.0,
+          0.985,
+          1.0,
+          0.985,
+          1.0
+        ],
+        "dim": 10
+      },
+      "tsfresh_efficient": {
+        "mean": 1.0,
+        "ci95": [
+          1.0,
+          1.0
+        ],
+        "per_seed": [
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0
+        ],
+        "dim": 777
+      },
+      "rocket": {
+        "mean": 0.997,
+        "ci95": [
+          0.995,
+          0.999
+        ],
+        "per_seed": [
+          0.995,
+          0.995,
+          1.0,
+          1.0,
+          0.995
+        ],
+        "dim": 2048
+      }
+    },
+    "change_point_hard": {
+      "tsfresh_minimal": {
+        "mean": 0.952,
+        "ci95": [
+          0.947,
+          0.959
+        ],
+        "per_seed": [
+          0.95,
+          0.945,
+          0.965,
+          0.95,
+          0.95
+        ],
+        "dim": 10
+      },
+      "tsfresh_efficient": {
+        "mean": 0.992,
+        "ci95": [
+          0.99,
+          0.994
+        ],
+        "per_seed": [
+          0.99,
+          0.995,
+          0.99,
+          0.995,
+          0.99
+        ],
+        "dim": 777
+      },
+      "rocket": {
+        "mean": 0.965,
+        "ci95": [
+          0.962,
+          0.968
+        ],
+        "per_seed": [
+          0.96,
+          0.965,
+          0.965,
+          0.97,
+          0.965
+        ],
+        "dim": 2048
+      }
+    }
+  },
+  "ucr": {
+    "ECG200": {
+      "raw_signal": 0.9084,
+      "hand_crafted": 0.7504,
+      "rocket": 0.9405,
+      "tsfresh_minimal": 0.7174,
+      "tsfresh_efficient": 0.924,
+      "hand_crafted_native": 0.7691,
+      "n_train": 100,
+      "n_test": 100,
+      "positive_rate_train": 0.31
+    },
+    "Wafer": {
+      "raw_signal": 0.8668,
+      "hand_crafted": 0.7271,
+      "rocket": 1.0,
+      "tsfresh_minimal": 0.695,
+      "tsfresh_efficient": 0.9954,
+      "hand_crafted_native": 0.7666,
+      "n_train": 1000,
+      "n_test": 6164,
+      "positive_rate_train": 0.097
+    },
+    "Earthquakes": {
+      "raw_signal": 0.5516,
+      "hand_crafted": 0.6308,
+      "rocket": 0.7555,
+      "tsfresh_minimal": 0.6734,
+      "tsfresh_efficient": 0.6937,
+      "hand_crafted_native": 0.6308,
+      "n_train": 322,
+      "n_test": 139,
+      "positive_rate_train": 0.1801
+    },
+    "FordA": {
+      "raw_signal": 0.4867,
+      "hand_crafted": 0.7031,
+      "rocket": 0.9548,
+      "tsfresh_minimal": 0.6373,
+      "tsfresh_efficient": 0.9973,
+      "hand_crafted_native": 0.6495,
+      "n_train": 3601,
+      "n_test": 1320,
+      "positive_rate_train": 0.4874
+    },
+    "FordB": {
+      "raw_signal": 0.4803,
+      "hand_crafted": 0.5131,
+      "rocket": 0.8418,
+      "tsfresh_minimal": 0.5091,
+      "tsfresh_efficient": 0.8554,
+      "hand_crafted_native": 0.4828,
+      "n_train": 3636,
+      "n_test": 810,
+      "positive_rate_train": 0.4884
+    },
+    "Strawberry": {
+      "raw_signal": 0.9901,
+      "hand_crafted": 0.8822,
+      "rocket": 0.9946,
+      "tsfresh_minimal": 0.846,
+      "tsfresh_efficient": 0.9941,
+      "hand_crafted_native": 0.8584,
+      "n_train": 613,
+      "n_test": 370,
+      "positive_rate_train": 0.3573
+    }
+  },
+  "command": "scripts/run_strong_controls_ext.py --out outputs/strong_controls_ext",
+  "canonical": {
+    "trend": {
+      "tsfresh_minimal": {
+        "mean": 0.664,
+        "ci95": [
+          0.639,
+          0.689
+        ],
+        "per_seed": [
+          0.675,
+          0.685,
+          0.625,
+          0.635,
+          0.7
+        ],
+        "dim": 10
+      },
+      "tsfresh_efficient": {
+        "mean": 1.0,
+        "ci95": [
+          1.0,
+          1.0
+        ],
+        "per_seed": [
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0
+        ],
+        "dim": 777
+      }
+    },
+    "seasonality": {
+      "tsfresh_minimal": {
+        "mean": 0.0557,
+        "ci95": [
+          0.0452,
+          0.0649
+        ],
+        "per_seed": [
+          0.0377,
+          0.0527,
+          0.0563,
+          0.0717,
+          0.0601
+        ],
+        "dim": 10
+      },
+      "tsfresh_efficient": {
+        "mean": 0.9975,
+        "ci95": [
+          0.9957,
+          0.9987
+        ],
+        "per_seed": [
+          0.9986,
+          0.9986,
+          0.9978,
+          0.9987,
+          0.9937
+        ],
+        "dim": 777
+      }
+    },
+    "frequency": {
+      "tsfresh_minimal": {
+        "mean": 0.106,
+        "ci95": [
+          0.077,
+          0.128
+        ],
+        "per_seed": [
+          0.13,
+          0.105,
+          0.05,
+          0.11,
+          0.135
+        ],
+        "dim": 10
+      },
+      "tsfresh_efficient": {
+        "mean": 0.999,
+        "ci95": [
+          0.997,
+          1.0
+        ],
+        "per_seed": [
+          1.0,
+          1.0,
+          0.995,
+          1.0,
+          1.0
+        ],
+        "dim": 777
+      }
+    },
+    "stationarity": {
+      "tsfresh_minimal": {
+        "mean": 1.0,
+        "ci95": [
+          1.0,
+          1.0
+        ],
+        "per_seed": [
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0
+        ],
+        "dim": 10
+      },
+      "tsfresh_efficient": {
+        "mean": 1.0,
+        "ci95": [
+          1.0,
+          1.0
+        ],
+        "per_seed": [
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0
+        ],
+        "dim": 777
+      }
+    },
+    "anomaly": {
+      "tsfresh_minimal": {
+        "mean": 0.899,
+        "ci95": [
+          0.89,
+          0.909
+        ],
+        "per_seed": [
+          0.9,
+          0.885,
+          0.89,
+          0.915,
+          0.905
+        ],
+        "dim": 10
+      },
+      "tsfresh_efficient": {
+        "mean": 0.81,
+        "ci95": [
+          0.796,
+          0.826
+        ],
+        "per_seed": [
+          0.795,
+          0.79,
+          0.84,
+          0.815,
+          0.81
+        ],
+        "dim": 777
+      }
+    },
+    "change_point": {
+      "tsfresh_minimal": {
+        "mean": 1.0,
+        "ci95": [
+          1.0,
+          1.0
+        ],
+        "per_seed": [
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0
+        ],
+        "dim": 10
+      },
+      "tsfresh_efficient": {
+        "mean": 1.0,
+        "ci95": [
+          1.0,
+          1.0
+        ],
+        "per_seed": [
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0
+        ],
+        "dim": 777
+      }
+    }
+  },
+  "commands": [
+    "scripts/run_strong_controls_ext.py --out outputs/strong_controls_ext --parts canonical"
+  ]
+}

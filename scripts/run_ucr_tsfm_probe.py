@@ -31,6 +31,7 @@ from scripts.run_realistic_anomaly_tsfm import DEVICE, load_wrapper
 from src.datasets.ucr_anomaly import ANOMALY_DATASETS, load_ucr_anomaly
 from src.extractors.hook_manager import HookManager
 from src.metrics.tsad_metrics import window_threshold_free_metrics
+from src.utils.seed import seed_everything
 
 OUT_DIR = Path("outputs/ucr_tsfm_probe")
 SEED = 42
@@ -77,6 +78,9 @@ def _probe(Xtr, ytr, Xte):
 
 
 def tsfm_score(model: str, task) -> float:
+    # Seed before building the wrapper: GPT4TS has a randomly initialised patch embedding, which
+    # must be the same for every dataset and run.
+    seed_everything(SEED)
     wrapper = load_wrapper(model)
     wrapper.load(device=DEVICE)
     wrapper.freeze()

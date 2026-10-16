@@ -20,7 +20,7 @@
     0.775,
     0.82,
     0.745,
-    0.805,
+    0.8,
     0.735
   ],
   "best_layer_per_seed": [
@@ -30,9 +30,9 @@
     "layers_11",
     "layers_26"
   ],
-  "test_mean": 0.776,
-  "test_ci95_low": 0.751,
-  "test_ci95_high": 0.805,
+  "test_mean": 0.775,
+  "test_ci95_low": 0.75,
+  "test_ci95_high": 0.803,
   "protocol": {
     "split": "60/20/20 train/val/test",
     "selection": "best layer chosen on val only",

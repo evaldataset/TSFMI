@@ -1,10 +1,19 @@
 {
-  "protocol": "Does anomaly accessibility in TSFM representations run through the sufficient statistics?\n\nFor the canonical anomaly task, the Bayes statistic (LLR), max|x| and excess kurtosis nearly\ndetermine the label. This script removes all linear information about those three statistics\nfrom each representation with LEACE (Belrose et al., 2023) and re-probes the anomaly label.\n\nProtocol (canonical v2): split seeds 0-4 and 60/20/20 splits, the layer that canonical v2 selected\non validation for each seed, StandardScaler (then PCA-512 for MOMENT and GPT4TS) fit on the training\nsplit, LEACE fit on the training split only and applied to both splits, then the canonical\nlogistic-regression probe. Conditions:\n    none         no erasure (reproduces the canonical v2 test score)\n    statistics   erase z = standardized (LLR, max|x|, kurtosis)\n    random       erase a 3-D Gaussian z independent of the data (negative control)\n    label        erase the anomaly label itself (positive control; should reach chance)\nFor each erasure the held-out R^2 of a ridge regression from the erased representation to the three\nstatistics is recorded to confirm that the linear information is gone.",
+  "protocol": "Does anomaly accessibility in TSFM representations run through the sufficient statistics?\n\nFor the canonical anomaly task, the Bayes statistic (LLR), max|x| and excess kurtosis nearly\ndetermine the label. This script removes all linear information about those three statistics\nfrom each representation with LEACE (Belrose et al., 2023) and re-probes the anomaly label.\n\nProtocol (canonical v2): split seeds 0-4 and 60/20/20 splits, the layer that canonical v2 selected\non validation for each seed, StandardScaler (then PCA-512 for MOMENT and GPT4TS) fit on the training\nsplit, LEACE fit on the training split only and applied to both splits, then the canonical\nlogistic-regression probe. Conditions:\n    none         no erasure (reproduces the canonical v2 test score)\n    statistics   erase z = standardized (LLR, max|x|, kurtosis)\n    random       erase a 3-D Gaussian z independent of the data (negative control)\n    label        erase the anomaly label itself (positive control; should reach chance)\nFor each erasure the held-out R^2 of a ridge regression from the erased representation to the three\nstatistics is recorded to confirm that the linear information is gone.\n\nWith ``--concept handcrafted`` the erased variable is instead the standardized 8-D hand-crafted\nvector (and the random control is 8-D), which asks whether a representation carries anomaly\ninformation beyond the hand-crafted statistics; ``--task realistic`` runs on the realistic generator\nwith the layers selected in outputs/realistic_anomaly_v2.",
+  "task": "canonical",
+  "concept": "statistics",
+  "concept_variables": [
+    "llr",
+    "max_abs",
+    "kurtosis"
+  ],
   "conditions": [
     "none",
     "statistics",
     "random",
-    "label"
+    "label",
+    "labelproxy",
+    "residual"
   ],
   "rows": {
     "moment": {
@@ -82,6 +91,46 @@
           "llr": -0.1386,
           "max_abs": -0.1384,
           "kurtosis": -0.1169
+        }
+      },
+      "labelproxy": {
+        "acc_mean": 0.516,
+        "acc_ci95": [
+          0.4869,
+          0.554
+        ],
+        "acc_per_seed": [
+          0.505,
+          0.475,
+          0.485,
+          0.585,
+          0.53
+        ],
+        "stat_r2_mean": {
+          "llr": -0.1766,
+          "max_abs": -0.179,
+          "kurtosis": -0.1266
+        },
+        "proxy_train_acc": 0.8903,
+        "concept_train_acc": 0.889
+      },
+      "residual": {
+        "acc_mean": 0.528,
+        "acc_ci95": [
+          0.518,
+          0.539
+        ],
+        "acc_per_seed": [
+          0.54,
+          0.52,
+          0.545,
+          0.515,
+          0.52
+        ],
+        "stat_r2_mean": {
+          "llr": -0.1031,
+          "max_abs": -0.1102,
+          "kurtosis": -0.0387
         }
       }
     },
@@ -161,6 +210,46 @@
           "max_abs": 0.0672,
           "kurtosis": 0.0721
         }
+      },
+      "labelproxy": {
+        "acc_mean": 0.602,
+        "acc_ci95": [
+          0.571,
+          0.633
+        ],
+        "acc_per_seed": [
+          0.65,
+          0.56,
+          0.63,
+          0.605,
+          0.565
+        ],
+        "stat_r2_mean": {
+          "llr": 0.1589,
+          "max_abs": 0.1551,
+          "kurtosis": 0.1974
+        },
+        "proxy_train_acc": 0.8903,
+        "concept_train_acc": 0.889
+      },
+      "residual": {
+        "acc_mean": 0.619,
+        "acc_ci95": [
+          0.599,
+          0.638
+        ],
+        "acc_per_seed": [
+          0.62,
+          0.585,
+          0.605,
+          0.65,
+          0.635
+        ],
+        "stat_r2_mean": {
+          "llr": 0.0756,
+          "max_abs": 0.0654,
+          "kurtosis": 0.1202
+        }
       }
     },
     "timer": {
@@ -239,26 +328,66 @@
           "max_abs": -0.8379,
           "kurtosis": -1.009
         }
+      },
+      "labelproxy": {
+        "acc_mean": 0.56,
+        "acc_ci95": [
+          0.54,
+          0.582
+        ],
+        "acc_per_seed": [
+          0.53,
+          0.575,
+          0.54,
+          0.56,
+          0.595
+        ],
+        "stat_r2_mean": {
+          "llr": -1.0531,
+          "max_abs": -1.053,
+          "kurtosis": -1.069
+        },
+        "proxy_train_acc": 0.8903,
+        "concept_train_acc": 0.889
+      },
+      "residual": {
+        "acc_mean": 0.596,
+        "acc_ci95": [
+          0.579,
+          0.619
+        ],
+        "acc_per_seed": [
+          0.57,
+          0.64,
+          0.59,
+          0.585,
+          0.595
+        ],
+        "stat_r2_mean": {
+          "llr": -0.6415,
+          "max_abs": -0.6874,
+          "kurtosis": -0.3354
+        }
       }
     },
     "timesfm": {
       "none": {
-        "acc_mean": 0.753,
+        "acc_mean": 0.756,
         "acc_ci95": [
-          0.72,
-          0.788
+          0.722,
+          0.793
         ],
         "acc_per_seed": [
-          0.725,
+          0.73,
           0.705,
-          0.81,
-          0.785,
+          0.815,
+          0.79,
           0.74
         ],
         "stat_r2_mean": {
-          "llr": 0.4612,
-          "max_abs": 0.428,
-          "kurtosis": 0.5444
+          "llr": 0.4681,
+          "max_abs": 0.4337,
+          "kurtosis": 0.5514
         }
       },
       "statistics": {
@@ -281,22 +410,22 @@
         }
       },
       "random": {
-        "acc_mean": 0.755,
+        "acc_mean": 0.753,
         "acc_ci95": [
-          0.718,
-          0.793
+          0.716,
+          0.79
         ],
         "acc_per_seed": [
-          0.725,
+          0.72,
           0.7,
-          0.815,
+          0.81,
           0.795,
           0.74
         ],
         "stat_r2_mean": {
-          "llr": 0.4522,
-          "max_abs": 0.4198,
-          "kurtosis": 0.5374
+          "llr": 0.4596,
+          "max_abs": 0.4257,
+          "kurtosis": 0.5449
         }
       },
       "label": {
@@ -313,9 +442,49 @@
           0.455
         ],
         "stat_r2_mean": {
-          "llr": 0.0567,
-          "max_abs": 0.0427,
-          "kurtosis": 0.1094
+          "llr": 0.0373,
+          "max_abs": 0.0285,
+          "kurtosis": 0.0928
+        }
+      },
+      "labelproxy": {
+        "acc_mean": 0.577,
+        "acc_ci95": [
+          0.551,
+          0.603
+        ],
+        "acc_per_seed": [
+          0.605,
+          0.54,
+          0.605,
+          0.54,
+          0.595
+        ],
+        "stat_r2_mean": {
+          "llr": 0.1601,
+          "max_abs": 0.1421,
+          "kurtosis": 0.2139
+        },
+        "proxy_train_acc": 0.8903,
+        "concept_train_acc": 0.889
+      },
+      "residual": {
+        "acc_mean": 0.714,
+        "acc_ci95": [
+          0.681,
+          0.747
+        ],
+        "acc_per_seed": [
+          0.715,
+          0.66,
+          0.77,
+          0.74,
+          0.685
+        ],
+        "stat_r2_mean": {
+          "llr": 0.0769,
+          "max_abs": 0.0615,
+          "kurtosis": 0.1512
         }
       }
     },
@@ -340,13 +509,13 @@
         }
       },
       "statistics": {
-        "acc_mean": 0.537,
+        "acc_mean": 0.538,
         "acc_ci95": [
           0.511,
-          0.554
+          0.557
         ],
         "acc_per_seed": [
-          0.56,
+          0.565,
           0.55,
           0.55,
           0.54,
@@ -395,6 +564,46 @@
           "max_abs": -0.1095,
           "kurtosis": -0.105
         }
+      },
+      "labelproxy": {
+        "acc_mean": 0.59,
+        "acc_ci95": [
+          0.554,
+          0.624
+        ],
+        "acc_per_seed": [
+          0.56,
+          0.53,
+          0.6,
+          0.645,
+          0.615
+        ],
+        "stat_r2_mean": {
+          "llr": -0.091,
+          "max_abs": -0.0894,
+          "kurtosis": -0.0815
+        },
+        "proxy_train_acc": 0.8903,
+        "concept_train_acc": 0.889
+      },
+      "residual": {
+        "acc_mean": 0.645,
+        "acc_ci95": [
+          0.631,
+          0.663
+        ],
+        "acc_per_seed": [
+          0.635,
+          0.635,
+          0.65,
+          0.68,
+          0.625
+        ],
+        "stat_r2_mean": {
+          "llr": -0.0653,
+          "max_abs": -0.0731,
+          "kurtosis": -0.0276
+        }
       }
     },
     "gpt4ts": {
@@ -418,9 +627,9 @@
         }
       },
       "statistics": {
-        "acc_mean": 0.504,
+        "acc_mean": 0.505,
         "acc_ci95": [
-          0.487,
+          0.488,
           0.523
         ],
         "acc_per_seed": [
@@ -428,7 +637,7 @@
           0.52,
           0.475,
           0.5,
-          0.49
+          0.495
         ],
         "stat_r2_mean": {
           "llr": -0.0044,
@@ -472,6 +681,46 @@
           "llr": -0.205,
           "max_abs": -0.2011,
           "kurtosis": -0.2966
+        }
+      },
+      "labelproxy": {
+        "acc_mean": 0.517,
+        "acc_ci95": [
+          0.503,
+          0.532
+        ],
+        "acc_per_seed": [
+          0.545,
+          0.5,
+          0.515,
+          0.5,
+          0.525
+        ],
+        "stat_r2_mean": {
+          "llr": -0.28,
+          "max_abs": -0.2808,
+          "kurtosis": -0.3525
+        },
+        "proxy_train_acc": 0.8903,
+        "concept_train_acc": 0.889
+      },
+      "residual": {
+        "acc_mean": 0.496,
+        "acc_ci95": [
+          0.469,
+          0.522
+        ],
+        "acc_per_seed": [
+          0.51,
+          0.525,
+          0.525,
+          0.465,
+          0.455
+        ],
+        "stat_r2_mean": {
+          "llr": -0.2122,
+          "max_abs": -0.2245,
+          "kurtosis": -0.1461
         }
       }
     },
@@ -551,6 +800,46 @@
           "max_abs": -0.2221,
           "kurtosis": -0.1744
         }
+      },
+      "labelproxy": {
+        "acc_mean": 0.547,
+        "acc_ci95": [
+          0.526,
+          0.577
+        ],
+        "acc_per_seed": [
+          0.52,
+          0.545,
+          0.53,
+          0.605,
+          0.535
+        ],
+        "stat_r2_mean": {
+          "llr": -0.2496,
+          "max_abs": -0.2787,
+          "kurtosis": -0.1125
+        },
+        "proxy_train_acc": 0.8903,
+        "concept_train_acc": 0.889
+      },
+      "residual": {
+        "acc_mean": 0.662,
+        "acc_ci95": [
+          0.645,
+          0.686
+        ],
+        "acc_per_seed": [
+          0.635,
+          0.655,
+          0.705,
+          0.665,
+          0.65
+        ],
+        "stat_r2_mean": {
+          "llr": -0.3838,
+          "max_abs": -0.4157,
+          "kurtosis": -0.1668
+        }
       }
     },
     "hand_crafted": {
@@ -628,6 +917,46 @@
           "llr": 0.0074,
           "max_abs": 0.006,
           "kurtosis": 0.0866
+        }
+      },
+      "labelproxy": {
+        "acc_mean": 0.528,
+        "acc_ci95": [
+          0.482,
+          0.575
+        ],
+        "acc_per_seed": [
+          0.61,
+          0.57,
+          0.475,
+          0.475,
+          0.51
+        ],
+        "stat_r2_mean": {
+          "llr": 0.0273,
+          "max_abs": 0.0253,
+          "kurtosis": 0.0969
+        },
+        "proxy_train_acc": 0.8903,
+        "concept_train_acc": 0.889
+      },
+      "residual": {
+        "acc_mean": 0.518,
+        "acc_ci95": [
+          0.498,
+          0.547
+        ],
+        "acc_per_seed": [
+          0.495,
+          0.515,
+          0.51,
+          0.575,
+          0.495
+        ],
+        "stat_r2_mean": {
+          "llr": 0.0054,
+          "max_abs": 0.006,
+          "kurtosis": 0.0046
         }
       }
     }

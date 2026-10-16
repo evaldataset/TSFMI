@@ -16,7 +16,9 @@
     "none",
     "statistics",
     "random",
-    "label"
+    "label",
+    "labelproxy",
+    "residual"
   ],
   "rows": {
     "moment": {
@@ -47,13 +49,13 @@
       "statistics": {
         "acc_mean": 0.543,
         "acc_ci95": [
-          0.527,
-          0.561
+          0.526,
+          0.563
         ],
         "acc_per_seed": [
           0.535,
-          0.525,
-          0.575,
+          0.52,
+          0.58,
           0.525,
           0.555
         ],
@@ -115,6 +117,56 @@
           "spectral_entropy": -0.5316,
           "diff_std": -0.075
         }
+      },
+      "labelproxy": {
+        "acc_mean": 0.522,
+        "acc_ci95": [
+          0.505,
+          0.544
+        ],
+        "acc_per_seed": [
+          0.52,
+          0.5,
+          0.52,
+          0.565,
+          0.505
+        ],
+        "stat_r2_mean": {
+          "slope": 0.7643,
+          "residual_std": -0.2856,
+          "mean": -0.3671,
+          "std": -0.2848,
+          "kurtosis": -0.1273,
+          "argmax_fft": -0.2564,
+          "spectral_entropy": -0.5318,
+          "diff_std": -0.0734
+        },
+        "proxy_train_acc": 0.8567,
+        "concept_train_acc": 0.858
+      },
+      "residual": {
+        "acc_mean": 0.529,
+        "acc_ci95": [
+          0.518,
+          0.539
+        ],
+        "acc_per_seed": [
+          0.54,
+          0.51,
+          0.535,
+          0.54,
+          0.52
+        ],
+        "stat_r2_mean": {
+          "slope": 0.0841,
+          "residual_std": -0.0113,
+          "mean": -0.0103,
+          "std": -0.0092,
+          "kurtosis": -0.0384,
+          "argmax_fft": -0.0012,
+          "spectral_entropy": -0.0204,
+          "diff_std": 0.0075
+        }
       }
     },
     "chronos": {
@@ -143,13 +195,13 @@
         }
       },
       "statistics": {
-        "acc_mean": 0.557,
+        "acc_mean": 0.558,
         "acc_ci95": [
           0.536,
-          0.578
+          0.58
         ],
         "acc_per_seed": [
-          0.585,
+          0.59,
           0.53,
           0.56,
           0.53,
@@ -212,6 +264,56 @@
           "argmax_fft": -0.5908,
           "spectral_entropy": -0.9182,
           "diff_std": -0.2324
+        }
+      },
+      "labelproxy": {
+        "acc_mean": 0.614,
+        "acc_ci95": [
+          0.578,
+          0.647
+        ],
+        "acc_per_seed": [
+          0.675,
+          0.56,
+          0.63,
+          0.625,
+          0.58
+        ],
+        "stat_r2_mean": {
+          "slope": 0.799,
+          "residual_std": -0.7452,
+          "mean": -1.0392,
+          "std": -0.7399,
+          "kurtosis": 0.2198,
+          "argmax_fft": -0.5919,
+          "spectral_entropy": -0.9189,
+          "diff_std": -0.2474
+        },
+        "proxy_train_acc": 0.8567,
+        "concept_train_acc": 0.858
+      },
+      "residual": {
+        "acc_mean": 0.621,
+        "acc_ci95": [
+          0.61,
+          0.631
+        ],
+        "acc_per_seed": [
+          0.62,
+          0.6,
+          0.62,
+          0.635,
+          0.63
+        ],
+        "stat_r2_mean": {
+          "slope": -0.0047,
+          "residual_std": -0.0185,
+          "mean": -0.0022,
+          "std": -0.0176,
+          "kurtosis": 0.1185,
+          "argmax_fft": -0.0067,
+          "spectral_entropy": -0.0073,
+          "diff_std": -0.0092
         }
       }
     },
@@ -311,43 +413,93 @@
           "spectral_entropy": -3.0439,
           "diff_std": -0.7007
         }
+      },
+      "labelproxy": {
+        "acc_mean": 0.555,
+        "acc_ci95": [
+          0.535,
+          0.575
+        ],
+        "acc_per_seed": [
+          0.545,
+          0.58,
+          0.53,
+          0.535,
+          0.585
+        ],
+        "stat_r2_mean": {
+          "slope": -0.3683,
+          "residual_std": -0.9026,
+          "mean": 0.6244,
+          "std": -0.9044,
+          "kurtosis": -1.0809,
+          "argmax_fft": -2.4983,
+          "spectral_entropy": -3.0439,
+          "diff_std": -0.6903
+        },
+        "proxy_train_acc": 0.8567,
+        "concept_train_acc": 0.858
+      },
+      "residual": {
+        "acc_mean": 0.601,
+        "acc_ci95": [
+          0.577,
+          0.631
+        ],
+        "acc_per_seed": [
+          0.565,
+          0.66,
+          0.59,
+          0.585,
+          0.605
+        ],
+        "stat_r2_mean": {
+          "slope": -0.0134,
+          "residual_std": -0.1183,
+          "mean": -0.0038,
+          "std": -0.116,
+          "kurtosis": -0.3371,
+          "argmax_fft": -0.0082,
+          "spectral_entropy": -0.0138,
+          "diff_std": -0.0423
+        }
       }
     },
     "timesfm": {
       "none": {
-        "acc_mean": 0.753,
+        "acc_mean": 0.756,
         "acc_ci95": [
-          0.72,
-          0.788
+          0.722,
+          0.793
         ],
         "acc_per_seed": [
-          0.725,
+          0.73,
           0.705,
-          0.81,
-          0.785,
+          0.815,
+          0.79,
           0.74
         ],
         "stat_r2_mean": {
-          "slope": 0.845,
-          "residual_std": -1.4729,
-          "mean": -1.7205,
-          "std": -1.4635,
-          "kurtosis": 0.5444,
-          "argmax_fft": -1.3249,
-          "spectral_entropy": -1.5301,
-          "diff_std": -0.7826
+          "slope": 0.8442,
+          "residual_std": -1.5464,
+          "mean": -1.6486,
+          "std": -1.5376,
+          "kurtosis": 0.5514,
+          "argmax_fft": -1.3543,
+          "spectral_entropy": -1.5528,
+          "diff_std": -0.8422
         }
       },
       "statistics": {
-        "acc_mean": 0.541,
+        "acc_mean": 0.548,
         "acc_ci95": [
           0.519,
-          0.564
+          0.585
         ],
         "acc_per_seed": [
           0.57,
           0.515,
-          0.575,
+          0.61,
           0.525,
           0.52
         ],
@@ -363,27 +515,27 @@
         }
       },
       "random": {
-        "acc_mean": 0.741,
+        "acc_mean": 0.74,
         "acc_ci95": [
-          0.707,
+          0.705,
           0.778
         ],
         "acc_per_seed": [
           0.735,
-          0.69,
+          0.685,
           0.805,
           0.765,
           0.71
         ],
         "stat_r2_mean": {
-          "slope": 0.8121,
-          "residual_std": -1.4843,
-          "mean": -1.7122,
-          "std": -1.4745,
-          "kurtosis": 0.5336,
-          "argmax_fft": -1.3155,
-          "spectral_entropy": -1.5012,
-          "diff_std": -0.7897
+          "slope": 0.8115,
+          "residual_std": -1.547,
+          "mean": -1.6515,
+          "std": -1.5381,
+          "kurtosis": 0.5431,
+          "argmax_fft": -1.3404,
+          "spectral_entropy": -1.5215,
+          "diff_std": -0.837
         }
       },
       "label": {
@@ -400,14 +552,64 @@
           0.455
         ],
         "stat_r2_mean": {
-          "slope": 0.8453,
-          "residual_std": -1.4961,
-          "mean": -1.7189,
-          "std": -1.489,
-          "kurtosis": 0.1094,
-          "argmax_fft": -1.324,
-          "spectral_entropy": -1.5293,
-          "diff_std": -0.7978
+          "slope": 0.8443,
+          "residual_std": -1.5838,
+          "mean": -1.6471,
+          "std": -1.5772,
+          "kurtosis": 0.0928,
+          "argmax_fft": -1.3518,
+          "spectral_entropy": -1.551,
+          "diff_std": -0.8635
+        }
+      },
+      "labelproxy": {
+        "acc_mean": 0.585,
+        "acc_ci95": [
+          0.56,
+          0.606
+        ],
+        "acc_per_seed": [
+          0.61,
+          0.54,
+          0.605,
+          0.57,
+          0.6
+        ],
+        "stat_r2_mean": {
+          "slope": 0.8445,
+          "residual_std": -1.5289,
+          "mean": -1.6483,
+          "std": -1.5217,
+          "kurtosis": 0.2489,
+          "argmax_fft": -1.3517,
+          "spectral_entropy": -1.5469,
+          "diff_std": -0.8331
+        },
+        "proxy_train_acc": 0.8567,
+        "concept_train_acc": 0.858
+      },
+      "residual": {
+        "acc_mean": 0.697,
+        "acc_ci95": [
+          0.656,
+          0.735
+        ],
+        "acc_per_seed": [
+          0.705,
+          0.63,
+          0.76,
+          0.725,
+          0.665
+        ],
+        "stat_r2_mean": {
+          "slope": -0.0104,
+          "residual_std": -0.0689,
+          "mean": -0.0037,
+          "std": -0.0693,
+          "kurtosis": 0.1517,
+          "argmax_fft": -0.0096,
+          "spectral_entropy": -0.0102,
+          "diff_std": -0.0166
         }
       }
     },
@@ -507,6 +709,56 @@
           "spectral_entropy": -1.0005,
           "diff_std": 0.7682
         }
+      },
+      "labelproxy": {
+        "acc_mean": 0.594,
+        "acc_ci95": [
+          0.558,
+          0.632
+        ],
+        "acc_per_seed": [
+          0.57,
+          0.53,
+          0.6,
+          0.66,
+          0.61
+        ],
+        "stat_r2_mean": {
+          "slope": 0.6838,
+          "residual_std": 0.8137,
+          "mean": 0.994,
+          "std": 0.8128,
+          "kurtosis": -0.0649,
+          "argmax_fft": -0.9658,
+          "spectral_entropy": -0.9998,
+          "diff_std": 0.8319
+        },
+        "proxy_train_acc": 0.8567,
+        "concept_train_acc": 0.858
+      },
+      "residual": {
+        "acc_mean": 0.647,
+        "acc_ci95": [
+          0.627,
+          0.668
+        ],
+        "acc_per_seed": [
+          0.68,
+          0.64,
+          0.625,
+          0.67,
+          0.62
+        ],
+        "stat_r2_mean": {
+          "slope": -0.0088,
+          "residual_std": 0.0271,
+          "mean": -0.0019,
+          "std": 0.0274,
+          "kurtosis": -0.0483,
+          "argmax_fft": -0.0059,
+          "spectral_entropy": -0.0105,
+          "diff_std": 0.0165
+        }
       }
     },
     "gpt4ts": {
@@ -604,6 +856,56 @@
           "argmax_fft": -0.3086,
           "spectral_entropy": -0.6212,
           "diff_std": 0.1682
+        }
+      },
+      "labelproxy": {
+        "acc_mean": 0.519,
+        "acc_ci95": [
+          0.509,
+          0.53
+        ],
+        "acc_per_seed": [
+          0.53,
+          0.515,
+          0.535,
+          0.5,
+          0.515
+        ],
+        "stat_r2_mean": {
+          "slope": 0.7263,
+          "residual_std": 0.4151,
+          "mean": 0.7721,
+          "std": 0.4112,
+          "kurtosis": -0.362,
+          "argmax_fft": -0.309,
+          "spectral_entropy": -0.6207,
+          "diff_std": 0.1867
+        },
+        "proxy_train_acc": 0.8567,
+        "concept_train_acc": 0.858
+      },
+      "residual": {
+        "acc_mean": 0.487,
+        "acc_ci95": [
+          0.464,
+          0.51
+        ],
+        "acc_per_seed": [
+          0.49,
+          0.515,
+          0.515,
+          0.455,
+          0.46
+        ],
+        "stat_r2_mean": {
+          "slope": 0.0975,
+          "residual_std": 0.1202,
+          "mean": 0.1231,
+          "std": 0.1198,
+          "kurtosis": -0.148,
+          "argmax_fft": -0.0027,
+          "spectral_entropy": -0.0009,
+          "diff_std": 0.085
         }
       }
     },
@@ -703,6 +1005,56 @@
           "spectral_entropy": -1.9896,
           "diff_std": -1.2598
         }
+      },
+      "labelproxy": {
+        "acc_mean": 0.559,
+        "acc_ci95": [
+          0.54,
+          0.583
+        ],
+        "acc_per_seed": [
+          0.535,
+          0.56,
+          0.54,
+          0.605,
+          0.555
+        ],
+        "stat_r2_mean": {
+          "slope": 0.8511,
+          "residual_std": -2.1719,
+          "mean": -2.5674,
+          "std": -2.1635,
+          "kurtosis": -0.0904,
+          "argmax_fft": -1.6601,
+          "spectral_entropy": -1.9889,
+          "diff_std": -1.2476
+        },
+        "proxy_train_acc": 0.8567,
+        "concept_train_acc": 0.858
+      },
+      "residual": {
+        "acc_mean": 0.664,
+        "acc_ci95": [
+          0.649,
+          0.681
+        ],
+        "acc_per_seed": [
+          0.64,
+          0.65,
+          0.695,
+          0.67,
+          0.665
+        ],
+        "stat_r2_mean": {
+          "slope": -0.0073,
+          "residual_std": -0.0539,
+          "mean": -0.004,
+          "std": -0.0509,
+          "kurtosis": -0.1681,
+          "argmax_fft": -0.0036,
+          "spectral_entropy": -0.0081,
+          "diff_std": -0.0257
+        }
       }
     },
     "hand_crafted": {
@@ -800,6 +1152,56 @@
           "argmax_fft": 0.9981,
           "spectral_entropy": 0.9984,
           "diff_std": 0.8332
+        }
+      },
+      "labelproxy": {
+        "acc_mean": 0.531,
+        "acc_ci95": [
+          0.481,
+          0.585
+        ],
+        "acc_per_seed": [
+          0.625,
+          0.575,
+          0.475,
+          0.475,
+          0.505
+        ],
+        "stat_r2_mean": {
+          "slope": 0.998,
+          "residual_std": 0.6959,
+          "mean": 0.9969,
+          "std": 0.6979,
+          "kurtosis": 0.1004,
+          "argmax_fft": 0.995,
+          "spectral_entropy": 0.9964,
+          "diff_std": 0.8664
+        },
+        "proxy_train_acc": 0.8567,
+        "concept_train_acc": 0.858
+      },
+      "residual": {
+        "acc_mean": 0.482,
+        "acc_ci95": [
+          0.456,
+          0.504
+        ],
+        "acc_per_seed": [
+          0.5,
+          0.43,
+          0.515,
+          0.475,
+          0.49
+        ],
+        "stat_r2_mean": {
+          "slope": -0.0074,
+          "residual_std": -0.0036,
+          "mean": -0.002,
+          "std": -0.004,
+          "kurtosis": -0.0063,
+          "argmax_fft": -0.0065,
+          "spectral_entropy": -0.0089,
+          "diff_std": -0.0056
         }
       }
     }

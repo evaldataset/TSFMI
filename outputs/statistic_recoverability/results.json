@@ -5,16 +5,8 @@
     "max_abs": "max_t |x_t|",
     "kurtosis": "excess kurtosis (Fisher)"
   },
-  "command": "scripts/run_statistic_recoverability.py --repr-root outputs/representations_v2 --combine scratch/rec/moment/results.json scratch/rec/gpt4ts/results.json scratch/rec/chronos/results.json scratch/rec/timer/results.json scratch/rec/timesfm/results.json scratch/rec/moirai/results.json scratch/rec/patchtst_fm/results.json --out outputs/statistic_recoverability",
-  "merged_from": [
-    "scripts/run_statistic_recoverability.py --repr-root outputs/representations_v2 --canonical-root outputs/canonical_v2 --models moment --out scratch/rec/moment",
-    "scripts/run_statistic_recoverability.py --repr-root outputs/representations_v2 --canonical-root outputs/canonical_v2 --models gpt4ts --out scratch/rec/gpt4ts",
-    "scripts/run_statistic_recoverability.py --repr-root outputs/representations_v2 --canonical-root outputs/canonical_v2 --models chronos --out scratch/rec/chronos",
-    "scripts/run_statistic_recoverability.py --repr-root outputs/representations_v2 --canonical-root outputs/canonical_v2 --models timer --out scratch/rec/timer",
-    "scripts/run_statistic_recoverability.py --repr-root outputs/representations_v2 --canonical-root outputs/canonical_v2 --models timesfm --out scratch/rec/timesfm",
-    "scripts/run_statistic_recoverability.py --repr-root outputs/representations_v2 --canonical-root outputs/canonical_v2 --models moirai --out scratch/rec/moirai",
-    "scripts/run_statistic_recoverability.py --repr-root outputs/representations_v2 --canonical-root outputs/canonical_v2 --models patchtst_fm --out scratch/rec/patchtst_fm"
-  ],
+  "command": "scripts/run_statistic_recoverability.py --repr-root outputs/representations_v2 --canonical-root outputs/canonical_v2 --out outputs/statistic_recoverability",
+  "merged_from": [],
   "models": {
     "moment": {
       "anomaly_accuracy": 0.53,
@@ -289,7 +281,7 @@
       }
     },
     "timesfm": {
-      "anomaly_accuracy": 0.753,
+      "anomaly_accuracy": 0.756,
       "n_layers": 50,
       "pca_in_pipeline": null,
       "llr": {

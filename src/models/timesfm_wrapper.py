@@ -98,11 +98,24 @@ class TimesFMWrapper(BaseModelWrapper):
                 f"Expected input shape (batch, seq_len) or (batch, seq_len, 1), got {x.shape}",
             )
 
+        # The HF model left-pads every series to its full context (2048 steps), so a 512-step
+        # window would produce 64 patches of which 48 are padding. Running at a context equal
+        # to the input length (rounded up to whole patches) yields only the observed patches.
+        # Padded patches are masked in attention and positions are shifted, so the activations
+        # of the observed patches are the same either way (checked to relative 2e-6).
+        model = self._prediction_model
+        patch = int(model.config.patch_length)
+        full_context = model.context_len
+        context = min(full_context, -(-series.shape[1] // patch) * patch)
         with torch.no_grad():
             series = series.to(self._device, dtype=torch.float32)
             batch_size = series.shape[0]
             freq = torch.zeros(batch_size, dtype=torch.long, device=self._device)
-            output = self._prediction_model(past_values=series, freq=freq)
+            model.context_len = context
+            try:
+                output = model(past_values=series, freq=freq)
+            finally:
+                model.context_len = full_context
             return self._extract_tensor_output(output)
 
     @staticmethod
