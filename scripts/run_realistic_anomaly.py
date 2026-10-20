@@ -58,14 +58,24 @@ def make_background(rng: np.random.Generator, t: NDArray) -> NDArray:
 
 
 def realistic_anomaly_dataset(
-    num_samples: int, seq_len: int, seed: int, return_kinds: bool = False
+    num_samples: int,
+    seq_len: int,
+    seed: int,
+    return_kinds: bool = False,
+    magnitude_scale: float = 1.0,
 ):
     """Seasonal AR(1) windows; half carry one subtle anomaly of four kinds.
 
     With ``return_kinds`` the anomaly kind of every window is returned as a third array
     (-1 normal, 0 point, 1 level shift, 2 variance change, 3 contextual). The random stream is
     unchanged, so sequences and labels are identical with and without it.
+
+    ``magnitude_scale`` multiplies each anomaly's departure from the background: the point and
+    level-shift offsets, the variance factor's excess over one, and the blend from the background
+    to the contextual segment. The random draws do not depend on it, and 1.0 reproduces the
+    unscaled generator exactly.
     """
+    scale = float(magnitude_scale)
     rng = np.random.default_rng(seed)
     t = np.arange(seq_len, dtype=np.float64)
     sequences: list[NDArray] = []
@@ -86,27 +96,32 @@ def realistic_anomaly_dataset(
         if kind == 0:
             # Point anomaly with magnitude in [1.5, 3] sigma (subtle).
             pos = int(rng.integers(seq_len))
-            y[pos] += rng.choice([-1.0, 1.0]) * rng.uniform(1.5, 3.0) * sigma
+            offset = rng.choice([-1.0, 1.0]) * rng.uniform(1.5, 3.0) * sigma
+            y[pos] += offset if scale == 1.0 else scale * offset
         elif kind == 1:
             # Level shift over 5--40 steps with magnitude 1--2 sigma.
             n = int(rng.integers(5, 41))
             start = int(rng.integers(0, seq_len - n))
-            y[start : start + n] += (
-                rng.choice([-1.0, 1.0]) * rng.uniform(1.0, 2.0) * sigma
-            )
+            offset = rng.choice([-1.0, 1.0]) * rng.uniform(1.0, 2.0) * sigma
+            y[start : start + n] += offset if scale == 1.0 else scale * offset
         elif kind == 2:
             # Variance change in a contiguous segment.
             n = int(rng.integers(20, 80))
             start = int(rng.integers(0, seq_len - n))
-            y[start : start + n] *= rng.uniform(1.5, 2.5)
+            factor = rng.uniform(1.5, 2.5)
+            y[start : start + n] *= factor if scale == 1.0 else 1.0 + scale * (factor - 1.0)
         else:
             # Contextual outlier: replace a small segment by phase-shifted seasonality.
             n = int(rng.integers(10, 30))
             start = int(rng.integers(0, seq_len - n))
-            y[start : start + n] = rng.uniform(0.5, 1.5) * np.sin(
+            segment = rng.uniform(0.5, 1.5) * np.sin(
                 2 * np.pi * t[start : start + n] / float(rng.choice([8, 12, 24]))
                 + rng.uniform(0, 2 * np.pi)
             )
+            if scale == 1.0:
+                y[start : start + n] = segment
+            else:
+                y[start : start + n] += scale * (segment - y[start : start + n])
         sequences.append(y)
         labels.append(1)
         kinds.append(kind)

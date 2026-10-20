@@ -268,6 +268,114 @@ def learning_curve_figure(root: Path, out: Path) -> None:
     plt.close(fig)
 
 
+def resolution_figure(root: Path, out: Path) -> None:
+    """Large-sample study: accuracy vs labels (realistic, canonical) and vs anomaly magnitude."""
+    f = root / "outputs/resolution_study/results.json"
+    if not f.exists():
+        print("note: resolution_study missing; resolution figure skipped")
+        return
+    r = load(f)
+    lines = [
+        ("model:timesfm-pretrained", "TimesFM 2.0", "#4C72B0", "-", "o"),
+        ("model:patchtst_fm-pretrained", "PatchTST-FM", "#64B5CD", "-", "o"),
+        ("model:moirai-pretrained", "Moirai 2.0", "#8172B2", "-", "o"),
+        ("model:timesfm-random", "TimesFM (random init)", "#4C72B0", ":", "x"),
+        ("ctrl:tsfresh_efficient", "tsfresh (eff.)", "#DD8452", "--", "s"),
+        ("ctrl:rocket", "ROCKET-style", "#937860", "--", "s"),
+        ("ctrl:hand_crafted", "Hand-crafted", HC_COLOR, "--", "s"),
+        ("ctrl:bayes_llr", "Bayes rule", BAYES_COLOR, "-.", ""),
+    ]
+    fig, axes = plt.subplots(1, 3, figsize=(7.1, 2.35))
+    for ax, ds, title in (
+        (axes[0], "realistic", "Realistic, n = 50,000"),
+        (axes[1], "canonical", "Canonical, n = 50,000"),
+    ):
+        table = r[ds]["table"]
+        for rep, name, color, ls, mk in lines:
+            if rep not in table:
+                continue
+            sizes = sorted(table[rep]["sizes"], key=int)
+            ax.plot(
+                [int(x) for x in sizes],
+                [table[rep]["sizes"][x]["test_acc"] for x in sizes],
+                color=color,
+                ls=ls,
+                marker=mk,
+                ms=2.5,
+                lw=1.0,
+                label=name,
+            )
+        ax.set_xscale("log")
+        ax.set_xticks([600, 3000, 30000], ["600", "3k", "30k"])
+        ax.minorticks_off()
+        ax.set_xlabel("labelled training windows")
+        ax.set_title(title, fontsize=8)
+        ax.grid(lw=0.3, alpha=0.5)
+    axes[0].set_ylabel("test accuracy (10,000 windows)")
+    scales = sorted(
+        (k for k in r if k.startswith("snr_")), key=lambda k: float(k.removeprefix("snr_"))
+    )
+    ax = axes[2]
+    if scales:
+        xs = [float(k.removeprefix("snr_")) for k in scales]
+        for rep, _name, color, ls, mk in lines:
+            if all(rep in r[k]["table"] for k in scales):
+                ys = []
+                for k in scales:
+                    sz = r[k]["table"][rep]["sizes"]
+                    ys.append(sz[max(sz, key=int)]["test_acc"])
+                ax.plot(xs, ys, color=color, ls=ls, marker=mk, ms=2.5, lw=1.0)
+        ax.set_xlabel("anomaly magnitude (x generator default)")
+        ax.set_title("Realistic, magnitude sweep (n = 20,000)", fontsize=8)
+        ax.grid(lw=0.3, alpha=0.5)
+    handles, labels = axes[0].get_legend_handles_labels()
+    h1, l1 = axes[1].get_legend_handles_labels()
+    for h, lab in zip(h1, l1, strict=True):
+        if lab not in labels:
+            handles.append(h)
+            labels.append(lab)
+    fig.legend(
+        handles, labels, loc="lower center", ncol=4, frameon=False, bbox_to_anchor=(0.5, -0.14)
+    )
+    fig.tight_layout(rect=(0, 0.12, 1, 1))
+    fig.savefig(out / "resolution.pdf", bbox_inches="tight")
+    plt.close(fig)
+
+
+def store_figure(root: Path, out: Path) -> None:
+    """Per-dataset 1-NN accuracy: TSFM embeddings vs DTW and vs ROCKET-style features."""
+    c_f = root / "outputs/embedding_store/classical.json"
+    s_f = root / "outputs/embedding_store/summary.json"
+    m_f = root / "outputs/embedding_store/models.json"
+    if not s_f.exists():
+        print("note: embedding_store summary missing; store figure skipped")
+        return
+    names = load(s_f)["datasets"]
+    c, m = load(c_f), load(m_f)
+    tsfm = np.array([m[n]["timesfm"]["nn_acc"] for n in names])
+    fig, axes = plt.subplots(1, 2, figsize=(3.45, 1.8), sharey=True)
+    for ax, key, label in (
+        (axes[0], "dtw_nn_acc", "DTW 1-NN"),
+        (axes[1], "rocket_nn_acc", "ROCKET-style 1-NN"),
+    ):
+        x = np.array([c[n][key] for n in names])
+        ax.scatter(x, tsfm, s=4, color=MODEL_COLOR, alpha=0.7, lw=0)
+        ax.plot([0, 1], [0, 1], color="k", lw=0.6)
+        ax.set_xlim(0, 1.01)
+        ax.set_ylim(0, 1.01)
+        ax.set_xlabel(label)
+        ax.set_aspect("equal")
+        ax.grid(lw=0.3, alpha=0.5)
+        above = int(np.sum(tsfm > x + 1e-9))
+        below = int(np.sum(tsfm < x - 1e-9))
+        ax.text(0.04, 0.93, f"TimesFM better: {above}", fontsize=6, transform=ax.transAxes)
+        ax.text(0.45, 0.05, f"worse: {below}", fontsize=6, transform=ax.transAxes)
+    axes[0].set_ylabel("TimesFM 2.0 1-NN")
+    fig.tight_layout()
+    fig.savefig(out / "embedding_store.pdf", bbox_inches="tight")
+    plt.close(fig)
+
+
 def main() -> int:
     ap = argparse.ArgumentParser(description=__doc__.splitlines()[0])
     ap.add_argument("--tsfmi", type=Path, default=Path("."), help="TSFMI repository root")
@@ -279,6 +387,8 @@ def main() -> int:
     selectivity_figure(root, args.out)
     task_examples_figure(root, args.out)
     learning_curve_figure(root, args.out)
+    resolution_figure(root, args.out)
+    store_figure(root, args.out)
     print(f"figures -> {args.out}")
     return 0
 

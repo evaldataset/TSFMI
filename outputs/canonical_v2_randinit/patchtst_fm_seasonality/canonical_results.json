@@ -1,0 +1,43 @@
+{
+  "representations_dir": "outputs/representations_v2_randinit/patchtst_fm_meanpool/synthetic_seasonality",
+  "property": "seasonality",
+  "task_type": "regression",
+  "seeds": [
+    0,
+    1,
+    2,
+    3,
+    4
+  ],
+  "val_score_per_seed": [
+    0.9998,
+    0.9998,
+    0.9997,
+    0.9997,
+    0.9997
+  ],
+  "test_score_per_seed": [
+    0.9997,
+    0.9997,
+    0.9998,
+    0.9997,
+    0.9997
+  ],
+  "best_layer_per_seed": [
+    "backbone_blocks_17",
+    "backbone_blocks_12",
+    "backbone_blocks_2",
+    "backbone_blocks_2",
+    "backbone_blocks_5"
+  ],
+  "test_mean": 0.9997,
+  "test_ci95_low": 0.9997,
+  "test_ci95_high": 0.9997,
+  "protocol": {
+    "split": "60/20/20 train/val/test",
+    "selection": "best layer chosen on val only",
+    "reporting": "test score only",
+    "estimator": "sklearn Ridge",
+    "n_bootstrap": 1000
+  }
+}

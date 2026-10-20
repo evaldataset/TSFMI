@@ -1,0 +1,43 @@
+{
+  "representations_dir": "outputs/representations_v2_randinit/moirai_meanpool/synthetic_anomaly_realistic",
+  "property": "anomaly_realistic",
+  "task_type": "classification",
+  "seeds": [
+    0,
+    1,
+    2,
+    3,
+    4
+  ],
+  "val_score_per_seed": [
+    0.57,
+    0.585,
+    0.585,
+    0.6,
+    0.635
+  ],
+  "test_score_per_seed": [
+    0.55,
+    0.52,
+    0.645,
+    0.545,
+    0.5
+  ],
+  "best_layer_per_seed": [
+    "encoder_layers_0",
+    "encoder_layers_2",
+    "encoder_layers_3",
+    "encoder_layers_4",
+    "encoder_layers_1"
+  ],
+  "test_mean": 0.552,
+  "test_ci95_low": 0.514,
+  "test_ci95_high": 0.601,
+  "protocol": {
+    "split": "60/20/20 train/val/test",
+    "selection": "best layer chosen on val only",
+    "reporting": "test score only",
+    "estimator": "sklearn LogisticRegression",
+    "n_bootstrap": 1000
+  }
+}

@@ -1,0 +1,50 @@
+{
+  "representations_dir": "outputs/representations_v2_randinit/raw/gpt4ts/synthetic_anomaly_realistic",
+  "property": "anomaly_realistic",
+  "task_type": "classification",
+  "seeds": [
+    0,
+    1,
+    2,
+    3,
+    4
+  ],
+  "val_score_per_seed": [
+    0.515,
+    0.535,
+    0.53,
+    0.55,
+    0.5
+  ],
+  "test_score_per_seed": [
+    0.48,
+    0.48,
+    0.55,
+    0.52,
+    0.505
+  ],
+  "best_layer_per_seed": [
+    "transformer_h_0",
+    "transformer_h_0",
+    "transformer_h_5",
+    "transformer_h_7",
+    "transformer_h_5"
+  ],
+  "test_mean": 0.507,
+  "test_ci95_low": 0.485,
+  "test_ci95_high": 0.53,
+  "protocol": {
+    "split": "60/20/20 train/val/test",
+    "selection": "best layer chosen on val only",
+    "reporting": "test score only",
+    "estimator": "sklearn LogisticRegression",
+    "n_bootstrap": 1000,
+    "pca_in_pipeline": {
+      "n_components": 512,
+      "pipeline": "StandardScaler -> PCA -> estimator",
+      "fit_scope": "training split of each split seed only",
+      "input": "flattened full-dimensional layer representations",
+      "skipped_when": "layer dim <= 512"
+    }
+  }
+}

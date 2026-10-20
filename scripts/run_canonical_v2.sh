@@ -21,6 +21,8 @@
 #   REPR_ROOT   where tensors go (default outputs/representations_v2; gitignored)
 #   OUT_ROOT    result JSONs (default outputs/canonical_v2)
 #   DATA_SEED   seed of the synthetic generators (default 42, the canonical dataset)
+#   INIT        pretrained (default) or random (every weight re-initialised; use its own
+#               REPR_ROOT / OUT_ROOT)
 #   GPUS        space-separated GPU ids for extraction workers (default "0")
 #   BATCH_SIZE  forward-pass batch size (default 32)
 #   BENCH_JOBS  concurrent CPU benchmark jobs (default 6); BENCH_THREADS BLAS threads each (8)
@@ -49,6 +51,7 @@ STAGES="${STAGES:-env extract pool bench baselines summary}"
 NUM_SAMPLES=1000
 SEQ_LEN=512
 DATA_SEED="${DATA_SEED:-42}"
+INIT="${INIT:-pretrained}"  # "random": architecture-only control (weights re-initialised)
 PCA_DIM=512
 
 RAW_ROOT="$REPR_ROOT/raw"
@@ -153,7 +156,7 @@ extract_one() {
         CUDA_VISIBLE_DEVICES=$gpu PYTHONPATH=. "$PY" scripts/extract_representations.py \
             --model "$model" --dataset "$ds" --layers all \
             --num_samples "$NUM_SAMPLES" --seq_len "$SEQ_LEN" --seed "$DATA_SEED" \
-            --batch_size "$BATCH_SIZE" --output_dir "$RAW_ROOT"
+            --batch_size "$BATCH_SIZE" --output_dir "$RAW_ROOT" --init "$INIT"
         touch "$done_marker"
     fi
     if [[ "$view" == "meanpool" ]] && has_stage pool; then

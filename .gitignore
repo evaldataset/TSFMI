@@ -110,6 +110,13 @@ outputs/per_feature_all_properties/r1_results.json
 !outputs/capacity_probe_v2/
 !outputs/fix_2026_10/
 !outputs/strong_controls_ext/
+!outputs/canonical_v2_randinit/
+!outputs/resolution_study/
+!outputs/forecast_surprise/
+!outputs/embedding_store/
+!outputs/ucr_conditional/
+!outputs/erasure_bound/
+outputs/canonical_v2_randinit/logs/
 outputs/capacity_probe_v2/run.log
 outputs/strong_controls_ext/*.log
 outputs/view_sensitivity/run.log

@@ -50,6 +50,7 @@ BOUNDED_NAMESPACES = {
     "bayes",
     "anom",
     "tsfresh",
+    "ri",
 }
 
 
@@ -769,9 +770,16 @@ def hard_variants(n: Numbers, root: Path) -> bool:
         margin = max(v - ctrl[h][best] for v in models.values())
         margins.append(margin)
         n.put(f"hardcmp/{h}/maxmargin", margin, src)
+        bm = max(models, key=models.get)
+        n.put(f"sc/hard/{h}/bestmodel", MODEL_NAMES[bm], src)
+        n.put(f"sc/hard/{h}/bestmodelval", models[bm], src)
+        n.put(f"sc/hard/{h}/bestctrl", label, src)
+        n.put(f"sc/hard/{h}/bestctrlval", ctrl[h][best], src)
+        n.put(f"sc/hard/{h}/margin", margin, src)
     n.put("hardcmp/maxmargin", max(margins), src)
     n.put("hardcmp/npositive", sum(m > 0 for m in margins), src)
     allm = getattr(n, "strongest_margins", []) + margins
+    n.all_margins = allm
     if allm:
         s2 = "all task settings: canonical (6), hard (5), realistic data seeds (3), UCR (6)"
         n.put("sc/all/nsettings", len(allm), s2)
@@ -986,6 +994,412 @@ def fix_changes(n: Numbers, root: Path) -> bool:
     return True
 
 
+def random_init(n: Numbers, root: Path) -> bool:
+    """Re-initialised models under the canonical v2 protocol (outputs/canonical_v2_randinit).
+
+    ri/<model>/<prop>: score with corrected interval; ridiff/<model>/<prop>: paired per-seed
+    difference pretrained - random (identical windows and splits) with its corrected p value.
+    """
+    base = root / "outputs/canonical_v2_randinit"
+    props = (*PROPS, "anomaly_realistic")
+    cells = [(m, p) for m in CANON_MODELS for p in props]
+    if not all((base / f"{m}_{p}" / "canonical_results.json").exists() for m, p in cells):
+        return False
+    within, saturated = 0, 0
+    drops: dict[str, float] = {}
+    for m, prop in cells:
+        f = base / f"{m}_{prop}" / "canonical_results.json"
+        r = load(f)
+        key = f"{CANON_MODELS[m]}/{prop.replace('_realistic', 'realistic')}"
+        n.put_ci(
+            f"ri/{key}",
+            r["test_mean"],
+            r["test_ci95_low"],
+            r["test_ci95_high"],
+            str(f.relative_to(root)),
+            r["test_score_per_seed"],
+        )
+        pre_dir = "realistic_anomaly_v2" if prop == "anomaly_realistic" else "canonical_v2"
+        pf = root / "outputs" / pre_dir / f"{m}_{prop}" / "canonical_results.json"
+        d = np.array(load(pf)["test_score_per_seed"]) - np.array(r["test_score_per_seed"])
+        src = f"paired per-seed diff {pf.relative_to(root)} - {f.relative_to(root)}"
+        n.put_ci(f"ridiff/{key}", float(d.mean()), 0.0, 0.0, src, list(d))
+        n.put(f"ridiff/{key}/p", corrected_t(list(d))[3], src)
+        if prop in ("trend", "seasonality", "frequency", "stationarity", "change_point"):
+            saturated += 1
+            within += abs(float(d.mean())) <= 0.01
+        else:
+            drops[key] = float(d.mean())
+    src = str(base.relative_to(root))
+    n.put("ri/saturated/ncells", saturated, src)
+    n.put("ri/saturated/nwithin", within, src)
+    for task in ("anomaly", "anomalyrealistic"):
+        vals = [v for k, v in drops.items() if k.endswith("/" + task)]
+        n.put(f"ri/{task}/mindrop", min(vals), src)
+        n.put(f"ri/{task}/maxdrop", max(vals), src)
+    return True
+
+
+def embedding_store(n: Numbers, root: Path) -> bool:
+    """1-NN representation-store benchmark on the UCR archive (outputs/embedding_store)."""
+    f = root / "outputs/embedding_store/summary.json"
+    if not f.exists():
+        return False
+    d = load(f)
+    src = str(f.relative_to(root))
+    key = {**CANON_MODELS, "ed": "ed", "dtw": "dtw", "rocket": "rocket", "best_tsfm": "besttsfm"}
+    n.put("es/ndatasets", d["n_datasets"], src)
+    for rep, row in d["nn"].items():
+        if not isinstance(row, dict):
+            continue
+        rk = key.get(rep) or f"{CANON_MODELS[rep.removesuffix('_random')]}rand"
+        n.put(f"es/nn/{rk}/acc", row["mean_acc"], src)
+        for ref in ("vs_ed", "vs_dtw", "vs_rocket", "vs_random_init"):
+            if ref in row:
+                c = row[ref]
+                b = f"es/nn/{rk}/{ref.replace('vs_', 'vs').replace('_', '')}"
+                n.put(f"{b}/wtl", f"{c['wins']}/{c['ties']}/{c['losses']}", src)
+                n.put(f"{b}/diff", c["mean_diff"], src)
+                p = c.get("p_holm", c["p_wilcoxon"])
+                n.put(f"{b}/p", "$<$0.001" if p < 1e-3 else f"{p:.3f}", src)
+    n.put("es/nn/ntsfmbeatsdtw", d["nn"]["n_tsfm_beats_dtw"], src)
+    for rep, v in d["nn_mean_rank"].items():
+        n.put(f"es/rank/{key[rep]}", v, src, digits=2)
+    for rep, row in d["linear"].items():
+        rk = key.get(rep, rep)
+        n.put(f"es/lin/{rk}/acc", row["mean_acc"], src)
+        if "vs_rocket" in row:
+            c = row["vs_rocket"]
+            n.put(f"es/lin/{rk}/vsrocket/wtl", f"{c['wins']}/{c['ties']}/{c['losses']}", src)
+            n.put(f"es/lin/{rk}/vsrocket/diff", c["mean_diff"], src)
+            p = c.get("p_holm", c["p_wilcoxon"])
+            n.put(f"es/lin/{rk}/vsrocket/p", "$<$0.001" if p < 1e-3 else f"{p:.3f}", src)
+    for rep, b in d["storage_bytes"].items():
+        n.put(f"es/bytes/{key.get(rep, rep.replace('_', ''))}", int(round(b)), src)
+    for rep, sec in d["seconds"].items():
+        n.put(f"es/seconds/{key[rep]}", sec, src, digits=0)
+    return True
+
+
+def ucr_conditional(n: Numbers, root: Path) -> bool:
+    """Conditional probing on the six binary UCR datasets (outputs/ucr_conditional/results.json)."""
+    f = root / "outputs/ucr_conditional/results.json"
+    if not f.exists():
+        return False
+    d = load(f)
+    if not all(all(m in d.get(ds, {}) for m in CANON_MODELS) for ds in d):
+        return False
+    src = str(f.relative_to(root))
+    sig_pos, sig_neg, total, gains = 0, 0, 0, []
+    for ds, row in d.items():
+        dk = ds.lower()
+        for k, v in row["controls"].items():
+            n.put(f"ucrc/{dk}/ctrl/{k.replace('_', '')}", v, src)
+        for m, key in CANON_MODELS.items():
+            e = row[m]
+            n.put(f"ucrc/{dk}/{key}/auc", e["auc"], src)
+            for ctrl in ("rocket", "tsfresh_efficient", "all_controls"):
+                g = e[ctrl]["z_given_control"]
+                ck = ctrl.replace("_", "")
+                n.put(f"ucrc/{dk}/{key}/{ck}/joint", e[ctrl]["auc_joint"], src)
+                for k in ("diff", "lo", "hi"):
+                    n.put(f"ucrc/{dk}/{key}/{ck}/{k}", g[k], src)
+            g = e["all_controls"]["z_given_control"]
+            total += 1
+            sig_pos += g["lo"] > 0
+            sig_neg += g["hi"] < 0
+            gains.append((g["diff"], ds, key))
+    large = [(g, ds) for g, ds, _ in gains if g > 0.005]
+    sig_large = [
+        ds
+        for ds, row in d.items()
+        for m in CANON_MODELS
+        if row[m]["all_controls"]["z_given_control"]["lo"] > 0
+        and row[m]["all_controls"]["z_given_control"]["diff"] > 0.005
+    ]
+    n.put("ucrc/nsigposlarge", len(sig_large), src)
+    n.put("ucrc/nsigposlargeds", len(set(sig_large)), src)
+    n.put("ucrc/sigposlargeds", ", ".join(sorted(set(sig_large))), src)
+    n.put("ucrc/nlarge", len(large), src)
+    bits_p = {
+        (ds, m): row[m]["all_controls"]["bits_z_given_control"]["p_value"]
+        for ds, row in d.items()
+        for m in CANON_MODELS
+    }
+    h = holm(bits_p)
+    n.put(
+        "ucrc/nholmpos",
+        sum(
+            h[k] < 0.05 and d[k[0]][k[1]]["all_controls"]["bits_z_given_control"]["bits"] > 0
+            for k in h
+        ),
+        src,
+    )
+    n.put("ucrc/minholmp", _fmt_p(min(h.values())), src)
+    n.put("ucrc/npairs", total, src)
+    n.put("ucrc/nsigpos", sig_pos, src)
+    n.put("ucrc/nsigneg", sig_neg, src)
+    best = max(gains)
+    n.put("ucrc/maxgain", best[0], src)
+    n.put("ucrc/maxgainds", best[1], src)
+    n.put("ucrc/maxgainmodel", MODEL_NAMES[{v: k for k, v in CANON_MODELS.items()}[best[2]]], src)
+    return True
+
+
+def erasure_bound(n: Numbers, root: Path) -> bool:
+    """R^2 of the label on each erased concept and the implied cap sqrt(1 - R^2)."""
+    f = root / "outputs/erasure_bound/results.json"
+    if not f.exists():
+        return False
+    src = str(f.relative_to(root))
+    for key, v in load(f).items():
+        task, concept = key.split("/")
+        for k in ("r2_mean", "cap_mean", "proxy_r2_mean"):
+            n.put(f"eb/{task}/{concept}/{k.removesuffix('_mean').replace('_', '')}", v[k], src)
+        n.put(f"eb/{task}/{concept}/proxycap", (1.0 - v["proxy_r2_mean"]) ** 0.5, src)
+    return True
+
+
+def forecast_surprise(n: Numbers, root: Path) -> bool:
+    """Label-free anomaly scores vs supervised probes (outputs/forecast_surprise/realistic.json)."""
+    f = root / "outputs/forecast_surprise/realistic.json"
+    if not f.exists():
+        return False
+    d = load(f)
+    src = str(f.relative_to(root))
+    n.put("fs/ntest", d["n_test"], src)
+    for name, row in d["unsupervised"].items():
+        key = name.replace("_", "")
+        for k, v in row.items():
+            n.put(f"fs/{key}/{k.replace('_', '')}", v, src)
+    for name, row in d["supervised_reference"].items():
+        key = name.removeprefix("probe_").replace("_", "")
+        for k, v in row.items():
+            n.put(f"fs/sup/{key}/{k.replace('_', '')}", v, src)
+    n.put("fs/bestclassical", d["best_classical"].replace("_", ""), src)
+    for name, v in d["paired_differences"].items():
+        key = name.split("-")[0].replace("_", "")
+        for k in ("diff", "lo", "hi"):
+            n.put(f"fs/vsbest/{key}/{k}", v[k], src)
+    for name, sec in d["seconds"].items():
+        n.put(f"fs/{name.replace('_', '')}/seconds", sec, src, digits=0)
+    ratio = d["seconds"]["timesfm_surprise_h1"] / d["seconds"]["ar16_residual"]
+    n.put("fs/costratio", f"{int(round(ratio, -1)):,}", src)
+    return True
+
+
+RS_KEYS = {  # representation id in outputs/resolution_study/results.json -> key in the paper
+    **{f"model:{m}-pretrained": k for m, k in CANON_MODELS.items()},
+    **{f"model:{m}-random": f"{k}rand" for m, k in CANON_MODELS.items()},
+    "ctrl:raw_signal": "rawsignal",
+    "ctrl:hand_crafted": "handcrafted",
+    "ctrl:rocket": "rocket",
+    "ctrl:tsfresh_efficient": "tsefficient",
+    "ctrl:bayes_llr": "bayes",
+    "ctrl:max_abs": "maxabs",
+}
+RS_NAMES = {
+    **{f"model:{m}-pretrained": MODEL_NAMES[m] for m in CANON_MODELS},
+    "ctrl:raw_signal": "raw signal",
+    "ctrl:hand_crafted": "hand-crafted",
+    "ctrl:rocket": "ROCKET-style",
+    "ctrl:tsfresh_efficient": "tsfresh (efficient)",
+    "ctrl:bayes_llr": "Bayes rule",
+    "ctrl:max_abs": "max|x|",
+}
+
+
+def holm(pvals: dict[str, float]) -> dict[str, float]:
+    """Holm step-down adjusted p-values within one family of tests."""
+    order = sorted(pvals, key=pvals.get)
+    out, running = {}, 0.0
+    for i, k in enumerate(order):
+        running = max(running, min(1.0, (len(order) - i) * pvals[k]))
+        out[k] = running
+    return out
+
+
+def _fmt_p(p: float) -> str:
+    return "$<$0.001" if p < 1e-3 else f"{p:.3f}"
+
+
+def _rs_compare(n: Numbers, prefix: str, c: dict, src: str) -> None:
+    """Paired comparison a - b on one test set: difference with 95% interval, McNemar, TOST."""
+    t = c["tost_0.02"]
+    n.put(f"{prefix}/diff", t["diff"], src)
+    half = 1.959964 * t["se"]
+    n.put(f"{prefix}/lead", -t["diff"], src)  # b - a, for sentences about b leading
+    n.put(f"{prefix}/leadlo", -t["diff"] - half, src)
+    n.put(f"{prefix}/leadhi", -t["diff"] + half, src)
+    n.put(f"{prefix}/lo", t["diff"] - 1.959964 * t["se"], src)
+    n.put(f"{prefix}/hi", t["diff"] + 1.959964 * t["se"], src)
+    p = c["mcnemar"]["p_value"]
+    n.put(f"{prefix}/p", p if p >= 1e-3 else "<10^{-3}", src)
+    n.put(f"{prefix}/plt", "$<$0.001" if p < 1e-3 else f"{p:.3f}", src)
+    for m in ("0.02", "0.01"):
+        tm = c[f"tost_{m}"]
+        tag = m.replace("0.", "")
+        n.put(f"{prefix}/equiv{tag}", "yes" if tm["equivalent"] else "no", src)
+    lb = c["logloss_bits"]
+    n.put(f"{prefix}/bits", lb["bits"], src, digits=4)
+    n.put(f"{prefix}/bitslo", lb["lo"], src, digits=4)
+    n.put(f"{prefix}/bitshi", lb["hi"], src, digits=4)
+
+
+def resolution(n: Numbers, root: Path) -> bool:
+    """Large-sample study (outputs/resolution_study/results.json): H1-H6."""
+    f = root / "outputs/resolution_study/results.json"
+    if not f.exists():
+        return False
+    r = load(f)
+    src = str(f.relative_to(root))
+    dsk = {"realistic": "real", "canonical": "canon", "realistic_iaaft": "iaaft"}
+    for ds, res in r.items():
+        if not isinstance(res, dict) or "table" not in res:
+            continue
+        dk = dsk.get(ds, ds.replace("snr_", "snr").replace(".", ""))
+        n.put(f"rs/{dk}/n", res["n"], src)
+        n.put(f"rs/{dk}/ntest", res["n_test"], src)
+        for rep, row in res["table"].items():
+            rk = RS_KEYS[rep]
+            for size, v in row["sizes"].items():
+                n.put(f"rs/{dk}/{rk}/n{size}", v["test_acc"], src)
+            n.put(f"rs/{dk}/{rk}/vinfo", row["vinfo_bits"], src)
+        if "best_model" in res:
+            n.put(f"rs/{dk}/bestmodel", RS_NAMES[res["best_model"]], src)
+            n.put(f"rs/{dk}/bestctrl", RS_NAMES[res["best_control"]], src)
+            _rs_compare(n, f"rs/{dk}/best", res["best_model_vs_best_control"], src)
+            if "at_min_train" in res:
+                a0 = res["at_min_train"]
+                n.put(f"rs/{dk}/bestsmall/ntrain", a0["n_train"], src)
+                n.put(f"rs/{dk}/bestsmall/model", RS_NAMES[a0["best_model"]], src)
+                n.put(f"rs/{dk}/bestsmall/ctrl", RS_NAMES[a0["best_control"]], src)
+                _rs_compare(n, f"rs/{dk}/bestsmall", a0["compare"], src)
+            n.put(f"rs/{dk}/discordance", res["discordance"], src)
+            # Minimum detectable paired difference (alpha 0.05, power 0.8) at this discordance.
+            z2 = (1.959964 + 0.841621) ** 2
+            for nt in (200, 1000, res["n_test"]):
+                n.put(f"rs/{dk}/mde/{nt}", (z2 * res["discordance"] / nt) ** 0.5, src)
+            for d, v in res["n_needed"].items():
+                n.put(f"rs/{dk}/nneeded/{d.replace('0.', '')}", f"{v:,}", src)
+            for rep, c in res["models_vs_best_control"].items():
+                _rs_compare(n, f"rs/{dk}/{RS_KEYS[rep]}/vsctrl", c, src)
+            for m, c in res["pretrained_vs_random"].items():
+                _rs_compare(n, f"rs/{dk}/{CANON_MODELS[m]}/vsrand", c, src)
+        ck_of = {"all_controls": "all", "tsfresh_efficient": "tsefficient"}
+        for field, ns in (("conditional_tuned", "cond"), ("conditional", "condfixed")):
+            if field not in res:
+                continue
+            for key, c in res[field].items():
+                rep, ctrl = key.split("|")
+                base = f"rs/{dk}/{ns}/{RS_KEYS[rep]}/{ck_of.get(ctrl, ctrl.replace('_', ''))}"
+                _rs_compare(n, f"{base}/z", c["z_given_control"], src)
+                _rs_compare(n, f"{base}/c", c["control_given_z"], src)
+                n.put(f"{base}/joint", c["z_given_control"]["acc_a"], src)
+        if "conditional_tuned" in res:
+            for ctrl, v in res["controls_tuned"].items():
+                n.put(f"rs/{dk}/ctrltuned/{ck_of.get(ctrl, ctrl.replace('_', ''))}", v, src)
+            cond = res["conditional_tuned"]
+            pre = {k: c for k, c in cond.items() if k.endswith("-pretrained|all_controls")}
+            n.put(f"rs/{dk}/cond/npre", len(pre), src)
+            zc = {k: c["z_given_control"] for k, c in pre.items()}
+            h_bits = holm({k: z["logloss_bits"]["p_value"] for k, z in zc.items()})
+            h_acc = holm({k: z["mcnemar"]["p_value"] for k, z in zc.items()})
+            n.put(
+                f"rs/{dk}/cond/nbitspos",
+                sum(zc[k]["logloss_bits"]["bits"] > 0 and h_bits[k] < 0.05 for k in zc),
+                src,
+            )
+            n.put(
+                f"rs/{dk}/cond/naccsig",
+                sum(zc[k]["tost_0.02"]["diff"] > 0 and h_acc[k] < 0.05 for k in zc),
+                src,
+            )
+            for k in zc:
+                rk = RS_KEYS[k.split("|")[0]]
+                n.put(f"rs/{dk}/cond/{rk}/all/z/pholm", _fmt_p(h_acc[k]), src)
+                n.put(f"rs/{dk}/cond/{rk}/all/z/bitspholm", _fmt_p(h_bits[k]), src)
+            n.put(
+                f"rs/{dk}/cond/nequiv01",
+                sum(c["z_given_control"]["tost_0.01"]["equivalent"] for c in pre.values()),
+                src,
+            )
+            best = max(pre, key=lambda k: pre[k]["z_given_control"]["logloss_bits"]["bits"])
+            n.put(f"rs/{dk}/cond/maxbitsmodel", RS_NAMES[best.split("|")[0]], src)
+            _rs_compare(n, f"rs/{dk}/cond/maxbits/z", pre[best]["z_given_control"], src)
+            _rs_compare(n, f"rs/{dk}/cond/maxbits/c", pre[best]["control_given_z"], src)
+            n.put(f"rs/{dk}/cond/maxbits/pholm", _fmt_p(h_acc[best]), src)
+            n.put(f"rs/{dk}/cond/maxbits/bitspholm", _fmt_p(h_bits[best]), src)
+            rnd = {k: c for k, c in cond.items() if k.endswith("-random|all_controls")}
+            if rnd:
+                n.put(
+                    f"rs/{dk}/cond/nrandbitspos",
+                    sum(c["z_given_control"]["logloss_bits"]["lo"] > 0 for c in rnd.values()),
+                    src,
+                )
+                n.put(f"rs/{dk}/cond/nrand", len(rnd), src)
+        if "recall_by_kind" in res:
+            kinds = {"0": "point", "1": "levelshift", "2": "variance", "3": "contextual"}
+            for rep, row in res["recall_by_kind"].items():
+                for k, v in row.items():
+                    n.put(f"rs/{dk}/kind/{RS_KEYS[rep]}/{kinds.get(k, 'normal')}", v, src)
+    for rep, c in r.get("surrogate_drop", {}).items():
+        _rs_compare(n, f"rs/sur/{RS_KEYS[rep]}", c, src)
+    for key, v in r.get("views", {}).items():
+        m, view = key.split("/")
+        mk = CANON_MODELS[m.removesuffix("-random")] + ("rand" if m.endswith("-random") else "")
+        base = f"rs/view/{mk}/{view}"
+        n.put(f"{base}/acc", v["test_acc"], src)
+        _rs_compare(n, f"{base}/vsctrl", v["vs_best_control"], src)
+        if "vs_mlp_all_controls" in v:
+            _rs_compare(n, f"{base}/vsmlp", v["vs_mlp_all_controls"], src)
+    for name, v in r.get("capacity_controls", {}).items():
+        n.put(f"rs/capctrl/{name.replace('_', '')}", v["test_acc"], src)
+    nocf = r.get("views_conditional_nocrossfit", {})
+    if nocf:
+        h = holm({m: c["mcnemar"]["p_value"] for m, c in nocf.items()})
+        n.put(
+            "rs/viewcond/nsignocf",
+            sum(c["tost_0.02"]["diff"] > 0 and h[m] < 0.05 for m, c in nocf.items()),
+            src,
+        )
+    vc = r.get("views_conditional", {})
+    for m, v in vc.items():
+        mk = CANON_MODELS[m.removesuffix("-random")] + ("rand" if m.endswith("-random") else "")
+        base = f"rs/viewcond/{mk}"
+        _rs_compare(n, f"{base}/att", v["attention_vs_all_controls"], src)
+        _rs_compare(n, f"{base}/z", v["pooled_given_controls"], src)
+        _rs_compare(n, f"{base}/c", v["controls_given_pooled"], src)
+        n.put(f"{base}/joint", v["pooled_given_controls"]["acc_a"], src)
+    for suffix, tag in (("", ""), ("-random", "rand")):
+        fam = {
+            m: v["pooled_given_controls"]
+            for m, v in vc.items()
+            if m.endswith("-random") == (suffix == "-random")
+        }
+        if not fam:
+            continue
+        h = holm({m: c["mcnemar"]["p_value"] for m, c in fam.items()})
+        sig = [m for m, c in fam.items() if c["tost_0.02"]["diff"] > 0 and h[m] < 0.05]
+        n.put(f"rs/viewcond/nsig{tag}", len(sig), src)
+        n.put(f"rs/viewcond/nmodels{tag}", len(fam), src)
+        n.put(
+            f"rs/viewcond/nabove01{tag}",
+            sum(
+                fam[m]["tost_0.02"]["diff"] - 1.959964 * fam[m]["tost_0.02"]["se"] > 0.01
+                for m in sig
+            ),
+            src,
+        )
+        for m in fam:
+            mk = CANON_MODELS[m.removesuffix("-random")] + tag
+            n.put(f"rs/viewcond/{mk}/z/pholm", _fmt_p(h[m]), src)
+        if not tag:
+            best = max(fam, key=lambda m: fam[m]["tost_0.02"]["diff"])
+            n.put("rs/viewcond/bestmodel", MODEL_NAMES[best], src)
+    return True
+
+
 def view_shift(n: Numbers, root: Path) -> bool:
     if not getattr(n, "view_shifts", None):
         return False
@@ -1052,11 +1466,25 @@ def main() -> int:
         (view_sensitivity, "view_sensitivity"),
         (view_shift, "view shift"),
         (fix_changes, "fix_2026_10"),
+        (random_init, "canonical_v2_randinit"),
+        (forecast_surprise, "forecast_surprise"),
+        (erasure_bound, "erasure_bound"),
+        (ucr_conditional, "ucr_conditional"),
+        (resolution, "resolution_study"),
+        (embedding_store, "embedding_store"),
     ):
         if not fn(n, root):
             print(f"note: {what} missing; its keys not written")
     if not hard_variants(n, root):
         print("note: hard_variants_v2 incomplete; hard/ keys not written")
+    rs_f = root / "outputs/resolution_study/results.json"
+    allm = getattr(n, "all_margins", [])
+    if rs_f.exists() and len(allm) == 20:
+        disc = load(rs_f)["realistic"]["discordance"]
+        mde = ((1.959964 + 0.841621) ** 2 * disc / 200) ** 0.5
+        src = "strongest-control margins vs resolution at 200 test windows"
+        n.put("sc/all/ntied", sum(abs(m) < mde for m in allm), src)
+        n.put("sc/all/nctrlresolved", sum(m <= -mde for m in allm), src)
     args.out.parent.mkdir(parents=True, exist_ok=True)
     args.out.write_text(n.tex())
     if n.bootstrap_keys:

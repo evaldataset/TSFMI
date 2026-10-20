@@ -1,0 +1,43 @@
+{
+  "representations_dir": "outputs/representations_v2_randinit/moirai_meanpool/synthetic_frequency",
+  "property": "frequency",
+  "task_type": "classification",
+  "seeds": [
+    0,
+    1,
+    2,
+    3,
+    4
+  ],
+  "val_score_per_seed": [
+    0.985,
+    0.995,
+    0.98,
+    0.995,
+    1.0
+  ],
+  "test_score_per_seed": [
+    0.985,
+    0.985,
+    1.0,
+    1.0,
+    0.995
+  ],
+  "best_layer_per_seed": [
+    "encoder_layers_0",
+    "encoder_layers_0",
+    "encoder_layers_5",
+    "encoder_layers_4",
+    "encoder_layers_2"
+  ],
+  "test_mean": 0.993,
+  "test_ci95_low": 0.987,
+  "test_ci95_high": 0.999,
+  "protocol": {
+    "split": "60/20/20 train/val/test",
+    "selection": "best layer chosen on val only",
+    "reporting": "test score only",
+    "estimator": "sklearn LogisticRegression",
+    "n_bootstrap": 1000
+  }
+}

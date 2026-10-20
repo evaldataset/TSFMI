@@ -1,0 +1,50 @@
+{
+  "representations_dir": "outputs/representations_v2_randinit/raw/gpt4ts/synthetic_seasonality",
+  "property": "seasonality",
+  "task_type": "regression",
+  "seeds": [
+    0,
+    1,
+    2,
+    3,
+    4
+  ],
+  "val_score_per_seed": [
+    0.9941,
+    0.9931,
+    0.9946,
+    0.9923,
+    0.9935
+  ],
+  "test_score_per_seed": [
+    0.9934,
+    0.9932,
+    0.9942,
+    0.9937,
+    0.9926
+  ],
+  "best_layer_per_seed": [
+    "transformer_h_11",
+    "transformer_h_11",
+    "transformer_h_11",
+    "transformer_h_11",
+    "transformer_h_11"
+  ],
+  "test_mean": 0.9934,
+  "test_ci95_low": 0.993,
+  "test_ci95_high": 0.9939,
+  "protocol": {
+    "split": "60/20/20 train/val/test",
+    "selection": "best layer chosen on val only",
+    "reporting": "test score only",
+    "estimator": "sklearn Ridge",
+    "n_bootstrap": 1000,
+    "pca_in_pipeline": {
+      "n_components": 512,
+      "pipeline": "StandardScaler -> PCA -> estimator",
+      "fit_scope": "training split of each split seed only",
+      "input": "flattened full-dimensional layer representations",
+      "skipped_when": "layer dim <= 512"
+    }
+  }
+}

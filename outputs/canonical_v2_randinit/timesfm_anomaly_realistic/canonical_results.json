@@ -1,0 +1,43 @@
+{
+  "representations_dir": "outputs/representations_v2_randinit/timesfm_meanpool/synthetic_anomaly_realistic",
+  "property": "anomaly_realistic",
+  "task_type": "classification",
+  "seeds": [
+    0,
+    1,
+    2,
+    3,
+    4
+  ],
+  "val_score_per_seed": [
+    0.53,
+    0.5,
+    0.545,
+    0.57,
+    0.535
+  ],
+  "test_score_per_seed": [
+    0.475,
+    0.47,
+    0.5,
+    0.505,
+    0.47
+  ],
+  "best_layer_per_seed": [
+    "layers_11",
+    "layers_1",
+    "layers_1",
+    "layers_1",
+    "layers_2"
+  ],
+  "test_mean": 0.484,
+  "test_ci95_low": 0.471,
+  "test_ci95_high": 0.497,
+  "protocol": {
+    "split": "60/20/20 train/val/test",
+    "selection": "best layer chosen on val only",
+    "reporting": "test score only",
+    "estimator": "sklearn LogisticRegression",
+    "n_bootstrap": 1000
+  }
+}

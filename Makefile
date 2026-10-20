@@ -1,3 +1,4 @@
+SHELL := /bin/bash
 VENV := .venv/bin
 PYTHON := PYTHONPATH=. $(VENV)/python
 # Use whichever LaTeX engine is available on PATH; users may override via:
@@ -17,7 +18,8 @@ PAPER_MAIN := $(LATEX_DIR)/main.tex
         representation-storage extraction-throughput wilinski-ldr reproduce-icde \
         per-feature-all-properties bayes-ceiling strong-baselines capacity-probe-v2 \
         strong-controls-ext \
-        view-sensitivity icde-numbers \
+        view-sensitivity icde-numbers canonical-v2-randinit resolution-study \
+        forecast-surprise embedding-store ucr-conditional erasure-bound \
         manifest clean help
 
 test:
@@ -128,6 +130,9 @@ reproduce-canonical-v2:
 # --- ICDE manuscript artifacts (same protocol and environment as reproduce-canonical-v2) --------
 # Each target writes one outputs/ directory that the manuscript reads; `make reproduce-icde` runs all.
 REPR_ROOT ?= outputs/representations_v2
+CANON_PROPS := synthetic_trend:trend:classification synthetic_seasonality:seasonality:regression \
+    synthetic_frequency:frequency:classification synthetic_stationarity:stationarity:classification \
+    synthetic_anomaly:anomaly:classification synthetic_change_point:change_point:classification
 HARD_PROPS := synthetic_trend_hard:trend_hard:classification \
     synthetic_frequency_hard:frequency_hard:classification \
     synthetic_anomaly_hard:anomaly_hard:classification \
@@ -203,6 +208,61 @@ strong-controls-ext:
 	$(PYTHON) scripts/run_strong_controls_ext.py --out outputs/strong_controls_ext \
 	    --parts canonical realistic hard ucr
 
+# Architecture-only control: every model with re-initialised weights, canonical v2 protocol, the six
+# canonical properties and the realistic generator.
+RANDINIT_ROOT ?= outputs/representations_v2_randinit
+canonical-v2-randinit:
+	INIT=random REPR_ROOT=$(RANDINIT_ROOT) OUT_ROOT=outputs/canonical_v2_randinit \
+	STAGES="env extract pool bench" PROPS_OVERRIDE="$(CANON_PROPS) \
+	synthetic_anomaly_realistic:anomaly_realistic:classification" bash scripts/run_canonical_v2.sh
+
+# Resolution study (H1-H6): n = 50,000 anomaly tasks, paired tests, TOST, conditional probing,
+# random-init models, views, IAAFT surrogates, magnitude sweep. Arrays go to RESOLUTION_STORE.
+RESOLUTION_STORE ?= outputs/resolution_store
+RS := TSFMI_RESOLUTION_STORE=$(RESOLUTION_STORE) $(PYTHON) scripts/run_resolution_study.py
+RS_DATASETS := realistic_iaaft snr_0.25 snr_0.5 snr_0.75 snr_1.0 snr_1.5 snr_2.0
+resolution-study:
+	$(RS) data
+	for m in timesfm moment patchtst_fm gpt4ts chronos moirai timer; do for i in pretrained random; do \
+	  for d in realistic canonical; do $(RS) extract --model $$m --init $$i --dataset $$d || exit 1; \
+	done; done; done
+	for d in realistic canonical $(RS_DATASETS); do $(RS) controls --dataset $$d || exit 1; done
+	$(RS) probe --datasets realistic canonical
+	set -o pipefail; $(RS) layers | while read m l; do \
+	  $(RS) extract --model $$m --dataset realistic --layers $$l --tokens || exit 1; \
+	  for d in $(RS_DATASETS); do $(RS) extract --model $$m --dataset $$d --layers $$l || exit 1; done; \
+	done
+	$(RS) probe --datasets $(RS_DATASETS)
+	$(RS) cond-tuned --datasets realistic canonical
+	$(RS) views
+	set -o pipefail; $(RS) layers | while read m l; do \
+	  $(RS) extract --model $$m --init random --dataset realistic --layers $$l --tokens || exit 1; \
+	done
+	$(RS) views --init random
+	$(RS) views-cond --init random
+	$(RS) capacity-controls
+	$(RS) views-cond --models timesfm moment patchtst_fm gpt4ts chronos moirai timer
+	$(RS) analyze
+
+# Label-free anomaly scores on the resolution study's realistic test windows (H8).
+forecast-surprise:
+	TSFMI_RESOLUTION_STORE=$(RESOLUTION_STORE) $(PYTHON) scripts/run_forecast_surprise.py \
+	    --dataset realistic --out outputs/forecast_surprise
+
+# 1-NN representation-store benchmark on the UCR 2018 archive (H7); UCR2018 = archive root.
+UCR2018 ?= data/UCRArchive_2018
+embedding-store:
+	$(PYTHON) scripts/run_embedding_store.py --part classical --ucr-root $(UCR2018)
+	$(PYTHON) scripts/run_embedding_store.py --part models --ucr-root $(UCR2018)
+	$(PYTHON) scripts/run_embedding_store.py --part models --init random --ucr-root $(UCR2018)
+	$(PYTHON) scripts/summarize_embedding_store.py --dir outputs/embedding_store
+
+ucr-conditional:
+	$(PYTHON) scripts/run_ucr_conditional.py --out outputs/ucr_conditional
+
+erasure-bound:
+	$(PYTHON) scripts/compute_erasure_bound.py --out outputs/erasure_bound
+
 anomaly-diagnostics:
 	$(PYTHON) scripts/run_anomaly_diagnostics.py --out outputs/anomaly_diagnostics
 
@@ -229,7 +289,8 @@ reproduce-icde: reproduce-canonical-v2 realistic-anomaly-v2 hard-variants-v2 dat
     hl-selectivity-v2 statistic-recoverability statistic-erasure anomaly-diagnostics ucr-probe \
     representation-storage extraction-throughput wilinski-ldr per-feature-anomaly rocket-baselines \
     per-feature-all-properties bayes-ceiling strong-baselines capacity-probe-v2 strong-controls-ext \
-    view-sensitivity icde-numbers
+    view-sensitivity canonical-v2-randinit resolution-study forecast-surprise embedding-store \
+    ucr-conditional erasure-bound icde-numbers
 
 clean:
 	find . -type d -name __pycache__ -exec rm -rf {} + 2>/dev/null

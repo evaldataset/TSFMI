@@ -1,0 +1,43 @@
+{
+  "representations_dir": "outputs/representations_v2_randinit/chronos_meanpool/synthetic_anomaly_realistic",
+  "property": "anomaly_realistic",
+  "task_type": "classification",
+  "seeds": [
+    0,
+    1,
+    2,
+    3,
+    4
+  ],
+  "val_score_per_seed": [
+    0.57,
+    0.56,
+    0.515,
+    0.62,
+    0.615
+  ],
+  "test_score_per_seed": [
+    0.51,
+    0.545,
+    0.505,
+    0.565,
+    0.47
+  ],
+  "best_layer_per_seed": [
+    "encoder_block_2",
+    "encoder_block_5",
+    "encoder_block_0",
+    "encoder_block_0",
+    "encoder_block_2"
+  ],
+  "test_mean": 0.519,
+  "test_ci95_low": 0.492,
+  "test_ci95_high": 0.549,
+  "protocol": {
+    "split": "60/20/20 train/val/test",
+    "selection": "best layer chosen on val only",
+    "reporting": "test score only",
+    "estimator": "sklearn LogisticRegression",
+    "n_bootstrap": 1000
+  }
+}

@@ -24,15 +24,23 @@ validation-selected layer, test score reported. All values come from `outputs/ca
 
 - **Strongest control.** Across 20 task settings (6 canonical properties, 5 hard variants, a
   mixed-type anomaly generator under 3 data seeds, 6 UCR datasets) the best model exceeds the strongest
-  non-model control (raw signal, hand-crafted statistics, random projection, `tsfresh`, ROCKET-style
-  features) in 6, by at most 0.019 (`tools/make_numbers.py`, keys `sc/*`).
-- **Weak controls mislead.** Against the 8-D hand-crafted vector, TimesFM and PatchTST-FM win on the
-  mixed-type anomaly generator; the ROCKET-style transform beats every model on all three data seeds
-  (`outputs/strong_controls_ext/`).
-- **Anomaly is nearly solved by one input statistic.** `max(|x|)` alone reaches 0.907, the
-  Bayes-optimal rule 0.906. LEACE erasure of the sufficient statistics removes most of the models'
-  anomaly signal, but a label proxy of equal predictiveness removes about as much
-  (`outputs/statistic_erasure/`), so erasure cannot attribute the signal to the statistics.
+  non-model control in 6, by at most 0.019, below what 200 test windows can resolve (`sc/*` keys).
+- **Resolution.** With 50,000 freshly generated windows (10,000 paired test windows) the ties resolve
+  in favour of the controls: on the realistic anomaly task `tsfresh` leads the best model by 0.050, on
+  the canonical task `max|x|` by 0.057 (McNemar p < 0.001; `outputs/resolution_study/`).
+- **Conditional probing.** Mean-pooled model representations add nothing beyond ±0.01 accuracy
+  (TOST) to the union of hand-crafted, `tsfresh`, and ROCKET-style features. Through a cross-fitted
+  attention pooling of its tokens, TimesFM adds +0.013 [0.008, 0.019] (Holm p < 0.001); no other model
+  does.
+- **Pretraining, not architecture.** Re-initialised models match the pretrained ones on 34 of 35
+  saturated (model, property) cells and fall towards chance on anomaly tasks
+  (`outputs/canonical_v2_randinit/`).
+- **Embedding store.** On 113 UCR datasets, 1-NN over the embeddings of six of the seven models beats
+  Euclidean distance and is level with DTW and ROCKET-style features (`outputs/embedding_store/`);
+  TimesFM's one-step forecast surprise (AUC 0.889) is slightly below an AR(16) residual detector
+  (0.895) that is about 930 times cheaper (`outputs/forecast_surprise/`).
+- **Erasure.** A label proxy as predictive as the erased statistics removes as much signal; an exact
+  bound, corr ≤ sqrt(1 − R²), explains why (`outputs/erasure_bound/`).
 
 Intervals are corrected resampled-t intervals (Nadeau & Bengio, 2003) for the overlapping split seeds.
 
@@ -68,11 +76,17 @@ make reproduce-icde    # every result the manuscript reads (GPU; many hours)
 | `make statistic-recoverability` | `outputs/statistic_recoverability/` | Linear recoverability of the anomaly statistics |
 | `make statistic-erasure` | `outputs/statistic_erasure/` | LEACE erasure of statistics / hand-crafted features with random and label controls |
 | `make anomaly-diagnostics` | `outputs/anomaly_diagnostics/` | Per-anomaly-kind recall and label-efficiency curves |
-| `make view-sensitivity` | `outputs/view_sensitivity/` | MOMENT and GPT4TS under mean, max, and last-token views |
+| `make view-sensitivity` | `outputs/view_sensitivity/` | MOMENT and GPT-2 under mean, max, and last-token views |
 | `make ucr-probe` | `outputs/ucr_tsfm_probe_v2/`, `outputs/ucr_tsfm_probe_ext/` | Minority-class probes on six UCR datasets |
 | `make wilinski-ldr` | `outputs/wilinski_moment_ldr/` | Wiliński et al.'s separability pipeline with non-model controls |
 | `make capacity-probe-v2` | `outputs/capacity_probe_v2/` | Linear, MLP (64–1024), and random-forest probes; per-probe validation-selected layer, all models |
 | `make strong-controls-ext` | `outputs/strong_controls_ext/` | ROCKET-style and `tsfresh` controls on realistic, hard, UCR, and canonical tasks |
+| `make canonical-v2-randinit` | `outputs/canonical_v2_randinit/` | Every model with re-initialised weights, canonical protocol |
+| `make resolution-study` | `outputs/resolution_study/` | n = 50,000 study: paired tests, TOST, conditional probing, views, surrogates, magnitude sweep (arrays in `RESOLUTION_STORE`) |
+| `make forecast-surprise` | `outputs/forecast_surprise/` | Label-free scores: TimesFM / Chronos-Bolt forecast surprise vs AR(16), first differences, matrix profile |
+| `make embedding-store` | `outputs/embedding_store/` | 1-NN on every fixed-length UCR 2018 dataset (`UCR2018=<archive root>`): ED, DTW, ROCKET-style, 7 TSFMs, random-init TSFMs |
+| `make ucr-conditional` | `outputs/ucr_conditional/` | Conditional probes on the six binary UCR datasets |
+| `make erasure-bound` | `outputs/erasure_bound/` | R² of the label on each erased concept and the implied correlation cap |
 | `make icde-numbers` | `outputs/paper_numbers/` | Every manuscript number (`numbers.tex`) and figure, generated from the result files |
 | `make per-feature-all-properties`, `make per-feature-anomaly` | `outputs/per_feature_*` | Single-feature ablations |
 | `make bayes-ceiling`, `make rocket-baselines`, `make strong-baselines` | `outputs/bayes_ceiling/`, `outputs/rocket_baselines/`, `outputs/strong_baselines/` | Bayes rule, ROCKET-style and `tsfresh` controls |

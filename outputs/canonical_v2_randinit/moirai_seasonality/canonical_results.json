@@ -1,0 +1,43 @@
+{
+  "representations_dir": "outputs/representations_v2_randinit/moirai_meanpool/synthetic_seasonality",
+  "property": "seasonality",
+  "task_type": "regression",
+  "seeds": [
+    0,
+    1,
+    2,
+    3,
+    4
+  ],
+  "val_score_per_seed": [
+    0.9955,
+    0.996,
+    0.9956,
+    0.9958,
+    0.9957
+  ],
+  "test_score_per_seed": [
+    0.9953,
+    0.9961,
+    0.9955,
+    0.9956,
+    0.9975
+  ],
+  "best_layer_per_seed": [
+    "encoder_layers_5",
+    "encoder_layers_5",
+    "encoder_layers_4",
+    "encoder_layers_5",
+    "encoder_layers_5"
+  ],
+  "test_mean": 0.996,
+  "test_ci95_low": 0.9954,
+  "test_ci95_high": 0.9968,
+  "protocol": {
+    "split": "60/20/20 train/val/test",
+    "selection": "best layer chosen on val only",
+    "reporting": "test score only",
+    "estimator": "sklearn Ridge",
+    "n_bootstrap": 1000
+  }
+}

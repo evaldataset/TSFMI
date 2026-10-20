@@ -177,6 +177,14 @@ def parse_args(argv: list[str] | None = None) -> argparse.Namespace:
         "change the model.",
     )
     parser.add_argument(
+        "--init",
+        choices=("pretrained", "random"),
+        default="pretrained",
+        help="'random' re-initialises every learned weight after loading (seeded by "
+        "--model-seed), keeping the wrapper's tokenisation, scaling and layer names: the "
+        "architecture-only control.",
+    )
+    parser.add_argument(
         "--stride",
         type=int,
         default=256,
@@ -468,6 +476,12 @@ def main() -> None:
     print("Loading model...")
     wrapper = load_model_wrapper(args.model, args.checkpoint, device, seq_len=args.seq_len)
     print(f"  Frozen: {wrapper.is_frozen()}")
+    reinit_counts = None
+    if args.init == "random":
+        from src.models.random_init import reinitialize_
+
+        reinit_counts = reinitialize_(wrapper, seed=args.model_seed)
+        print(f"  Re-initialised weights: {reinit_counts}")
 
     # 2. Load dataset (synthetic or real-world)
     print("Loading dataset...")
@@ -531,6 +545,8 @@ def main() -> None:
         "property_name": dataset.property_name,
         "seed": args.seed,
         "model_seed": args.model_seed,
+        "init": args.init,
+        "reinit_counts": reinit_counts,
         "sequences_sha256": hashlib.sha256(
             np.ascontiguousarray(dataset.sequences, dtype=np.float64).tobytes()
         ).hexdigest(),
