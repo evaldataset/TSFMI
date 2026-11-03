@@ -64,10 +64,16 @@ extract-representations:
 smoke:
 	bash scripts/run_smoke.sh
 
-# Genuine end-to-end reproduction of ONE canonical (model, property) cell.
+# Genuine end-to-end reproduction of ONE canonical v2 (model, property) cell, compared with the
+# committed outputs/canonical_v2 result. Legacy v1 version: bash scripts/run_reproduce_one_cell.sh
 # Default: PatchTST-Pre / synthetic_anomaly. Override via ONLY_MODEL / ONLY_DATASET.
+ONE_MODEL ?= chronos
+ONE_PROP ?= synthetic_anomaly:anomaly:classification
 reproduce-one-cell:
-	bash scripts/run_reproduce_one_cell.sh
+	ONLY_MODELS=$(ONE_MODEL) PROPS_OVERRIDE="$(ONE_PROP)" STAGES="extract pool bench" \
+	REPR_ROOT=outputs/one_cell/representations OUT_ROOT=outputs/one_cell \
+	bash scripts/run_canonical_v2.sh
+	$(PYTHON) scripts/compare_one_cell.py --model $(ONE_MODEL) --prop "$(ONE_PROP)"
 
 # Wall-clock instrumentation for the canonical pipeline. Writes outputs/paper/timing.json.
 benchmark-time:

@@ -55,7 +55,9 @@ make smoke
 ```
 
 `make smoke` reproduces one cell of the canonical baseline grid, the per-feature attribution, and the
-test suite. No GPU is required.
+test suite. No GPU is required. `make reproduce-one-cell` extracts one model from scratch
+(default Chronos-Bolt on canonical anomaly; `ONE_MODEL=...` to change), runs the canonical v2 probe,
+and compares the result with the committed `outputs/canonical_v2` value (a few minutes on one GPU).
 
 ## Full reproduction
 

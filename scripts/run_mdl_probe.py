@@ -33,6 +33,7 @@ OUT_DIR = Path("outputs/mdl_probe")
 OUT_DIR.mkdir(parents=True, exist_ok=True)
 
 REPR_ROOT = Path("outputs/representations")
+SMOOTH = 1e-3  # uniform-mixture weight of the predictive distribution
 
 MODELS = {
     "MOMENT": "moment_pca512",
@@ -112,10 +113,12 @@ def online_mdl(
             # First chunk: uniform prior -> log2(n_classes) per sample.
             code_bits += float(len(new_y)) * np.log2(n_classes)
         else:
-            log_proba = pipe.predict_log_proba(new_X)  # type: ignore[attr-defined]
-            picks = log_proba[np.arange(len(new_y)), new_y]
-            # Convert ln to log2.
-            code_bits += float(-(picks / np.log(2)).sum())
+            proba = pipe.predict_proba(new_X)  # type: ignore[attr-defined]
+            # Mix with the uniform code (weight SMOOTH) so that a confidently wrong prediction costs
+            # a finite number of bits instead of infinity; the code stays a valid prequential code.
+            proba = (1.0 - SMOOTH) * proba + SMOOTH / n_classes
+            picks = proba[np.arange(len(new_y)), new_y]
+            code_bits += float(-np.log2(picks).sum())
         # Refit on prefix.
         prefix_X = X_tr[:end]
         prefix_y = y_tr[:end].astype(np.int64)
@@ -182,6 +185,11 @@ def main() -> None:
                 f"acc={row['test_acc_mean']:.3f}"
             )
 
+    if not rows:
+        raise SystemExit(
+            f"no representations found under {REPR_ROOT} (expected <model_key>/synthetic_<prop>/ "
+            "for the legacy keys in MODELS); results.json left unchanged"
+        )
     OUT_DIR.joinpath("results.json").write_text(json.dumps(rows, indent=2))
     print(f"\nSaved to {OUT_DIR}/results.json")
 
