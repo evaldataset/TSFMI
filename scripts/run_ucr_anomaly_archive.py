@@ -7,7 +7,8 @@ positives, sampled with a fixed seed). Splits are by series (60/20/20 of the ser
 seeds), so no series contributes windows to both training and test.
 
 Compared under the canonical protocol (StandardScaler + logistic regression, layer chosen on
-validation per split): seven frozen TSFMs (mean-pooled layers), the raw window, the hand-crafted
+validation per split; every window z-normalised): seven frozen TSFMs (mean-pooled layers), the raw
+window, the hand-crafted
 vector, ROCKET-style and tsfresh (efficient) features, their union ("all controls"), and the
 conditional probe [all controls, Z] for every model, all regularisation tuned on validation for
 the conditional comparison. Label-free scores (max |z|, first difference, AR(16) residual,
@@ -66,7 +67,11 @@ def build_windows(archive: Path) -> dict[str, NDArray]:
             xs.append(x[s : s + L])
             ys.append(lab)
             groups.append(sid)
-    return {"x": np.asarray(xs), "y": np.asarray(ys), "group": np.asarray(groups)}
+    # The 250 series come from different sources in arbitrary units; every representation (models
+    # and controls alike) sees each window z-normalised, as in the UCR 1-NN benchmark.
+    xw = np.asarray(xs)
+    xw = (xw - xw.mean(1, keepdims=True)) / np.maximum(xw.std(1, keepdims=True), 1e-8)
+    return {"x": xw, "y": np.asarray(ys), "group": np.asarray(groups)}
 
 
 def group_split(groups: NDArray, seed: int) -> dict[str, NDArray]:
@@ -176,10 +181,20 @@ def main() -> int:
         "positive_rate": float(y.mean()),
         "per_seed": {},
     }
+    from scripts.run_minirocket_controls import minirocket
+    from scripts.run_resolution_study import compare
+
     for seed in SEEDS:
         sp = group_split(groups, seed)
         y_te = y[sp["test"]]
         row: dict = {"n_test": int(len(y_te))}
+        # MiniRocket is fit on this split's training windows and joins the control union.
+        mr = minirocket(x[sp["train"]], x, args.jobs)
+        p_mr = tuned(mr, y, sp)
+        row["ctrl:minirocket"] = {"acc": float(np.mean((p_mr > 0.5) == y_te))}
+        C_plus = np.concatenate([C_all, mr], 1)
+        p_cplus = tuned(C_plus, y, sp)
+        row["ctrl:all_plus_minirocket"] = {"acc": float(np.mean((p_cplus > 0.5) == y_te))}
 
         def acc(p: NDArray, yt: NDArray = y_te) -> float:
             return float(np.mean((p > 0.5) == yt))
@@ -201,7 +216,10 @@ def main() -> int:
                     best = (va, ln, p_te)
             Z = np.load(rdir / f"{best[1]}.npy").astype(np.float32)
             p_j = tuned(np.concatenate([C_all, Z], 1), y, sp)
+            p_jplus = tuned(np.concatenate([C_plus, Z], 1), y, sp)
             row[f"model:{m}"] = {
+                "given_all_plus_minirocket": compare(p_jplus, p_cplus, y_te),
+                "vs_all_plus_minirocket": compare(best[2], p_cplus, y_te),
                 "layer": best[1],
                 "acc": acc(best[2]),
                 "auc": float(roc_auc_score(y_te, best[2])),

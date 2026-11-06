@@ -20,6 +20,7 @@ PAPER_MAIN := $(LATEX_DIR)/main.tex
         strong-controls-ext \
         view-sensitivity icde-numbers canonical-v2-randinit resolution-study \
         forecast-surprise embedding-store ucr-conditional erasure-bound \
+        replication ucr-anomaly-archive minirocket-controls runtime-benchmark \
         manifest clean help
 
 test:
@@ -263,6 +264,34 @@ embedding-store:
 	$(PYTHON) scripts/run_embedding_store.py --part models --init random --ucr-root $(UCR2018)
 	$(PYTHON) scripts/summarize_embedding_store.py --dir outputs/embedding_store
 
+# Replication over data seeds 1002/1003 and three attention-probe seeds (seed 1001 reuses the
+# resolution study's arrays, so run resolution-study first).
+REPL := TSFMI_RESOLUTION_STORE=$(RESOLUTION_STORE) $(PYTHON) scripts/run_replication.py
+replication:
+	$(REPL) data
+	for s in 1002 1003; do $(REPL) controls --seed $$s || exit 1; \
+	  for m in timesfm patchtst_fm moirai chronos; do $(REPL) extract --seed $$s --model $$m || exit 1; \
+	done; done
+	for s in 1001 1002 1003; do for m in timesfm patchtst_fm moirai chronos; do \
+	  $(REPL) fit --seed $$s --model $$m || exit 1; done; done
+	$(REPL) summarize
+
+# Window-level anomaly probing on the UCR Time Series Anomaly Archive (Wu & Keogh, 250 series).
+UCR_ANOMALY ?= data/UCR_Anomaly_FullData
+UAA := TSFMI_RESOLUTION_STORE=$(RESOLUTION_STORE) $(PYTHON) scripts/run_ucr_anomaly_archive.py \
+    --archive $(UCR_ANOMALY) --out outputs/ucr_anomaly_archive
+ucr-anomaly-archive:
+	$(UAA) --part data
+	$(UAA) --part extract
+	$(UAA) --part evaluate
+
+minirocket-controls:
+	for p in realistic ucr_anomaly; do TSFMI_RESOLUTION_STORE=$(RESOLUTION_STORE) $(PYTHON) \
+	  scripts/run_minirocket_controls.py --part $$p --out outputs/minirocket || exit 1; done
+
+runtime-benchmark:
+	$(PYTHON) scripts/run_runtime_benchmark.py --out outputs/runtime_benchmark
+
 ucr-conditional:
 	$(PYTHON) scripts/run_ucr_conditional.py --out outputs/ucr_conditional
 
@@ -296,7 +325,8 @@ reproduce-icde: reproduce-canonical-v2 realistic-anomaly-v2 hard-variants-v2 dat
     representation-storage extraction-throughput wilinski-ldr per-feature-anomaly rocket-baselines \
     per-feature-all-properties bayes-ceiling strong-baselines capacity-probe-v2 strong-controls-ext \
     view-sensitivity canonical-v2-randinit resolution-study forecast-surprise embedding-store \
-    ucr-conditional erasure-bound icde-numbers
+    ucr-conditional erasure-bound replication ucr-anomaly-archive minirocket-controls \
+    runtime-benchmark icde-numbers
 
 clean:
 	find . -type d -name __pycache__ -exec rm -rf {} + 2>/dev/null

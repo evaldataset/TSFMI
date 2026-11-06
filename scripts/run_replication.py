@@ -164,6 +164,7 @@ def crossfit_logits_full(tok: NDArray, y: NDArray, sp: dict[str, NDArray], seed:
 
 def cmd_fit(args: argparse.Namespace) -> None:
     out_path = seed_dir(args.seed) / f"fit_{args.model}.json"
+    out_path.parent.mkdir(parents=True, exist_ok=True)
     if out_path.exists():
         print(f"SKIP {out_path}")
         return

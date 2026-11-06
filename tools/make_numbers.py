@@ -1,4 +1,4 @@
-"""Generate revision/icde/numbers.tex: every number in the manuscript, read from result files.
+"""Generate numbers.tex: every number in the manuscript, read from result files.
 
 The manuscript never types a result by hand. It writes \\val{canon/moment/anomaly/mean}, and
 this script defines that key from the JSON that produced it. An unknown key is a LaTeX error,
@@ -51,6 +51,7 @@ BOUNDED_NAMESPACES = {
     "anom",
     "tsfresh",
     "ri",
+    "uaa",
 }
 
 
@@ -1271,6 +1272,156 @@ def ucr_conditional(n: Numbers, root: Path) -> bool:
     return True
 
 
+def ucr_anomaly_archive(n: Numbers, root: Path) -> bool:
+    """Window-level probing on the UCR Anomaly Archive (outputs/ucr_anomaly_archive/results.json).
+
+    Five series-level splits (150 / 50 / 50 series) reuse the same series, so per-split scores and
+    paired gains get the corrected resampled-t interval (test/train ratio 1/3, as in the standard
+    protocol).
+    """
+    f = root / "outputs/ucr_anomaly_archive/results.json"
+    if not f.exists():
+        return False
+    d = load(f)
+    src = str(f.relative_to(root))
+    seeds = d["per_seed"]
+    n.put("uaa/nwindows", d["n_windows"], src)
+    n.put("uaa/nseries", d["n_series"], src)
+    first = seeds[next(iter(seeds))]
+    for key in first:
+        if not key.startswith(("ctrl:", "model:")):
+            continue
+        name = key.split(":")[1]
+        rk = CANON_MODELS.get(name, name.replace("_", ""))
+        accs = [seeds[s][key]["acc"] for s in seeds]
+        n.put_ci(f"uaa/{rk}", float(np.mean(accs)), 0.0, 0.0, src, accs)
+        if key.startswith("model:") and "given_all_plus_minirocket" in first[key]:
+            for field, tag in (
+                ("given_all_plus_minirocket", "gain"),
+                ("vs_all_plus_minirocket", "vs"),
+            ):
+                vals = [seeds[s][key][field]["tost_0.02"]["diff"] for s in seeds]
+                mean, lo, hi, pval = corrected_t(vals)
+                n.put(f"uaa/{rk}/{tag}/mean", mean, src)
+                n.put(f"uaa/{rk}/{tag}/lo", lo, src)
+                n.put(f"uaa/{rk}/{tag}/hi", hi, src)
+                n.put(f"uaa/{rk}/{tag}/p", _fmt_p(pval), src)
+                n.put(f"uaa/{rk}/{tag}/min", min(vals), src)
+                if tag == "vs":
+                    n.put(f"uaa/{rk}/vs/lead", -mean, src)  # control union minus model
+            nsig = sum(
+                seeds[s][key]["given_all_plus_minirocket"]["mcnemar"]["p_value"] < 0.05
+                and seeds[s][key]["given_all_plus_minirocket"]["tost_0.02"]["diff"] > 0
+                for s in seeds
+            )
+            n.put(f"uaa/{rk}/gain/nsig", nsig, src)
+            bits = [
+                seeds[s][key]["given_all_plus_minirocket"]["logloss_bits"]["bits"] for s in seeds
+            ]
+            n.put(f"uaa/{rk}/gain/bits", float(np.mean(bits)), src, digits=3)
+    n.put("uaa/nsplits", len(seeds), src)
+    gains = {
+        m: corrected_t(
+            [
+                seeds[s][f"model:{m}"]["given_all_plus_minirocket"]["tost_0.02"]["diff"]
+                for s in seeds
+            ]
+        )
+        for m in CANON_MODELS
+        if "given_all_plus_minirocket" in first.get(f"model:{m}", {})
+    }
+    if gains:
+        n.put("uaa/ngainpos", sum(g[1] > 0 for g in gains.values()), src)
+        n.put("uaa/nmodels", len(gains), src)
+    for k in first["label_free_auc"]:
+        n.put(
+            f"uaa/lf/{k.replace('_', '')}",
+            float(np.mean([seeds[s]["label_free_auc"][k] for s in seeds])),
+            src,
+        )
+    return True
+
+
+def replication(n: Numbers, root: Path) -> bool:
+    """Replication over data seeds and attention initialisations (outputs/replication)."""
+    f = root / "outputs/replication/results.json"
+    if not f.exists():
+        return False
+    d = load(f)["summary"]
+    src = str(f.relative_to(root))
+    for m in ("timesfm", "patchtst_fm", "moirai", "chronos"):
+        if m not in d:
+            continue
+        r = d[m]
+        k = CANON_MODELS[m]
+        n.put(f"rep/{k}/nseeds", r["n_data_seeds"], src)
+        n.put(f"rep/{k}/nruns", r["n_attention_runs"], src)
+        n.put(f"rep/{k}/h4mean", r["h4_gain_mean"], src)
+        n.put(f"rep/{k}/h4min", min(r["h4_gain"]), src)
+        n.put(f"rep/{k}/h4max", max(r["h4_gain"]), src)
+        n.put(f"rep/{k}/h4sd", r["h4_gain_sd"], src)
+        n.put(f"rep/{k}/h4nsig", r["h4_n_positive_significant"], src)
+        n.put(f"rep/{k}/h3nequiv", r["h3_n_equiv01"], src)
+        n.put(f"rep/{k}/h4nequiv", r["h4_n_equiv01"], src)
+        n.put(f"rep/{k}/h1min", min(r["h1_lead"]), src)
+        n.put(f"rep/{k}/h1max", max(r["h1_lead"]), src)
+        n.put(f"rep/{k}/h1nsig", r["h1_n_control_significant"], src)
+        n.put(f"rep/{k}/attmin", min(r["attention_acc"]), src)
+        n.put(f"rep/{k}/attmax", max(r["attention_acc"]), src)
+    return True
+
+
+def minirocket_ctrl(n: Numbers, root: Path) -> bool:
+    f = root / "outputs/minirocket/results.json"
+    if not f.exists():
+        return False
+    d = load(f)
+    src = str(f.relative_to(root))
+    if "realistic" in d:
+        r = d["realistic"]
+        n.put("mr/real/acc", r["minirocket_acc"], src)
+        n.put("mr/real/allplus", r["all_controls_plus_minirocket_acc"], src)
+        _rs_compare(n, "mr/real/given", r["minirocket_given_controls"], src)
+    return True
+
+
+def runtime_benchmark(n: Numbers, root: Path) -> bool:
+    """Stage-separated runtime (outputs/runtime_benchmark); shared GPU, so upper bounds."""
+    f = root / "outputs/runtime_benchmark/results.json"
+    if not f.exists():
+        return False
+    d = load(f)
+    src = str(f.relative_to(root))
+    key = {
+        **CANON_MODELS,
+        "hand_crafted": "handcrafted",
+        "rocket": "rocket",
+        "tsfresh_efficient": "tsfresh",
+    }
+    for rep, row in d["extract_seconds"].items():
+        for size, sec in row.items():
+            n.put(f"rt/extract/{key[rep]}/{int(size) // 1000}k", sec, src, digits=1)
+    for m, sec in d["load_seconds"].items():
+        n.put(f"rt/load/{key[m]}", sec, src, digits=1)
+    for size, row in d["query_ms"].items():
+        k = f"{int(size) // 1000}k"
+        n.put(f"rt/query/{k}/cosine", row["cosine_1280d"], src, digits=3)
+        n.put(f"rt/query/{k}/ed", row["ed_512"], src, digits=3)
+        n.put(f"rt/query/{k}/dtw", row["dtw_512_w10"], src, digits=0)
+    big = d["query_ms"][max(d["query_ms"], key=int)]
+    n.put(
+        "rt/query/dtwovercosine",
+        f"{int(round(big['dtw_512_w10'] / big['cosine_1280d'], -2)):,}",
+        src,
+    )
+    n.put("rt/detect/timesfm", d["detect_seconds"]["timesfm_onestep_1000"], src, digits=0)
+    n.put("rt/detect/ar16", d["detect_seconds"]["ar16_1000"], src, digits=2)
+    util = [u for sample in d["gpu_util_samples"] for u in sample]
+    n.put("rt/gpuutilmin", min(util) if util else 0, src)
+    n.put("rt/device", d["device"].replace("NVIDIA ", ""), src)
+    return True
+
+
 def erasure_bound(n: Numbers, root: Path) -> bool:
     """R^2 of the label on each erased concept and the implied cap sqrt(1 - R^2)."""
     f = root / "outputs/erasure_bound/results.json"
@@ -1600,6 +1751,10 @@ def main() -> int:
         (forecast_surprise, "forecast_surprise"),
         (erasure_bound, "erasure_bound"),
         (ucr_conditional, "ucr_conditional"),
+        (ucr_anomaly_archive, "ucr_anomaly_archive"),
+        (replication, "replication"),
+        (minirocket_ctrl, "minirocket"),
+        (runtime_benchmark, "runtime_benchmark"),
         (resolution, "resolution_study"),
         (embedding_store, "embedding_store"),
     ):

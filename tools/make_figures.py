@@ -49,6 +49,10 @@ plt.rcParams.update(
 )
 
 
+# No creation date: it would carry the build machine's timezone into an anonymous submission.
+PDF_META = {"CreationDate": None}
+
+
 def load(p: Path) -> object:
     return json.loads(p.read_text())
 
@@ -137,7 +141,7 @@ def anomaly_figure(root: Path, out: Path) -> None:
         bbox_to_anchor=(0.55, -0.06),
     )
     fig.tight_layout(rect=(0, 0.08, 1, 1))
-    fig.savefig(out / "anomaly_canonical_vs_realistic.pdf", bbox_inches="tight")
+    fig.savefig(out / "anomaly_canonical_vs_realistic.pdf", bbox_inches="tight", metadata=PDF_META)
     plt.close(fig)
 
 
@@ -173,7 +177,7 @@ def selectivity_figure(root: Path, out: Path) -> None:
         ax.set_title(f"$k={k}$ input clusters", fontsize=8)
     axes[0].set_yticks(range(len(names)), names)
     fig.colorbar(im, ax=axes, fraction=0.025, pad=0.01, label="selectivity")
-    fig.savefig(out / "selectivity_heatmap.pdf", bbox_inches="tight")
+    fig.savefig(out / "selectivity_heatmap.pdf", bbox_inches="tight", metadata=PDF_META)
     plt.close(fig)
 
 
@@ -223,7 +227,7 @@ def task_examples_figure(root: Path, out: Path) -> None:
             for s in ax.spines.values():
                 s.set_linewidth(0.4)
     fig.tight_layout(pad=0.3, h_pad=0.4, w_pad=0.3)
-    fig.savefig(out / "task_examples.pdf", bbox_inches="tight")
+    fig.savefig(out / "task_examples.pdf", bbox_inches="tight", metadata=PDF_META)
     plt.close(fig)
 
 
@@ -264,7 +268,7 @@ def learning_curve_figure(root: Path, out: Path) -> None:
         handles, labels, loc="lower center", ncol=5, frameon=False, bbox_to_anchor=(0.5, -0.12)
     )
     fig.tight_layout(rect=(0, 0.1, 1, 1))
-    fig.savefig(out / "learning_curve.pdf", bbox_inches="tight")
+    fig.savefig(out / "learning_curve.pdf", bbox_inches="tight", metadata=PDF_META)
     plt.close(fig)
 
 
@@ -338,7 +342,7 @@ def resolution_figure(root: Path, out: Path) -> None:
         handles, labels, loc="lower center", ncol=4, frameon=False, bbox_to_anchor=(0.5, -0.14)
     )
     fig.tight_layout(rect=(0, 0.12, 1, 1))
-    fig.savefig(out / "resolution.pdf", bbox_inches="tight")
+    fig.savefig(out / "resolution.pdf", bbox_inches="tight", metadata=PDF_META)
     plt.close(fig)
 
 
@@ -372,7 +376,7 @@ def store_figure(root: Path, out: Path) -> None:
         ax.text(0.45, 0.05, f"worse: {below}", fontsize=6, transform=ax.transAxes)
     axes[0].set_ylabel("TimesFM 2.0 1-NN")
     fig.tight_layout()
-    fig.savefig(out / "embedding_store.pdf", bbox_inches="tight")
+    fig.savefig(out / "embedding_store.pdf", bbox_inches="tight", metadata=PDF_META)
     plt.close(fig)
 
 

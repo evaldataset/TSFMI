@@ -116,6 +116,10 @@ outputs/per_feature_all_properties/r1_results.json
 !outputs/embedding_store/
 !outputs/ucr_conditional/
 !outputs/erasure_bound/
+!outputs/replication/
+!outputs/ucr_anomaly_archive/
+!outputs/minirocket/
+!outputs/runtime_benchmark/
 outputs/canonical_v2_randinit/logs/
 outputs/capacity_probe_v2/run.log
 outputs/strong_controls_ext/*.log
