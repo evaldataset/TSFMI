@@ -33,7 +33,25 @@ def holm(pvals: dict[str, float]) -> dict[str, float]:
     return out
 
 
+def tost_mean(d: np.ndarray, margin: float, alpha: float = 0.05) -> dict[str, float | bool]:
+    """Two one-sided t tests that the mean per-dataset difference lies within +-margin."""
+    n = len(d)
+    se = float(d.std(ddof=1) / np.sqrt(n))
+    mean = float(d.mean())
+    t_crit = float(stats.t.ppf(1 - alpha, n - 1))
+    p_lo = float(stats.t.sf((mean + margin) / se, n - 1))
+    p_hi = float(stats.t.cdf((mean - margin) / se, n - 1))
+    return {
+        "ci90": [mean - t_crit * se, mean + t_crit * se],
+        "p": max(p_lo, p_hi),
+        "equivalent": bool(max(p_lo, p_hi) < alpha),
+    }
+
+
 def compare(a: np.ndarray, b: np.ndarray) -> dict[str, float]:
+    """Paired comparison over datasets: wins/ties/losses, Wilcoxon difference test, and TOST
+    equivalence of the mean accuracy difference within 0.02 and 0.01 (a non-significant Wilcoxon
+    test is not evidence of equivalence)."""
     d = a - b
     wins, losses = int(np.sum(d > TIE)), int(np.sum(d < -TIE))
     nz = d[np.abs(d) > TIE]
@@ -45,6 +63,8 @@ def compare(a: np.ndarray, b: np.ndarray) -> dict[str, float]:
         "mean_diff": float(d.mean()),
         "median_diff": float(np.median(d)),
         "p_wilcoxon": p,
+        "tost_0.02": tost_mean(d, 0.02),
+        "tost_0.01": tost_mean(d, 0.01),
     }
 
 

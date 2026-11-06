@@ -707,6 +707,98 @@ def strongest_control(n: Numbers, root: Path) -> bool:
     return True
 
 
+def paired_strongest(n: Numbers, root: Path) -> bool:
+    """Per-setting paired test of best model vs strongest control in the 14 synthetic settings.
+
+    Best model and strongest control are the ones with the highest mean test score (as in the
+    summary table, a descriptive choice). Their per-split-seed scores share splits, so the paired
+    difference gets the corrected resampled-t interval and p value. UCR settings are single runs
+    and get no interval.
+    """
+    base = {
+        (r["baseline"], r["property"]): r["per_seed_test"]
+        for r in load(root / "outputs/canonical_v2/baselines/all_results.json")
+    }
+    hbase = {
+        (r["baseline"], r["property"]): r["per_seed_test"]
+        for r in load(root / "outputs/hard_variants_v2/baselines/all_results.json")
+    }
+    rocket = {
+        r["dataset"]: r["per_seed_test"]
+        for r in load(root / "outputs/rocket_baselines/rocket_results.json")
+    }
+    maxabs = next(
+        r["per_seed_test"]
+        for r in load(root / "outputs/per_feature_anomaly/per_feature_results.json")
+        if r["subset"] == "max_abs_only"
+    )
+    sx = load(root / "outputs/strong_controls_ext/results.json")
+
+    def cell(path: Path) -> list[float]:
+        return load(path / "canonical_results.json")["test_score_per_seed"]
+
+    settings: dict[str, tuple[dict, dict]] = {}
+    for prop in PROPS:
+        ctrls = {b: base[(b, prop)] for b in ("raw_signal", "hand_crafted", "random_projection")}
+        for k, v in sx["canonical"][prop].items():
+            ctrls[k] = v["per_seed"]
+        if prop in rocket:
+            ctrls["rocket"] = rocket[prop]
+        if prop == "anomaly":
+            ctrls["max_abs_only"] = maxabs
+        models = {m: cell(root / f"outputs/canonical_v2/{m}_{prop}") for m in CANON_MODELS}
+        settings[f"canon/{prop}"] = (models, ctrls)
+    for h in HARD:
+        ctrls = {b: hbase[(b, h)] for b in ("raw_signal", "hand_crafted", "random_projection")}
+        for k in ("tsfresh_minimal", "tsfresh_efficient"):
+            ctrls[k] = sx["hard"][h][k]["per_seed"]
+        ctrls["rocket"] = rocket[h]
+        models = {m: cell(root / f"outputs/hard_variants_v2/{m}_{h}") for m in CANON_MODELS}
+        settings[f"hard/{h}"] = (models, ctrls)
+    for seed, rows in sx["realistic"].items():
+        ctrls = {k: v["per_seed"] for k, v in rows.items()}
+        mdir = (
+            (root / "outputs/realistic_anomaly_v2")
+            if seed == "42"
+            else (root / f"outputs/dataseed_v2/seed{seed}")
+        )
+        models = {m: cell(mdir / f"{m}_anomaly_realistic") for m in CANON_MODELS}
+        settings[f"real/{seed}"] = (models, ctrls)
+    src = "paired per-seed difference, best model - strongest control (corrected resampled t)"
+    n_ci0 = n_ctrl = n_model = 0
+    for key, (models, ctrls) in settings.items():
+        bm = max(models, key=lambda m: np.mean(models[m]))
+        bc = max(ctrls, key=lambda c: np.mean(ctrls[c]))
+        d = list(np.asarray(models[bm]) - np.asarray(ctrls[bc]))
+        mean, lo, hi, pval = corrected_t(d)
+        n.put(f"sc/{key}/pdiff/mean", mean, src)
+        n.put(f"sc/{key}/pdiff/lo", lo, src)
+        n.put(f"sc/{key}/pdiff/hi", hi, src)
+        n.put(f"sc/{key}/pdiff/p", "$<$0.001" if pval < 1e-3 else f"{pval:.3f}", src)
+        if lo <= 0 <= hi:
+            n_ci0 += 1
+        elif hi < 0:
+            n_ctrl += 1
+        else:
+            n_model += 1
+    n.put("sc/syn/nsettings", len(settings), src)
+    n.put(
+        "sc/syn/nexact",
+        sum(
+            np.allclose(
+                models[max(models, key=lambda m: np.mean(models[m]))],
+                ctrls[max(ctrls, key=lambda c: np.mean(ctrls[c]))],
+            )
+            for models, ctrls in settings.values()
+        ),
+        src,
+    )
+    n.put("sc/syn/nci0", n_ci0, src)
+    n.put("sc/syn/nctrlsig", n_ctrl, src)
+    n.put("sc/syn/nmodelsig", n_model, src)
+    return True
+
+
 def hard_variants(n: Numbers, root: Path) -> bool:
     base = root / "outputs/hard_variants_v2"
     cells = {
@@ -1062,7 +1154,40 @@ def embedding_store(n: Numbers, root: Path) -> bool:
                 n.put(f"{b}/diff", c["mean_diff"], src)
                 p = c.get("p_holm", c["p_wilcoxon"])
                 n.put(f"{b}/p", "$<$0.001" if p < 1e-3 else f"{p:.3f}", src)
+                if "tost_0.02" in c:
+                    lo, hi = c["tost_0.02"]["ci90"]
+                    n.put(f"{b}/ci90lo", lo, src)
+                    n.put(f"{b}/ci90hi", hi, src)
+                    for m in ("0.02", "0.01"):
+                        eq = "yes" if c[f"tost_{m}"]["equivalent"] else "no"
+                        n.put(f"{b}/equiv{m.replace('0.', '')}", eq, src)
     n.put("es/nn/ntsfmbeatsdtw", d["nn"]["n_tsfm_beats_dtw"], src)
+    pre = [m for m in CANON_MODELS if m != "gpt4ts"]
+    nn_ = d["nn"]
+    if all("tost_0.02" in nn_[m]["vs_rocket"] for m in pre):
+        n.put("es/nn/nsix", len(pre), src)
+        n.put(
+            "es/nn/nabovedtw", sum(nn_[m]["vs_dtw"]["tost_0.02"]["ci90"][0] > 0 for m in pre), src
+        )
+        n.put(
+            "es/nn/nequivrocket02",
+            sum(nn_[m]["vs_rocket"]["tost_0.02"]["equivalent"] for m in pre),
+            src,
+        )
+        n.put(
+            "es/nn/nbelowrocket",
+            sum(nn_[m]["vs_rocket"]["tost_0.02"]["ci90"][1] < 0 for m in pre),
+            src,
+        )
+        lin = d["linear"]["timesfm"]["vs_rocket"]
+        n.put(
+            "es/lin/timesfm/vsrocket/equiv02",
+            "yes" if lin["tost_0.02"]["equivalent"] else "no",
+            src,
+        )
+        lo, hi = lin["tost_0.02"]["ci90"]
+        n.put("es/lin/timesfm/vsrocket/ci90lo", lo, src)
+        n.put("es/lin/timesfm/vsrocket/ci90hi", hi, src)
     for rep, v in d["nn_mean_rank"].items():
         n.put(f"es/rank/{key[rep]}", v, src, digits=2)
     for rep, row in d["linear"].items():
@@ -1343,6 +1468,11 @@ def resolution(n: Numbers, root: Path) -> bool:
             for rep, row in res["recall_by_kind"].items():
                 for k, v in row.items():
                     n.put(f"rs/{dk}/kind/{RS_KEYS[rep]}/{kinds.get(k, 'normal')}", v, src)
+    ic = root / "outputs/resolution_study/iaaft_check.json"
+    if ic.exists():
+        v = load(ic)
+        n.put("rs/iaaft/specerrmed", v["spectral_rel_error_median"], str(ic.relative_to(root)))
+        n.put("rs/iaaft/specerrp95", v["spectral_rel_error_p95"], str(ic.relative_to(root)))
     for rep, c in r.get("surrogate_drop", {}).items():
         _rs_compare(n, f"rs/sur/{RS_KEYS[rep]}", c, src)
     for key, v in r.get("views", {}).items():
@@ -1477,6 +1607,8 @@ def main() -> int:
             print(f"note: {what} missing; its keys not written")
     if not hard_variants(n, root):
         print("note: hard_variants_v2 incomplete; hard/ keys not written")
+    if not paired_strongest(n, root):
+        print("note: paired strongest-control test not written")
     rs_f = root / "outputs/resolution_study/results.json"
     allm = getattr(n, "all_margins", [])
     if rs_f.exists() and len(allm) == 20:

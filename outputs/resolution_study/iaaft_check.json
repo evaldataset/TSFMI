@@ -1,0 +1,7 @@
+{
+ "n": 50000,
+ "spectral_rel_error_median": 0.007544163462965672,
+ "spectral_rel_error_p95": 0.011766492020216311,
+ "marginal_exact": true,
+ "iterations": 50
+}
