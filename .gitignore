@@ -120,6 +120,9 @@ outputs/per_feature_all_properties/r1_results.json
 !outputs/ucr_anomaly_archive/
 !outputs/minirocket/
 !outputs/runtime_benchmark/
+!outputs/revision_controls/
+!outputs/ucr_anomaly_archive_reverse/
+!outputs/ucr_anomaly_archive_negate/
 outputs/canonical_v2_randinit/logs/
 outputs/capacity_probe_v2/run.log
 outputs/strong_controls_ext/*.log

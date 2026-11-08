@@ -17,6 +17,7 @@ matrix-profile discord) are evaluated by ROC-AUC on the same test windows.
 Usage:
     PYTHONPATH=. python scripts/run_ucr_anomaly_archive.py --archive <.../UCR_Anomaly_FullData> \
         --out outputs/ucr_anomaly_archive
+    Add --transform reverse|negate (with a matching --out) for the pretraining-overlap check.
 """
 
 from __future__ import annotations
@@ -37,6 +38,14 @@ SEEDS = (0, 1, 2, 3, 4)
 MODELS = ("moment", "chronos", "gpt4ts", "timer", "timesfm", "moirai", "patchtst_fm")
 NAME = re.compile(r"(\d+)_UCR_Anomaly_(.+)_(\d+)_(\d+)_(\d+)\.txt$")
 STORE = Path(os.environ.get("TSFMI_RESOLUTION_STORE", "outputs/resolution_store")) / "ucr_anomaly"
+# Pretraining-overlap check: a series the model saw during pretraining is no longer the same series
+# once reversed in time or negated, while most hand-crafted statistics are unchanged. Windows are
+# already z-normalised, so both transforms keep them z-normalised.
+TRANSFORMS = {
+    "none": lambda x: x,
+    "reverse": lambda x: np.ascontiguousarray(x[:, ::-1]),
+    "negate": lambda x: -x,
+}
 
 
 def load_series(path: Path) -> NDArray[np.float64]:
@@ -141,22 +150,31 @@ def main() -> int:
     from src.metrics.paired_tests import paired_logloss_difference
 
     ap = argparse.ArgumentParser(description=__doc__.splitlines()[0])
-    ap.add_argument("--archive", type=Path, required=True)
+    ap.add_argument("--archive", type=Path, help="archive root; needed only to build windows")
     ap.add_argument("--out", type=Path, default=Path("outputs/ucr_anomaly_archive"))
     ap.add_argument("--part", choices=("data", "extract", "evaluate"), required=True)
     ap.add_argument("--model", default=None)
     ap.add_argument("--jobs", type=int, default=32)
+    ap.add_argument("--transform", choices=TRANSFORMS, default="none")
     args = ap.parse_args()
-    STORE.mkdir(parents=True, exist_ok=True)
-    data_path = STORE / "windows.npz"
+    store = STORE if args.transform == "none" else STORE.parent / f"ucr_anomaly_{args.transform}"
+    store.mkdir(parents=True, exist_ok=True)
+    data_path = store / "windows.npz"
 
     if args.part == "data":
-        d = build_windows(args.archive)
+        if args.transform == "none":
+            if args.archive is None:
+                ap.error("--part data needs --archive")
+            d = build_windows(args.archive)
+        else:
+            with np.load(STORE / "windows.npz") as z:
+                d = {k: z[k] for k in z.files}
+            d["x"] = TRANSFORMS[args.transform](d["x"])
         np.savez(data_path, **d)
         x = d["x"]
-        np.save(STORE / "hand_crafted.npy", hand_crafted_features(x).astype(np.float32))
-        np.save(STORE / "rocket.npy", rocket_parallel(x, args.jobs))
-        np.save(STORE / "tsfresh_efficient.npy", tsfresh_features(x, args.jobs))
+        np.save(store / "hand_crafted.npy", hand_crafted_features(x).astype(np.float32))
+        np.save(store / "rocket.npy", rocket_parallel(x, args.jobs))
+        np.save(store / "tsfresh_efficient.npy", tsfresh_features(x, args.jobs))
         print(
             f"{len(d['y'])} windows from {len(np.unique(d['group']))} series, "
             f"positive rate {d['y'].mean():.3f}",
@@ -168,11 +186,11 @@ def main() -> int:
         x, y, groups = z["x"], z["y"].astype(np.int64), z["group"]
     if args.part == "extract":
         for m in [args.model] if args.model else MODELS:
-            extract(m, x, STORE / "repr" / m)
+            extract(m, x, store / "repr" / m)
             print(f"extracted {m}", flush=True)
         return 0
 
-    ctrl = {k: np.load(STORE / f"{k}.npy") for k in ("hand_crafted", "rocket", "tsfresh_efficient")}
+    ctrl = {k: np.load(store / f"{k}.npy") for k in ("hand_crafted", "rocket", "tsfresh_efficient")}
     ctrl["raw_signal"] = x.astype(np.float32)
     C_all = np.concatenate([ctrl["hand_crafted"], ctrl["rocket"], ctrl["tsfresh_efficient"]], 1)
     res: dict = {
@@ -205,7 +223,7 @@ def main() -> int:
         p_c = tuned(C_all, y, sp)
         row["ctrl:all_controls"] = {"acc": acc(p_c), "auc": float(roc_auc_score(y_te, p_c))}
         for m in MODELS:
-            rdir = STORE / "repr" / m
+            rdir = store / "repr" / m
             order = json.loads((rdir / "meta.json").read_text())["layer_order"]
             best = (-1.0, None, None)
             for ln in order:

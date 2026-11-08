@@ -1279,14 +1279,46 @@ def ucr_anomaly_archive(n: Numbers, root: Path) -> bool:
     paired gains get the corrected resampled-t interval (test/train ratio 1/3, as in the standard
     protocol).
     """
-    f = root / "outputs/ucr_anomaly_archive/results.json"
+    return _ucr_anomaly(n, root, "ucr_anomaly_archive", "uaa")
+
+
+def ucr_anomaly_transforms(n: Numbers, root: Path) -> bool:
+    """Pretraining-overlap check: the same analysis on time-reversed (uaarev/) and negated
+    (uaaneg/) windows."""
+    rev = _ucr_anomaly(n, root, "ucr_anomaly_archive_reverse", "uaarev")
+    neg = _ucr_anomaly(n, root, "ucr_anomaly_archive_negate", "uaaneg")
+    if not (rev and neg):
+        return False
+    # Accuracy change of each representation under the transform, paired by split.
+    orig = load(root / "outputs/ucr_anomaly_archive/results.json")["per_seed"]
+    for sub, tag in (("reverse", "rev"), ("negate", "neg")):
+        f = root / f"outputs/ucr_anomaly_archive_{sub}/results.json"
+        d, src = load(f)["per_seed"], str(f.relative_to(root))
+        nsig = 0
+        for key in orig[next(iter(orig))]:
+            if not key.startswith(("ctrl:", "model:")):
+                continue
+            name = key.split(":")[1]
+            rk = CANON_MODELS.get(name, name.replace("_", ""))
+            mean, lo, hi, pval = corrected_t([d[s][key]["acc"] - orig[s][key]["acc"] for s in orig])
+            n.put(f"uaashift/{tag}/{rk}/mean", mean, src)
+            n.put(f"uaashift/{tag}/{rk}/lo", lo, src)
+            n.put(f"uaashift/{tag}/{rk}/hi", hi, src)
+            n.put(f"uaashift/{tag}/{rk}/p", _fmt_p(pval), src)
+            nsig += key.startswith("model:") and pval < 0.05
+        n.put(f"uaashift/{tag}/nmodelsig", int(nsig), src)
+    return True
+
+
+def _ucr_anomaly(n: Numbers, root: Path, sub: str, pre: str) -> bool:
+    f = root / f"outputs/{sub}/results.json"
     if not f.exists():
         return False
     d = load(f)
     src = str(f.relative_to(root))
     seeds = d["per_seed"]
-    n.put("uaa/nwindows", d["n_windows"], src)
-    n.put("uaa/nseries", d["n_series"], src)
+    n.put(f"{pre}/nwindows", d["n_windows"], src)
+    n.put(f"{pre}/nseries", d["n_series"], src)
     first = seeds[next(iter(seeds))]
     for key in first:
         if not key.startswith(("ctrl:", "model:")):
@@ -1294,7 +1326,7 @@ def ucr_anomaly_archive(n: Numbers, root: Path) -> bool:
         name = key.split(":")[1]
         rk = CANON_MODELS.get(name, name.replace("_", ""))
         accs = [seeds[s][key]["acc"] for s in seeds]
-        n.put_ci(f"uaa/{rk}", float(np.mean(accs)), 0.0, 0.0, src, accs)
+        n.put_ci(f"{pre}/{rk}", float(np.mean(accs)), 0.0, 0.0, src, accs)
         if key.startswith("model:") and "given_all_plus_minirocket" in first[key]:
             for field, tag in (
                 ("given_all_plus_minirocket", "gain"),
@@ -1302,24 +1334,24 @@ def ucr_anomaly_archive(n: Numbers, root: Path) -> bool:
             ):
                 vals = [seeds[s][key][field]["tost_0.02"]["diff"] for s in seeds]
                 mean, lo, hi, pval = corrected_t(vals)
-                n.put(f"uaa/{rk}/{tag}/mean", mean, src)
-                n.put(f"uaa/{rk}/{tag}/lo", lo, src)
-                n.put(f"uaa/{rk}/{tag}/hi", hi, src)
-                n.put(f"uaa/{rk}/{tag}/p", _fmt_p(pval), src)
-                n.put(f"uaa/{rk}/{tag}/min", min(vals), src)
+                n.put(f"{pre}/{rk}/{tag}/mean", mean, src)
+                n.put(f"{pre}/{rk}/{tag}/lo", lo, src)
+                n.put(f"{pre}/{rk}/{tag}/hi", hi, src)
+                n.put(f"{pre}/{rk}/{tag}/p", _fmt_p(pval), src)
+                n.put(f"{pre}/{rk}/{tag}/min", min(vals), src)
                 if tag == "vs":
-                    n.put(f"uaa/{rk}/vs/lead", -mean, src)  # control union minus model
+                    n.put(f"{pre}/{rk}/vs/lead", -mean, src)  # control union minus model
             nsig = sum(
                 seeds[s][key]["given_all_plus_minirocket"]["mcnemar"]["p_value"] < 0.05
                 and seeds[s][key]["given_all_plus_minirocket"]["tost_0.02"]["diff"] > 0
                 for s in seeds
             )
-            n.put(f"uaa/{rk}/gain/nsig", nsig, src)
+            n.put(f"{pre}/{rk}/gain/nsig", nsig, src)
             bits = [
                 seeds[s][key]["given_all_plus_minirocket"]["logloss_bits"]["bits"] for s in seeds
             ]
-            n.put(f"uaa/{rk}/gain/bits", float(np.mean(bits)), src, digits=3)
-    n.put("uaa/nsplits", len(seeds), src)
+            n.put(f"{pre}/{rk}/gain/bits", float(np.mean(bits)), src, digits=3)
+    n.put(f"{pre}/nsplits", len(seeds), src)
     gains = {
         m: corrected_t(
             [
@@ -1331,14 +1363,62 @@ def ucr_anomaly_archive(n: Numbers, root: Path) -> bool:
         if "given_all_plus_minirocket" in first.get(f"model:{m}", {})
     }
     if gains:
-        n.put("uaa/ngainpos", sum(g[1] > 0 for g in gains.values()), src)
-        n.put("uaa/nmodels", len(gains), src)
+        n.put(f"{pre}/ngainpos", sum(g[1] > 0 for g in gains.values()), src)
+        n.put(f"{pre}/nmodels", len(gains), src)
     for k in first["label_free_auc"]:
         n.put(
-            f"uaa/lf/{k.replace('_', '')}",
+            f"{pre}/lf/{k.replace('_', '')}",
             float(np.mean([seeds[s]["label_free_auc"][k] for s in seeds])),
             src,
         )
+    return True
+
+
+def revision_controls(n: Numbers, root: Path) -> bool:
+    """Token-level ROCKET control (tok/) and dimension-matched controls (dm/), seeds 1001-1003."""
+    f = root / "outputs/revision_controls/results.json"
+    if not f.exists():
+        return False
+    d = load(f)
+    src = str(f.relative_to(root))
+    for name, t in d["tokens"].items():
+        g = t["h4_gain"]
+        n.put(f"tok/{name}/dim", t["dim"], src)
+        n.put(f"tok/{name}/nruns", t["n_runs"], src)
+        n.put(f"tok/{name}/gainmean", float(np.mean(g)), src)
+        n.put(f"tok/{name}/gainmin", min(g), src)
+        n.put(f"tok/{name}/gainmax", max(g), src)
+        n.put(f"tok/{name}/nsig", t["h4_n_positive_significant"], src)
+        n.put(f"tok/{name}/nequiv", t["h4_n_equiv01"], src)
+        n.put(f"tok/{name}/attmin", min(t["attention_acc"]), src)
+        n.put(f"tok/{name}/attmax", max(t["attention_acc"]), src)
+    leads = d["dim_match_leads"]
+    nsig = ntot = 0
+    native = []
+    for m, by_k in leads.items():
+        rk = CANON_MODELS.get(m, m.replace("_", ""))
+        width = max(int(k) for k in by_k)
+        n.put(f"dm/{rk}/width", width, src)
+        for k, rows in by_k.items():
+            ls = [r["lead"] for r in rows]
+            sig = sum(r["p"] < 0.05 and r["lead"] > 0 for r in rows)
+            nsig, ntot = nsig + sig, ntot + len(rows)
+            tag = "native" if int(k) == width else k
+            n.put(f"dm/{rk}/{tag}/leadmin", min(ls), src)
+            n.put(f"dm/{rk}/{tag}/leadmax", max(ls), src)
+            n.put(f"dm/{rk}/{tag}/nsig", sig, src)
+            if int(k) == width:
+                native += ls
+    n.put("dm/nsig", nsig, src)
+    n.put("dm/ntotal", ntot, src)
+    n.put("dm/native/leadmin", min(native), src)
+    n.put("dm/native/leadmax", max(native), src)
+    first = next(iter(d["dim_match"].values()))
+    n.put("dm/ctrldim", first["controls_dim"], src)
+    for k in ("64", "256"):
+        accs = [r["controls_acc"][k] for r in d["dim_match"].values()]
+        n.put(f"dm/ctrl/{k}/accmin", min(accs), src)
+        n.put(f"dm/ctrl/{k}/accmax", max(accs), src)
     return True
 
 
@@ -1753,6 +1833,8 @@ def main() -> int:
         (ucr_conditional, "ucr_conditional"),
         (ucr_anomaly_archive, "ucr_anomaly_archive"),
         (replication, "replication"),
+        (revision_controls, "revision_controls"),
+        (ucr_anomaly_transforms, "ucr_anomaly_archive_{reverse,negate}"),
         (minirocket_ctrl, "minirocket"),
         (runtime_benchmark, "runtime_benchmark"),
         (resolution, "resolution_study"),

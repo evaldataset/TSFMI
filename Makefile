@@ -21,6 +21,7 @@ PAPER_MAIN := $(LATEX_DIR)/main.tex
         view-sensitivity icde-numbers canonical-v2-randinit resolution-study \
         forecast-surprise embedding-store ucr-conditional erasure-bound \
         replication ucr-anomaly-archive minirocket-controls runtime-benchmark \
+        revision-controls ucr-anomaly-transforms \
         manifest clean help
 
 test:
@@ -285,6 +286,20 @@ ucr-anomaly-archive:
 	$(UAA) --part extract
 	$(UAA) --part evaluate
 
+# Token-level ROCKET control (H2) and dimension-matched controls (H7); needs replication's arrays.
+RC := TSFMI_RESOLUTION_STORE=$(RESOLUTION_STORE) $(PYTHON) scripts/run_revision_controls.py
+revision-controls:
+	for s in 1001 1002 1003; do $(RC) rocket-tokens --seed $$s || exit 1; \
+	  for t in rocket1024 rocket192; do $(RC) token-fit --seed $$s --tokens $$t || exit 1; done; \
+	  $(RC) dim-match --seed $$s || exit 1; done
+	$(RC) summarize
+
+# Pretraining-overlap check (H4): the UCR Anomaly Archive analysis on reversed and negated windows.
+ucr-anomaly-transforms:
+	for t in reverse negate; do for p in data extract evaluate; do \
+	  TSFMI_RESOLUTION_STORE=$(RESOLUTION_STORE) $(PYTHON) scripts/run_ucr_anomaly_archive.py \
+	    --transform $$t --out outputs/ucr_anomaly_archive_$$t --part $$p || exit 1; done; done
+
 minirocket-controls:
 	for p in realistic ucr_anomaly; do TSFMI_RESOLUTION_STORE=$(RESOLUTION_STORE) $(PYTHON) \
 	  scripts/run_minirocket_controls.py --part $$p --out outputs/minirocket || exit 1; done
@@ -326,7 +341,7 @@ reproduce-icde: reproduce-canonical-v2 realistic-anomaly-v2 hard-variants-v2 dat
     per-feature-all-properties bayes-ceiling strong-baselines capacity-probe-v2 strong-controls-ext \
     view-sensitivity canonical-v2-randinit resolution-study forecast-surprise embedding-store \
     ucr-conditional erasure-bound replication ucr-anomaly-archive minirocket-controls \
-    runtime-benchmark icde-numbers
+    runtime-benchmark revision-controls ucr-anomaly-transforms icde-numbers
 
 clean:
 	find . -type d -name __pycache__ -exec rm -rf {} + 2>/dev/null
