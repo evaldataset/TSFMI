@@ -22,3 +22,4 @@ dacite==1.9.2
 concept-erasure==0.2.4
 statsmodels==0.14.6
 umap-learn==0.5.11
+aeon==1.4.0  # MiniRocket control, DTW distances

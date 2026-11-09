@@ -4,7 +4,7 @@ The manuscript never types a result by hand. It writes \\val{canon/moment/anomal
 this script defines that key from the JSON that produced it. An unknown key is a LaTeX error,
 so a typo or a deleted result breaks the build instead of printing a stale number.
 
-Usage (from the repository root; `make icde-numbers` runs this):
+Usage (from the repository root; `make paper-numbers` runs this):
     PYTHONPATH=. python tools/make_numbers.py --out outputs/paper_numbers/numbers.tex \
         --require-canonical-v2
 """

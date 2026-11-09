@@ -1,9 +1,9 @@
-"""Generate the ICDE manuscript figures from TSFMI result files.
+"""Generate the manuscript figures from TSFMI result files.
 
 Like numbers.tex, every figure is drawn from outputs/ and regenerated before each build, so a
 figure cannot disagree with the tables.
 
-Usage (from the repository root; `make icde-numbers` runs this):
+Usage (from the repository root; `make paper-numbers` runs this):
     PYTHONPATH=. python tools/make_figures.py --out outputs/paper_numbers/figures
 """
 

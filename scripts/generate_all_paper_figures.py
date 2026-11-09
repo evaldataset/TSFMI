@@ -1,4 +1,4 @@
-"""Generate all publication-quality figures for the NeurIPS paper.
+"""Generate all publication-quality figures for the paper.
 
 Figures:
     fig1: Layer-wise probing progression (4 models × 6 properties)

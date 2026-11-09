@@ -62,10 +62,10 @@ and compares the result with the committed `outputs/canonical_v2` value (a few m
 ## Full reproduction
 
 ```bash
-make reproduce-icde    # every result the manuscript reads (GPU; many hours)
+make reproduce-paper    # every result the manuscript reads (GPU; many hours)
 ```
 
-`reproduce-icde` runs the targets below in order. Representations go to `REPR_ROOT`
+`reproduce-paper` runs the targets below in order. Representations go to `REPR_ROOT`
 (default `outputs/representations_v2`, gitignored); result JSONs go to `outputs/`.
 
 | Target | Output | Content |
@@ -89,7 +89,14 @@ make reproduce-icde    # every result the manuscript reads (GPU; many hours)
 | `make embedding-store` | `outputs/embedding_store/` | 1-NN on every fixed-length UCR 2018 dataset (`UCR2018=<archive root>`): ED, DTW, ROCKET-style, 7 TSFMs, random-init TSFMs |
 | `make ucr-conditional` | `outputs/ucr_conditional/` | Conditional probes on the six binary UCR datasets |
 | `make erasure-bound` | `outputs/erasure_bound/` | R² of the label on each erased concept and the implied correlation cap |
-| `make icde-numbers` | `outputs/paper_numbers/` | Every manuscript number (`numbers.tex`) and figure, generated from the result files |
+| `make replication` | `outputs/replication/` | Data seeds 1001–1003 × three attention-probe seeds: control lead, mean-pooled and cross-fitted attention gains |
+| `make ucr-anomaly-archive` | `outputs/ucr_anomaly_archive/` | Window-level probing on the UCR Time Series Anomaly Archive (`UCR_ANOMALY=<UCR_Anomaly_FullData dir>`), series-level splits, MiniRocket in the control union |
+| `make ucr-anomaly-transforms` | `outputs/ucr_anomaly_archive_{reverse,negate}/` | The same analysis on time-reversed and negated windows (pretraining-overlap check) |
+| `make minirocket-controls` | `outputs/minirocket/` | MiniRocket as an additional control on the realistic task and the anomaly archive |
+| `make revision-controls` | `outputs/revision_controls/` | Attention probe on per-patch ROCKET kernel maps; PCA dimension-matched controls |
+| `make bayes-headroom` | `outputs/bayes_headroom/` | 1-D ResNet trained on up to 10⁶ fresh windows: lower bound on the realistic task's Bayes accuracy |
+| `make runtime-benchmark` | `outputs/runtime_benchmark/` | Stage-separated extraction, 1-NN query, and label-free detection times |
+| `make paper-numbers` | `outputs/paper_numbers/` | Every manuscript number (`numbers.tex`) and figure, generated from the result files |
 | `make per-feature-all-properties`, `make per-feature-anomaly` | `outputs/per_feature_*` | Single-feature ablations |
 | `make bayes-ceiling`, `make rocket-baselines`, `make strong-baselines` | `outputs/bayes_ceiling/`, `outputs/rocket_baselines/`, `outputs/strong_baselines/` | Bayes rule, ROCKET-style and `tsfresh` controls |
 | `make representation-storage`, `make extraction-throughput` | `outputs/representation_storage/`, `outputs/extraction_throughput/` | Storage footprint and extraction cost |

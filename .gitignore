@@ -82,7 +82,6 @@ outputs/paper/latex/_preprint.bbl
 outputs/paper/latex/korean.tex
 outputs/paper/latex/korean.bbl
 outputs/paper/latex/main.texbak
-outputs/paper/latex/neurips_2025.sty
 
 # outputs/: whitelist approach.
 # By default ignore everything (the heavy 837 GB representations / 100 GB probes / etc).

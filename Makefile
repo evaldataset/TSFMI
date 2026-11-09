@@ -7,7 +7,7 @@ LATEXMK ?= latexmk
 LATEX_DIR := outputs/paper/latex
 PAPER_MAIN := $(LATEX_DIR)/main.tex
 
-.PHONY: test lint format paper paper-submission paper-preprint paper-final \
+.PHONY: test lint format paper paper-submission \
         reproduce-canonical reproduce-baselines reproduce-figures reproduce-all \
         reproduce-all-from-scratch extract-representations smoke reproduce-one-cell \
         benchmark-time per-feature-anomaly paired-wilcoxon paired-bootstrap \
@@ -15,10 +15,10 @@ PAPER_MAIN := $(LATEX_DIR)/main.tex
         realistic-anomaly realistic-anomaly-tsfm pca-leakfree-rerun reproduce-canonical-v2 \
         realistic-anomaly-v2 hard-variants-v2 dataseed-v2 hl-selectivity-v2 \
         statistic-recoverability statistic-erasure anomaly-diagnostics ucr-probe \
-        representation-storage extraction-throughput wilinski-ldr reproduce-icde \
+        representation-storage extraction-throughput wilinski-ldr reproduce-paper \
         per-feature-all-properties bayes-ceiling strong-baselines capacity-probe-v2 \
         strong-controls-ext \
-        view-sensitivity icde-numbers canonical-v2-randinit resolution-study \
+        view-sensitivity paper-numbers canonical-v2-randinit resolution-study \
         forecast-surprise embedding-store ucr-conditional erasure-bound \
         replication ucr-anomaly-archive minirocket-controls runtime-benchmark \
         revision-controls ucr-anomaly-transforms bayes-headroom \
@@ -118,16 +118,6 @@ paper:
 paper-submission:
 	cd $(LATEX_DIR) && $(LATEXMK) -pdf -bibtex -interaction=nonstopmode main.tex
 
-paper-preprint:
-	$(VENV)/python -c 'from pathlib import Path; src = Path("$(PAPER_MAIN)").read_text(); dst = src.replace("\\usepackage[eandd]{neurips_2026}", "\\usepackage[preprint]{neurips_2026}", 1); dst = dst.replace("\\input{authors_submission.tex}", "\\input{authors_preprint.tex}", 1); dst = dst.replace("\\input{ack_submission.tex}", "\\input{ack_preprint.tex}", 1); Path("$(LATEX_DIR)/_preprint.tex").write_text(dst)'
-	cd $(LATEX_DIR) && $(LATEXMK) -pdf -bibtex -interaction=nonstopmode _preprint.tex
-	cd $(LATEX_DIR) && $(LATEXMK) -pdf -bibtex -interaction=nonstopmode _preprint.tex
-
-paper-final:
-	$(VENV)/python -c 'from pathlib import Path; src = Path("$(PAPER_MAIN)").read_text(); dst = src.replace("\\usepackage[eandd]{neurips_2026}", "\\usepackage[eandd,final]{neurips_2026}", 1); dst = dst.replace("\\input{authors_submission.tex}", "\\input{authors_final.tex}", 1); dst = dst.replace("\\input{ack_submission.tex}", "\\input{ack_final.tex}", 1); Path("$(LATEX_DIR)/_final.tex").write_text(dst)'
-	cd $(LATEX_DIR) && $(LATEXMK) -pdf -bibtex -interaction=nonstopmode _final.tex
-	cd $(LATEX_DIR) && $(LATEXMK) -pdf -bibtex -interaction=nonstopmode _final.tex
-
 # Canonical benchmark v2: one protocol (n=1000, 60/20/20, seeds 0-4, val-selected layer,
 # train-only PCA inside the per-seed pipeline for MOMENT/GPT4TS, mean-pool elsewhere) and one
 # environment for all 7 TSFMs + 3 baselines. Writes outputs/canonical_v2/ (see its README.md).
@@ -135,8 +125,8 @@ paper-final:
 reproduce-canonical-v2:
 	bash scripts/run_canonical_v2.sh
 
-# --- ICDE manuscript artifacts (same protocol and environment as reproduce-canonical-v2) --------
-# Each target writes one outputs/ directory that the manuscript reads; `make reproduce-icde` runs all.
+# --- Manuscript artifacts (same protocol and environment as reproduce-canonical-v2) --------
+# Each target writes one outputs/ directory that the manuscript reads; `make reproduce-paper` runs all.
 REPR_ROOT ?= outputs/representations_v2
 CANON_PROPS := synthetic_trend:trend:classification synthetic_seasonality:seasonality:regression \
     synthetic_frequency:frequency:classification synthetic_stationarity:stationarity:classification \
@@ -189,7 +179,7 @@ statistic-erasure:
 
 # Every number (numbers.tex, one LaTeX macro per value) and every figure of the manuscript, generated
 # from the committed result files.
-icde-numbers:
+paper-numbers:
 	$(PYTHON) tools/make_numbers.py --out outputs/paper_numbers/numbers.tex --require-canonical-v2
 	$(PYTHON) tools/make_figures.py --out outputs/paper_numbers/figures
 
@@ -342,28 +332,26 @@ wilinski-ldr:
 	git -C $(WILINSKI_REPO) checkout $(WILINSKI_COMMIT)
 	$(PYTHON) scripts/run_wilinski_moment_ldr.py --wilinski-repo $(WILINSKI_REPO)
 
-reproduce-icde: reproduce-canonical-v2 realistic-anomaly-v2 hard-variants-v2 dataseed-v2 \
+reproduce-paper: reproduce-canonical-v2 realistic-anomaly-v2 hard-variants-v2 dataseed-v2 \
     hl-selectivity-v2 statistic-recoverability statistic-erasure anomaly-diagnostics ucr-probe \
     representation-storage extraction-throughput wilinski-ldr per-feature-anomaly rocket-baselines \
     per-feature-all-properties bayes-ceiling strong-baselines capacity-probe-v2 strong-controls-ext \
     view-sensitivity canonical-v2-randinit resolution-study forecast-surprise embedding-store \
     ucr-conditional erasure-bound replication ucr-anomaly-archive minirocket-controls \
-    runtime-benchmark revision-controls ucr-anomaly-transforms bayes-headroom icde-numbers
+    runtime-benchmark revision-controls ucr-anomaly-transforms bayes-headroom paper-numbers
 
 clean:
 	find . -type d -name __pycache__ -exec rm -rf {} + 2>/dev/null
 	find . -type d -name .pytest_cache -exec rm -rf {} + 2>/dev/null
 	rm -rf .coverage .mypy_cache
-	rm -f $(LATEX_DIR)/_preprint.tex $(LATEX_DIR)/_final.tex $(LATEX_DIR)/*.aux $(LATEX_DIR)/*.bbl $(LATEX_DIR)/*.blg $(LATEX_DIR)/*.out $(LATEX_DIR)/*.log $(LATEX_DIR)/*.fdb_latexmk $(LATEX_DIR)/*.fls
+	rm -f $(LATEX_DIR)/*.aux $(LATEX_DIR)/*.bbl $(LATEX_DIR)/*.blg $(LATEX_DIR)/*.out $(LATEX_DIR)/*.log $(LATEX_DIR)/*.fdb_latexmk $(LATEX_DIR)/*.fls
 
 help:
 	@echo "test    - Run pytest"
 	@echo "lint    - Run ruff check"
 	@echo "format  - Run ruff format"
 	@echo "paper   - Compile submission-mode paper"
-	@echo "paper-submission - Compile NeurIPS submission mode"
-	@echo "paper-preprint   - Compile NeurIPS preprint mode"
-	@echo "paper-final      - Compile NeurIPS final mode"
+	@echo "paper-submission - Compile outputs/paper/latex/main.tex (not part of this artifact)"
 	@echo "extract-representations - Run frozen-model extraction for the 7 confirmatory models"
 	@echo "smoke   - Reproduce one (model, property) cell end-to-end (<10 min)"
 	@echo "reproduce-all-from-scratch - Extraction + canonical + figures + paper"
@@ -376,5 +364,5 @@ help:
 	@echo "mdl-probe              - Voita-Titov MDL probe (CHECK.md G5)"
 	@echo "realistic-anomaly      - Realistic anomaly generator + canonical re-run (CHECK.md G6)"
 	@echo "reproduce-canonical-v2 - One-protocol canonical re-run, 7 TSFMs + baselines (outputs/canonical_v2)"
-	@echo "reproduce-icde         - Every result the ICDE manuscript reads (v2 protocol; GPU; many hours)"
+	@echo "reproduce-paper         - Every result the manuscript reads (v2 protocol; GPU; many hours)"
 	@echo "clean   - Remove cache files"

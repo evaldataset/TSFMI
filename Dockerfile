@@ -1,10 +1,10 @@
 # TSFMI Reproducibility Container
 # Usage:
-#   docker build -t tsfmi:neurips2026 .
-#   docker run --gpus all --rm -v $(pwd)/outputs:/app/outputs tsfmi:neurips2026 make test
+#   docker build -t tsfmi:latest .
+#   docker run --gpus all --rm -v $(pwd)/outputs:/app/outputs tsfmi:latest make test
 #
 # For reviewer reproduction:
-#   docker run --gpus all --rm tsfmi:neurips2026 \
+#   docker run --gpus all --rm tsfmi:latest \
 #       python -m pytest tests/ -q -m "not slow"
 
 FROM nvidia/cuda:12.1.1-cudnn8-runtime-ubuntu22.04

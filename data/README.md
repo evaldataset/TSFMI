@@ -14,6 +14,7 @@ from the canonical source.
 | `exchange_rate.txt`, `exchange_rate.txt.gz` | per original distributors | research use | exchange-rate real-world stress test |
 | `electricity_raw.zip` | UCI ML Repository | CC-BY 4.0 | upstream of LD2011_2014 |
 | `ucr/` | UCR Time Series Archive | per archive terms | `scripts/run_ucr_baseline_validation.py` |
+| `UCR_Anomaly_FullData/` | UCR Time Series Anomaly Archive (Wu & Keogh) | per archive terms | `scripts/run_ucr_anomaly_archive.py` (`make ucr-anomaly-archive`) |
 
 ## How to populate
 
@@ -32,6 +33,11 @@ unzip -d data/ data/LD2011_2014.txt.zip
 
 # UCR Archive (registration required)
 # See https://www.cs.ucr.edu/~eamonn/time_series_data_2018/ for access terms.
+
+# UCR Time Series Anomaly Archive (250 series, one labelled anomaly each)
+wget -P data/ https://www.cs.ucr.edu/~eamonn/time_series_data_2018/UCR_TimeSeriesAnomalyDatasets2021.zip
+unzip -d data/ data/UCR_TimeSeriesAnomalyDatasets2021.zip
+# then pass the extracted UCR_Anomaly_FullData directory: make ucr-anomaly-archive UCR_ANOMALY=<path>
 ```
 
 After populating, run `make smoke` to verify the loader paths.
