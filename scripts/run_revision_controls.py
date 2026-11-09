@@ -9,6 +9,10 @@ maximum (16 tokens x 2,048 dimensions; the first 192 kernels give a 384-dimensio
 width of Moirai 2.0). ``token-fit`` runs the replication's analysis unchanged on these tokens:
 cross-fitted attention logit stacked with all controls, three probe seeds, paired McNemar and TOST.
 
+Strongest union: ``strong-features`` adds MiniRocket (10,000 kernels, fit on the training split)
+and catch22 to the control union; ``strong-fit`` repeats the replication's analysis (control lead,
+mean-pooled and cross-fitted attention gains) against that union and saves the attention logits.
+
 H7, dimension-matched controls: all controls together have about 20,000 dimensions, a mean-pooled
 model 384-1,280. ``dim-match`` reduces both to the same k (StandardScaler + PCA fitted on the
 training split; k in {64, 256, model width}) and compares them on the test windows.
@@ -139,6 +143,99 @@ def cmd_token_fit(args: argparse.Namespace) -> None:
     print(f"wrote {out_path}", flush=True)
 
 
+def strong_path(seed: int, name: str) -> Path:
+    return seed_dir(seed) / f"strong_{name}.npy"
+
+
+def strong_union(seed: int) -> NDArray[np.float32]:
+    parts = [controls(seed)] + [np.load(strong_path(seed, k)) for k in ("minirocket", "catch22")]
+    return np.concatenate(parts, axis=1).astype(np.float32)
+
+
+def cmd_strong_features(args: argparse.Namespace) -> None:
+    from scripts.run_minirocket_controls import minirocket
+    from scripts.run_strong_controls_ext import catch22
+
+    x = dataset(args.seed)["x"].astype(np.float64)
+    y = dataset(args.seed)["y"].astype(np.int64)
+    sp = split_indices(len(y))
+    if not strong_path(args.seed, "minirocket").exists():
+        np.save(strong_path(args.seed, "minirocket"), minirocket(x[sp["train"]], x, args.jobs))
+    if not strong_path(args.seed, "catch22").exists():
+        np.save(strong_path(args.seed, "catch22"), catch22(x, args.jobs))
+    out_path = seed_dir(args.seed) / "strong_controls.json"
+    if out_path.exists():
+        return
+    y_te, n_tr = y[sp["test"]], len(sp["train"])
+    res: dict = {"seed": args.seed}
+    probs = {}
+    for name, X in (
+        ("minirocket", np.load(strong_path(args.seed, "minirocket"))),
+        ("catch22", np.load(strong_path(args.seed, "catch22"))),
+        ("all_controls", controls(args.seed)),
+        ("strong_union", strong_union(args.seed)),
+    ):
+        _, _, probs[name] = fit_predict_tuned(X, y, sp, n_tr)
+        res[f"{name}_acc"] = float(np.mean((probs[name] > 0.5) == y_te))
+        res[f"{name}_dim"] = int(X.shape[1])
+        print(f"[{args.seed}] {name} acc={res[f'{name}_acc']:.4f} dim={X.shape[1]}", flush=True)
+    res["strong_vs_all"] = compare(probs["strong_union"], probs["all_controls"], y_te)
+    np.save(seed_dir(args.seed) / "strong_union_test_probs.npy", probs["strong_union"])
+    out_path.write_text(json.dumps(res, indent=1))
+
+
+def cmd_strong_fit(args: argparse.Namespace) -> None:
+    out_path = seed_dir(args.seed) / f"fit_strong_{args.model}.json"
+    if out_path.exists():
+        print(f"SKIP {out_path}")
+        return
+    y = dataset(args.seed)["y"].astype(np.int64)
+    sp = split_indices(len(y))
+    y_te, n_tr = y[sp["test"]], len(sp["train"])
+    C = strong_union(args.seed)
+    p_c = np.load(seed_dir(args.seed) / "strong_union_test_probs.npy")
+    tok = np.load(tokens_path(args.seed, args.model), mmap_mode="r")
+    mean = np.concatenate(
+        [tok[s : s + 5000].astype(np.float32).mean(axis=1) for s in range(0, len(y), 5000)]
+    )
+    _, _, p_z = fit_predict_tuned(mean, y, sp, n_tr)
+    _, _, p_cz = fit_predict_tuned(np.concatenate([C, mean], axis=1), y, sp, n_tr)
+    res: dict = {
+        "seed": args.seed,
+        "model": args.model,
+        "controls_acc": float(np.mean((p_c > 0.5) == y_te)),
+        "mean_acc": float(np.mean((p_z > 0.5) == y_te)),
+        "h1_mean_vs_controls": compare(p_z, p_c, y_te),
+        "h3_mean_given_controls": compare(p_cz, p_c, y_te),
+        "attention": {},
+    }
+    tok = np.ascontiguousarray(tok)
+    for a in ATTN_SEEDS:
+        lg_path = seed_dir(args.seed) / f"attn_logits_{args.model}_{a}.npy"
+        if lg_path.exists():
+            lg = np.load(lg_path)
+        else:
+            lg = crossfit_logits_full(tok, y, sp, seed=a)
+            np.save(lg_path, lg)
+        p_att = 1.0 / (1.0 + np.exp(-lg[sp["test"]]))
+        _, _, p_joint = fit_predict_tuned(
+            np.concatenate([C, lg[:, None].astype(np.float32)], axis=1), y, sp, n_tr
+        )
+        res["attention"][str(a)] = {
+            "attention_acc": float(np.mean((p_att > 0.5) == y_te)),
+            "attention_vs_controls": compare(p_att, p_c, y_te),
+            "h4_attention_given_controls": compare(p_joint, p_c, y_te),
+        }
+        g = res["attention"][str(a)]["h4_attention_given_controls"]
+        print(
+            f"[{args.seed} {args.model} attn{a}] gain={g['tost_0.02']['diff']:+.4f}"
+            f" p={g['mcnemar']['p_value']:.3g}",
+            flush=True,
+        )
+    out_path.write_text(json.dumps(res, indent=1))
+    print(f"wrote {out_path}", flush=True)
+
+
 def pca_view(X: NDArray, sp: dict[str, NDArray], k: int) -> NDArray[np.float32]:
     from sklearn.decomposition import PCA
     from sklearn.preprocessing import StandardScaler
@@ -228,6 +325,38 @@ def cmd_summarize(_: argparse.Namespace) -> None:
                     {"lead": -c["tost_0.02"]["diff"], "p": c["mcnemar"]["p_value"]}
                 )
     summary["dim_match_leads"] = leads
+    strong: dict = {"controls": {}, "models": {}}
+    for s in SEEDS:
+        f = seed_dir(s) / "strong_controls.json"
+        if f.exists():
+            strong["controls"][str(s)] = json.loads(f.read_text())
+    for m in MODELS:
+        runs = [
+            json.loads(f.read_text())
+            for s in SEEDS
+            if (f := seed_dir(s) / f"fit_strong_{m}.json").exists()
+        ]
+        if not runs:
+            continue
+        h1 = [r["h1_mean_vs_controls"] for r in runs]
+        h3 = [r["h3_mean_given_controls"] for r in runs]
+        h4 = [a["h4_attention_given_controls"] for r in runs for a in r["attention"].values()]
+        strong["models"][m] = {
+            "n_seeds": len(runs),
+            "n_runs": len(h4),
+            "h1_lead": [-c["tost_0.02"]["diff"] for c in h1],
+            "h1_n_control_significant": sum(
+                c["mcnemar"]["p_value"] < 0.05 and c["tost_0.02"]["diff"] < 0 for c in h1
+            ),
+            "h3_gain": [c["tost_0.02"]["diff"] for c in h3],
+            "h3_n_equiv01": sum(c["tost_0.01"]["equivalent"] for c in h3),
+            "h4_gain": [c["tost_0.02"]["diff"] for c in h4],
+            "h4_n_positive_significant": sum(
+                c["mcnemar"]["p_value"] < 0.05 and c["tost_0.02"]["diff"] > 0 for c in h4
+            ),
+            "h4_n_equiv01": sum(c["tost_0.01"]["equivalent"] for c in h4),
+        }
+    summary["strong"] = strong
     OUT.mkdir(parents=True, exist_ok=True)
     (OUT / "results.json").write_text(json.dumps(summary, indent=1))
     print(json.dumps({"tokens": summary["tokens"], "leads": leads}, indent=1)[:4000])
@@ -238,6 +367,12 @@ def main(argv: list[str] | None = None) -> int:
     sub = ap.add_subparsers(dest="cmd", required=True)
     for name in ("rocket-tokens", "dim-match"):
         sub.add_parser(name).add_argument("--seed", type=int, required=True, choices=SEEDS)
+    sf = sub.add_parser("strong-features")
+    sf.add_argument("--seed", type=int, required=True, choices=SEEDS)
+    sf.add_argument("--jobs", type=int, default=32)
+    sg = sub.add_parser("strong-fit")
+    sg.add_argument("--seed", type=int, required=True, choices=SEEDS)
+    sg.add_argument("--model", required=True, choices=MODELS)
     t = sub.add_parser("token-fit")
     t.add_argument("--seed", type=int, required=True, choices=SEEDS)
     t.add_argument("--tokens", required=True, choices=tuple(TOKEN_SETS))
@@ -247,6 +382,8 @@ def main(argv: list[str] | None = None) -> int:
         "rocket-tokens": cmd_rocket_tokens,
         "token-fit": cmd_token_fit,
         "dim-match": cmd_dim_match,
+        "strong-features": cmd_strong_features,
+        "strong-fit": cmd_strong_fit,
         "summarize": cmd_summarize,
     }[args.cmd](args)
     return 0

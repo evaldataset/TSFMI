@@ -149,12 +149,19 @@ def main() -> int:
     ap.add_argument("--models", nargs="*", default=list(MODELS))
     ap.add_argument("--max-series", type=int, default=30_000)
     ap.add_argument("--jobs", type=int, default=32)
-    ap.add_argument("--part", choices=("classical", "models"), required=True)
+    ap.add_argument("--part", choices=("classical", "models", "strong"), required=True)
     ap.add_argument("--init", choices=("pretrained", "random"), default="pretrained")
+    ap.add_argument(
+        "--resize",
+        action="store_true",
+        help="--part strong on series resized to 512 steps, as the models see them",
+    )
     args = ap.parse_args()
     args.out.mkdir(parents=True, exist_ok=True)
     names = args.datasets or sorted(p.name for p in args.ucr_root.iterdir() if p.is_dir())
     suffix = "_random" if args.part == "models" and args.init == "random" else ""
+    if args.part == "strong" and args.resize:
+        suffix = "_resized"
     path = args.out / f"{args.part}{suffix}.json"
     results = json.loads(path.read_text()) if path.exists() else {}
 
@@ -190,6 +197,41 @@ def main() -> int:
                 path.write_text(json.dumps(results, indent=1))
             del wrapper
             torch.cuda.empty_cache()
+        return 0
+
+    if args.part == "strong":
+        # MiniRocket (10,000 kernels, fit on the training series) and catch22 on the native-length,
+        # z-normalised series, the input ED and DTW use; 1-NN on standardised features and the same
+        # linear read-out as every other representation.
+        from scripts.run_minirocket_controls import minirocket
+        from scripts.run_strong_controls_ext import catch22
+
+        done = json.loads((args.out / "classical.json").read_text())
+        for name in names:
+            if name in results or name not in done:
+                continue
+            x_tr, y_tr, x_te, y_te = (np.asarray(v) for v in load_ucr(args.ucr_root, name))
+            z = np.concatenate([znorm(x_tr), znorm(x_te)])
+            if args.resize:
+                z = resize(z)
+            n_tr = len(y_tr)
+            row: dict[str, object] = {}
+            for key, F in (
+                ("minirocket", minirocket(z[:n_tr], z, args.jobs)),
+                ("catch22", catch22(z, args.jobs)),
+            ):
+                mu, sd = F[:n_tr].mean(0), F[:n_tr].std(0) + 1e-8
+                fs = (F - mu) / sd
+                row[f"{key}_nn_acc"] = nn_accuracy(euclidean(fs[n_tr:], fs[:n_tr]), y_tr, y_te)
+                row[f"{key}_linear_acc"] = linear_accuracy(F[:n_tr], y_tr, F[n_tr:], y_te)
+                row[f"{key}_dim"] = int(F.shape[1])
+            results[name] = row
+            print(
+                f"[{name}] "
+                + " ".join(f"{k}={v:.3f}" for k, v in row.items() if k.endswith("acc")),
+                flush=True,
+            )
+            path.write_text(json.dumps(results, indent=1))
         return 0
 
     from aeon.distances import dtw_pairwise_distance

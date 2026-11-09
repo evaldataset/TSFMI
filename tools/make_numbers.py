@@ -617,6 +617,8 @@ def strongest_control(n: Numbers, root: Path) -> bool:
         "tsfresh_minimal": "tsfresh (minimal)",
         "tsfresh_efficient": "tsfresh (efficient)",
         "max_abs_only": "max|x|",
+        "minirocket": "MiniRocket",
+        "catch22": "catch22",
     }
 
     def put(prefix: str, ctrls: dict[str, float], models: dict[str, float]) -> float:
@@ -689,7 +691,10 @@ def strongest_control(n: Numbers, root: Path) -> bool:
                 "rocket",
                 "tsfresh_minimal",
                 "tsfresh_efficient",
+                "minirocket",
+                "catch22",
             )
+            if k in c
         }
         models = {m: r[m] for m in CANON_MODELS}
         mg = put(f"sc/ucr/{r['dataset'].lower()}", ctrls, models)
@@ -751,8 +756,9 @@ def paired_strongest(n: Numbers, root: Path) -> bool:
         settings[f"canon/{prop}"] = (models, ctrls)
     for h in HARD:
         ctrls = {b: hbase[(b, h)] for b in ("raw_signal", "hand_crafted", "random_projection")}
-        for k in ("tsfresh_minimal", "tsfresh_efficient"):
-            ctrls[k] = sx["hard"][h][k]["per_seed"]
+        for k in ("tsfresh_minimal", "tsfresh_efficient", "minirocket", "catch22"):
+            if k in sx["hard"][h]:
+                ctrls[k] = sx["hard"][h][k]["per_seed"]
         ctrls["rocket"] = rocket[h]
         models = {m: cell(root / f"outputs/hard_variants_v2/{m}_{h}") for m in CANON_MODELS}
         settings[f"hard/{h}"] = (models, ctrls)
@@ -839,7 +845,7 @@ def hard_variants(n: Numbers, root: Path) -> bool:
     sx_hard = load(sx_f).get("hard", {}) if sx_f.exists() else {}
     for h in HARD:
         ctrl[h]["rocket"] = rocket[h]
-        for k in ("tsfresh_minimal", "tsfresh_efficient"):
+        for k in ("tsfresh_minimal", "tsfresh_efficient", "minirocket", "catch22"):
             if k in sx_hard.get(h, {}):
                 ctrl[h][k] = sx_hard[h][k]["mean"]
         best = max(ctrl[h], key=ctrl[h].get)
@@ -851,6 +857,8 @@ def hard_variants(n: Numbers, root: Path) -> bool:
             "tsfresh_efficient": "tsfresh (efficient)",
             "hand_crafted": "hand-crafted",
             "raw_signal": "raw signal",
+            "minirocket": "MiniRocket",
+            "catch22": "catch22",
         }.get(best, best.replace("_", " "))
         n.put(f"hardcmp/{h}/bestctrl", label, src)
         n.put(f"hardcmp/{h}/bestctrlval", ctrl[h][best], src)
@@ -1140,14 +1148,30 @@ def embedding_store(n: Numbers, root: Path) -> bool:
         return False
     d = load(f)
     src = str(f.relative_to(root))
-    key = {**CANON_MODELS, "ed": "ed", "dtw": "dtw", "rocket": "rocket", "best_tsfm": "besttsfm"}
+    key = {
+        **CANON_MODELS,
+        "ed": "ed",
+        "dtw": "dtw",
+        "rocket": "rocket",
+        "best_tsfm": "besttsfm",
+        "minirocket": "minirocket",
+        "minirocket512": "minirocketresized",
+        "catch22": "catch22",
+    }
     n.put("es/ndatasets", d["n_datasets"], src)
     for rep, row in d["nn"].items():
         if not isinstance(row, dict):
             continue
         rk = key.get(rep) or f"{CANON_MODELS[rep.removesuffix('_random')]}rand"
         n.put(f"es/nn/{rk}/acc", row["mean_acc"], src)
-        for ref in ("vs_ed", "vs_dtw", "vs_rocket", "vs_random_init"):
+        for ref in (
+            "vs_ed",
+            "vs_dtw",
+            "vs_rocket",
+            "vs_minirocket",
+            "vs_minirocket512",
+            "vs_random_init",
+        ):
             if ref in row:
                 c = row[ref]
                 b = f"es/nn/{rk}/{ref.replace('vs_', 'vs').replace('_', '')}"
@@ -1203,12 +1227,36 @@ def embedding_store(n: Numbers, root: Path) -> bool:
     for rep, row in d["linear"].items():
         rk = key.get(rep, rep)
         n.put(f"es/lin/{rk}/acc", row["mean_acc"], src)
-        if "vs_rocket" in row:
-            c = row["vs_rocket"]
-            n.put(f"es/lin/{rk}/vsrocket/wtl", f"{c['wins']}/{c['ties']}/{c['losses']}", src)
-            n.put(f"es/lin/{rk}/vsrocket/diff", c["mean_diff"], src)
+        for ref in ("vs_rocket", "vs_minirocket", "vs_minirocket512"):
+            if ref not in row:
+                continue
+            c, b = row[ref], f"es/lin/{rk}/{ref.replace('vs_', 'vs')}"
+            n.put(f"{b}/wtl", f"{c['wins']}/{c['ties']}/{c['losses']}", src)
+            n.put(f"{b}/diff", c["mean_diff"], src)
             p = c.get("p_holm", c["p_wilcoxon"])
-            n.put(f"es/lin/{rk}/vsrocket/p", "$<$0.001" if p < 1e-3 else f"{p:.3f}", src)
+            n.put(f"{b}/p", "$<$0.001" if p < 1e-3 else f"{p:.3f}", src)
+            if (
+                ref in ("vs_minirocket", "vs_minirocket512") and "tost_0.02" in c
+            ):  # vs_rocket CI is written above
+                n.put(f"{b}/ci90lo", c["tost_0.02"]["ci90"][0], src)
+                n.put(f"{b}/ci90hi", c["tost_0.02"]["ci90"][1], src)
+    # Counts against MiniRocket, the strongest classical control (1-NN and linear read-out).
+    for view, rows, ref, tag in (
+        ("nn", d["nn"], "vs_minirocket", "mr"),
+        ("lin", d["linear"], "vs_minirocket", "mr"),
+        ("nn", d["nn"], "vs_minirocket512", "mrr"),
+        ("lin", d["linear"], "vs_minirocket512", "mrr"),
+    ):
+        cs = [rows[m][ref] for m in CANON_MODELS if ref in rows.get(m, {})]
+        if len(cs) == len(CANON_MODELS):
+            n.put(f"es/{view}/{tag}/nbelow", sum(c["tost_0.02"]["ci90"][1] < 0 for c in cs), src)
+            n.put(f"es/{view}/{tag}/nabove", sum(c["tost_0.02"]["ci90"][0] > 0 for c in cs), src)
+            n.put(f"es/{view}/{tag}/nequiv02", sum(c["tost_0.02"]["equivalent"] for c in cs), src)
+            n.put(
+                f"es/{view}/{tag}/nsigbelow",
+                sum(c.get("p_holm", c["p_wilcoxon"]) < 0.05 and c["mean_diff"] < 0 for c in cs),
+                src,
+            )
     for rep, b in d["storage_bytes"].items():
         n.put(f"es/bytes/{key.get(rep, rep.replace('_', ''))}", int(round(b)), src)
     for rep, sec in d["seconds"].items():
@@ -1361,6 +1409,46 @@ def _ucr_anomaly(n: Numbers, root: Path, sub: str, pre: str) -> bool:
             ]
             n.put(f"{pre}/{rk}/gain/bits", float(np.mean(bits)), src, digits=3)
     n.put(f"{pre}/nsplits", len(seeds), src)
+    # Series-level cluster bootstrap (pooled over splits) and per-split cluster-bootstrap counts.
+    for m, c in d.get("cluster_pooled", {}).items():
+        rk = CANON_MODELS.get(m, m.replace("_", ""))
+        for tag in ("gain", "vs"):
+            v = c[tag]
+            n.put(f"{pre}/{rk}/{tag}cl/mean", v["mean"], src)
+            n.put(f"{pre}/{rk}/{tag}cl/lo", v["lo"], src)
+            n.put(f"{pre}/{rk}/{tag}cl/hi", v["hi"], src)
+            n.put(f"{pre}/{rk}/{tag}cl/p", _fmt_p(v["p"]), src)
+        key = f"model:{m}"
+        if "given_all_plus_minirocket_cluster" in first.get(key, {}):
+            n.put(
+                f"{pre}/{rk}/gain/nsigcl",
+                sum(
+                    seeds[s][key]["given_all_plus_minirocket_cluster"]["p"] < 0.05
+                    and seeds[s][key]["given_all_plus_minirocket_cluster"]["mean"] > 0
+                    for s in seeds
+                ),
+                src,
+            )
+    # Holm across the seven models within this condition (one family per condition and test).
+    pt = {}
+    for m in CANON_MODELS:
+        key = f"model:{m}"
+        if "given_all_plus_minirocket" in first.get(key, {}):
+            vals = [seeds[s][key]["given_all_plus_minirocket"]["tost_0.02"]["diff"] for s in seeds]
+            pt[m] = corrected_t(vals)[3]
+    for m, ph in holm(pt).items():
+        n.put(f"{pre}/{CANON_MODELS[m]}/gain/pholm", _fmt_p(ph), src)
+    pc = {m: c["gain"]["p"] for m, c in d.get("cluster_pooled", {}).items()}
+    for m, ph in holm(pc).items():
+        n.put(f"{pre}/{CANON_MODELS.get(m, m)}/gaincl/pholm", _fmt_p(ph), src)
+    if pc:
+        n.put(f"{pre}/nholmcl", sum(v < 0.05 for v in holm(pc).values()), src)
+    if d.get("cluster_pooled"):
+        n.put(
+            f"{pre}/nseriespooled",
+            next(iter(d["cluster_pooled"].values()))["gain"]["n_series"],
+            src,
+        )
     gains = {
         m: corrected_t(
             [
@@ -1401,6 +1489,9 @@ def revision_controls(n: Numbers, root: Path) -> bool:
         n.put(f"tok/{name}/nequiv", t["h4_n_equiv01"], src)
         n.put(f"tok/{name}/attmin", min(t["attention_acc"]), src)
         n.put(f"tok/{name}/attmax", max(t["attention_acc"]), src)
+        per_seed = np.asarray(g).reshape(-1, 3).mean(axis=1)  # three probe seeds per data seed
+        n.put(f"tok/{name}/seedmin", float(per_seed.min()), src)
+        n.put(f"tok/{name}/seedmax", float(per_seed.max()), src)
     leads = d["dim_match_leads"]
     nsig = ntot = 0
     native = []
@@ -1422,6 +1513,43 @@ def revision_controls(n: Numbers, root: Path) -> bool:
     n.put("dm/ntotal", ntot, src)
     n.put("dm/native/leadmin", min(native), src)
     n.put("dm/native/leadmax", max(native), src)
+    st = d.get("strong", {})
+    ctl = list(st.get("controls", {}).values())
+    if ctl:
+        for k in ("minirocket", "catch22", "all_controls", "strong_union"):
+            accs = [c[f"{k}_acc"] for c in ctl]
+            tag = k.replace("_", "")
+            n.put(f"strong/{tag}/accmin", min(accs), src)
+            n.put(f"strong/{tag}/accmax", max(accs), src)
+        n.put("strong/dim", ctl[0]["strong_union_dim"], src)
+        s1 = st["controls"].get("1001")
+        if s1:  # the large-sample table reports data seed 1001
+            for k in ("minirocket", "catch22", "strong_union"):
+                n.put(f"strong/{k.replace('_', '')}/acc1001", s1[f"{k}_acc"], src)
+        dif = [c["strong_vs_all"]["tost_0.02"]["diff"] for c in ctl]
+        n.put("strong/vsall/min", min(dif), src)
+        n.put("strong/vsall/max", max(dif), src)
+        n.put(
+            "strong/vsall/nsig",
+            sum(c["strong_vs_all"]["mcnemar"]["p_value"] < 0.05 for c in ctl),
+            src,
+        )
+    for m, r in st.get("models", {}).items():
+        rk = CANON_MODELS.get(m, m.replace("_", ""))
+        g = r["h4_gain"]
+        n.put(f"repS/{rk}/nruns", r["n_runs"], src)
+        n.put(f"repS/{rk}/h4mean", float(np.mean(g)), src)
+        n.put(f"repS/{rk}/h4min", min(g), src)
+        n.put(f"repS/{rk}/h4max", max(g), src)
+        n.put(f"repS/{rk}/h4nsig", r["h4_n_positive_significant"], src)
+        n.put(f"repS/{rk}/h4nequiv", r["h4_n_equiv01"], src)
+        per_seed = np.asarray(g).reshape(r["n_seeds"], -1).mean(axis=1)
+        n.put(f"repS/{rk}/seedmin", float(per_seed.min()), src)
+        n.put(f"repS/{rk}/seedmax", float(per_seed.max()), src)
+        n.put(f"repS/{rk}/h1min", min(r["h1_lead"]), src)
+        n.put(f"repS/{rk}/h1max", max(r["h1_lead"]), src)
+        n.put(f"repS/{rk}/h1nsig", r["h1_n_control_significant"], src)
+        n.put(f"repS/{rk}/h3nequiv", r["h3_n_equiv01"], src)
     first = next(iter(d["dim_match"].values()))
     n.put("dm/ctrldim", first["controls_dim"], src)
     for k in ("64", "256"):
@@ -1490,6 +1618,9 @@ def replication(n: Numbers, root: Path) -> bool:
         n.put(f"rep/{k}/h4min", min(r["h4_gain"]), src)
         n.put(f"rep/{k}/h4max", max(r["h4_gain"]), src)
         n.put(f"rep/{k}/h4sd", r["h4_gain_sd"], src)
+        per_seed = np.asarray(r["h4_gain"]).reshape(r["n_data_seeds"], -1).mean(axis=1)
+        n.put(f"rep/{k}/seedmin", float(per_seed.min()), src)
+        n.put(f"rep/{k}/seedmax", float(per_seed.max()), src)
         n.put(f"rep/{k}/h4nsig", r["h4_n_positive_significant"], src)
         n.put(f"rep/{k}/h3nequiv", r["h3_n_equiv01"], src)
         n.put(f"rep/{k}/h4nequiv", r["h4_n_equiv01"], src)

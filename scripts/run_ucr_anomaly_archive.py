@@ -141,6 +141,31 @@ def tuned(X: NDArray, y: NDArray, sp: dict) -> NDArray:
     return best[1]
 
 
+def cluster_bootstrap(
+    diff: NDArray, groups: NDArray, n_boot: int = 10_000, seed: int = 0
+) -> dict[str, float]:
+    """Mean paired difference with a series-level (cluster) bootstrap interval and two-sided p.
+
+    Windows from one series are correlated, so whole series are resampled with replacement.
+    """
+    ids, inv = np.unique(groups, return_inverse=True)
+    sums = np.bincount(inv, weights=diff, minlength=len(ids))
+    counts = np.bincount(inv, minlength=len(ids)).astype(np.float64)
+    rng = np.random.default_rng(seed)
+    draw = rng.integers(0, len(ids), size=(n_boot, len(ids)))
+    boot = sums[draw].sum(1) / counts[draw].sum(1)
+    mean = float(diff.mean())
+    p = float(min(1.0, 2 * min(np.mean(boot <= 0), np.mean(boot >= 0))))
+    return {
+        "mean": mean,
+        "lo": float(np.quantile(boot, 0.025)),
+        "hi": float(np.quantile(boot, 0.975)),
+        "p": max(p, 1.0 / n_boot),
+        "n_series": int(len(ids)),
+        "n_windows": int(len(diff)),
+    }
+
+
 def main() -> int:
     from sklearn.metrics import roc_auc_score
 
@@ -202,9 +227,12 @@ def main() -> int:
     from scripts.run_minirocket_controls import minirocket
     from scripts.run_resolution_study import compare
 
+    pooled: dict[str, list] = {"group": [], "y": [], "ctrl": []}
     for seed in SEEDS:
         sp = group_split(groups, seed)
         y_te = y[sp["test"]]
+        pooled["group"].append(groups[sp["test"]])
+        pooled["y"].append(y_te)
         row: dict = {"n_test": int(len(y_te))}
         # MiniRocket is fit on this split's training windows and joins the control union.
         mr = minirocket(x[sp["train"]], x, args.jobs)
@@ -212,6 +240,7 @@ def main() -> int:
         row["ctrl:minirocket"] = {"acc": float(np.mean((p_mr > 0.5) == y_te))}
         C_plus = np.concatenate([C_all, mr], 1)
         p_cplus = tuned(C_plus, y, sp)
+        pooled["ctrl"].append(p_cplus)
         row["ctrl:all_plus_minirocket"] = {"acc": float(np.mean((p_cplus > 0.5) == y_te))}
 
         def acc(p: NDArray, yt: NDArray = y_te) -> float:
@@ -235,8 +264,14 @@ def main() -> int:
             Z = np.load(rdir / f"{best[1]}.npy").astype(np.float32)
             p_j = tuned(np.concatenate([C_all, Z], 1), y, sp)
             p_jplus = tuned(np.concatenate([C_plus, Z], 1), y, sp)
+            pooled.setdefault(f"joint:{m}", []).append(p_jplus)
+            pooled.setdefault(f"alone:{m}", []).append(best[2])
+            # Per-split cluster bootstrap over the split's test series.
+            g_te = groups[sp["test"]]
+            d_gain = ((p_jplus > 0.5) == y_te).astype(float) - ((p_cplus > 0.5) == y_te)
             row[f"model:{m}"] = {
                 "given_all_plus_minirocket": compare(p_jplus, p_cplus, y_te),
+                "given_all_plus_minirocket_cluster": cluster_bootstrap(d_gain, g_te),
                 "vs_all_plus_minirocket": compare(best[2], p_cplus, y_te),
                 "layer": best[1],
                 "acc": acc(best[2]),
@@ -261,6 +296,22 @@ def main() -> int:
             + " ".join(f"{m}={row[f'model:{m}']['acc']:.3f}" for m in MODELS),
             flush=True,
         )
+    # Pooled over the five splits' test windows, resampling series (a series in several test splits
+    # contributes all its appearances to one cluster).
+    pg, py = np.concatenate(pooled["group"]), np.concatenate(pooled["y"])
+    pc = (np.concatenate(pooled["ctrl"]) > 0.5) == py
+    res["cluster_pooled"] = {}
+    for m in MODELS:
+        pj = (np.concatenate(pooled[f"joint:{m}"]) > 0.5) == py
+        pa = (np.concatenate(pooled[f"alone:{m}"]) > 0.5) == py
+        res["cluster_pooled"][m] = {
+            "gain": cluster_bootstrap(pj.astype(float) - pc, pg),
+            "vs": cluster_bootstrap(pa.astype(float) - pc, pg),
+        }
+    np.savez(
+        store / "test_predictions.npz",
+        **{k.replace(":", "__"): np.concatenate(v) for k, v in pooled.items()},
+    )
     args.out.mkdir(parents=True, exist_ok=True)
     (args.out / "results.json").write_text(json.dumps(res, indent=1))
     return 0

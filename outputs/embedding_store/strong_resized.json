@@ -1,0 +1,906 @@
+{
+ "ACSF1": {
+  "minirocket_nn_acc": 0.82,
+  "minirocket_linear_acc": 0.86,
+  "minirocket_dim": 9996,
+  "catch22_nn_acc": 0.64,
+  "catch22_linear_acc": 0.65,
+  "catch22_dim": 22
+ },
+ "Adiac": {
+  "minirocket_nn_acc": 0.7570332480818415,
+  "minirocket_linear_acc": 0.8542199488491049,
+  "minirocket_dim": 9996,
+  "catch22_nn_acc": 0.578005115089514,
+  "catch22_linear_acc": 0.6086956521739131,
+  "catch22_dim": 22
+ },
+ "ArrowHead": {
+  "minirocket_nn_acc": 0.8857142857142857,
+  "minirocket_linear_acc": 0.8742857142857143,
+  "minirocket_dim": 9996,
+  "catch22_nn_acc": 0.6971428571428572,
+  "catch22_linear_acc": 0.6285714285714286,
+  "catch22_dim": 22
+ },
+ "BME": {
+  "minirocket_nn_acc": 0.9933333333333333,
+  "minirocket_linear_acc": 1.0,
+  "minirocket_dim": 9996,
+  "catch22_nn_acc": 0.92,
+  "catch22_linear_acc": 0.94,
+  "catch22_dim": 22
+ },
+ "Beef": {
+  "minirocket_nn_acc": 0.7,
+  "minirocket_linear_acc": 0.8,
+  "minirocket_dim": 9996,
+  "catch22_nn_acc": 0.6333333333333333,
+  "catch22_linear_acc": 0.5,
+  "catch22_dim": 22
+ },
+ "BeetleFly": {
+  "minirocket_nn_acc": 0.85,
+  "minirocket_linear_acc": 0.85,
+  "minirocket_dim": 9996,
+  "catch22_nn_acc": 0.5,
+  "catch22_linear_acc": 0.7,
+  "catch22_dim": 22
+ },
+ "BirdChicken": {
+  "minirocket_nn_acc": 0.8,
+  "minirocket_linear_acc": 0.9,
+  "minirocket_dim": 9996,
+  "catch22_nn_acc": 0.8,
+  "catch22_linear_acc": 0.85,
+  "catch22_dim": 22
+ },
+ "CBF": {
+  "minirocket_nn_acc": 0.9988888888888889,
+  "minirocket_linear_acc": 0.9988888888888889,
+  "minirocket_dim": 9996,
+  "catch22_nn_acc": 0.9022222222222223,
+  "catch22_linear_acc": 0.9722222222222222,
+  "catch22_dim": 22
+ },
+ "Car": {
+  "minirocket_nn_acc": 0.9333333333333333,
+  "minirocket_linear_acc": 0.9166666666666666,
+  "minirocket_dim": 9996,
+  "catch22_nn_acc": 0.7333333333333333,
+  "catch22_linear_acc": 0.6833333333333333,
+  "catch22_dim": 22
+ },
+ "Chinatown": {
+  "minirocket_nn_acc": 0.9271137026239067,
+  "minirocket_linear_acc": 0.9650145772594753,
+  "minirocket_dim": 9996,
+  "catch22_nn_acc": 0.9096209912536443,
+  "catch22_linear_acc": 0.924198250728863,
+  "catch22_dim": 22
+ },
+ "ChlorineConcentration": {
+  "minirocket_nn_acc": 0.63125,
+  "minirocket_linear_acc": 0.7546875,
+  "minirocket_dim": 9996,
+  "catch22_nn_acc": 0.5481770833333334,
+  "catch22_linear_acc": 0.5588541666666667,
+  "catch22_dim": 22
+ },
+ "CinCECGTorso": {
+  "minirocket_nn_acc": 0.7442028985507246,
+  "minirocket_linear_acc": 0.777536231884058,
+  "minirocket_dim": 9996,
+  "catch22_nn_acc": 0.6384057971014493,
+  "catch22_linear_acc": 0.722463768115942,
+  "catch22_dim": 22
+ },
+ "Coffee": {
+  "minirocket_nn_acc": 1.0,
+  "minirocket_linear_acc": 1.0,
+  "minirocket_dim": 9996,
+  "catch22_nn_acc": 0.9642857142857143,
+  "catch22_linear_acc": 1.0,
+  "catch22_dim": 22
+ },
+ "Computers": {
+  "minirocket_nn_acc": 0.704,
+  "minirocket_linear_acc": 0.764,
+  "minirocket_dim": 9996,
+  "catch22_nn_acc": 0.572,
+  "catch22_linear_acc": 0.7,
+  "catch22_dim": 22
+ },
+ "CricketX": {
+  "minirocket_nn_acc": 0.7384615384615385,
+  "minirocket_linear_acc": 0.7435897435897436,
+  "minirocket_dim": 9996,
+  "catch22_nn_acc": 0.5205128205128206,
+  "catch22_linear_acc": 0.4717948717948718,
+  "catch22_dim": 22
+ },
+ "CricketY": {
+  "minirocket_nn_acc": 0.7461538461538462,
+  "minirocket_linear_acc": 0.8256410256410256,
+  "minirocket_dim": 9996,
+  "catch22_nn_acc": 0.5230769230769231,
+  "catch22_linear_acc": 0.47435897435897434,
+  "catch22_dim": 22
+ },
+ "CricketZ": {
+  "minirocket_nn_acc": 0.7717948717948718,
+  "minirocket_linear_acc": 0.8076923076923077,
+  "minirocket_dim": 9996,
+  "catch22_nn_acc": 0.5512820512820513,
+  "catch22_linear_acc": 0.5282051282051282,
+  "catch22_dim": 22
+ },
+ "Crop": {
+  "minirocket_nn_acc": 0.68875,
+  "minirocket_linear_acc": 0.73375,
+  "minirocket_dim": 9996,
+  "catch22_nn_acc": 0.5775595238095238,
+  "catch22_linear_acc": 0.5088095238095238,
+  "catch22_dim": 22
+ },
+ "DiatomSizeReduction": {
+  "minirocket_nn_acc": 0.934640522875817,
+  "minirocket_linear_acc": 0.9117647058823529,
+  "minirocket_dim": 9996,
+  "catch22_nn_acc": 0.954248366013072,
+  "catch22_linear_acc": 0.9607843137254902,
+  "catch22_dim": 22
+ },
+ "DistalPhalanxOutlineAgeGroup": {
+  "minirocket_nn_acc": 0.7194244604316546,
+  "minirocket_linear_acc": 0.697841726618705,
+  "minirocket_dim": 9996,
+  "catch22_nn_acc": 0.6618705035971223,
+  "catch22_linear_acc": 0.6546762589928058,
+  "catch22_dim": 22
+ },
+ "DistalPhalanxOutlineCorrect": {
+  "minirocket_nn_acc": 0.7101449275362319,
+  "minirocket_linear_acc": 0.7898550724637681,
+  "minirocket_dim": 9996,
+  "catch22_nn_acc": 0.7318840579710145,
+  "catch22_linear_acc": 0.7391304347826086,
+  "catch22_dim": 22
+ },
+ "DistalPhalanxTW": {
+  "minirocket_nn_acc": 0.6330935251798561,
+  "minirocket_linear_acc": 0.697841726618705,
+  "minirocket_dim": 9996,
+  "catch22_nn_acc": 0.5971223021582733,
+  "catch22_linear_acc": 0.6402877697841727,
+  "catch22_dim": 22
+ },
+ "ECG200": {
+  "minirocket_nn_acc": 0.86,
+  "minirocket_linear_acc": 0.91,
+  "minirocket_dim": 9996,
+  "catch22_nn_acc": 0.75,
+  "catch22_linear_acc": 0.72,
+  "catch22_dim": 22
+ },
+ "ECG5000": {
+  "minirocket_nn_acc": 0.9237777777777778,
+  "minirocket_linear_acc": 0.9431111111111111,
+  "minirocket_dim": 9996,
+  "catch22_nn_acc": 0.9104444444444444,
+  "catch22_linear_acc": 0.9195555555555556,
+  "catch22_dim": 22
+ },
+ "ECGFiveDays": {
+  "minirocket_nn_acc": 0.9256678281068524,
+  "minirocket_linear_acc": 1.0,
+  "minirocket_dim": 9996,
+  "catch22_nn_acc": 0.7955865272938444,
+  "catch22_linear_acc": 0.7502903600464577,
+  "catch22_dim": 22
+ },
+ "EOGHorizontalSignal": {
+  "minirocket_nn_acc": 0.5359116022099447,
+  "minirocket_linear_acc": 0.569060773480663,
+  "minirocket_dim": 9996,
+  "catch22_nn_acc": 0.3756906077348066,
+  "catch22_linear_acc": 0.43646408839779005,
+  "catch22_dim": 22
+ },
+ "EOGVerticalSignal": {
+  "minirocket_nn_acc": 0.5,
+  "minirocket_linear_acc": 0.5220994475138122,
+  "minirocket_dim": 9996,
+  "catch22_nn_acc": 0.3674033149171271,
+  "catch22_linear_acc": 0.36187845303867405,
+  "catch22_dim": 22
+ },
+ "Earthquakes": {
+  "minirocket_nn_acc": 0.6474820143884892,
+  "minirocket_linear_acc": 0.7266187050359713,
+  "minirocket_dim": 9996,
+  "catch22_nn_acc": 0.6762589928057554,
+  "catch22_linear_acc": 0.7410071942446043,
+  "catch22_dim": 22
+ },
+ "ElectricDevices": {
+  "minirocket_nn_acc": 0.686681364284788,
+  "minirocket_linear_acc": 0.7194916353261575,
+  "minirocket_dim": 9996,
+  "catch22_nn_acc": 0.658280378679808,
+  "catch22_linear_acc": 0.6188561794838542,
+  "catch22_dim": 22
+ },
+ "EthanolLevel": {
+  "minirocket_nn_acc": 0.328,
+  "minirocket_linear_acc": 0.616,
+  "minirocket_dim": 9996,
+  "catch22_nn_acc": 0.272,
+  "catch22_linear_acc": 0.382,
+  "catch22_dim": 22
+ },
+ "FaceAll": {
+  "minirocket_nn_acc": 0.7715976331360946,
+  "minirocket_linear_acc": 0.7757396449704143,
+  "minirocket_dim": 9996,
+  "catch22_nn_acc": 0.7029585798816568,
+  "catch22_linear_acc": 0.6834319526627219,
+  "catch22_dim": 22
+ },
+ "FaceFour": {
+  "minirocket_nn_acc": 0.8181818181818182,
+  "minirocket_linear_acc": 0.9659090909090909,
+  "minirocket_dim": 9996,
+  "catch22_nn_acc": 0.6590909090909091,
+  "catch22_linear_acc": 0.5,
+  "catch22_dim": 22
+ },
+ "FacesUCR": {
+  "minirocket_nn_acc": 0.915609756097561,
+  "minirocket_linear_acc": 0.9263414634146342,
+  "minirocket_dim": 9996,
+  "catch22_nn_acc": 0.6229268292682927,
+  "catch22_linear_acc": 0.6492682926829269,
+  "catch22_dim": 22
+ },
+ "FiftyWords": {
+  "minirocket_nn_acc": 0.7362637362637363,
+  "minirocket_linear_acc": 0.8131868131868132,
+  "minirocket_dim": 9996,
+  "catch22_nn_acc": 0.4857142857142857,
+  "catch22_linear_acc": 0.5076923076923077,
+  "catch22_dim": 22
+ },
+ "Fish": {
+  "minirocket_nn_acc": 0.8742857142857143,
+  "minirocket_linear_acc": 0.9714285714285714,
+  "minirocket_dim": 9996,
+  "catch22_nn_acc": 0.6514285714285715,
+  "catch22_linear_acc": 0.7771428571428571,
+  "catch22_dim": 22
+ },
+ "FordA": {
+  "minirocket_nn_acc": 0.8757575757575757,
+  "minirocket_linear_acc": 0.9416666666666667,
+  "minirocket_dim": 9996,
+  "catch22_nn_acc": 0.7825757575757576,
+  "catch22_linear_acc": 0.8378787878787879,
+  "catch22_dim": 22
+ },
+ "FordB": {
+  "minirocket_nn_acc": 0.7123456790123457,
+  "minirocket_linear_acc": 0.8098765432098766,
+  "minirocket_dim": 9996,
+  "catch22_nn_acc": 0.6641975308641975,
+  "catch22_linear_acc": 0.6654320987654321,
+  "catch22_dim": 22
+ },
+ "FreezerRegularTrain": {
+  "minirocket_nn_acc": 0.9905263157894737,
+  "minirocket_linear_acc": 0.9901754385964913,
+  "minirocket_dim": 9996,
+  "catch22_nn_acc": 0.8989473684210526,
+  "catch22_linear_acc": 0.9371929824561404,
+  "catch22_dim": 22
+ },
+ "FreezerSmallTrain": {
+  "minirocket_nn_acc": 0.9435087719298245,
+  "minirocket_linear_acc": 0.9880701754385965,
+  "minirocket_dim": 9996,
+  "catch22_nn_acc": 0.8421052631578947,
+  "catch22_linear_acc": 0.887719298245614,
+  "catch22_dim": 22
+ },
+ "Fungi": {
+  "minirocket_nn_acc": 0.9946236559139785,
+  "minirocket_linear_acc": 1.0,
+  "minirocket_dim": 9996,
+  "catch22_nn_acc": 0.8064516129032258,
+  "catch22_linear_acc": 0.7849462365591398,
+  "catch22_dim": 22
+ },
+ "GunPoint": {
+  "minirocket_nn_acc": 0.9933333333333333,
+  "minirocket_linear_acc": 0.9933333333333333,
+  "minirocket_dim": 9996,
+  "catch22_nn_acc": 0.84,
+  "catch22_linear_acc": 0.8666666666666667,
+  "catch22_dim": 22
+ },
+ "GunPointAgeSpan": {
+  "minirocket_nn_acc": 0.9841772151898734,
+  "minirocket_linear_acc": 0.9746835443037974,
+  "minirocket_dim": 9996,
+  "catch22_nn_acc": 0.9145569620253164,
+  "catch22_linear_acc": 0.9082278481012658,
+  "catch22_dim": 22
+ },
+ "GunPointMaleVersusFemale": {
+  "minirocket_nn_acc": 1.0,
+  "minirocket_linear_acc": 0.9968354430379747,
+  "minirocket_dim": 9996,
+  "catch22_nn_acc": 0.9841772151898734,
+  "catch22_linear_acc": 0.9841772151898734,
+  "catch22_dim": 22
+ },
+ "GunPointOldVersusYoung": {
+  "minirocket_nn_acc": 0.9873015873015873,
+  "minirocket_linear_acc": 0.9936507936507937,
+  "minirocket_dim": 9996,
+  "catch22_nn_acc": 0.9714285714285714,
+  "catch22_linear_acc": 0.9650793650793651,
+  "catch22_dim": 22
+ },
+ "Ham": {
+  "minirocket_nn_acc": 0.5047619047619047,
+  "minirocket_linear_acc": 0.7428571428571429,
+  "minirocket_dim": 9996,
+  "catch22_nn_acc": 0.6285714285714286,
+  "catch22_linear_acc": 0.638095238095238,
+  "catch22_dim": 22
+ },
+ "HandOutlines": {
+  "minirocket_nn_acc": 0.8945945945945946,
+  "minirocket_linear_acc": 0.9378378378378378,
+  "minirocket_dim": 9996,
+  "catch22_nn_acc": 0.7162162162162162,
+  "catch22_linear_acc": 0.8,
+  "catch22_dim": 22
+ },
+ "Haptics": {
+  "minirocket_nn_acc": 0.461038961038961,
+  "minirocket_linear_acc": 0.5097402597402597,
+  "minirocket_dim": 9996,
+  "catch22_nn_acc": 0.37987012987012986,
+  "catch22_linear_acc": 0.44155844155844154,
+  "catch22_dim": 22
+ },
+ "Herring": {
+  "minirocket_nn_acc": 0.53125,
+  "minirocket_linear_acc": 0.6875,
+  "minirocket_dim": 9996,
+  "catch22_nn_acc": 0.5,
+  "catch22_linear_acc": 0.546875,
+  "catch22_dim": 22
+ },
+ "HouseTwenty": {
+  "minirocket_nn_acc": 0.9327731092436975,
+  "minirocket_linear_acc": 0.9663865546218487,
+  "minirocket_dim": 9996,
+  "catch22_nn_acc": 0.9663865546218487,
+  "catch22_linear_acc": 0.9663865546218487,
+  "catch22_dim": 22
+ },
+ "InlineSkate": {
+  "minirocket_nn_acc": 0.4381818181818182,
+  "minirocket_linear_acc": 0.49454545454545457,
+  "minirocket_dim": 9996,
+  "catch22_nn_acc": 0.33636363636363636,
+  "catch22_linear_acc": 0.3018181818181818,
+  "catch22_dim": 22
+ },
+ "InsectEPGRegularTrain": {
+  "minirocket_nn_acc": 0.8835341365461847,
+  "minirocket_linear_acc": 0.9759036144578314,
+  "minirocket_dim": 9996,
+  "catch22_nn_acc": 0.8995983935742972,
+  "catch22_linear_acc": 0.9437751004016064,
+  "catch22_dim": 22
+ },
+ "InsectEPGSmallTrain": {
+  "minirocket_nn_acc": 0.8192771084337349,
+  "minirocket_linear_acc": 0.9357429718875502,
+  "minirocket_dim": 9996,
+  "catch22_nn_acc": 0.7670682730923695,
+  "catch22_linear_acc": 0.8875502008032129,
+  "catch22_dim": 22
+ },
+ "InsectWingbeatSound": {
+  "minirocket_nn_acc": 0.5232323232323233,
+  "minirocket_linear_acc": 0.6419191919191919,
+  "minirocket_dim": 9996,
+  "catch22_nn_acc": 0.39646464646464646,
+  "catch22_linear_acc": 0.45505050505050504,
+  "catch22_dim": 22
+ },
+ "ItalyPowerDemand": {
+  "minirocket_nn_acc": 0.9251700680272109,
+  "minirocket_linear_acc": 0.9514091350826045,
+  "minirocket_dim": 9996,
+  "catch22_nn_acc": 0.7453838678328474,
+  "catch22_linear_acc": 0.8007774538386784,
+  "catch22_dim": 22
+ },
+ "LargeKitchenAppliances": {
+  "minirocket_nn_acc": 0.7066666666666667,
+  "minirocket_linear_acc": 0.8266666666666667,
+  "minirocket_dim": 9996,
+  "catch22_nn_acc": 0.744,
+  "catch22_linear_acc": 0.864,
+  "catch22_dim": 22
+ },
+ "Lightning2": {
+  "minirocket_nn_acc": 0.819672131147541,
+  "minirocket_linear_acc": 0.7377049180327869,
+  "minirocket_dim": 9996,
+  "catch22_nn_acc": 0.6721311475409836,
+  "catch22_linear_acc": 0.7049180327868853,
+  "catch22_dim": 22
+ },
+ "Lightning7": {
+  "minirocket_nn_acc": 0.6986301369863014,
+  "minirocket_linear_acc": 0.8356164383561644,
+  "minirocket_dim": 9996,
+  "catch22_nn_acc": 0.5616438356164384,
+  "catch22_linear_acc": 0.7397260273972602,
+  "catch22_dim": 22
+ },
+ "Mallat": {
+  "minirocket_nn_acc": 0.8801705756929638,
+  "minirocket_linear_acc": 0.9168443496801706,
+  "minirocket_dim": 9996,
+  "catch22_nn_acc": 0.7889125799573561,
+  "catch22_linear_acc": 0.8345415778251599,
+  "catch22_dim": 22
+ },
+ "Meat": {
+  "minirocket_nn_acc": 0.9333333333333333,
+  "minirocket_linear_acc": 0.9666666666666667,
+  "minirocket_dim": 9996,
+  "catch22_nn_acc": 0.75,
+  "catch22_linear_acc": 0.7333333333333333,
+  "catch22_dim": 22
+ },
+ "MedicalImages": {
+  "minirocket_nn_acc": 0.7855263157894737,
+  "minirocket_linear_acc": 0.8,
+  "minirocket_dim": 9996,
+  "catch22_nn_acc": 0.6986842105263158,
+  "catch22_linear_acc": 0.6710526315789473,
+  "catch22_dim": 22
+ },
+ "MiddlePhalanxOutlineAgeGroup": {
+  "minirocket_nn_acc": 0.5454545454545454,
+  "minirocket_linear_acc": 0.564935064935065,
+  "minirocket_dim": 9996,
+  "catch22_nn_acc": 0.474025974025974,
+  "catch22_linear_acc": 0.538961038961039,
+  "catch22_dim": 22
+ },
+ "MiddlePhalanxOutlineCorrect": {
+  "minirocket_nn_acc": 0.7525773195876289,
+  "minirocket_linear_acc": 0.8487972508591065,
+  "minirocket_dim": 9996,
+  "catch22_nn_acc": 0.6563573883161512,
+  "catch22_linear_acc": 0.7285223367697594,
+  "catch22_dim": 22
+ },
+ "MiddlePhalanxTW": {
+  "minirocket_nn_acc": 0.5,
+  "minirocket_linear_acc": 0.4935064935064935,
+  "minirocket_dim": 9996,
+  "catch22_nn_acc": 0.512987012987013,
+  "catch22_linear_acc": 0.5454545454545454,
+  "catch22_dim": 22
+ },
+ "MixedShapesRegularTrain": {
+  "minirocket_nn_acc": 0.9406185567010309,
+  "minirocket_linear_acc": 0.963298969072165,
+  "minirocket_dim": 9996,
+  "catch22_nn_acc": 0.8820618556701031,
+  "catch22_linear_acc": 0.8738144329896907,
+  "catch22_dim": 22
+ },
+ "MixedShapesSmallTrain": {
+  "minirocket_nn_acc": 0.8853608247422681,
+  "minirocket_linear_acc": 0.9336082474226804,
+  "minirocket_dim": 9996,
+  "catch22_nn_acc": 0.7975257731958763,
+  "catch22_linear_acc": 0.8160824742268041,
+  "catch22_dim": 22
+ },
+ "MoteStrain": {
+  "minirocket_nn_acc": 0.8314696485623003,
+  "minirocket_linear_acc": 0.952076677316294,
+  "minirocket_dim": 9996,
+  "catch22_nn_acc": 0.786741214057508,
+  "catch22_linear_acc": 0.8242811501597445,
+  "catch22_dim": 22
+ },
+ "NonInvasiveFetalECGThorax1": {
+  "minirocket_nn_acc": 0.8717557251908397,
+  "minirocket_linear_acc": 0.9465648854961832,
+  "minirocket_dim": 9996,
+  "catch22_nn_acc": 0.7180661577608143,
+  "catch22_linear_acc": 0.8020356234096692,
+  "catch22_dim": 22
+ },
+ "NonInvasiveFetalECGThorax2": {
+  "minirocket_nn_acc": 0.9124681933842239,
+  "minirocket_linear_acc": 0.9531806615776082,
+  "minirocket_dim": 9996,
+  "catch22_nn_acc": 0.7725190839694657,
+  "catch22_linear_acc": 0.8376590330788805,
+  "catch22_dim": 22
+ },
+ "OSULeaf": {
+  "minirocket_nn_acc": 0.8181818181818182,
+  "minirocket_linear_acc": 0.9421487603305785,
+  "minirocket_dim": 9996,
+  "catch22_nn_acc": 0.6198347107438017,
+  "catch22_linear_acc": 0.7603305785123967,
+  "catch22_dim": 22
+ },
+ "OliveOil": {
+  "minirocket_nn_acc": 0.9,
+  "minirocket_linear_acc": 0.9666666666666667,
+  "minirocket_dim": 9996,
+  "catch22_nn_acc": 0.6333333333333333,
+  "catch22_linear_acc": 0.6666666666666666,
+  "catch22_dim": 22
+ },
+ "PhalangesOutlinesCorrect": {
+  "minirocket_nn_acc": 0.7645687645687645,
+  "minirocket_linear_acc": 0.8473193473193473,
+  "minirocket_dim": 9996,
+  "catch22_nn_acc": 0.7004662004662005,
+  "catch22_linear_acc": 0.7016317016317016,
+  "catch22_dim": 22
+ },
+ "Phoneme": {
+  "minirocket_nn_acc": 0.229957805907173,
+  "minirocket_linear_acc": 0.28744725738396626,
+  "minirocket_dim": 9996,
+  "catch22_nn_acc": 0.1872362869198312,
+  "catch22_linear_acc": 0.25843881856540085,
+  "catch22_dim": 22
+ },
+ "PigAirwayPressure": {
+  "minirocket_nn_acc": 0.18269230769230768,
+  "minirocket_linear_acc": 0.3701923076923077,
+  "minirocket_dim": 9996,
+  "catch22_nn_acc": 0.125,
+  "catch22_linear_acc": 0.125,
+  "catch22_dim": 22
+ },
+ "PigArtPressure": {
+  "minirocket_nn_acc": 0.9230769230769231,
+  "minirocket_linear_acc": 0.9567307692307693,
+  "minirocket_dim": 9996,
+  "catch22_nn_acc": 0.7548076923076923,
+  "catch22_linear_acc": 0.7115384615384616,
+  "catch22_dim": 22
+ },
+ "PigCVP": {
+  "minirocket_nn_acc": 0.6875,
+  "minirocket_linear_acc": 0.8461538461538461,
+  "minirocket_dim": 9996,
+  "catch22_nn_acc": 0.30288461538461536,
+  "catch22_linear_acc": 0.3317307692307692,
+  "catch22_dim": 22
+ },
+ "Plane": {
+  "minirocket_nn_acc": 1.0,
+  "minirocket_linear_acc": 1.0,
+  "minirocket_dim": 9996,
+  "catch22_nn_acc": 0.9523809523809523,
+  "catch22_linear_acc": 0.9809523809523809,
+  "catch22_dim": 22
+ },
+ "PowerCons": {
+  "minirocket_nn_acc": 0.9055555555555556,
+  "minirocket_linear_acc": 0.9833333333333333,
+  "minirocket_dim": 9996,
+  "catch22_nn_acc": 0.8666666666666667,
+  "catch22_linear_acc": 0.8333333333333334,
+  "catch22_dim": 22
+ },
+ "ProximalPhalanxOutlineAgeGroup": {
+  "minirocket_nn_acc": 0.8097560975609757,
+  "minirocket_linear_acc": 0.8390243902439024,
+  "minirocket_dim": 9996,
+  "catch22_nn_acc": 0.7609756097560976,
+  "catch22_linear_acc": 0.8097560975609757,
+  "catch22_dim": 22
+ },
+ "ProximalPhalanxOutlineCorrect": {
+  "minirocket_nn_acc": 0.8316151202749141,
+  "minirocket_linear_acc": 0.9140893470790378,
+  "minirocket_dim": 9996,
+  "catch22_nn_acc": 0.7835051546391752,
+  "catch22_linear_acc": 0.8213058419243986,
+  "catch22_dim": 22
+ },
+ "ProximalPhalanxTW": {
+  "minirocket_nn_acc": 0.7268292682926829,
+  "minirocket_linear_acc": 0.8048780487804879,
+  "minirocket_dim": 9996,
+  "catch22_nn_acc": 0.7365853658536585,
+  "catch22_linear_acc": 0.7853658536585366,
+  "catch22_dim": 22
+ },
+ "RefrigerationDevices": {
+  "minirocket_nn_acc": 0.47733333333333333,
+  "minirocket_linear_acc": 0.45866666666666667,
+  "minirocket_dim": 9996,
+  "catch22_nn_acc": 0.5093333333333333,
+  "catch22_linear_acc": 0.5093333333333333,
+  "catch22_dim": 22
+ },
+ "Rock": {
+  "minirocket_nn_acc": 0.72,
+  "minirocket_linear_acc": 0.76,
+  "minirocket_dim": 9996,
+  "catch22_nn_acc": 0.68,
+  "catch22_linear_acc": 0.78,
+  "catch22_dim": 22
+ },
+ "ScreenType": {
+  "minirocket_nn_acc": 0.432,
+  "minirocket_linear_acc": 0.4533333333333333,
+  "minirocket_dim": 9996,
+  "catch22_nn_acc": 0.45066666666666666,
+  "catch22_linear_acc": 0.448,
+  "catch22_dim": 22
+ },
+ "SemgHandGenderCh2": {
+  "minirocket_nn_acc": 0.8616666666666667,
+  "minirocket_linear_acc": 0.88,
+  "minirocket_dim": 9996,
+  "catch22_nn_acc": 0.6966666666666667,
+  "catch22_linear_acc": 0.765,
+  "catch22_dim": 22
+ },
+ "SemgHandMovementCh2": {
+  "minirocket_nn_acc": 0.6911111111111111,
+  "minirocket_linear_acc": 0.5666666666666667,
+  "minirocket_dim": 9996,
+  "catch22_nn_acc": 0.46,
+  "catch22_linear_acc": 0.43777777777777777,
+  "catch22_dim": 22
+ },
+ "SemgHandSubjectCh2": {
+  "minirocket_nn_acc": 0.8222222222222222,
+  "minirocket_linear_acc": 0.8377777777777777,
+  "minirocket_dim": 9996,
+  "catch22_nn_acc": 0.6355555555555555,
+  "catch22_linear_acc": 0.6955555555555556,
+  "catch22_dim": 22
+ },
+ "ShapeletSim": {
+  "minirocket_nn_acc": 0.9833333333333333,
+  "minirocket_linear_acc": 0.9944444444444445,
+  "minirocket_dim": 9996,
+  "catch22_nn_acc": 0.9555555555555556,
+  "catch22_linear_acc": 0.9888888888888889,
+  "catch22_dim": 22
+ },
+ "ShapesAll": {
+  "minirocket_nn_acc": 0.8916666666666667,
+  "minirocket_linear_acc": 0.8983333333333333,
+  "minirocket_dim": 9996,
+  "catch22_nn_acc": 0.6533333333333333,
+  "catch22_linear_acc": 0.64,
+  "catch22_dim": 22
+ },
+ "SmallKitchenAppliances": {
+  "minirocket_nn_acc": 0.7146666666666667,
+  "minirocket_linear_acc": 0.8106666666666666,
+  "minirocket_dim": 9996,
+  "catch22_nn_acc": 0.6986666666666667,
+  "catch22_linear_acc": 0.7786666666666666,
+  "catch22_dim": 22
+ },
+ "SmoothSubspace": {
+  "minirocket_nn_acc": 0.78,
+  "minirocket_linear_acc": 0.9466666666666667,
+  "minirocket_dim": 9996,
+  "catch22_nn_acc": 0.7533333333333333,
+  "catch22_linear_acc": 0.8266666666666667,
+  "catch22_dim": 22
+ },
+ "SonyAIBORobotSurface1": {
+  "minirocket_nn_acc": 0.8053244592346089,
+  "minirocket_linear_acc": 0.8718801996672213,
+  "minirocket_dim": 9996,
+  "catch22_nn_acc": 0.8136439267886856,
+  "catch22_linear_acc": 0.8386023294509152,
+  "catch22_dim": 22
+ },
+ "SonyAIBORobotSurface2": {
+  "minirocket_nn_acc": 0.8929695697796433,
+  "minirocket_linear_acc": 0.9632738719832109,
+  "minirocket_dim": 9996,
+  "catch22_nn_acc": 0.9202518363064008,
+  "catch22_linear_acc": 0.9213011542497377,
+  "catch22_dim": 22
+ },
+ "StarLightCurves": {
+  "minirocket_nn_acc": 0.9740165128703254,
+  "minirocket_linear_acc": 0.9793589120932491,
+  "minirocket_dim": 9996,
+  "catch22_nn_acc": 0.9327343370568237,
+  "catch22_linear_acc": 0.9547110247693055,
+  "catch22_dim": 22
+ },
+ "Strawberry": {
+  "minirocket_nn_acc": 0.9594594594594594,
+  "minirocket_linear_acc": 0.9783783783783784,
+  "minirocket_dim": 9996,
+  "catch22_nn_acc": 0.9,
+  "catch22_linear_acc": 0.8405405405405405,
+  "catch22_dim": 22
+ },
+ "SwedishLeaf": {
+  "minirocket_nn_acc": 0.9232,
+  "minirocket_linear_acc": 0.9568,
+  "minirocket_dim": 9996,
+  "catch22_nn_acc": 0.816,
+  "catch22_linear_acc": 0.8256,
+  "catch22_dim": 22
+ },
+ "Symbols": {
+  "minirocket_nn_acc": 0.9798994974874372,
+  "minirocket_linear_acc": 0.9809045226130654,
+  "minirocket_dim": 9996,
+  "catch22_nn_acc": 0.9417085427135679,
+  "catch22_linear_acc": 0.9467336683417086,
+  "catch22_dim": 22
+ },
+ "SyntheticControl": {
+  "minirocket_nn_acc": 0.9866666666666667,
+  "minirocket_linear_acc": 0.9933333333333333,
+  "minirocket_dim": 9996,
+  "catch22_nn_acc": 0.93,
+  "catch22_linear_acc": 0.9633333333333334,
+  "catch22_dim": 22
+ },
+ "ToeSegmentation1": {
+  "minirocket_nn_acc": 0.8596491228070176,
+  "minirocket_linear_acc": 0.9692982456140351,
+  "minirocket_dim": 9996,
+  "catch22_nn_acc": 0.7280701754385965,
+  "catch22_linear_acc": 0.7807017543859649,
+  "catch22_dim": 22
+ },
+ "ToeSegmentation2": {
+  "minirocket_nn_acc": 0.9,
+  "minirocket_linear_acc": 0.8923076923076924,
+  "minirocket_dim": 9996,
+  "catch22_nn_acc": 0.7692307692307693,
+  "catch22_linear_acc": 0.7769230769230769,
+  "catch22_dim": 22
+ },
+ "Trace": {
+  "minirocket_nn_acc": 1.0,
+  "minirocket_linear_acc": 1.0,
+  "minirocket_dim": 9996,
+  "catch22_nn_acc": 1.0,
+  "catch22_linear_acc": 1.0,
+  "catch22_dim": 22
+ },
+ "TwoLeadECG": {
+  "minirocket_nn_acc": 0.9841966637401229,
+  "minirocket_linear_acc": 0.9938542581211589,
+  "minirocket_dim": 9996,
+  "catch22_nn_acc": 0.7576821773485514,
+  "catch22_linear_acc": 0.8726953467954346,
+  "catch22_dim": 22
+ },
+ "TwoPatterns": {
+  "minirocket_nn_acc": 0.98775,
+  "minirocket_linear_acc": 1.0,
+  "minirocket_dim": 9996,
+  "catch22_nn_acc": 0.642,
+  "catch22_linear_acc": 0.808,
+  "catch22_dim": 22
+ },
+ "UMD": {
+  "minirocket_nn_acc": 0.9722222222222222,
+  "minirocket_linear_acc": 0.9930555555555556,
+  "minirocket_dim": 9996,
+  "catch22_nn_acc": 0.8958333333333334,
+  "catch22_linear_acc": 0.8402777777777778,
+  "catch22_dim": 22
+ },
+ "UWaveGestureLibraryAll": {
+  "minirocket_nn_acc": 0.9522613065326633,
+  "minirocket_linear_acc": 0.9653824678950307,
+  "minirocket_dim": 9996,
+  "catch22_nn_acc": 0.6887213847012842,
+  "catch22_linear_acc": 0.7406476828587382,
+  "catch22_dim": 22
+ },
+ "UWaveGestureLibraryX": {
+  "minirocket_nn_acc": 0.8196538246789503,
+  "minirocket_linear_acc": 0.8478503629257398,
+  "minirocket_dim": 9996,
+  "catch22_nn_acc": 0.6655499720826354,
+  "catch22_linear_acc": 0.67392518146287,
+  "catch22_dim": 22
+ },
+ "UWaveGestureLibraryY": {
+  "minirocket_nn_acc": 0.7599106644332775,
+  "minirocket_linear_acc": 0.7752652149637074,
+  "minirocket_dim": 9996,
+  "catch22_nn_acc": 0.5977107761027359,
+  "catch22_linear_acc": 0.6088777219430486,
+  "catch22_dim": 22
+ },
+ "UWaveGestureLibraryZ": {
+  "minirocket_nn_acc": 0.7627024008933556,
+  "minirocket_linear_acc": 0.798715801228364,
+  "minirocket_dim": 9996,
+  "catch22_nn_acc": 0.6178112786152987,
+  "catch22_linear_acc": 0.6465661641541038,
+  "catch22_dim": 22
+ },
+ "Wafer": {
+  "minirocket_nn_acc": 0.9928617780661908,
+  "minirocket_linear_acc": 0.999675535366645,
+  "minirocket_dim": 9996,
+  "catch22_nn_acc": 0.986859182349124,
+  "catch22_linear_acc": 0.9933484750162233,
+  "catch22_dim": 22
+ },
+ "Wine": {
+  "minirocket_nn_acc": 0.6481481481481481,
+  "minirocket_linear_acc": 0.8333333333333334,
+  "minirocket_dim": 9996,
+  "catch22_nn_acc": 0.6481481481481481,
+  "catch22_linear_acc": 0.5555555555555556,
+  "catch22_dim": 22
+ },
+ "WordSynonyms": {
+  "minirocket_nn_acc": 0.7021943573667712,
+  "minirocket_linear_acc": 0.7210031347962382,
+  "minirocket_dim": 9996,
+  "catch22_nn_acc": 0.45297805642633227,
+  "catch22_linear_acc": 0.43103448275862066,
+  "catch22_dim": 22
+ },
+ "Worms": {
+  "minirocket_nn_acc": 0.6753246753246753,
+  "minirocket_linear_acc": 0.7402597402597403,
+  "minirocket_dim": 9996,
+  "catch22_nn_acc": 0.6883116883116883,
+  "catch22_linear_acc": 0.7012987012987013,
+  "catch22_dim": 22
+ },
+ "WormsTwoClass": {
+  "minirocket_nn_acc": 0.7402597402597403,
+  "minirocket_linear_acc": 0.7792207792207793,
+  "minirocket_dim": 9996,
+  "catch22_nn_acc": 0.7922077922077922,
+  "catch22_linear_acc": 0.7532467532467533,
+  "catch22_dim": 22
+ },
+ "Yoga": {
+  "minirocket_nn_acc": 0.8693333333333333,
+  "minirocket_linear_acc": 0.9056666666666666,
+  "minirocket_dim": 9996,
+  "catch22_nn_acc": 0.7373333333333333,
+  "catch22_linear_acc": 0.6696666666666666,
+  "catch22_dim": 22
+ }
+}

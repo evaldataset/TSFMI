@@ -22,25 +22,30 @@ validation-selected layer, test score reported. All values come from `outputs/ca
 | **Anomaly** | 0.485 | **0.858** | **0.756** (TimesFM 2.0) |
 | Change point | 1.000 | 1.000 | 1.000 |
 
+Every number the manuscript reports is generated from the result files below by
+`tools/make_numbers.py` (`make paper-numbers`); the summary here is qualitative so that it cannot drift
+from them.
+
 - **Strongest control.** Across 20 task settings (6 canonical properties, 5 hard variants, a
-  mixed-type anomaly generator under 3 data seeds, 6 UCR datasets) the best model exceeds the strongest
-  non-model control in 6, by at most 0.019, below what 200 test windows can resolve (`sc/*` keys).
+  mixed-type anomaly generator under 3 data seeds, 6 UCR datasets) the strongest evaluated non-model
+  control (including catch22 and MiniRocket) matches or exceeds the best model almost everywhere
+  (`sc/*` keys; `outputs/strong_controls_ext/`).
 - **Resolution.** With 50,000 freshly generated windows (10,000 paired test windows) the ties resolve
-  in favour of the controls: on the realistic anomaly task `tsfresh` leads the best model by 0.050, on
-  the canonical task `max|x|` by 0.057 (McNemar p < 0.001; `outputs/resolution_study/`).
-- **Conditional probing.** Mean-pooled model representations add nothing beyond ±0.01 accuracy
-  (TOST) to the union of hand-crafted, `tsfresh`, and ROCKET-style features. Through a cross-fitted
-  attention pooling of its tokens, TimesFM adds +0.013 [0.008, 0.019] (Holm p < 0.001); no other model
-  does.
-- **Pretraining, not architecture.** Re-initialised models match the pretrained ones on 34 of 35
-  saturated (model, property) cells and fall towards chance on anomaly tasks
-  (`outputs/canonical_v2_randinit/`).
-- **Embedding store.** On 113 UCR datasets, 1-NN over the embeddings of six of the seven models beats
-  Euclidean distance and is level with DTW and ROCKET-style features (`outputs/embedding_store/`);
-  TimesFM's one-step forecast surprise (AUC 0.889) is slightly below an AR(16) residual detector
-  (0.895) that is about 930 times cheaper (`outputs/forecast_surprise/`).
-- **Erasure.** A label proxy as predictive as the erased statistics removes as much signal; an exact
-  bound, corr ≤ sqrt(1 − R²), explains why (`outputs/erasure_bound/`).
+  in favour of the controls (`outputs/resolution_study/`).
+- **Conditional probing.** Mean-pooled model representations add nothing beyond ±0.01 accuracy (TOST)
+  to the control union. A cross-fitted attention read-out of pretrained tokens adds a small, replicated
+  gain over hand-crafted + `tsfresh` + ROCKET-style features that the controls' own token maps do not
+  reproduce; once MiniRocket and catch22 join the union, every run is within ±0.01
+  (`outputs/replication/`, `outputs/revision_controls/`). A supervised 1-D ResNet shows that much
+  accuracy remains for all frozen views and controls (`outputs/bayes_headroom/`).
+- **Real anomaly data.** On the UCR Time Series Anomaly Archive, mean-pooled PatchTST-FM adds accuracy
+  beyond the strongest control union under a series-level bootstrap; reversed and negated windows are a
+  sensitivity check (`outputs/ucr_anomaly_archive*/`).
+- **Embedding store.** On 113 UCR datasets, 1-NN over most embeddings beats Euclidean distance, and
+  MiniRocket beats every embedding, also on the same 512-step input (`outputs/embedding_store/`).
+- **Erasure.** A label proxy as predictive as the erased statistics also collapses the probes; the
+  bound corr ≤ sqrt(1 − R²) explains why erasure alone cannot attribute the signal
+  (`outputs/erasure_bound/`).
 
 Intervals are corrected resampled-t intervals (Nadeau & Bengio, 2003) for the overlapping split seeds.
 
@@ -52,6 +57,7 @@ unzip TSFMI.zip && cd TSFMI
 python -m venv .venv && source .venv/bin/activate
 pip install -r requirements.txt && pip install -e ".[dev]"
 make smoke
+# TSFM checkpoints additionally need: pip install -r requirements-models.txt
 ```
 
 `make smoke` reproduces one cell of the canonical baseline grid, the per-feature attribution, and the

@@ -77,6 +77,36 @@
           0.72
         ],
         "dim": 777
+      },
+      "minirocket": {
+        "mean": 0.688,
+        "ci95": [
+          0.652,
+          0.73
+        ],
+        "per_seed": [
+          0.675,
+          0.675,
+          0.755,
+          0.71,
+          0.625
+        ],
+        "dim": 9996
+      },
+      "catch22": {
+        "mean": 0.851,
+        "ci95": [
+          0.826,
+          0.874
+        ],
+        "per_seed": [
+          0.825,
+          0.81,
+          0.89,
+          0.86,
+          0.87
+        ],
+        "dim": 22
       }
     },
     "43": {
@@ -154,6 +184,36 @@
           0.7
         ],
         "dim": 777
+      },
+      "minirocket": {
+        "mean": 0.741,
+        "ci95": [
+          0.725,
+          0.758
+        ],
+        "per_seed": [
+          0.77,
+          0.72,
+          0.725,
+          0.755,
+          0.735
+        ],
+        "dim": 9996
+      },
+      "catch22": {
+        "mean": 0.841,
+        "ci95": [
+          0.818,
+          0.861
+        ],
+        "per_seed": [
+          0.845,
+          0.83,
+          0.87,
+          0.86,
+          0.8
+        ],
+        "dim": 22
       }
     },
     "44": {
@@ -231,6 +291,36 @@
           0.645
         ],
         "dim": 777
+      },
+      "minirocket": {
+        "mean": 0.707,
+        "ci95": [
+          0.68,
+          0.741
+        ],
+        "per_seed": [
+          0.665,
+          0.69,
+          0.69,
+          0.775,
+          0.715
+        ],
+        "dim": 9996
+      },
+      "catch22": {
+        "mean": 0.829,
+        "ci95": [
+          0.804,
+          0.854
+        ],
+        "per_seed": [
+          0.795,
+          0.79,
+          0.86,
+          0.85,
+          0.85
+        ],
+        "dim": 22
       }
     }
   },
@@ -280,6 +370,36 @@
           0.95
         ],
         "dim": 2048
+      },
+      "minirocket": {
+        "mean": 0.977,
+        "ci95": [
+          0.97,
+          0.982
+        ],
+        "per_seed": [
+          0.98,
+          0.98,
+          0.985,
+          0.965,
+          0.975
+        ],
+        "dim": 9996
+      },
+      "catch22": {
+        "mean": 0.964,
+        "ci95": [
+          0.95,
+          0.979
+        ],
+        "per_seed": [
+          0.99,
+          0.965,
+          0.965,
+          0.94,
+          0.96
+        ],
+        "dim": 22
       }
     },
     "frequency_hard": {
@@ -327,6 +447,36 @@
           0.995
         ],
         "dim": 2048
+      },
+      "minirocket": {
+        "mean": 1.0,
+        "ci95": [
+          1.0,
+          1.0
+        ],
+        "per_seed": [
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0
+        ],
+        "dim": 9996
+      },
+      "catch22": {
+        "mean": 0.688,
+        "ci95": [
+          0.679,
+          0.697
+        ],
+        "per_seed": [
+          0.68,
+          0.685,
+          0.675,
+          0.7,
+          0.7
+        ],
+        "dim": 22
       }
     },
     "anomaly_hard": {
@@ -374,6 +524,36 @@
           0.955
         ],
         "dim": 2048
+      },
+      "minirocket": {
+        "mean": 0.883,
+        "ci95": [
+          0.87,
+          0.894
+        ],
+        "per_seed": [
+          0.885,
+          0.875,
+          0.895,
+          0.86,
+          0.9
+        ],
+        "dim": 9996
+      },
+      "catch22": {
+        "mean": 0.961,
+        "ci95": [
+          0.951,
+          0.97
+        ],
+        "per_seed": [
+          0.95,
+          0.965,
+          0.975,
+          0.945,
+          0.97
+        ],
+        "dim": 22
       }
     },
     "stationarity_hard": {
@@ -421,6 +601,36 @@
           0.995
         ],
         "dim": 2048
+      },
+      "minirocket": {
+        "mean": 0.998,
+        "ci95": [
+          0.996,
+          1.0
+        ],
+        "per_seed": [
+          1.0,
+          0.995,
+          0.995,
+          1.0,
+          1.0
+        ],
+        "dim": 9996
+      },
+      "catch22": {
+        "mean": 0.996,
+        "ci95": [
+          0.995,
+          0.998
+        ],
+        "per_seed": [
+          0.995,
+          1.0,
+          0.995,
+          0.995,
+          0.995
+        ],
+        "dim": 22
       }
     },
     "change_point_hard": {
@@ -468,6 +678,36 @@
           0.965
         ],
         "dim": 2048
+      },
+      "minirocket": {
+        "mean": 0.972,
+        "ci95": [
+          0.968,
+          0.976
+        ],
+        "per_seed": [
+          0.965,
+          0.97,
+          0.975,
+          0.97,
+          0.98
+        ],
+        "dim": 9996
+      },
+      "catch22": {
+        "mean": 0.986,
+        "ci95": [
+          0.983,
+          0.989
+        ],
+        "per_seed": [
+          0.99,
+          0.985,
+          0.985,
+          0.99,
+          0.98
+        ],
+        "dim": 22
       }
     }
   },
@@ -481,7 +721,9 @@
       "hand_crafted_native": 0.7691,
       "n_train": 100,
       "n_test": 100,
-      "positive_rate_train": 0.31
+      "positive_rate_train": 0.31,
+      "minirocket": 0.9588,
+      "catch22": 0.822
     },
     "Wafer": {
       "raw_signal": 0.8668,
@@ -492,7 +734,9 @@
       "hand_crafted_native": 0.7666,
       "n_train": 1000,
       "n_test": 6164,
-      "positive_rate_train": 0.097
+      "positive_rate_train": 0.097,
+      "minirocket": 1.0,
+      "catch22": 0.9989
     },
     "Earthquakes": {
       "raw_signal": 0.5516,
@@ -503,7 +747,9 @@
       "hand_crafted_native": 0.6308,
       "n_train": 322,
       "n_test": 139,
-      "positive_rate_train": 0.1801
+      "positive_rate_train": 0.1801,
+      "minirocket": 0.6838,
+      "catch22": 0.642
     },
     "FordA": {
       "raw_signal": 0.4867,
@@ -514,7 +760,9 @@
       "hand_crafted_native": 0.6495,
       "n_train": 3601,
       "n_test": 1320,
-      "positive_rate_train": 0.4874
+      "positive_rate_train": 0.4874,
+      "minirocket": 0.9876,
+      "catch22": 0.9233
     },
     "FordB": {
       "raw_signal": 0.4803,
@@ -525,7 +773,9 @@
       "hand_crafted_native": 0.4828,
       "n_train": 3636,
       "n_test": 810,
-      "positive_rate_train": 0.4884
+      "positive_rate_train": 0.4884,
+      "minirocket": 0.9003,
+      "catch22": 0.7597
     },
     "Strawberry": {
       "raw_signal": 0.9901,
@@ -536,7 +786,9 @@
       "hand_crafted_native": 0.8584,
       "n_train": 613,
       "n_test": 370,
-      "positive_rate_train": 0.3573
+      "positive_rate_train": 0.3573,
+      "minirocket": 0.9954,
+      "catch22": 0.9103
     }
   },
   "command": "scripts/run_strong_controls_ext.py --out outputs/strong_controls_ext",
@@ -571,6 +823,36 @@
           1.0
         ],
         "dim": 777
+      },
+      "minirocket": {
+        "mean": 1.0,
+        "ci95": [
+          1.0,
+          1.0
+        ],
+        "per_seed": [
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0
+        ],
+        "dim": 9996
+      },
+      "catch22": {
+        "mean": 1.0,
+        "ci95": [
+          1.0,
+          1.0
+        ],
+        "per_seed": [
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0
+        ],
+        "dim": 22
       }
     },
     "seasonality": {
@@ -603,6 +885,36 @@
           0.9937
         ],
         "dim": 777
+      },
+      "minirocket": {
+        "mean": 0.9999,
+        "ci95": [
+          0.9999,
+          0.9999
+        ],
+        "per_seed": [
+          0.9999,
+          0.9999,
+          0.9999,
+          1.0,
+          0.9999
+        ],
+        "dim": 9996
+      },
+      "catch22": {
+        "mean": 1.0,
+        "ci95": [
+          1.0,
+          1.0
+        ],
+        "per_seed": [
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0
+        ],
+        "dim": 22
       }
     },
     "frequency": {
@@ -635,6 +947,36 @@
           1.0
         ],
         "dim": 777
+      },
+      "minirocket": {
+        "mean": 1.0,
+        "ci95": [
+          1.0,
+          1.0
+        ],
+        "per_seed": [
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0
+        ],
+        "dim": 9996
+      },
+      "catch22": {
+        "mean": 0.987,
+        "ci95": [
+          0.981,
+          0.994
+        ],
+        "per_seed": [
+          0.98,
+          0.99,
+          0.98,
+          1.0,
+          0.985
+        ],
+        "dim": 22
       }
     },
     "stationarity": {
@@ -667,6 +1009,36 @@
           1.0
         ],
         "dim": 777
+      },
+      "minirocket": {
+        "mean": 1.0,
+        "ci95": [
+          1.0,
+          1.0
+        ],
+        "per_seed": [
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0
+        ],
+        "dim": 9996
+      },
+      "catch22": {
+        "mean": 1.0,
+        "ci95": [
+          1.0,
+          1.0
+        ],
+        "per_seed": [
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0
+        ],
+        "dim": 22
       }
     },
     "anomaly": {
@@ -699,6 +1071,36 @@
           0.81
         ],
         "dim": 777
+      },
+      "minirocket": {
+        "mean": 0.706,
+        "ci95": [
+          0.671,
+          0.733
+        ],
+        "per_seed": [
+          0.64,
+          0.715,
+          0.735,
+          0.74,
+          0.7
+        ],
+        "dim": 9996
+      },
+      "catch22": {
+        "mean": 0.771,
+        "ci95": [
+          0.755,
+          0.787
+        ],
+        "per_seed": [
+          0.75,
+          0.75,
+          0.775,
+          0.79,
+          0.79
+        ],
+        "dim": 22
       }
     },
     "change_point": {
@@ -731,10 +1133,41 @@
           1.0
         ],
         "dim": 777
+      },
+      "minirocket": {
+        "mean": 1.0,
+        "ci95": [
+          1.0,
+          1.0
+        ],
+        "per_seed": [
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0
+        ],
+        "dim": 9996
+      },
+      "catch22": {
+        "mean": 1.0,
+        "ci95": [
+          1.0,
+          1.0
+        ],
+        "per_seed": [
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0
+        ],
+        "dim": 22
       }
     }
   },
   "commands": [
-    "scripts/run_strong_controls_ext.py --out outputs/strong_controls_ext --parts canonical"
+    "scripts/run_strong_controls_ext.py --out outputs/strong_controls_ext --parts canonical",
+    "scripts/run_strong_controls_ext.py --out outputs/strong_controls_ext --parts minirocket --jobs 32"
   ]
 }

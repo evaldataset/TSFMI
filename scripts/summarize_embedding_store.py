@@ -98,6 +98,22 @@ def main() -> int:
     }
     for m in MODELS:
         lin[m] = np.array([models[n][m]["linear_acc"] for n in names])
+    spath = args.dir / "strong.json"  # written by run_embedding_store.py --part strong
+    strong = json.loads(spath.read_text()) if spath.exists() else {}
+    refs = ["ed", "dtw", "rocket"]
+    if strong:
+        missing = [n for n in names if n not in strong]
+        if missing:
+            raise SystemExit(f"strong.json lacks {len(missing)} datasets, e.g. {missing[:3]}")
+        for key in ("minirocket", "catch22"):
+            acc[key] = np.array([strong[n][f"{key}_nn_acc"] for n in names])
+            lin[key] = np.array([strong[n][f"{key}_linear_acc"] for n in names])
+        refs.append("minirocket")
+    rpath = args.dir / "strong_resized.json"  # MiniRocket on the models' 512-step input
+    resized = json.loads(rpath.read_text()) if rpath.exists() else {}
+    if resized and all(n in resized for n in names):
+        acc["minirocket512"] = np.array([resized[n]["minirocket_nn_acc"] for n in names])
+        lin["minirocket512"] = np.array([resized[n]["minirocket_linear_acc"] for n in names])
 
     out: dict = {"n_datasets": len(names), "datasets": names, "nn": {}, "linear": {}}
     for k, v in acc.items():
@@ -107,27 +123,35 @@ def main() -> int:
             out["nn"][k]["vs_dtw"] = compare(v, acc["dtw"])
         if k not in ("ed", "dtw", "rocket"):
             out["nn"][k]["vs_rocket"] = compare(v, acc["rocket"])
+        if "minirocket" in refs and k not in ("ed", "dtw", "rocket", "minirocket"):
+            out["nn"][k]["vs_minirocket"] = compare(v, acc["minirocket"])
+        if "minirocket512" in acc and k in MODELS:
+            out["nn"][k]["vs_minirocket512"] = compare(v, acc["minirocket512"])
     out["nn"]["dtw"]["vs_ed"] = compare(acc["dtw"], acc["ed"])
     for m in MODELS:
         if f"{m}_random" in acc:
             out["nn"][m]["vs_random_init"] = compare(acc[m], acc[f"{m}_random"])
-    for ref in ("ed", "dtw", "rocket"):
+    for ref in refs:
         adj = holm({m: out["nn"][m][f"vs_{ref}"]["p_wilcoxon"] for m in MODELS})
         for m in MODELS:
             out["nn"][m][f"vs_{ref}"]["p_holm"] = adj[m]
-    table = np.stack([acc[k] for k in ("ed", "dtw", "rocket", *MODELS)], axis=1)
+    ranked = (*refs, *(k for k in ("minirocket512", "catch22") if k in acc), *MODELS)
+    table = np.stack([acc[k] for k in ranked], axis=1)
     ranks = stats.rankdata(-table, axis=1).mean(axis=0)
-    out["nn_mean_rank"] = dict(
-        zip(("ed", "dtw", "rocket", *MODELS), map(float, ranks), strict=True)
-    )
+    out["nn_mean_rank"] = dict(zip(ranked, map(float, ranks), strict=True))
     out["nn"]["n_tsfm_beats_dtw"] = int(sum(acc[m].mean() > acc["dtw"].mean() for m in MODELS))
     for k, v in lin.items():
         out["linear"][k] = {"mean_acc": float(v.mean())}
         if k != "rocket":
             out["linear"][k]["vs_rocket"] = compare(v, lin["rocket"])
-    adj = holm({m: out["linear"][m]["vs_rocket"]["p_wilcoxon"] for m in MODELS})
-    for m in MODELS:
-        out["linear"][m]["vs_rocket"]["p_holm"] = adj[m]
+        if "minirocket" in lin and k not in ("rocket", "minirocket", "minirocket512"):
+            out["linear"][k]["vs_minirocket"] = compare(v, lin["minirocket"])
+        if "minirocket512" in lin and k in MODELS:
+            out["linear"][k]["vs_minirocket512"] = compare(v, lin["minirocket512"])
+    for ref in ("rocket", "minirocket") if "minirocket" in lin else ("rocket",):
+        adj = holm({m: out["linear"][m][f"vs_{ref}"]["p_wilcoxon"] for m in MODELS})
+        for m in MODELS:
+            out["linear"][m][f"vs_{ref}"]["p_holm"] = adj[m]
     lengths = np.array([classical[n]["length"] for n in names])
     out["storage_bytes"] = {
         "raw_mean": float(4 * lengths.mean()),

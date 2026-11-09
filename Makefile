@@ -204,7 +204,7 @@ capacity-probe-v2:
 # and the canonical tasks (tsfresh with per-seed scores).
 strong-controls-ext:
 	$(PYTHON) scripts/run_strong_controls_ext.py --out outputs/strong_controls_ext \
-	    --parts canonical realistic hard ucr
+	    --parts canonical realistic hard ucr minirocket
 
 # Architecture-only control: every model with re-initialised weights, canonical v2 protocol, the six
 # canonical properties and the realistic generator.
@@ -253,6 +253,8 @@ embedding-store:
 	$(PYTHON) scripts/run_embedding_store.py --part classical --ucr-root $(UCR2018)
 	$(PYTHON) scripts/run_embedding_store.py --part models --ucr-root $(UCR2018)
 	$(PYTHON) scripts/run_embedding_store.py --part models --init random --ucr-root $(UCR2018)
+	$(PYTHON) scripts/run_embedding_store.py --part strong --ucr-root $(UCR2018)
+	$(PYTHON) scripts/run_embedding_store.py --part strong --resize --ucr-root $(UCR2018)
 	$(PYTHON) scripts/summarize_embedding_store.py --dir outputs/embedding_store
 
 # Replication over data seeds 1002/1003 and three attention-probe seeds (seed 1001 reuses the
@@ -282,6 +284,9 @@ revision-controls:
 	for s in 1001 1002 1003; do $(RC) rocket-tokens --seed $$s || exit 1; \
 	  for t in rocket1024 rocket192; do $(RC) token-fit --seed $$s --tokens $$t || exit 1; done; \
 	  $(RC) dim-match --seed $$s || exit 1; done
+	for s in 1001 1002 1003; do $(RC) strong-features --seed $$s || exit 1; \
+	  for m in timesfm patchtst_fm moirai chronos; do $(RC) strong-fit --seed $$s --model $$m || exit 1; \
+	done; done
 	$(RC) summarize
 
 # Pretraining-overlap check (H4): the UCR Anomaly Archive analysis on reversed and negated windows.
