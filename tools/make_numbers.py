@@ -1163,6 +1163,15 @@ def embedding_store(n: Numbers, root: Path) -> bool:
                         eq = "yes" if c[f"tost_{m}"]["equivalent"] else "no"
                         n.put(f"{b}/equiv{m.replace('0.', '')}", eq, src)
     n.put("es/nn/ntsfmbeatsdtw", d["nn"]["n_tsfm_beats_dtw"], src)
+    beat_ed = [
+        m
+        for m in CANON_MODELS
+        if m in d["nn"]
+        and d["nn"][m]["vs_ed"]["mean_diff"] > 0
+        and d["nn"][m]["vs_ed"].get("p_holm", d["nn"][m]["vs_ed"]["p_wilcoxon"]) < 0.05
+    ]
+    n.put("es/nn/nbeatsed", len(beat_ed), src)
+    n.put("es/nn/nmodels", sum(m in d["nn"] for m in CANON_MODELS), src)
     pre = [m for m in CANON_MODELS if m != "gpt4ts"]
     nn_ = d["nn"]
     if all("tost_0.02" in nn_[m]["vs_rocket"] for m in pre):
