@@ -21,7 +21,7 @@ PAPER_MAIN := $(LATEX_DIR)/main.tex
         view-sensitivity icde-numbers canonical-v2-randinit resolution-study \
         forecast-surprise embedding-store ucr-conditional erasure-bound \
         replication ucr-anomaly-archive minirocket-controls runtime-benchmark \
-        revision-controls ucr-anomaly-transforms \
+        revision-controls ucr-anomaly-transforms bayes-headroom \
         manifest clean help
 
 test:
@@ -300,6 +300,13 @@ ucr-anomaly-transforms:
 	  TSFMI_RESOLUTION_STORE=$(RESOLUTION_STORE) $(PYTHON) scripts/run_ucr_anomaly_archive.py \
 	    --transform $$t --out outputs/ucr_anomaly_archive_$$t --part $$p || exit 1; done; done
 
+# Specialist lower bound on the realistic task's Bayes accuracy (H1); needs replication's data.
+BH := TSFMI_RESOLUTION_STORE=$(RESOLUTION_STORE) $(PYTHON) scripts/run_bayes_headroom.py
+bayes-headroom:
+	$(BH) data
+	for n in 30000 100000 300000 1000000; do $(BH) train --n $$n || exit 1; done
+	$(BH) summarize
+
 minirocket-controls:
 	for p in realistic ucr_anomaly; do TSFMI_RESOLUTION_STORE=$(RESOLUTION_STORE) $(PYTHON) \
 	  scripts/run_minirocket_controls.py --part $$p --out outputs/minirocket || exit 1; done
@@ -341,7 +348,7 @@ reproduce-icde: reproduce-canonical-v2 realistic-anomaly-v2 hard-variants-v2 dat
     per-feature-all-properties bayes-ceiling strong-baselines capacity-probe-v2 strong-controls-ext \
     view-sensitivity canonical-v2-randinit resolution-study forecast-surprise embedding-store \
     ucr-conditional erasure-bound replication ucr-anomaly-archive minirocket-controls \
-    runtime-benchmark revision-controls ucr-anomaly-transforms icde-numbers
+    runtime-benchmark revision-controls ucr-anomaly-transforms bayes-headroom icde-numbers
 
 clean:
 	find . -type d -name __pycache__ -exec rm -rf {} + 2>/dev/null

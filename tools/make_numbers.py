@@ -1422,6 +1422,47 @@ def revision_controls(n: Numbers, root: Path) -> bool:
     return True
 
 
+def bayes_headroom(n: Numbers, root: Path) -> bool:
+    """Specialist lower bound on the realistic task's Bayes accuracy (outputs/bayes_headroom)."""
+    f = root / "outputs/bayes_headroom/results.json"
+    if not f.exists():
+        return False
+    d = load(f)
+    src = str(f.relative_to(root))
+    for size, r in d["sizes"].items():
+        accs = [v["acc"] for v in r["seeds"].values()]
+        tag = f"{int(size) // 1000}k"
+        n.put(f"bh/{tag}/accmin", min(accs), src)
+        n.put(f"bh/{tag}/accmax", max(accs), src)
+    seeds = d["seeds"].values()
+    head = [v["headroom_lower_bound"] for v in seeds]
+    n.put("bh/headroommin", min(head), src)
+    n.put("bh/headroommax", max(head), src)
+    # Binomial standard error of the specialist-minus-controls difference on 10,000 test windows.
+    se = [
+        (
+            v["controls_acc"] * (1 - v["controls_acc"]) / 10_000
+            + v["specialist_acc"] * (1 - v["specialist_acc"]) / 10_000
+        )
+        ** 0.5
+        for v in seeds
+    ]
+    n.put("bh/semax", max(se), src)
+    n.put("bh/ctrlmin", min(v["controls_acc"] for v in seeds), src)
+    n.put("bh/ctrlmax", max(v["controls_acc"] for v in seeds), src)
+    n.put(
+        "bh/maxp",
+        _fmt_p(max(v["specialist_vs_controls"]["mcnemar"]["p_value"] for v in seeds)),
+        src,
+    )
+    for m in next(iter(seeds))["share_upper_bound"]:
+        rk = CANON_MODELS.get(m, m.replace("_", ""))
+        shares = [v["share_upper_bound"][m] for v in seeds]
+        n.put(f"bh/share/{rk}/max", max(shares), src)
+        n.put(f"bh/share/{rk}/min", min(shares), src)
+    return True
+
+
 def replication(n: Numbers, root: Path) -> bool:
     """Replication over data seeds and attention initialisations (outputs/replication)."""
     f = root / "outputs/replication/results.json"
@@ -1834,6 +1875,7 @@ def main() -> int:
         (ucr_anomaly_archive, "ucr_anomaly_archive"),
         (replication, "replication"),
         (revision_controls, "revision_controls"),
+        (bayes_headroom, "bayes_headroom"),
         (ucr_anomaly_transforms, "ucr_anomaly_archive_{reverse,negate}"),
         (minirocket_ctrl, "minirocket"),
         (runtime_benchmark, "runtime_benchmark"),
