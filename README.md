@@ -101,6 +101,8 @@ make reproduce-paper    # every result the manuscript reads (GPU; many hours)
 | `make minirocket-controls` | `outputs/minirocket/` | MiniRocket as an additional control on the realistic task and the anomaly archive |
 | `make revision-controls` | `outputs/revision_controls/` | Attention probe on per-patch ROCKET kernel maps; PCA dimension-matched controls |
 | `make bayes-headroom` | `outputs/bayes_headroom/` | 1-D ResNet trained on up to 10⁶ fresh windows: lower bound on the realistic task's Bayes accuracy |
+| `make label-efficiency` | `outputs/label_efficiency/` | Learning curves with 5–150 labelled series on the UCR Anomaly Archive (original, negated, reversed windows) and label-equivalence ratios |
+| `make ucr-kshot` | `outputs/ucr_kshot/` | The same label-efficiency analysis on 20 UCR 2018 classification datasets, 1–20 series per class |
 | `make runtime-benchmark` | `outputs/runtime_benchmark/` | Stage-separated extraction, 1-NN query, and label-free detection times |
 | `make paper-numbers` | `outputs/paper_numbers/` | Every manuscript number (`numbers.tex`) and figure, generated from the result files |
 | `make per-feature-all-properties`, `make per-feature-anomaly` | `outputs/per_feature_*` | Single-feature ablations |

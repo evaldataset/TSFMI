@@ -21,7 +21,7 @@ PAPER_MAIN := $(LATEX_DIR)/main.tex
         view-sensitivity paper-numbers canonical-v2-randinit resolution-study \
         forecast-surprise embedding-store ucr-conditional erasure-bound \
         replication ucr-anomaly-archive minirocket-controls runtime-benchmark \
-        revision-controls ucr-anomaly-transforms bayes-headroom \
+        revision-controls ucr-anomaly-transforms bayes-headroom label-efficiency ucr-kshot \
         manifest clean help
 
 test:
@@ -302,6 +302,22 @@ bayes-headroom:
 	for n in 30000 100000 300000 1000000; do $(BH) train --n $$n || exit 1; done
 	$(BH) summarize
 
+# Label efficiency on the UCR Anomaly Archive (original, negated, reversed windows); needs the
+# ucr-anomaly-archive and ucr-anomaly-transforms stores.
+label-efficiency:
+	for st in none negate reverse; do TSFMI_RESOLUTION_STORE=$(RESOLUTION_STORE) $(PYTHON) \
+	  scripts/run_label_efficiency.py --store $$st || exit 1; done
+	$(PYTHON) scripts/summarize_label_efficiency.py
+
+# Label efficiency on UCR 2018 classification, k-shot (UCR2018 = archive root).
+ucr-kshot:
+	for m in timesfm patchtst_fm moment chronos; do TSFMI_UCR2018=$(UCR2018) \
+	  TSFMI_RESOLUTION_STORE=$(RESOLUTION_STORE) $(PYTHON) scripts/run_ucr_kshot.py --part extract \
+	  --model $$m || exit 1; done
+	TSFMI_UCR2018=$(UCR2018) TSFMI_RESOLUTION_STORE=$(RESOLUTION_STORE) $(PYTHON) \
+	  scripts/run_ucr_kshot.py --part evaluate
+	$(PYTHON) scripts/summarize_label_efficiency.py
+
 minirocket-controls:
 	for p in realistic ucr_anomaly; do TSFMI_RESOLUTION_STORE=$(RESOLUTION_STORE) $(PYTHON) \
 	  scripts/run_minirocket_controls.py --part $$p --out outputs/minirocket || exit 1; done
@@ -343,7 +359,7 @@ reproduce-paper: reproduce-canonical-v2 realistic-anomaly-v2 hard-variants-v2 da
     per-feature-all-properties bayes-ceiling strong-baselines capacity-probe-v2 strong-controls-ext \
     view-sensitivity canonical-v2-randinit resolution-study forecast-surprise embedding-store \
     ucr-conditional erasure-bound replication ucr-anomaly-archive minirocket-controls \
-    runtime-benchmark revision-controls ucr-anomaly-transforms bayes-headroom paper-numbers
+    runtime-benchmark revision-controls ucr-anomaly-transforms bayes-headroom label-efficiency ucr-kshot paper-numbers
 
 clean:
 	find . -type d -name __pycache__ -exec rm -rf {} + 2>/dev/null
