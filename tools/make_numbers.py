@@ -1607,7 +1607,13 @@ def label_efficiency(n: Numbers, root: Path) -> bool:
         return False
     d = load(f)
     src = str(f.relative_to(root))
-    tag = {"none": "orig", "negate": "neg", "reverse": "rev"}
+    tag = {
+        "none": "orig",
+        "negate": "neg",
+        "reverse": "rev",
+        "tsbad": "tsb",
+        "tsbad_negate": "tsbneg",
+    }
 
     def rkey(m: str) -> str:
         if m.startswith("union+"):

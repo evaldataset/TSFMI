@@ -42,6 +42,7 @@ MODEL_CHOICES = [
     "autoformer",
     "timesnet",
     "fedformer",
+    "mantis",
 ]
 DATASET_CHOICES = [
     "synthetic_trend",
@@ -99,6 +100,7 @@ DEFAULT_CHECKPOINTS: dict[str, str] = {
     "autoformer": "",
     "timesnet": "",
     "fedformer": "",
+    "mantis": "paris-noah/Mantis-8M",
 }
 
 
@@ -272,6 +274,11 @@ def load_model_wrapper(
 
         wrapper = TimesNetWrapper()
         wrapper.load(ckpt, device=device, seq_len=seq_len)
+    elif model_name == "mantis":
+        from src.models.mantis_wrapper import MantisWrapper
+
+        wrapper = MantisWrapper()
+        wrapper.load(ckpt, device=device)
     elif model_name == "fedformer":
         from src.models.fedformer_wrapper import FEDformerWrapper
 

@@ -24,17 +24,21 @@ import numpy as np
 OUT = Path("outputs/label_efficiency")
 SIZES = (5, 10, 20, 40, 80, None)
 DRAWS = 3
-MODELS = ("moment", "chronos", "gpt4ts", "timer", "timesfm", "moirai", "patchtst_fm")
-JOINT = ("patchtst_fm", "moment", "timesfm", "chronos")
+MODELS = ("moment", "chronos", "gpt4ts", "timer", "timesfm", "moirai", "patchtst_fm", "mantis")
+JOINT = ("patchtst_fm", "moment", "timesfm", "chronos", "mantis")
 
 
 def store_path(name: str) -> Path:
     from scripts.run_ucr_anomaly_archive import STORE
 
+    if name.startswith("tsbad"):
+        return STORE.parent / name  # TSB-AD-U windows (scripts/run_tsbad_windows.py)
     return STORE if name == "none" else STORE.parent / f"ucr_anomaly_{name}"
 
 
-def run(store_name: str, split_seed: int, n_series: int | None, draw: int) -> dict:
+def run(
+    store_name: str, split_seed: int, n_series: int | None, draw: int, models: tuple = MODELS
+) -> dict:
     from threadpoolctl import threadpool_limits
 
     from scripts.run_minirocket_controls import minirocket
@@ -70,7 +74,7 @@ def run(store_name: str, split_seed: int, n_series: int | None, draw: int) -> di
         )
         row["minirocket"] = acc(tuned(mr, y, sp))
         row["strong_union"] = acc(tuned(ctrl, y, sp))
-        for m in MODELS:
+        for m in models:
             rdir = store / "repr" / m
             order = json.loads((rdir / "meta.json").read_text())["layer_order"]
             best = (-1.0, None)
@@ -94,15 +98,32 @@ def main() -> int:
     from joblib import Parallel, delayed
 
     ap = argparse.ArgumentParser()
-    ap.add_argument("--store", choices=("none", "negate", "reverse"), required=True)
+    ap.add_argument(
+        "--store", choices=("none", "negate", "reverse", "tsbad", "tsbad_negate"), required=True
+    )
+    ap.add_argument(
+        "--models", nargs="*", default=list(MODELS), help="subset; merged into the file"
+    )
     ap.add_argument("--jobs", type=int, default=20)
     args = ap.parse_args()
     OUT.mkdir(parents=True, exist_ok=True)
     tasks = [
         (args.store, s, n, d) for s in range(5) for n in SIZES for d in (range(DRAWS) if n else [0])
     ]
-    rows = Parallel(n_jobs=args.jobs)(delayed(run)(*t) for t in tasks)
-    (OUT / f"{args.store}.json").write_text(json.dumps(rows, indent=1))
+    rows = Parallel(n_jobs=args.jobs)(delayed(run)(*t, tuple(args.models)) for t in tasks)
+    path = OUT / f"{args.store}.json"
+    if path.exists() and set(args.models) != set(MODELS):  # add these models' columns
+        old = {(r["split"], r["n_series"], r["draw"]): r for r in json.loads(path.read_text())}
+        for r in rows:
+            key = (r["split"], r["n_series"], r["draw"])
+            new = {
+                k: v
+                for k, v in r.items()
+                if any(k in (m, f"{m}_layer", f"union+{m}") for m in args.models)
+            }
+            old[key] = {**old[key], **new} if key in old else r  # keep committed controls
+        rows = list(old.values())
+    path.write_text(json.dumps(rows, indent=1))
     return 0
 
 

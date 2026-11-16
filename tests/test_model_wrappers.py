@@ -178,3 +178,28 @@ def test_patchtst_fm_r1_pretrained_shapes() -> None:
     assert out.shape == (2, 512, 99)
     assert acts[names[0]].shape == (2, 32, 1024)
     assert acts[names[-1]].shape == (2, 32, 1024)
+
+
+@pytest.mark.slow
+def test_mantis_wrapper_layer_shapes() -> None:
+    """Mantis-8M: one residual-stream tap per block, (batch, 1 + patches, 256) activations."""
+    pytest.importorskip("mantis")
+    from src.extractors.hook_manager import HookManager
+    from src.models.mantis_wrapper import MantisWrapper
+
+    wrapper = MantisWrapper()
+    wrapper.load(device=torch.device("cpu"))
+    names = wrapper.get_layer_names()
+    assert len(names) == 6
+    assert wrapper.is_frozen()
+    x = torch.randn(3, 512)
+    with HookManager(wrapper.model, names) as hm:
+        out = wrapper.forward(x)
+        acts = hm.get_activations()
+    assert out.shape == (3, 256)
+    for name in names:
+        assert acts[name].shape[0] == 3 and acts[name].shape[-1] == 256
+    # The last tap equals the transformer output that the package feeds to its CLS read-out.
+    assert torch.isfinite(acts[names[-1]]).all()
+    short = wrapper.forward(torch.randn(2, 300))  # resized to 512 steps
+    assert short.shape == (2, 256)

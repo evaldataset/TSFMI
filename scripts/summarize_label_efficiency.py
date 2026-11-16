@@ -3,8 +3,8 @@
 Label-equivalence at budget n: the strong-union learning curve (mean accuracy per budget, linear in
 log budget between grid points, made monotone) is inverted at the accuracy of a representation at n;
 ratio = n' / n. If the representation exceeds the union's best budget the ratio is right-censored.
-Uncertainty: bootstrap over the five series-level splits (anomaly archive) or over datasets (k-shot
-classification), 2,000 draws, percentile 95% interval.
+Uncertainty: bootstrap over the five series-level splits (UCR Anomaly Archive and TSB-AD-U windows)
+or over datasets (k-shot classification), 2,000 draws, percentile 95% interval.
 
 Usage:
     PYTHONPATH=. python scripts/summarize_label_efficiency.py
@@ -18,7 +18,7 @@ from pathlib import Path
 
 import numpy as np
 
-MODELS = ("moment", "chronos", "gpt4ts", "timer", "timesfm", "moirai", "patchtst_fm")
+MODELS = ("moment", "chronos", "gpt4ts", "timer", "timesfm", "moirai", "patchtst_fm", "mantis")
 SHAPES = {
     "Fish",
     "HandOutlines",
@@ -103,7 +103,7 @@ def label_equiv(
 
 def main() -> None:
     out: dict = {"anomaly": {}, "classification": {}}
-    for st in ("none", "negate", "reverse"):
+    for st in ("none", "negate", "reverse", "tsbad", "tsbad_negate"):
         f = Path(f"outputs/label_efficiency/{st}.json")
         if f.exists():
             rows = json.loads(f.read_text())

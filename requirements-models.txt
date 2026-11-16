@@ -13,3 +13,5 @@
 momentfm==0.1.4
 chronos-forecasting==2.2.2
 uni2ts==2.0.0
+# Mantis-8M (install with --no-deps; its other dependencies are already pinned in requirements.txt)
+mantis-tsfm==1.1.0
