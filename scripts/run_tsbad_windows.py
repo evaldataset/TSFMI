@@ -14,6 +14,7 @@ Usage:
     TSFMI_RESOLUTION_STORE=... PYTHONPATH=. python scripts/run_tsbad_windows.py --part data \
         --root <TSB-AD-U directory>
     ... run_tsbad_windows.py --part extract --model patchtst_fm  (each model; --negate: copy)
+    ... run_tsbad_windows.py --part meta   (counts to outputs/tsbad_windows/meta.json)
 """
 
 from __future__ import annotations
@@ -86,13 +87,32 @@ def build(root: Path) -> dict[str, NDArray]:
     }
 
 
+def write_meta(out: Path = Path("outputs/tsbad_windows/meta.json")) -> None:
+    """Window, series and per-source counts of the store (tracked; the arrays are not)."""
+    import json
+
+    with np.load(store() / "windows.npz") as z:
+        y, group, source = z["y"], z["group"], z["source"]
+    src, cnt = np.unique(source, return_counts=True)
+    out.parent.mkdir(parents=True, exist_ok=True)
+    meta = {
+        "n_windows": int(len(y)),
+        "n_series": int(len(np.unique(group))),
+        "n_sources": int(len(src)),
+        "positive_rate": float(y.mean()),
+        "excluded_sources": sorted(EXCLUDE),
+        "windows_per_source": dict(zip(src.tolist(), cnt.tolist(), strict=True)),
+    }
+    out.write_text(json.dumps(meta, indent=1))
+
+
 def main() -> int:
     from scripts.run_canonical_baselines import hand_crafted_features
     from scripts.run_resolution_study import rocket_parallel, tsfresh_features
     from scripts.run_ucr_anomaly_archive import extract
 
     ap = argparse.ArgumentParser(description=__doc__.splitlines()[0])
-    ap.add_argument("--part", choices=("data", "extract"), required=True)
+    ap.add_argument("--part", choices=("data", "meta", "extract"), required=True)
     ap.add_argument("--root", type=Path)
     ap.add_argument("--model")
     ap.add_argument("--negate", action="store_true")
@@ -108,6 +128,7 @@ def main() -> int:
             np.save(out / "hand_crafted.npy", hand_crafted_features(x).astype(np.float32))
             np.save(out / "rocket.npy", rocket_parallel(x, args.jobs))
             np.save(out / "tsfresh_efficient.npy", tsfresh_features(x, args.jobs))
+        write_meta()
         src, cnt = np.unique(d["source"], return_counts=True)
         per_source = dict(zip(src.tolist(), cnt.tolist(), strict=True))
         print(
@@ -115,6 +136,9 @@ def main() -> int:
             f"{d['y'].mean():.3f}; windows per source: {per_source}",
             flush=True,
         )
+        return 0
+    if args.part == "meta":
+        write_meta()
         return 0
     with np.load(store(args.negate) / "windows.npz") as z:
         x = z["x"]

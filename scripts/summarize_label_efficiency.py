@@ -102,23 +102,31 @@ def label_equiv(
 
 
 def main() -> None:
-    out: dict = {"anomaly": {}, "classification": {}}
+    out: dict = {"anomaly": {}}
     for st in ("none", "negate", "reverse", "tsbad", "tsbad_negate"):
         f = Path(f"outputs/label_efficiency/{st}.json")
         if f.exists():
             rows = json.loads(f.read_text())
             keys = [k for k in rows[0] if k in MODELS or k.startswith("union+")]
             out["anomaly"][st] = label_equiv(rows, "split", "n_series", "strong_union", keys)
-    f = Path("outputs/ucr_kshot/results.json")
-    if f.exists():
+    # fixed layer and C = 1 (run_ucr_kshot.py); layer and C by CV in the shot (run_ucr_kshot_cv.py)
+    for name, fname in (
+        ("classification", "results.json"),
+        ("classification_cv", "results_cv.json"),
+    ):
+        f = Path(f"outputs/ucr_kshot/{fname}")
+        if not f.exists():
+            continue
         d = json.loads(f.read_text())
         rows = d["rows"]
         keys = [k for k in rows[0] if k in MODELS or k.startswith("union+")]
-        out["classification"]["all"] = label_equiv(rows, "dataset", "k", "union", keys)
         ts = [r for r in rows if r["dataset"] not in SHAPES]
-        out["classification"]["time_series_only"] = label_equiv(ts, "dataset", "k", "union", keys)
-        out["classification"]["n_datasets"] = len(d["datasets"])
-        out["classification"]["n_time_series"] = len({r["dataset"] for r in ts})
+        out[name] = {
+            "all": label_equiv(rows, "dataset", "k", "union", keys),
+            "time_series_only": label_equiv(ts, "dataset", "k", "union", keys),
+            "n_datasets": len(d["datasets"]),
+            "n_time_series": len({r["dataset"] for r in ts}),
+        }
     Path("outputs/label_efficiency/summary.json").write_text(json.dumps(out, indent=1))
 
 

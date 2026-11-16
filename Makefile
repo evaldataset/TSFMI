@@ -17,7 +17,7 @@ PAPER_MAIN := $(LATEX_DIR)/main.tex
         statistic-recoverability statistic-erasure anomaly-diagnostics ucr-probe \
         representation-storage extraction-throughput wilinski-ldr reproduce-paper \
         per-feature-all-properties bayes-ceiling strong-baselines capacity-probe-v2 \
-        strong-controls-ext \
+        strong-controls-ext ucr-kshot-cv tsbad-label-efficiency \
         view-sensitivity paper-numbers canonical-v2-randinit resolution-study \
         forecast-surprise embedding-store ucr-conditional erasure-bound \
         replication ucr-anomaly-archive minirocket-controls runtime-benchmark \
@@ -305,6 +305,10 @@ bayes-headroom:
 # Label efficiency on the UCR Anomaly Archive (original, negated, reversed windows); needs the
 # ucr-anomaly-archive and ucr-anomaly-transforms stores.
 label-efficiency:
+	$(UAA) --part extract --model mantis
+	for t in reverse negate; do TSFMI_RESOLUTION_STORE=$(RESOLUTION_STORE) $(PYTHON) \
+	  scripts/run_ucr_anomaly_archive.py --transform $$t --out outputs/ucr_anomaly_archive_$$t \
+	  --part extract --model mantis || exit 1; done
 	for st in none negate reverse; do TSFMI_RESOLUTION_STORE=$(RESOLUTION_STORE) $(PYTHON) \
 	  scripts/run_label_efficiency.py --store $$st || exit 1; done
 	$(PYTHON) scripts/summarize_label_efficiency.py
@@ -316,6 +320,28 @@ ucr-kshot:
 	  --model $$m || exit 1; done
 	TSFMI_UCR2018=$(UCR2018) TSFMI_RESOLUTION_STORE=$(RESOLUTION_STORE) $(PYTHON) \
 	  scripts/run_ucr_kshot.py --part evaluate
+	$(PYTHON) scripts/summarize_label_efficiency.py
+
+# Same k-shot task with layer and C chosen by cross-validation inside the shot; adds Mantis-8M.
+ucr-kshot-cv:
+	for m in mantis timesfm patchtst_fm moment chronos; do TSFMI_UCR2018=$(UCR2018) \
+	  TSFMI_RESOLUTION_STORE=$(RESOLUTION_STORE) $(PYTHON) scripts/run_ucr_kshot_cv.py \
+	  --part extract --model $$m || exit 1; done
+	TSFMI_UCR2018=$(UCR2018) TSFMI_RESOLUTION_STORE=$(RESOLUTION_STORE) $(PYTHON) \
+	  scripts/run_ucr_kshot_cv.py --part evaluate
+	$(PYTHON) scripts/summarize_label_efficiency.py
+
+# Replication of label efficiency on TSB-AD-U windows (TSBAD_ROOT = TSB-AD-U csv directory).
+tsbad-label-efficiency:
+	TSFMI_RESOLUTION_STORE=$(RESOLUTION_STORE) $(PYTHON) scripts/run_tsbad_windows.py --part data \
+	  --root $(TSBAD_ROOT)
+	for m in moment chronos gpt4ts timer timesfm moirai patchtst_fm mantis; do \
+	  TSFMI_RESOLUTION_STORE=$(RESOLUTION_STORE) $(PYTHON) scripts/run_tsbad_windows.py \
+	  --part extract --model $$m || exit 1; \
+	  TSFMI_RESOLUTION_STORE=$(RESOLUTION_STORE) $(PYTHON) scripts/run_tsbad_windows.py \
+	  --part extract --model $$m --negate || exit 1; done
+	for st in tsbad tsbad_negate; do TSFMI_RESOLUTION_STORE=$(RESOLUTION_STORE) $(PYTHON) \
+	  scripts/run_label_efficiency.py --store $$st || exit 1; done
 	$(PYTHON) scripts/summarize_label_efficiency.py
 
 minirocket-controls:

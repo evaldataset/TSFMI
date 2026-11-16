@@ -1,0 +1,30 @@
+{
+ "n_windows": 5216,
+ "n_series": 326,
+ "n_sources": 16,
+ "positive_rate": 0.5,
+ "excluded_sources": [
+  "MGAB",
+  "TODS",
+  "UCR",
+  "YAHOO"
+ ],
+ "windows_per_source": {
+  "CATSv2": 16,
+  "Daphnet": 16,
+  "Exathlon": 512,
+  "IOPS": 272,
+  "LTDB": 144,
+  "MITDB": 128,
+  "MSL": 144,
+  "NAB": 432,
+  "OPPORTUNITY": 464,
+  "Power": 16,
+  "SED": 48,
+  "SMAP": 304,
+  "SMD": 608,
+  "SVDB": 320,
+  "SWaT": 16,
+  "WSD": 1776
+ }
+}

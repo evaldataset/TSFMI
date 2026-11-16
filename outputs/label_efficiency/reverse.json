@@ -24,7 +24,10 @@
   "moirai_layer": "encoder_layers_0",
   "patchtst_fm": 0.5975,
   "patchtst_fm_layer": "backbone_blocks_19",
-  "union+patchtst_fm": 0.59875
+  "union+patchtst_fm": 0.59875,
+  "mantis": 0.57875,
+  "mantis_layer": "vit_unit_transformer_taps_1",
+  "union+mantis": 0.57375
  },
  {
   "store": "reverse",
@@ -51,7 +54,10 @@
   "moirai_layer": "encoder_layers_4",
   "patchtst_fm": 0.58125,
   "patchtst_fm_layer": "backbone_blocks_12",
-  "union+patchtst_fm": 0.55125
+  "union+patchtst_fm": 0.55125,
+  "mantis": 0.4875,
+  "mantis_layer": "vit_unit_transformer_taps_0",
+  "union+mantis": 0.5375
  },
  {
   "store": "reverse",
@@ -78,7 +84,10 @@
   "moirai_layer": "encoder_layers_5",
   "patchtst_fm": 0.67375,
   "patchtst_fm_layer": "backbone_blocks_18",
-  "union+patchtst_fm": 0.56375
+  "union+patchtst_fm": 0.56375,
+  "mantis": 0.52375,
+  "mantis_layer": "vit_unit_transformer_taps_3",
+  "union+mantis": 0.5525
  },
  {
   "store": "reverse",
@@ -105,7 +114,10 @@
   "moirai_layer": "encoder_layers_3",
   "patchtst_fm": 0.6925,
   "patchtst_fm_layer": "backbone_blocks_18",
-  "union+patchtst_fm": 0.62625
+  "union+patchtst_fm": 0.62625,
+  "mantis": 0.5975,
+  "mantis_layer": "vit_unit_transformer_taps_1",
+  "union+mantis": 0.60125
  },
  {
   "store": "reverse",
@@ -132,7 +144,10 @@
   "moirai_layer": "encoder_layers_1",
   "patchtst_fm": 0.63625,
   "patchtst_fm_layer": "backbone_blocks_16",
-  "union+patchtst_fm": 0.62375
+  "union+patchtst_fm": 0.62375,
+  "mantis": 0.50375,
+  "mantis_layer": "vit_unit_transformer_taps_4",
+  "union+mantis": 0.5675
  },
  {
   "store": "reverse",
@@ -159,7 +174,10 @@
   "moirai_layer": "encoder_layers_5",
   "patchtst_fm": 0.66875,
   "patchtst_fm_layer": "backbone_blocks_19",
-  "union+patchtst_fm": 0.58375
+  "union+patchtst_fm": 0.58375,
+  "mantis": 0.5525,
+  "mantis_layer": "vit_unit_transformer_taps_1",
+  "union+mantis": 0.5625
  },
  {
   "store": "reverse",
@@ -186,7 +204,10 @@
   "moirai_layer": "encoder_layers_4",
   "patchtst_fm": 0.70875,
   "patchtst_fm_layer": "backbone_blocks_18",
-  "union+patchtst_fm": 0.64375
+  "union+patchtst_fm": 0.64375,
+  "mantis": 0.58375,
+  "mantis_layer": "vit_unit_transformer_taps_5",
+  "union+mantis": 0.56125
  },
  {
   "store": "reverse",
@@ -213,7 +234,10 @@
   "moirai_layer": "encoder_layers_2",
   "patchtst_fm": 0.67125,
   "patchtst_fm_layer": "backbone_blocks_16",
-  "union+patchtst_fm": 0.6475
+  "union+patchtst_fm": 0.6475,
+  "mantis": 0.53625,
+  "mantis_layer": "vit_unit_transformer_taps_0",
+  "union+mantis": 0.5825
  },
  {
   "store": "reverse",
@@ -240,7 +264,10 @@
   "moirai_layer": "encoder_layers_2",
   "patchtst_fm": 0.70125,
   "patchtst_fm_layer": "backbone_blocks_17",
-  "union+patchtst_fm": 0.6625
+  "union+patchtst_fm": 0.6625,
+  "mantis": 0.56375,
+  "mantis_layer": "vit_unit_transformer_taps_5",
+  "union+mantis": 0.60625
  },
  {
   "store": "reverse",
@@ -267,7 +294,10 @@
   "moirai_layer": "encoder_layers_2",
   "patchtst_fm": 0.72125,
   "patchtst_fm_layer": "backbone_blocks_12",
-  "union+patchtst_fm": 0.71
+  "union+patchtst_fm": 0.71,
+  "mantis": 0.64,
+  "mantis_layer": "vit_unit_transformer_taps_3",
+  "union+mantis": 0.64125
  },
  {
   "store": "reverse",
@@ -294,7 +324,10 @@
   "moirai_layer": "encoder_layers_4",
   "patchtst_fm": 0.6875,
   "patchtst_fm_layer": "backbone_blocks_15",
-  "union+patchtst_fm": 0.7
+  "union+patchtst_fm": 0.7,
+  "mantis": 0.6175,
+  "mantis_layer": "vit_unit_transformer_taps_3",
+  "union+mantis": 0.64375
  },
  {
   "store": "reverse",
@@ -321,7 +354,10 @@
   "moirai_layer": "encoder_layers_2",
   "patchtst_fm": 0.67625,
   "patchtst_fm_layer": "backbone_blocks_18",
-  "union+patchtst_fm": 0.67375
+  "union+patchtst_fm": 0.67375,
+  "mantis": 0.6325,
+  "mantis_layer": "vit_unit_transformer_taps_5",
+  "union+mantis": 0.66125
  },
  {
   "store": "reverse",
@@ -348,7 +384,10 @@
   "moirai_layer": "encoder_layers_3",
   "patchtst_fm": 0.7225,
   "patchtst_fm_layer": "backbone_blocks_13",
-  "union+patchtst_fm": 0.745
+  "union+patchtst_fm": 0.745,
+  "mantis": 0.6225,
+  "mantis_layer": "vit_unit_transformer_taps_3",
+  "union+mantis": 0.69375
  },
  {
   "store": "reverse",
@@ -375,7 +414,10 @@
   "moirai_layer": "encoder_layers_2",
   "patchtst_fm": 0.77125,
   "patchtst_fm_layer": "backbone_blocks_18",
-  "union+patchtst_fm": 0.75625
+  "union+patchtst_fm": 0.75625,
+  "mantis": 0.6825,
+  "mantis_layer": "vit_unit_transformer_taps_3",
+  "union+mantis": 0.6875
  },
  {
   "store": "reverse",
@@ -402,7 +444,10 @@
   "moirai_layer": "encoder_layers_1",
   "patchtst_fm": 0.76875,
   "patchtst_fm_layer": "backbone_blocks_18",
-  "union+patchtst_fm": 0.7725
+  "union+patchtst_fm": 0.7725,
+  "mantis": 0.62625,
+  "mantis_layer": "vit_unit_transformer_taps_1",
+  "union+mantis": 0.69375
  },
  {
   "store": "reverse",
@@ -429,7 +474,10 @@
   "moirai_layer": "encoder_layers_3",
   "patchtst_fm": 0.75125,
   "patchtst_fm_layer": "backbone_blocks_12",
-  "union+patchtst_fm": 0.785
+  "union+patchtst_fm": 0.785,
+  "mantis": 0.6725,
+  "mantis_layer": "vit_unit_transformer_taps_3",
+  "union+mantis": 0.7825
  },
  {
   "store": "reverse",
@@ -456,7 +504,10 @@
   "moirai_layer": "encoder_layers_4",
   "patchtst_fm": 0.60625,
   "patchtst_fm_layer": "backbone_blocks_18",
-  "union+patchtst_fm": 0.575
+  "union+patchtst_fm": 0.575,
+  "mantis": 0.5325,
+  "mantis_layer": "vit_unit_transformer_taps_2",
+  "union+mantis": 0.54875
  },
  {
   "store": "reverse",
@@ -483,7 +534,10 @@
   "moirai_layer": "encoder_layers_5",
   "patchtst_fm": 0.5975,
   "patchtst_fm_layer": "backbone_blocks_15",
-  "union+patchtst_fm": 0.54625
+  "union+patchtst_fm": 0.54625,
+  "mantis": 0.57125,
+  "mantis_layer": "vit_unit_transformer_taps_2",
+  "union+mantis": 0.54375
  },
  {
   "store": "reverse",
@@ -510,7 +564,10 @@
   "moirai_layer": "encoder_layers_5",
   "patchtst_fm": 0.615,
   "patchtst_fm_layer": "backbone_blocks_18",
-  "union+patchtst_fm": 0.56375
+  "union+patchtst_fm": 0.56375,
+  "mantis": 0.56875,
+  "mantis_layer": "vit_unit_transformer_taps_5",
+  "union+mantis": 0.53625
  },
  {
   "store": "reverse",
@@ -537,7 +594,10 @@
   "moirai_layer": "encoder_layers_0",
   "patchtst_fm": 0.63375,
   "patchtst_fm_layer": "backbone_blocks_15",
-  "union+patchtst_fm": 0.54625
+  "union+patchtst_fm": 0.54625,
+  "mantis": 0.575,
+  "mantis_layer": "vit_unit_transformer_taps_1",
+  "union+mantis": 0.53625
  },
  {
   "store": "reverse",
@@ -564,7 +624,10 @@
   "moirai_layer": "encoder_layers_0",
   "patchtst_fm": 0.66375,
   "patchtst_fm_layer": "backbone_blocks_12",
-  "union+patchtst_fm": 0.605
+  "union+patchtst_fm": 0.605,
+  "mantis": 0.62375,
+  "mantis_layer": "vit_unit_transformer_taps_4",
+  "union+mantis": 0.5775
  },
  {
   "store": "reverse",
@@ -591,7 +654,10 @@
   "moirai_layer": "encoder_layers_0",
   "patchtst_fm": 0.63125,
   "patchtst_fm_layer": "backbone_blocks_17",
-  "union+patchtst_fm": 0.555
+  "union+patchtst_fm": 0.555,
+  "mantis": 0.535,
+  "mantis_layer": "vit_unit_transformer_taps_2",
+  "union+mantis": 0.53125
  },
  {
   "store": "reverse",
@@ -618,7 +684,10 @@
   "moirai_layer": "encoder_layers_1",
   "patchtst_fm": 0.6975,
   "patchtst_fm_layer": "backbone_blocks_16",
-  "union+patchtst_fm": 0.65875
+  "union+patchtst_fm": 0.65875,
+  "mantis": 0.54125,
+  "mantis_layer": "vit_unit_transformer_taps_3",
+  "union+mantis": 0.60875
  },
  {
   "store": "reverse",
@@ -645,7 +714,10 @@
   "moirai_layer": "encoder_layers_1",
   "patchtst_fm": 0.65875,
   "patchtst_fm_layer": "backbone_blocks_16",
-  "union+patchtst_fm": 0.595
+  "union+patchtst_fm": 0.595,
+  "mantis": 0.55875,
+  "mantis_layer": "vit_unit_transformer_taps_4",
+  "union+mantis": 0.56875
  },
  {
   "store": "reverse",
@@ -672,7 +744,10 @@
   "moirai_layer": "encoder_layers_1",
   "patchtst_fm": 0.67125,
   "patchtst_fm_layer": "backbone_blocks_14",
-  "union+patchtst_fm": 0.63375
+  "union+patchtst_fm": 0.63375,
+  "mantis": 0.5675,
+  "mantis_layer": "vit_unit_transformer_taps_0",
+  "union+mantis": 0.6025
  },
  {
   "store": "reverse",
@@ -699,7 +774,10 @@
   "moirai_layer": "encoder_layers_2",
   "patchtst_fm": 0.7475,
   "patchtst_fm_layer": "backbone_blocks_16",
-  "union+patchtst_fm": 0.72375
+  "union+patchtst_fm": 0.72375,
+  "mantis": 0.64,
+  "mantis_layer": "vit_unit_transformer_taps_4",
+  "union+mantis": 0.68625
  },
  {
   "store": "reverse",
@@ -726,7 +804,10 @@
   "moirai_layer": "encoder_layers_1",
   "patchtst_fm": 0.645,
   "patchtst_fm_layer": "backbone_blocks_15",
-  "union+patchtst_fm": 0.665
+  "union+patchtst_fm": 0.665,
+  "mantis": 0.58,
+  "mantis_layer": "vit_unit_transformer_taps_1",
+  "union+mantis": 0.61375
  },
  {
   "store": "reverse",
@@ -753,7 +834,10 @@
   "moirai_layer": "encoder_layers_1",
   "patchtst_fm": 0.7125,
   "patchtst_fm_layer": "backbone_blocks_18",
-  "union+patchtst_fm": 0.69
+  "union+patchtst_fm": 0.69,
+  "mantis": 0.58875,
+  "mantis_layer": "vit_unit_transformer_taps_5",
+  "union+mantis": 0.65625
  },
  {
   "store": "reverse",
@@ -780,7 +864,10 @@
   "moirai_layer": "encoder_layers_2",
   "patchtst_fm": 0.75375,
   "patchtst_fm_layer": "backbone_blocks_16",
-  "union+patchtst_fm": 0.74375
+  "union+patchtst_fm": 0.74375,
+  "mantis": 0.63375,
+  "mantis_layer": "vit_unit_transformer_taps_5",
+  "union+mantis": 0.7225
  },
  {
   "store": "reverse",
@@ -807,7 +894,10 @@
   "moirai_layer": "encoder_layers_1",
   "patchtst_fm": 0.765,
   "patchtst_fm_layer": "backbone_blocks_13",
-  "union+patchtst_fm": 0.78375
+  "union+patchtst_fm": 0.78375,
+  "mantis": 0.64875,
+  "mantis_layer": "vit_unit_transformer_taps_5",
+  "union+mantis": 0.72875
  },
  {
   "store": "reverse",
@@ -834,7 +924,10 @@
   "moirai_layer": "encoder_layers_2",
   "patchtst_fm": 0.77,
   "patchtst_fm_layer": "backbone_blocks_16",
-  "union+patchtst_fm": 0.75125
+  "union+patchtst_fm": 0.75125,
+  "mantis": 0.675,
+  "mantis_layer": "vit_unit_transformer_taps_4",
+  "union+mantis": 0.705
  },
  {
   "store": "reverse",
@@ -861,7 +954,10 @@
   "moirai_layer": "encoder_layers_2",
   "patchtst_fm": 0.79625,
   "patchtst_fm_layer": "backbone_blocks_12",
-  "union+patchtst_fm": 0.86875
+  "union+patchtst_fm": 0.86875,
+  "mantis": 0.67,
+  "mantis_layer": "vit_unit_transformer_taps_5",
+  "union+mantis": 0.82375
  },
  {
   "store": "reverse",
@@ -888,7 +984,10 @@
   "moirai_layer": "encoder_layers_3",
   "patchtst_fm": 0.615,
   "patchtst_fm_layer": "backbone_blocks_18",
-  "union+patchtst_fm": 0.56625
+  "union+patchtst_fm": 0.56625,
+  "mantis": 0.5525,
+  "mantis_layer": "vit_unit_transformer_taps_1",
+  "union+mantis": 0.5575
  },
  {
   "store": "reverse",
@@ -915,7 +1014,10 @@
   "moirai_layer": "encoder_layers_0",
   "patchtst_fm": 0.60625,
   "patchtst_fm_layer": "backbone_blocks_19",
-  "union+patchtst_fm": 0.56125
+  "union+patchtst_fm": 0.56125,
+  "mantis": 0.5,
+  "mantis_layer": "vit_unit_transformer_taps_2",
+  "union+mantis": 0.5
  },
  {
   "store": "reverse",
@@ -942,7 +1044,10 @@
   "moirai_layer": "encoder_layers_0",
   "patchtst_fm": 0.63125,
   "patchtst_fm_layer": "backbone_blocks_18",
-  "union+patchtst_fm": 0.59125
+  "union+patchtst_fm": 0.59125,
+  "mantis": 0.5475,
+  "mantis_layer": "vit_unit_transformer_taps_5",
+  "union+mantis": 0.56125
  },
  {
   "store": "reverse",
@@ -969,7 +1074,10 @@
   "moirai_layer": "encoder_layers_2",
   "patchtst_fm": 0.685,
   "patchtst_fm_layer": "backbone_blocks_12",
-  "union+patchtst_fm": 0.63
+  "union+patchtst_fm": 0.63,
+  "mantis": 0.56875,
+  "mantis_layer": "vit_unit_transformer_taps_3",
+  "union+mantis": 0.59125
  },
  {
   "store": "reverse",
@@ -996,7 +1104,10 @@
   "moirai_layer": "encoder_layers_1",
   "patchtst_fm": 0.6325,
   "patchtst_fm_layer": "backbone_blocks_16",
-  "union+patchtst_fm": 0.59625
+  "union+patchtst_fm": 0.59625,
+  "mantis": 0.5275,
+  "mantis_layer": "vit_unit_transformer_taps_4",
+  "union+mantis": 0.575
  },
  {
   "store": "reverse",
@@ -1023,7 +1134,10 @@
   "moirai_layer": "encoder_layers_2",
   "patchtst_fm": 0.6075,
   "patchtst_fm_layer": "backbone_blocks_11",
-  "union+patchtst_fm": 0.5675
+  "union+patchtst_fm": 0.5675,
+  "mantis": 0.56125,
+  "mantis_layer": "vit_unit_transformer_taps_2",
+  "union+mantis": 0.54375
  },
  {
   "store": "reverse",
@@ -1050,7 +1164,10 @@
   "moirai_layer": "encoder_layers_4",
   "patchtst_fm": 0.6925,
   "patchtst_fm_layer": "backbone_blocks_16",
-  "union+patchtst_fm": 0.71875
+  "union+patchtst_fm": 0.71875,
+  "mantis": 0.6175,
+  "mantis_layer": "vit_unit_transformer_taps_4",
+  "union+mantis": 0.6575
  },
  {
   "store": "reverse",
@@ -1077,7 +1194,10 @@
   "moirai_layer": "encoder_layers_1",
   "patchtst_fm": 0.66625,
   "patchtst_fm_layer": "backbone_blocks_18",
-  "union+patchtst_fm": 0.65875
+  "union+patchtst_fm": 0.65875,
+  "mantis": 0.60375,
+  "mantis_layer": "vit_unit_transformer_taps_3",
+  "union+mantis": 0.64875
  },
  {
   "store": "reverse",
@@ -1104,7 +1224,10 @@
   "moirai_layer": "encoder_layers_0",
   "patchtst_fm": 0.675,
   "patchtst_fm_layer": "backbone_blocks_11",
-  "union+patchtst_fm": 0.65125
+  "union+patchtst_fm": 0.65125,
+  "mantis": 0.5825,
+  "mantis_layer": "vit_unit_transformer_taps_3",
+  "union+mantis": 0.6025
  },
  {
   "store": "reverse",
@@ -1131,7 +1254,10 @@
   "moirai_layer": "encoder_layers_4",
   "patchtst_fm": 0.73875,
   "patchtst_fm_layer": "backbone_blocks_13",
-  "union+patchtst_fm": 0.735
+  "union+patchtst_fm": 0.735,
+  "mantis": 0.645,
+  "mantis_layer": "vit_unit_transformer_taps_1",
+  "union+mantis": 0.69375
  },
  {
   "store": "reverse",
@@ -1158,7 +1284,10 @@
   "moirai_layer": "encoder_layers_2",
   "patchtst_fm": 0.6925,
   "patchtst_fm_layer": "backbone_blocks_11",
-  "union+patchtst_fm": 0.66375
+  "union+patchtst_fm": 0.66375,
+  "mantis": 0.675,
+  "mantis_layer": "vit_unit_transformer_taps_3",
+  "union+mantis": 0.6425
  },
  {
   "store": "reverse",
@@ -1185,7 +1314,10 @@
   "moirai_layer": "encoder_layers_2",
   "patchtst_fm": 0.7225,
   "patchtst_fm_layer": "backbone_blocks_13",
-  "union+patchtst_fm": 0.7
+  "union+patchtst_fm": 0.7,
+  "mantis": 0.59125,
+  "mantis_layer": "vit_unit_transformer_taps_4",
+  "union+mantis": 0.64625
  },
  {
   "store": "reverse",
@@ -1212,7 +1344,10 @@
   "moirai_layer": "encoder_layers_2",
   "patchtst_fm": 0.73875,
   "patchtst_fm_layer": "backbone_blocks_17",
-  "union+patchtst_fm": 0.755
+  "union+patchtst_fm": 0.755,
+  "mantis": 0.6475,
+  "mantis_layer": "vit_unit_transformer_taps_1",
+  "union+mantis": 0.755
  },
  {
   "store": "reverse",
@@ -1239,7 +1374,10 @@
   "moirai_layer": "encoder_layers_2",
   "patchtst_fm": 0.74875,
   "patchtst_fm_layer": "backbone_blocks_10",
-  "union+patchtst_fm": 0.7875
+  "union+patchtst_fm": 0.7875,
+  "mantis": 0.63875,
+  "mantis_layer": "vit_unit_transformer_taps_1",
+  "union+mantis": 0.7275
  },
  {
   "store": "reverse",
@@ -1266,7 +1404,10 @@
   "moirai_layer": "encoder_layers_4",
   "patchtst_fm": 0.76625,
   "patchtst_fm_layer": "backbone_blocks_12",
-  "union+patchtst_fm": 0.74875
+  "union+patchtst_fm": 0.74875,
+  "mantis": 0.64375,
+  "mantis_layer": "vit_unit_transformer_taps_1",
+  "union+mantis": 0.70125
  },
  {
   "store": "reverse",
@@ -1293,7 +1434,10 @@
   "moirai_layer": "encoder_layers_2",
   "patchtst_fm": 0.7725,
   "patchtst_fm_layer": "backbone_blocks_13",
-  "union+patchtst_fm": 0.84875
+  "union+patchtst_fm": 0.84875,
+  "mantis": 0.6925,
+  "mantis_layer": "vit_unit_transformer_taps_1",
+  "union+mantis": 0.83875
  },
  {
   "store": "reverse",
@@ -1320,7 +1464,10 @@
   "moirai_layer": "encoder_layers_4",
   "patchtst_fm": 0.6525,
   "patchtst_fm_layer": "backbone_blocks_19",
-  "union+patchtst_fm": 0.58875
+  "union+patchtst_fm": 0.58875,
+  "mantis": 0.5775,
+  "mantis_layer": "vit_unit_transformer_taps_1",
+  "union+mantis": 0.56875
  },
  {
   "store": "reverse",
@@ -1347,7 +1494,10 @@
   "moirai_layer": "encoder_layers_1",
   "patchtst_fm": 0.57625,
   "patchtst_fm_layer": "backbone_blocks_9",
-  "union+patchtst_fm": 0.52625
+  "union+patchtst_fm": 0.52625,
+  "mantis": 0.50625,
+  "mantis_layer": "vit_unit_transformer_taps_0",
+  "union+mantis": 0.52875
  },
  {
   "store": "reverse",
@@ -1374,7 +1524,10 @@
   "moirai_layer": "encoder_layers_1",
   "patchtst_fm": 0.585,
   "patchtst_fm_layer": "backbone_blocks_18",
-  "union+patchtst_fm": 0.5125
+  "union+patchtst_fm": 0.5125,
+  "mantis": 0.49625,
+  "mantis_layer": "vit_unit_transformer_taps_3",
+  "union+mantis": 0.5125
  },
  {
   "store": "reverse",
@@ -1401,7 +1554,10 @@
   "moirai_layer": "encoder_layers_0",
   "patchtst_fm": 0.60875,
   "patchtst_fm_layer": "backbone_blocks_18",
-  "union+patchtst_fm": 0.60375
+  "union+patchtst_fm": 0.60375,
+  "mantis": 0.54,
+  "mantis_layer": "vit_unit_transformer_taps_2",
+  "union+mantis": 0.56875
  },
  {
   "store": "reverse",
@@ -1428,7 +1584,10 @@
   "moirai_layer": "encoder_layers_2",
   "patchtst_fm": 0.6575,
   "patchtst_fm_layer": "backbone_blocks_17",
-  "union+patchtst_fm": 0.6225
+  "union+patchtst_fm": 0.6225,
+  "mantis": 0.5525,
+  "mantis_layer": "vit_unit_transformer_taps_5",
+  "union+mantis": 0.58625
  },
  {
   "store": "reverse",
@@ -1455,7 +1614,10 @@
   "moirai_layer": "encoder_layers_5",
   "patchtst_fm": 0.6225,
   "patchtst_fm_layer": "backbone_blocks_12",
-  "union+patchtst_fm": 0.61375
+  "union+patchtst_fm": 0.61375,
+  "mantis": 0.5275,
+  "mantis_layer": "vit_unit_transformer_taps_4",
+  "union+mantis": 0.55125
  },
  {
   "store": "reverse",
@@ -1482,7 +1644,10 @@
   "moirai_layer": "encoder_layers_1",
   "patchtst_fm": 0.70875,
   "patchtst_fm_layer": "backbone_blocks_12",
-  "union+patchtst_fm": 0.70625
+  "union+patchtst_fm": 0.70625,
+  "mantis": 0.59,
+  "mantis_layer": "vit_unit_transformer_taps_2",
+  "union+mantis": 0.68125
  },
  {
   "store": "reverse",
@@ -1509,7 +1674,10 @@
   "moirai_layer": "encoder_layers_0",
   "patchtst_fm": 0.67,
   "patchtst_fm_layer": "backbone_blocks_17",
-  "union+patchtst_fm": 0.64375
+  "union+patchtst_fm": 0.64375,
+  "mantis": 0.64125,
+  "mantis_layer": "vit_unit_transformer_taps_2",
+  "union+mantis": 0.5975
  },
  {
   "store": "reverse",
@@ -1536,7 +1704,10 @@
   "moirai_layer": "encoder_layers_1",
   "patchtst_fm": 0.6775,
   "patchtst_fm_layer": "backbone_blocks_19",
-  "union+patchtst_fm": 0.655
+  "union+patchtst_fm": 0.655,
+  "mantis": 0.56875,
+  "mantis_layer": "vit_unit_transformer_taps_3",
+  "union+mantis": 0.63625
  },
  {
   "store": "reverse",
@@ -1563,7 +1734,10 @@
   "moirai_layer": "encoder_layers_2",
   "patchtst_fm": 0.75,
   "patchtst_fm_layer": "backbone_blocks_17",
-  "union+patchtst_fm": 0.72
+  "union+patchtst_fm": 0.72,
+  "mantis": 0.63,
+  "mantis_layer": "vit_unit_transformer_taps_1",
+  "union+mantis": 0.6925
  },
  {
   "store": "reverse",
@@ -1590,7 +1764,10 @@
   "moirai_layer": "encoder_layers_2",
   "patchtst_fm": 0.70625,
   "patchtst_fm_layer": "backbone_blocks_16",
-  "union+patchtst_fm": 0.68625
+  "union+patchtst_fm": 0.68625,
+  "mantis": 0.59,
+  "mantis_layer": "vit_unit_transformer_taps_4",
+  "union+mantis": 0.65125
  },
  {
   "store": "reverse",
@@ -1617,7 +1794,10 @@
   "moirai_layer": "encoder_layers_3",
   "patchtst_fm": 0.74,
   "patchtst_fm_layer": "backbone_blocks_13",
-  "union+patchtst_fm": 0.73
+  "union+patchtst_fm": 0.73,
+  "mantis": 0.63,
+  "mantis_layer": "vit_unit_transformer_taps_3",
+  "union+mantis": 0.675
  },
  {
   "store": "reverse",
@@ -1644,7 +1824,10 @@
   "moirai_layer": "encoder_layers_2",
   "patchtst_fm": 0.77375,
   "patchtst_fm_layer": "backbone_blocks_19",
-  "union+patchtst_fm": 0.75125
+  "union+patchtst_fm": 0.75125,
+  "mantis": 0.6625,
+  "mantis_layer": "vit_unit_transformer_taps_4",
+  "union+mantis": 0.74
  },
  {
   "store": "reverse",
@@ -1671,7 +1854,10 @@
   "moirai_layer": "encoder_layers_2",
   "patchtst_fm": 0.77625,
   "patchtst_fm_layer": "backbone_blocks_17",
-  "union+patchtst_fm": 0.76
+  "union+patchtst_fm": 0.76,
+  "mantis": 0.6425,
+  "mantis_layer": "vit_unit_transformer_taps_4",
+  "union+mantis": 0.72625
  },
  {
   "store": "reverse",
@@ -1698,7 +1884,10 @@
   "moirai_layer": "encoder_layers_2",
   "patchtst_fm": 0.73875,
   "patchtst_fm_layer": "backbone_blocks_14",
-  "union+patchtst_fm": 0.7875
+  "union+patchtst_fm": 0.7875,
+  "mantis": 0.62625,
+  "mantis_layer": "vit_unit_transformer_taps_5",
+  "union+mantis": 0.7325
  },
  {
   "store": "reverse",
@@ -1725,7 +1914,10 @@
   "moirai_layer": "encoder_layers_2",
   "patchtst_fm": 0.79875,
   "patchtst_fm_layer": "backbone_blocks_17",
-  "union+patchtst_fm": 0.80375
+  "union+patchtst_fm": 0.80375,
+  "mantis": 0.655,
+  "mantis_layer": "vit_unit_transformer_taps_4",
+  "union+mantis": 0.80375
  },
  {
   "store": "reverse",
@@ -1752,7 +1944,10 @@
   "moirai_layer": "encoder_layers_4",
   "patchtst_fm": 0.515,
   "patchtst_fm_layer": "backbone_blocks_13",
-  "union+patchtst_fm": 0.50375
+  "union+patchtst_fm": 0.50375,
+  "mantis": 0.54,
+  "mantis_layer": "vit_unit_transformer_taps_0",
+  "union+mantis": 0.4875
  },
  {
   "store": "reverse",
@@ -1779,7 +1974,10 @@
   "moirai_layer": "encoder_layers_1",
   "patchtst_fm": 0.60375,
   "patchtst_fm_layer": "backbone_blocks_13",
-  "union+patchtst_fm": 0.545
+  "union+patchtst_fm": 0.545,
+  "mantis": 0.55125,
+  "mantis_layer": "vit_unit_transformer_taps_5",
+  "union+mantis": 0.505
  },
  {
   "store": "reverse",
@@ -1806,7 +2004,10 @@
   "moirai_layer": "encoder_layers_0",
   "patchtst_fm": 0.59625,
   "patchtst_fm_layer": "backbone_blocks_19",
-  "union+patchtst_fm": 0.5325
+  "union+patchtst_fm": 0.5325,
+  "mantis": 0.53,
+  "mantis_layer": "vit_unit_transformer_taps_3",
+  "union+mantis": 0.5275
  },
  {
   "store": "reverse",
@@ -1833,7 +2034,10 @@
   "moirai_layer": "encoder_layers_5",
   "patchtst_fm": 0.65625,
   "patchtst_fm_layer": "backbone_blocks_11",
-  "union+patchtst_fm": 0.6
+  "union+patchtst_fm": 0.6,
+  "mantis": 0.59375,
+  "mantis_layer": "vit_unit_transformer_taps_3",
+  "union+mantis": 0.57875
  },
  {
   "store": "reverse",
@@ -1860,7 +2064,10 @@
   "moirai_layer": "encoder_layers_1",
   "patchtst_fm": 0.6025,
   "patchtst_fm_layer": "backbone_blocks_13",
-  "union+patchtst_fm": 0.57375
+  "union+patchtst_fm": 0.57375,
+  "mantis": 0.58875,
+  "mantis_layer": "vit_unit_transformer_taps_2",
+  "union+mantis": 0.54625
  },
  {
   "store": "reverse",
@@ -1887,7 +2094,10 @@
   "moirai_layer": "encoder_layers_4",
   "patchtst_fm": 0.61125,
   "patchtst_fm_layer": "backbone_blocks_17",
-  "union+patchtst_fm": 0.59
+  "union+patchtst_fm": 0.59,
+  "mantis": 0.6,
+  "mantis_layer": "vit_unit_transformer_taps_1",
+  "union+mantis": 0.59875
  },
  {
   "store": "reverse",
@@ -1914,7 +2124,10 @@
   "moirai_layer": "encoder_layers_4",
   "patchtst_fm": 0.6625,
   "patchtst_fm_layer": "backbone_blocks_12",
-  "union+patchtst_fm": 0.64375
+  "union+patchtst_fm": 0.64375,
+  "mantis": 0.6225,
+  "mantis_layer": "vit_unit_transformer_taps_3",
+  "union+mantis": 0.62875
  },
  {
   "store": "reverse",
@@ -1941,7 +2154,10 @@
   "moirai_layer": "encoder_layers_5",
   "patchtst_fm": 0.68625,
   "patchtst_fm_layer": "backbone_blocks_18",
-  "union+patchtst_fm": 0.6525
+  "union+patchtst_fm": 0.6525,
+  "mantis": 0.63125,
+  "mantis_layer": "vit_unit_transformer_taps_0",
+  "union+mantis": 0.6125
  },
  {
   "store": "reverse",
@@ -1968,7 +2184,10 @@
   "moirai_layer": "encoder_layers_5",
   "patchtst_fm": 0.66625,
   "patchtst_fm_layer": "backbone_blocks_12",
-  "union+patchtst_fm": 0.645
+  "union+patchtst_fm": 0.645,
+  "mantis": 0.5525,
+  "mantis_layer": "vit_unit_transformer_taps_2",
+  "union+mantis": 0.6025
  },
  {
   "store": "reverse",
@@ -1995,7 +2214,10 @@
   "moirai_layer": "encoder_layers_3",
   "patchtst_fm": 0.73,
   "patchtst_fm_layer": "backbone_blocks_14",
-  "union+patchtst_fm": 0.685
+  "union+patchtst_fm": 0.685,
+  "mantis": 0.6525,
+  "mantis_layer": "vit_unit_transformer_taps_3",
+  "union+mantis": 0.67875
  },
  {
   "store": "reverse",
@@ -2022,7 +2244,10 @@
   "moirai_layer": "encoder_layers_5",
   "patchtst_fm": 0.71375,
   "patchtst_fm_layer": "backbone_blocks_12",
-  "union+patchtst_fm": 0.70125
+  "union+patchtst_fm": 0.70125,
+  "mantis": 0.63,
+  "mantis_layer": "vit_unit_transformer_taps_4",
+  "union+mantis": 0.70125
  },
  {
   "store": "reverse",
@@ -2049,7 +2274,10 @@
   "moirai_layer": "encoder_layers_4",
   "patchtst_fm": 0.73,
   "patchtst_fm_layer": "backbone_blocks_17",
-  "union+patchtst_fm": 0.6875
+  "union+patchtst_fm": 0.6875,
+  "mantis": 0.66,
+  "mantis_layer": "vit_unit_transformer_taps_4",
+  "union+mantis": 0.64875
  },
  {
   "store": "reverse",
@@ -2076,7 +2304,10 @@
   "moirai_layer": "encoder_layers_5",
   "patchtst_fm": 0.7475,
   "patchtst_fm_layer": "backbone_blocks_13",
-  "union+patchtst_fm": 0.73625
+  "union+patchtst_fm": 0.73625,
+  "mantis": 0.68625,
+  "mantis_layer": "vit_unit_transformer_taps_3",
+  "union+mantis": 0.7125
  },
  {
   "store": "reverse",
@@ -2103,7 +2334,10 @@
   "moirai_layer": "encoder_layers_4",
   "patchtst_fm": 0.74875,
   "patchtst_fm_layer": "backbone_blocks_9",
-  "union+patchtst_fm": 0.77625
+  "union+patchtst_fm": 0.77625,
+  "mantis": 0.66875,
+  "mantis_layer": "vit_unit_transformer_taps_2",
+  "union+mantis": 0.7325
  },
  {
   "store": "reverse",
@@ -2130,7 +2364,10 @@
   "moirai_layer": "encoder_layers_3",
   "patchtst_fm": 0.72875,
   "patchtst_fm_layer": "backbone_blocks_18",
-  "union+patchtst_fm": 0.72
+  "union+patchtst_fm": 0.72,
+  "mantis": 0.67125,
+  "mantis_layer": "vit_unit_transformer_taps_2",
+  "union+mantis": 0.71125
  },
  {
   "store": "reverse",
@@ -2157,6 +2394,9 @@
   "moirai_layer": "encoder_layers_2",
   "patchtst_fm": 0.75625,
   "patchtst_fm_layer": "backbone_blocks_18",
-  "union+patchtst_fm": 0.7825
+  "union+patchtst_fm": 0.7825,
+  "mantis": 0.70625,
+  "mantis_layer": "vit_unit_transformer_taps_2",
+  "union+mantis": 0.7675
  }
 ]

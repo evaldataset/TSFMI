@@ -123,6 +123,7 @@ outputs/per_feature_all_properties/r1_results.json
 !outputs/bayes_headroom/
 !outputs/label_efficiency/
 !outputs/ucr_kshot/
+!outputs/tsbad_windows/
 !outputs/ucr_anomaly_archive_reverse/
 !outputs/ucr_anomaly_archive_negate/
 outputs/canonical_v2_randinit/logs/

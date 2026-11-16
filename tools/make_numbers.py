@@ -1631,22 +1631,31 @@ def label_efficiency(n: Numbers, root: Path) -> bool:
                 n.put(f"{b}/ratio", e["ratio"], src, digits=1)
                 n.put(f"{b}/lo", e["lo"], src, digits=1)
                 n.put(f"{b}/hi", e["hi"], src, digits=1)
-    cls = d.get("classification", {})
-    if cls:
-        n.put("le/cls/ndatasets", cls["n_datasets"], src)
-        n.put("le/cls/nts", cls["n_time_series"], src)
+    meta = root / "outputs/tsbad_windows/meta.json"
+    if meta.exists():
+        m = load(meta)
+        msrc = str(meta.relative_to(root))
+        n.put("tsb/nwindows", m["n_windows"], msrc)
+        n.put("tsb/nseries", m["n_series"], msrc)
+        n.put("tsb/nsources", m["n_sources"], msrc)
+    for part, pre in (("classification", "le/cls"), ("classification_cv", "le/clscv")):
+        cls = d.get(part, {})
+        if not cls:
+            continue
+        n.put(f"{pre}/ndatasets", cls["n_datasets"], src)
+        n.put(f"{pre}/nts", cls["n_time_series"], src)
         v = cls["all"]
         for b, acc in zip(v["budgets"], v["union_curve"], strict=True):
-            n.put(f"le/cls/union/k{b}", acc, src)
+            n.put(f"{pre}/union/k{b}", acc, src)
         for m, rows in v["models"].items():
             for e in rows:
-                b = f"le/cls/{rkey(m)}/k{e['budget']}"
+                b = f"{pre}/{rkey(m)}/k{e['budget']}"
                 n.put(f"{b}/acc", e["acc"], src)
                 n.put(f"{b}/ratio", e["ratio"], src)
                 n.put(f"{b}/lo", e["lo"], src)
                 n.put(f"{b}/hi", e["hi"], src)
         k5 = [rows[2]["ratio"] for m, rows in v["models"].items() if not m.startswith("union+")]
-        n.put("le/cls/k5/maxratio", max(k5), src)
+        n.put(f"{pre}/k5/maxratio", max(k5), src)
     return True
 
 
